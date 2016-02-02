@@ -53,6 +53,7 @@ public:
 
     // Méthodes spécifiques
     // TODO Méthodes spécifiques
+    bool operator==(const Point& point);
 
     // Enumération des types de points
     enum typesPoints

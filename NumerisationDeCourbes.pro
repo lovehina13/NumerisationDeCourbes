@@ -12,10 +12,12 @@ INCLUDEPATH += . include
 
 HEADERS += include/Etude.h \
            include/Image.h \
+           include/Parametres.h \
            include/Point.h \
            include/Repere.h
 SOURCES += source/NumerisationDeCourbes.cpp \
            source/Etude.cpp \
            source/Image.cpp \
+           source/Parametres.cpp \
            source/Point.cpp \
            source/Repere.cpp

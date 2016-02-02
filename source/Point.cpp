@@ -154,3 +154,8 @@ const QString Point::toString(const char& sep) const
     // TODO const QString Point::toString(const char& sep) const
     return QString();
 }
+
+bool Point::operator==(const Point& point)
+{
+    return this->equals(point);
+}
