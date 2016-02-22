@@ -16,14 +16,14 @@ Point::Point() :
 Point::Point(const QPoint& pointPixel, const QPointF& pointReel, const int& typePoint) :
         Point()
 {
-    this->initialize(pointPixel, pointReel, typePoint);
+    this->set(pointPixel, pointReel, typePoint);
 }
 
 Point::Point(const int& pointPixelX, const int& pointPixelY, const double& pointReelX,
         const double& pointReelY, const int& typePoint) :
         Point()
 {
-    this->initialize(pointPixelX, pointPixelY, pointReelX, pointReelY, typePoint);
+    this->set(pointPixelX, pointPixelY, pointReelX, pointReelY, typePoint);
 }
 
 Point::Point(const Point& point) :
@@ -108,17 +108,17 @@ void Point::setPointReelY(const double& pointReelY)
 
 void Point::clear()
 {
-    this->initialize(QPoint(), QPointF(), INDEFINI);
+    this->set(QPoint(), QPointF(), INDEFINI);
 }
 
-void Point::initialize(const QPoint& pointPixel, const QPointF& pointReel, const int& typePoint)
+void Point::set(const QPoint& pointPixel, const QPointF& pointReel, const int& typePoint)
 {
     this->setPointPixel(pointPixel);
     this->setPointReel(pointReel);
     this->setTypePoint(typePoint);
 }
 
-void Point::initialize(const int& pointPixelX, const int& pointPixelY, const double& pointReelX,
+void Point::set(const int& pointPixelX, const int& pointPixelY, const double& pointReelX,
         const double& pointReelY, const int& typePoint)
 {
     this->setPointPixelX(pointPixelX);
@@ -130,7 +130,7 @@ void Point::initialize(const int& pointPixelX, const int& pointPixelY, const dou
 
 void Point::copy(const Point& point)
 {
-    this->initialize(point.getPointPixel(), point.getPointReel(), point.getTypePoint());
+    this->set(point.getPointPixel(), point.getPointReel(), point.getTypePoint());
 }
 
 bool Point::equals(const Point& point) const
@@ -147,15 +147,18 @@ bool Point::equals(const Point& point) const
 void Point::fromString(const QString& fromString, const char& sep)
 {
     // TODO void Point::fromString(const QString& fromString, const char& sep)
+    Q_UNUSED(fromString);
+    Q_UNUSED(sep);
 }
 
 const QString Point::toString(const char& sep) const
 {
     // TODO const QString Point::toString(const char& sep) const
+    Q_UNUSED(sep);
     return QString();
 }
 
-bool Point::operator==(const Point& point)
+bool Point::operator==(const Point& point) const
 {
     return this->equals(point);
 }

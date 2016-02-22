@@ -10,6 +10,7 @@
 
 #include <QImage>
 #include <QList>
+#include <QPoint>
 #include <QRgb>
 #include <QString>
 
@@ -32,7 +33,7 @@ public:
 
     // Méthodes génériques
     void clear();
-    void initialize(const QImage& imageSource, const QImage& imageConvertie);
+    void set(const QImage& imageSource, const QImage& imageConvertie);
     void copy(const Image& image);
     bool equals(const Image& image) const;
     void fromString(const QString& fromString, const char& sep);
@@ -41,12 +42,15 @@ public:
     // Méthodes spécifiques
     // TODO Méthodes spécifiques
     void restaurerImage();
-    void convertirImage(const int& typeConversion, const int& seuilNoirEtBlanc =
-            seuilNoirEtBlancDefaut, const int& nombreNiveauxDeGris = nombreNiveauxDeGrisDefaut,
-            const int& nombreTeintesSaturees = nombreTeintesSatureesDefaut);
+    void convertirImageNoirEtBlanc(const int& seuilNoirEtBlanc);
+    void convertirImageNiveauxDeGris(const int& nombreNiveauxDeGris);
+    void convertirImageTeintesSaturees(const int& nombreNiveauxDeGris,
+            const int& nombreTeintesSaturees, const int& seuilSaturation);
+    bool verifierPresencePixel(const QPoint& pointPixel) const;
+    QRgb recupererCouleurPixel(const QPoint& pointPixel) const;
 
-    // Enumération des types de conversions
-    enum typesConversions
+    // Enumération des méthodes de conversions
+    enum methodesConversion
     {
         BRUTE, NOIR_ET_BLANC, NIVEAUX_DE_GRIS, TEINTES_SATUREES
     };
@@ -55,14 +59,18 @@ public:
     static const int seuilNoirEtBlancDefaut = 224;
     static const int nombreNiveauxDeGrisDefaut = 5;
     static const int nombreTeintesSatureesDefaut = 6;
+    static const int seuilSaturationDefaut = 10;
 
 protected:
     // Méthodes spécifiques
     // TODO Méthodes spécifiques
-    double getPasNiveauxDeGris(const int& nombreNiveauxDeGris);
-    double getPasTeintesSaturees(const int& nombreTeintesSaturees);
-    QList<QRgb> getListeNiveauxDeGris(const int& nombreNiveauxDeGris);
-    QList<QRgb> getListeTeintesSaturees(const int& nombreTeintesSaturees);
+    void convertirImage(const int& typeConversion, const int& seuilNoirEtBlanc,
+            const int& nombreNiveauxDeGris, const int& nombreTeintesSaturees,
+            const int& seuilSaturation);
+    double getPasNiveauxDeGris(const int& nombreNiveauxDeGris) const;
+    double getPasTeintesSaturees(const int& nombreTeintesSaturees) const;
+    QList<QRgb> getListeNiveauxDeGris(const int& nombreNiveauxDeGris) const;
+    QList<QRgb> getListeTeintesSaturees(const int& nombreTeintesSaturees) const;
 
 private:
     // Attributs de classe

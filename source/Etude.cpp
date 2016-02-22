@@ -6,6 +6,10 @@
 //==============================================================================
 
 #include "Etude.h"
+#include <QColor>
+#include <QFile>
+#include <QIODevice>
+#include <QTextStream>
 
 Etude::Etude()
 {
@@ -15,7 +19,7 @@ Etude::Etude()
 Etude::Etude(const Image& image, const Repere& repere, const QList<Point>& listeDePoints,
         const Parametres& parametres)
 {
-    this->initialize(image, repere, listeDePoints, parametres);
+    this->set(image, repere, listeDePoints, parametres);
 }
 
 Etude::Etude(const Etude& etude)
@@ -69,10 +73,10 @@ void Etude::setParametres(const Parametres& parametres)
 
 void Etude::clear()
 {
-    this->initialize(Image(), Repere(), QList<Point>(), Parametres());
+    this->set(Image(), Repere(), QList<Point>(), Parametres());
 }
 
-void Etude::initialize(const Image& image, const Repere& repere, const QList<Point>& listeDePoints,
+void Etude::set(const Image& image, const Repere& repere, const QList<Point>& listeDePoints,
         const Parametres& parametres)
 {
     this->setImage(image);
@@ -105,45 +109,212 @@ bool Etude::equals(const Etude& etude) const
 void Etude::fromString(const QString& fromString, const char& sep)
 {
     // TODO void Etude::fromString(const QString& fromString, const char& sep)
+    Q_UNUSED(fromString);
+    Q_UNUSED(sep);
 }
 
 const QString Etude::toString(const char& sep) const
 {
     // TODO const QString Etude::toString(const char& sep) const
+    Q_UNUSED(sep);
     return QString();
 }
 
-void Etude::chargerEtude(const QString& cheminFichierEtude)
+bool Etude::chargerEtude(const QString& cheminFichierEtude)
 {
-    // TODO void Etude::chargerEtude(const QString& cheminFichierEtude)
+    QFile fichierEtude(cheminFichierEtude);
+    if (!fichierEtude.open(QIODevice::ReadOnly | QIODevice::Text))
+        return false;
+
+    QTextStream fluxEntree(&fichierEtude);
+    while (!fluxEntree.atEnd())
+    {
+        QString ligneFichierEntree = fluxEntree.readLine();
+        // TODO Définition de l'étude à partir des lignes lues
+    }
+    return true;
 }
 
-void Etude::sauverEtude(const QString& cheminFichierEtude)
+bool Etude::sauverEtude(const QString& cheminFichierEtude)
 {
-    // TODO void Etude::sauverEtude(const QString& cheminFichierEtude)
+    Parametres parametres = this->getParametres();
+    parametres.setCheminFichierEtude(cheminFichierEtude);
+    this->setParametres(parametres);
+
+    QFile fichierEtude(cheminFichierEtude);
+    if (!fichierEtude.open(QIODevice::WriteOnly | QIODevice::Text))
+        return false;
+
+    const char separateur = ';';
+    QTextStream fluxSortie(&fichierEtude);
+    fluxSortie << "[PARAMETRES]" << endl;
+    fluxSortie << this->getParametres().toString(separateur) << endl;
+    fluxSortie << "[REPERE]" << endl;
+    fluxSortie << this->getRepere().toString(separateur) << endl;
+    fluxSortie << "[POINTS]" << endl;
+    const QList<Point>& listeDePoints = this->getListeDePoints();
+    const int nombreDePoints = listeDePoints.length();
+    for (int itPoint = 0; itPoint < nombreDePoints; itPoint++)
+    {
+        const Point& pointCourant = listeDePoints.at(itPoint);
+        fluxSortie << pointCourant.toString(separateur) << endl;
+    }
+    return true;
 }
 
-void Etude::exporterListeDePoints(const QString& cheminFichierExport)
+bool Etude::exporterListeDePoints(const QString& cheminFichierExport)
 {
-    // TODO void Etude::exporterListeDePoints(const QString& cheminFichierExport)
+    Parametres parametres = this->getParametres();
+    parametres.setCheminFichierExport(cheminFichierExport);
+    this->setParametres(parametres);
+
+    QFile fichierExport(cheminFichierExport);
+    if (!fichierExport.open(QIODevice::WriteOnly | QIODevice::Text))
+        return false;
+
+    const char separateur = ';';
+    QTextStream fluxSortie(&fichierExport);
+    const QList<Point>& listeDePoints = this->getListeDePoints();
+    const int nombreDePoints = listeDePoints.length();
+    for (int itPoint = 0; itPoint < nombreDePoints; itPoint++)
+    {
+        const Point& pointCourant = listeDePoints.at(itPoint);
+        fluxSortie << pointCourant.getPointReelX() << separateur << pointCourant.getPointReelY()
+                << endl;
+    }
+    return true;
+
+    // TODO Implémentation de la précision selon le nombre de chiffres significatifs
+    // TODO Implémentation de l'interpolation numérique
 }
 
-void Etude::exporterImageConvertie(const QString& cheminFichierImage)
+bool Etude::exporterImageConvertie(const QString& cheminFichierImageConvertie)
 {
-    // TODO void Etude::exporterImageConvertie(const QString& cheminFichierImage)
+    // TODO void Etude::exporterImageConvertie(const QString& cheminFichierImageConvertie) const
+    Q_UNUSED(cheminFichierImageConvertie);
+    return true;
 }
 
 void Etude::rechercherCourbe(const QPoint& pointPixelDepart, const QPoint& pointPixelArrivee)
 {
-    // TODO void Etude::rechercherCourbe(const QPoint& pointPixelDepart, const QPoint& pointPixelArrivee)
+    this->listeDePointsDeRecherche.clear();
+    this->pointPixelDepart = pointPixelDepart;
+    this->pointPixelArrivee = pointPixelArrivee;
+    this->listeDePointsDeRecherche.append(pointPixelDepart);
+    const QRgb couleurReference = this->getImage().recupererCouleurPixel(pointPixelDepart);
+    this->rechercherPointsProches(this->pointPixelDepart, couleurReference);
+    this->filterListeDePoints(this->listeDePointsDeRecherche);
 }
 
-void Etude::rechercherPointsProches(const QPoint& pointPixel)
+void Etude::rechercherPointsProches(const QPoint& pointPixel, const QRgb& couleurReference)
 {
-    // TODO void Etude::rechercherPointsProches(const QPoint& pointPixel)
+    const QList<QPoint> listeDePointsProches = this->recupererListeDePointsProches(pointPixel);
+    const int nombreDePointsProches = listeDePointsProches.length();
+    const int seuilToleranceNiveauxDeGris = this->getParametres().getSeuilToleranceNiveauxDeGris();
+    const int seuilToleranceTeintesSaturees =
+            this->getParametres().getSeuilToleranceTeintesSaturees();
+    for (int itPoint = 0; itPoint < nombreDePointsProches; itPoint++)
+    {
+        const QPoint& pointCourant = listeDePointsProches.at(itPoint);
+        if (this->listeDePointsDeRecherche.contains(pointCourant))
+            continue;
+        const QRgb& couleurCourante = this->getImage().recupererCouleurPixel(pointCourant);
+        if (this->verifierToleranceNiveauxDeGris(couleurCourante, couleurReference,
+                seuilToleranceNiveauxDeGris) != NIVEAU_DE_GRIS_COMPATIBLE)
+            continue;
+        if (this->verifierToleranceTeintesSaturees(couleurCourante, couleurReference,
+                seuilToleranceTeintesSaturees) != TEINTE_SATUREE_COMPATIBLE)
+            continue;
+        // TODO Traitement selon la méthode de conversion sélectionnée
+        this->listeDePointsDeRecherche.append(pointCourant);
+        this->rechercherPointsProches(pointCourant, couleurReference);
+    }
+}
+
+QList<QPoint> Etude::recupererListeDePointsProches(const QPoint& pointPixel) const
+{
+    QList<QPoint> listeDePointsProches;
+    const Image& image = this->getImage();
+
+    const int xCourant = pointPixel.x();
+    const int yCourant = pointPixel.y();
+    const int xPrecedent = xCourant - 1;
+    const int xSuivant = xCourant + 1;
+    const int yPrecedent = yCourant - 1;
+    const int ySuivant = yCourant + 1;
+
+    const QPoint pointHautGauche(xPrecedent, yPrecedent);
+    const QPoint pointHaut(xCourant, yPrecedent);
+    const QPoint pointHautDroite(xSuivant, yPrecedent);
+    const QPoint pointGauche(xPrecedent, yCourant);
+    const QPoint pointDroite(xSuivant, yCourant);
+    const QPoint pointBasGauche(xPrecedent, ySuivant);
+    const QPoint pointBas(xCourant, ySuivant);
+    const QPoint pointBasDroite(xSuivant, ySuivant);
+
+    if (image.verifierPresencePixel(pointHautGauche) && xPrecedent >= this->pointPixelDepart.x())
+    {
+        listeDePointsProches.append(pointHautGauche);
+    }
+    if (image.verifierPresencePixel(pointHaut))
+    {
+        listeDePointsProches.append(pointHaut);
+    }
+    if (image.verifierPresencePixel(pointHautDroite) && xSuivant <= this->pointPixelArrivee.x())
+    {
+        listeDePointsProches.append(pointHautDroite);
+    }
+    if (image.verifierPresencePixel(pointGauche) && xPrecedent >= this->pointPixelDepart.x())
+    {
+        listeDePointsProches.append(pointGauche);
+    }
+    if (image.verifierPresencePixel(pointDroite) && xSuivant <= this->pointPixelArrivee.x())
+    {
+        listeDePointsProches.append(pointDroite);
+    }
+    if (image.verifierPresencePixel(pointBasGauche) && xPrecedent >= this->pointPixelDepart.x())
+    {
+        listeDePointsProches.append(pointBasGauche);
+    }
+    if (image.verifierPresencePixel(pointBas))
+    {
+        listeDePointsProches.append(pointBas);
+    }
+    if (image.verifierPresencePixel(pointBasDroite) && xSuivant <= this->pointPixelArrivee.x())
+    {
+        listeDePointsProches.append(pointBasDroite);
+    }
+
+    return listeDePointsProches;
+}
+
+int Etude::verifierToleranceNiveauxDeGris(const QRgb& couleurCourante, const QRgb& couleurReference,
+        const int& seuilToleranceNiveauxDeGris) const
+{
+    if (qGray(couleurCourante) < (qGray(couleurReference) - seuilToleranceNiveauxDeGris))
+        return NIVEAU_DE_GRIS_INFERIEUR;
+    else if (qGray(couleurCourante) > (qGray(couleurReference) + seuilToleranceNiveauxDeGris))
+        return NIVEAU_DE_GRIS_SUPERIEUR;
+    return NIVEAU_DE_GRIS_COMPATIBLE;
+}
+
+int Etude::verifierToleranceTeintesSaturees(const QRgb& couleurCourante,
+        const QRgb& couleurReference, const int& seuilToleranceTeintesSaturees) const
+{
+    if (QColor(couleurCourante).hue()
+            < ((QColor(couleurReference).hue() - seuilToleranceTeintesSaturees) % 360))
+        return TEINTE_SATUREE_INFERIEURE;
+    else if (QColor(couleurCourante).hue()
+            > ((QColor(couleurReference).hue() + seuilToleranceTeintesSaturees) % 360))
+        return TEINTE_SATUREE_SUPERIEURE;
+    else if ((QColor(couleurCourante).hue() == -1 && QColor(couleurReference).hue() != -1)
+            || (QColor(couleurCourante).hue() != -1 && QColor(couleurReference).hue() == -1))
+        return TEINTE_SATUREE_INCOMPATIBLE;
+    return TEINTE_SATUREE_COMPATIBLE;
 }
 
 void Etude::filterListeDePoints(const QList<QPoint>& listeDePoints)
 {
     // TODO void Etude::filterListeDePoints(const QList<QPoint> listeDePoints)
+    Q_UNUSED(listeDePoints);
 }

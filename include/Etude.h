@@ -13,6 +13,8 @@
 #include "Point.h"
 #include "Repere.h"
 #include <QList>
+#include <QPoint>
+#include <QRgb>
 #include <QString>
 
 class Etude
@@ -39,7 +41,7 @@ public:
 
     // Méthodes génériques
     void clear();
-    void initialize(const Image& image, const Repere& repere, const QList<Point>& listeDePoints,
+    void set(const Image& image, const Repere& repere, const QList<Point>& listeDePoints,
             const Parametres& parametres);
     void copy(const Etude& etude);
     bool equals(const Etude& etude) const;
@@ -48,16 +50,34 @@ public:
 
     // Méthodes spécifiques
     // TODO Méthodes spécifiques
-    void chargerEtude(const QString& cheminFichierEtude);
-    void sauverEtude(const QString& cheminFichierEtude);
-    void exporterListeDePoints(const QString& cheminFichierExport);
-    void exporterImageConvertie(const QString& cheminFichierImage);
+    bool chargerEtude(const QString& cheminFichierEtude);
+    bool sauverEtude(const QString& cheminFichierEtude);
+    bool exporterListeDePoints(const QString& cheminFichierExport);
+    bool exporterImageConvertie(const QString& cheminFichierImageConvertie);
     void rechercherCourbe(const QPoint& pointPixelDepart, const QPoint& pointPixelArrivee);
+
+    // Enumération des types de tolérance de niveaux de gris
+    enum typesToleranceNiveauxDeGris
+    {
+        NIVEAU_DE_GRIS_COMPATIBLE, NIVEAU_DE_GRIS_INFERIEUR, NIVEAU_DE_GRIS_SUPERIEUR
+    };
+
+    // Enumération des types de tolérance de teintes saturées
+    enum typesToleranceTeintesSaturees
+    {
+        TEINTE_SATUREE_COMPATIBLE, TEINTE_SATUREE_INCOMPATIBLE, TEINTE_SATUREE_INFERIEURE,
+        TEINTE_SATUREE_SUPERIEURE
+    };
 
 protected:
     // Méthodes spécifiques
     // TODO Méthodes spécifiques
-    void rechercherPointsProches(const QPoint& pointPixel);
+    void rechercherPointsProches(const QPoint& pointPixel, const QRgb& couleurReference);
+    QList<QPoint> recupererListeDePointsProches(const QPoint& pointPixel) const;
+    int verifierToleranceNiveauxDeGris(const QRgb& couleurCourante, const QRgb& couleurReference,
+            const int& seuilToleranceNiveauxDeGris) const;
+    int verifierToleranceTeintesSaturees(const QRgb& couleurCourante, const QRgb& couleurReference,
+            const int& seuilToleranceTeintesSaturees) const;
     void filterListeDePoints(const QList<QPoint>& listeDePoints);
 
 private:
@@ -66,6 +86,11 @@ private:
     Repere repere;
     QList<Point> listeDePoints;
     Parametres parametres;
+
+    // Attributs de classe inaccessibles
+    QList<QPoint> listeDePointsDeRecherche;
+    QPoint pointPixelDepart;
+    QPoint pointPixelArrivee;
 };
 
 #endif /* ETUDE_H_ */

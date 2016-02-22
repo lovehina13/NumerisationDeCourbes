@@ -21,3 +21,5 @@ SOURCES += source/NumerisationDeCourbes.cpp \
            source/Parametres.cpp \
            source/Point.cpp \
            source/Repere.cpp
+
+QMAKE_CXXFLAGS += -std=c++11

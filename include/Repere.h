@@ -34,7 +34,7 @@ public:
 
     // Méthodes génériques
     void clear();
-    void initialize(const Point& pointX0, const Point& pointX1, const Point& pointY0,
+    void set(const Point& pointX0, const Point& pointX1, const Point& pointY0,
             const Point& pointY1);
     void copy(const Repere& repere);
     bool equals(const Repere& repere) const;
@@ -44,7 +44,7 @@ public:
     // Méthodes spécifiques
     // TODO Méthodes spécifiques
     void pixelVersReel(const int& pointPixelX, const int& pointPixelY, double& pointReelX,
-            double &pointReelY);
+            double &pointReelY) const;
 
 private:
     // Attributs de classe

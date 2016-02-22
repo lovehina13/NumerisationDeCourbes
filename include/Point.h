@@ -43,8 +43,8 @@ public:
 
     // Méthodes génériques
     void clear();
-    void initialize(const QPoint& pointPixel, const QPointF& pointReel, const int& typePoint);
-    void initialize(const int& pointPixelX, const int& pointPixelY, const double& pointReelX,
+    void set(const QPoint& pointPixel, const QPointF& pointReel, const int& typePoint);
+    void set(const int& pointPixelX, const int& pointPixelY, const double& pointReelX,
             const double& pointReelY, const int& typePoint);
     void copy(const Point& point);
     bool equals(const Point& point) const;
@@ -53,7 +53,7 @@ public:
 
     // Méthodes spécifiques
     // TODO Méthodes spécifiques
-    bool operator==(const Point& point);
+    bool operator==(const Point& point) const;
 
     // Enumération des types de points
     enum typesPoints
