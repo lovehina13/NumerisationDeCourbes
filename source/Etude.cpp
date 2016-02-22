@@ -162,6 +162,13 @@ bool Etude::sauverEtude(const QString& cheminFichierEtude)
     return true;
 }
 
+bool Etude::exporterImageConvertie(const QString& cheminFichierImageConvertie)
+{
+    // TODO void Etude::exporterImageConvertie(const QString& cheminFichierImageConvertie) const
+    Q_UNUSED(cheminFichierImageConvertie);
+    return true;
+}
+
 bool Etude::exporterListeDePoints(const QString& cheminFichierExport)
 {
     Parametres parametres = this->getParametres();
@@ -186,13 +193,6 @@ bool Etude::exporterListeDePoints(const QString& cheminFichierExport)
 
     // TODO Implémentation de la précision selon le nombre de chiffres significatifs
     // TODO Implémentation de l'interpolation numérique
-}
-
-bool Etude::exporterImageConvertie(const QString& cheminFichierImageConvertie)
-{
-    // TODO void Etude::exporterImageConvertie(const QString& cheminFichierImageConvertie) const
-    Q_UNUSED(cheminFichierImageConvertie);
-    return true;
 }
 
 void Etude::rechercherCourbe(const QPoint& pointPixelDepart, const QPoint& pointPixelArrivee)

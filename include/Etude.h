@@ -52,8 +52,8 @@ public:
     // TODO Méthodes spécifiques
     bool chargerEtude(const QString& cheminFichierEtude);
     bool sauverEtude(const QString& cheminFichierEtude);
-    bool exporterListeDePoints(const QString& cheminFichierExport);
     bool exporterImageConvertie(const QString& cheminFichierImageConvertie);
+    bool exporterListeDePoints(const QString& cheminFichierExport);
     void rechercherCourbe(const QPoint& pointPixelDepart, const QPoint& pointPixelArrivee);
 
     // Enumération des types de tolérance de niveaux de gris

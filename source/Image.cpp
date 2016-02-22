@@ -110,7 +110,7 @@ void Image::convertirImageTeintesSaturees(const int& nombreNiveauxDeGris,
         const int& nombreTeintesSaturees, const int& seuilSaturation)
 {
     this->convertirImage(TEINTES_SATUREES, (int) seuilNoirEtBlancDefaut, nombreNiveauxDeGris,
-            (int) nombreTeintesSaturees, seuilSaturation);
+            nombreTeintesSaturees, seuilSaturation);
 }
 
 bool Image::verifierPresencePixel(const QPoint& pointPixel) const
