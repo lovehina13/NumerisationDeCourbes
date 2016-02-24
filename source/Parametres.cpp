@@ -166,7 +166,7 @@ void Parametres::setSeuilSaturation(const int& seuilSaturation)
 
 void Parametres::clear()
 {
-    this->set(QString(), QString(), QString(), QString(), (int) nombreChiffresSignificatifs,
+    this->set(QString(), QString(), QString(), QString(), (int) nombreChiffresSignificatifsDefaut,
             (int) seuilToleranceNiveauxDeGrisDefaut, (int) seuilToleranceTeintesSatureesDefaut,
             (int) Image::BRUTE, (int) Image::seuilNoirEtBlancDefaut,
             (int) Image::nombreNiveauxDeGrisDefaut, (int) Image::nombreTeintesSatureesDefaut,
