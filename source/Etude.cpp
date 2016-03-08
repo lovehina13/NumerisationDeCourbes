@@ -164,8 +164,16 @@ bool Etude::sauverEtude(const QString& cheminFichierEtude)
 
 bool Etude::exporterImageConvertie(const QString& cheminFichierImageConvertie)
 {
-    // TODO void Etude::exporterImageConvertie(const QString& cheminFichierImageConvertie) const
-    Q_UNUSED(cheminFichierImageConvertie);
+    Parametres parametres = this->getParametres();
+    parametres.setCheminFichierImageConvertie(cheminFichierImageConvertie);
+    this->setParametres(parametres);
+
+    QFile fichierImageConvertie(cheminFichierImageConvertie);
+    if (!fichierImageConvertie.open(QIODevice::WriteOnly | QIODevice::Text))
+        return false;
+
+    const QImage& imageConvertie = this->getImage().getImageConvertie();
+    imageConvertie.save(cheminFichierImageConvertie);
     return true;
 }
 
@@ -225,7 +233,6 @@ void Etude::rechercherPointsProches(const QPoint& pointPixel, const QRgb& couleu
         if (this->verifierToleranceTeintesSaturees(couleurCourante, couleurReference,
                 seuilToleranceTeintesSaturees) != TEINTE_SATUREE_COMPATIBLE)
             continue;
-        // TODO Traitement selon la méthode de conversion sélectionnée
         this->listeDePointsDeRecherche.append(pointCourant);
         this->rechercherPointsProches(pointCourant, couleurReference);
     }
