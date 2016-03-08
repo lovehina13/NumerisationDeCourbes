@@ -167,7 +167,8 @@ void Image::convertirImage(const int& typeConversion, const int& seuilNoirEtBlan
                 {
                     couleurConvertie = listeTeintesSaturees.at(
                             (int) round(
-                                    (double) QColor(couleurConvertie).hue() / pasTeintesSaturees));
+                                    (double) QColor(couleurConvertie).hue() / pasTeintesSaturees)
+                                    % nombreTeintesSaturees);
                 }
             }
             imageConvertie.setPixel(x, y, couleurConvertie);
