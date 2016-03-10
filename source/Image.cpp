@@ -147,7 +147,9 @@ void Image::convertirImage(const int& typeConversion, const int& seuilNoirEtBlan
             if (typeConversion == NOIR_ET_BLANC)
             {
                 couleurConvertie =
-                        (qGray(couleurConvertie) <= seuilNoirEtBlanc) ? Qt::black : Qt::white;
+                        (((double) qGray(couleurConvertie) / 256.0)
+                                <= ((double) seuilNoirEtBlanc / 100.0)) ?
+                                QColor(Qt::black).rgb() : QColor(Qt::white).rgb();
             }
             else if (typeConversion == NIVEAUX_DE_GRIS)
             {

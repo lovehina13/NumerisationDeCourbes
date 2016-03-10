@@ -9,6 +9,7 @@ TEMPLATE = app
 TARGET = NumerisationDeCourbes
 DEPENDPATH += . include source
 INCLUDEPATH += . include
+OBJECTS_DIR = objects
 
 HEADERS += include/Etude.h \
            include/Image.h \

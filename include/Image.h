@@ -56,7 +56,7 @@ public:
     };
 
     // Définition des valeurs par défaut des paramètres de conversions
-    static const int seuilNoirEtBlancDefaut = 224;
+    static const int seuilNoirEtBlancDefaut = 90;
     static const int nombreNiveauxDeGrisDefaut = 5;
     static const int nombreTeintesSatureesDefaut = 6;
     static const int seuilSaturationDefaut = 10;
