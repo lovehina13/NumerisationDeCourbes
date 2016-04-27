@@ -6,6 +6,7 @@
 //==============================================================================
 
 #include "Outils.h"
+#include "Image.h"
 #include <QColor>
 #include <QImage>
 
@@ -81,4 +82,30 @@ void genererImageTest()
     }
 
     imageTest.save("ImageTest.png");
+}
+
+void testerConversionNoirEtBlanc(const int& seuilNoirEtBlanc)
+{
+    genererImageTest();
+    Image imageTest(QImage("ImageTest.png"), QImage());
+    imageTest.convertirImageNoirEtBlanc(seuilNoirEtBlanc);
+    imageTest.getImageConvertie().save("ImageTestConversionNoirEtBlanc.png");
+}
+
+void testerConversionNiveauxDeGris(const int& nombreNiveauxDeGris)
+{
+    genererImageTest();
+    Image imageTest(QImage("ImageTest.png"), QImage());
+    imageTest.convertirImageNiveauxDeGris(nombreNiveauxDeGris);
+    imageTest.getImageConvertie().save("ImageTestConversionNiveauxDeGris.png");
+}
+
+void testerConversionTeintesSaturees(const int& nombreNiveauxDeGris,
+        const int& nombreTeintesSaturees, const int& seuilSaturation)
+{
+    genererImageTest();
+    Image imageTest(QImage("ImageTest.png"), QImage());
+    imageTest.convertirImageTeintesSaturees(nombreNiveauxDeGris, nombreTeintesSaturees,
+            seuilSaturation);
+    imageTest.getImageConvertie().save("ImageTestConversionTeintesSaturees.png");
 }

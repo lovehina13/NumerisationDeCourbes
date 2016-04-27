@@ -9,5 +9,9 @@
 #define OUTILS_H_
 
 void genererImageTest();
+void testerConversionNoirEtBlanc(const int& seuilNoirEtBlanc);
+void testerConversionNiveauxDeGris(const int& nombreNiveauxDeGris);
+void testerConversionTeintesSaturees(const int& nombreNiveauxDeGris,
+        const int& nombreTeintesSaturees, const int& seuilSaturation);
 
 #endif /* OUTILS_H_ */
