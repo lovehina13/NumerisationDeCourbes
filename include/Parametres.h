@@ -90,3 +90,12 @@ private:
 };
 
 #endif /* PARAMETRES_H_ */
+
+/* TODO Paramètres supplémentaires :
+ *        - affichage des nombres : standard ou scientifique
+ *        - interpolation numérique : active ou inactive, écart
+ *        - axes : marqueurs, traits, couleurs, épaisseurs
+ *        - courbes : marqueurs, traits, couleurs, épaisseurs
+ *        - points : marqueurs, couleurs, épaisseurs
+ * TODO Diviser en plusieurs classes
+ */

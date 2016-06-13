@@ -203,11 +203,11 @@ void Parametres::copy(const Parametres& parametres)
     this->setNombreChiffresSignificatifs(parametres.getNombreChiffresSignificatifs());
     this->setSeuilToleranceNiveauxDeGris(parametres.getSeuilToleranceNiveauxDeGris());
     this->setSeuilToleranceTeintesSaturees(parametres.getSeuilToleranceTeintesSaturees());
-    this->setMethodeConversion(methodeConversion);
-    this->setSeuilNoirEtBlanc(seuilNoirEtBlanc);
-    this->setNombreNiveauxDeGris(nombreNiveauxDeGris);
-    this->setNombreTeintesSaturees(nombreTeintesSaturees);
-    this->setSeuilSaturation(seuilSaturation);
+    this->setMethodeConversion(parametres.getMethodeConversion());
+    this->setSeuilNoirEtBlanc(parametres.getSeuilNoirEtBlanc());
+    this->setNombreNiveauxDeGris(parametres.getNombreNiveauxDeGris());
+    this->setNombreTeintesSaturees(parametres.getNombreTeintesSaturees());
+    this->setSeuilSaturation(parametres.getSeuilSaturation());
 }
 
 bool Parametres::equals(const Parametres& parametres) const

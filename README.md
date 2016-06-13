@@ -1,21 +1,21 @@
 # NumerisationDeCourbes
 
-NumerisationDeCourbes est une application graphique permettant l'extraction des points d'une courbe présente dans un graphique au format image.
+NumerisationDeCourbes est une application graphique permettant l'extraction des points d'une courbe prÃ©sente dans un graphique au format image.
 
-Les fonctionnalités principales de l'application sont les suivantes :
+Les fonctionnalitÃ©s principales de l'application sont les suivantes :
 
- - Sélection d'une image,
- - Définition des axes d'un repère,
- - Définition des extrémités d'une courbe,
+ - SÃ©lection d'une image,
+ - DÃ©finition des axes d'un repÃ¨re,
+ - DÃ©finition des extrÃ©mitÃ©s d'une courbe,
  - Recherche et extraction des points d'une courbe,
- - Export des points au format tabulé.
+ - Export des points au format tabulÃ©.
 
-Les fonctionnalités supplémentaires de l'application sont les suivantes :
+Les fonctionnalitÃ©s supplÃ©mentaires de l'application sont les suivantes :
 
- - Chargement et sauvegarde d'une étude,
+ - Chargement et sauvegarde d'une Ã©tude,
  - Saisie manuelle de points,
- - Conversions graphiques (noir et blanc, niveaux de gris, teintes saturées),
- - Interpolation numérique,
- - Représentation en notation scientifique.
+ - Conversions graphiques (noir et blanc, niveaux de gris, teintes saturÃ©es),
+ - Interpolation numÃ©rique,
+ - ReprÃ©sentation en notation scientifique.
 
-L'application est réalisée en C++11 et Qt 4.8.6.
+L'application est rÃ©alisÃ©e en C++11 et Qt 4.8.6.
