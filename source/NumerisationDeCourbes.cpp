@@ -5,8 +5,13 @@
 // Description : Main file of the NumerisationDeCourbes project
 //==============================================================================
 
-int main()
+#include "EcranPrincipal.h"
+#include <QApplication>
+
+int main(int argc, char* argv[])
 {
-    // TODO int main()
-    return 0;
+    QApplication application(argc, argv);
+    EcranPrincipal ecranPrincipal;
+    ecranPrincipal.show();
+    return application.exec();
 }

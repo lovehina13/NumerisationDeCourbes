@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>EcranPrincipal</class>
+ <widget class="QMainWindow" name="EcranPrincipal">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>612</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>NumerisationDeCourbes</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QGridLayout" name="gridLayoutCentralWidget">
+    <item row="0" column="0" rowspan="4">
+     <widget class="QGraphicsView" name="graphicsViewImage"/>
+    </item>
+    <item row="0" column="1">
+     <widget class="QGroupBox" name="groupBoxConversionImage">
+      <property name="maximumSize">
+       <size>
+        <width>350</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="title">
+       <string>Conversion de l'image</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayoutConversionImage">
+       <item row="0" column="0" colspan="2">
+        <widget class="QRadioButton" name="radioButtonNoirEtBlanc">
+         <property name="text">
+          <string>Noir et blanc</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0" colspan="2">
+        <widget class="QRadioButton" name="radioButtonNiveauxDeGris">
+         <property name="text">
+          <string>Niveaux de gris</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0" colspan="2">
+        <widget class="QRadioButton" name="radioButtonTeintesSaturees">
+         <property name="text">
+          <string>Teintes saturées</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QPushButton" name="pushButtonConvertir">
+         <property name="text">
+          <string>Convertir</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QPushButton" name="pushButtonRestaurer">
+         <property name="text">
+          <string>Restaurer</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QGroupBox" name="groupBoxCoordonneesAxes">
+      <property name="maximumSize">
+       <size>
+        <width>350</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="title">
+       <string>Coordonnées des axes</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayoutCoordonneesAxes">
+       <item row="0" column="1">
+        <widget class="QLabel" name="labelXPixel">
+         <property name="text">
+          <string>X Pixel</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QLabel" name="labelYPixel">
+         <property name="text">
+          <string>Y Pixel</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="QLabel" name="labelValeur">
+         <property name="text">
+          <string>Valeur</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="labelPointX0">
+         <property name="text">
+          <string>Point X0</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLineEdit" name="lineEditPointX0XPixel"/>
+       </item>
+       <item row="1" column="2">
+        <widget class="QLineEdit" name="lineEditPointX0YPixel"/>
+       </item>
+       <item row="1" column="3">
+        <widget class="QLineEdit" name="lineEditPointX0Valeur"/>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="labelPointX1">
+         <property name="text">
+          <string>Point X1</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLineEdit" name="lineEditPointX1XPixel"/>
+       </item>
+       <item row="2" column="2">
+        <widget class="QLineEdit" name="lineEditPointX1YPixel"/>
+       </item>
+       <item row="2" column="3">
+        <widget class="QLineEdit" name="lineEditPointX1Valeur"/>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="labelPointY0">
+         <property name="text">
+          <string>Point Y0</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QLineEdit" name="lineEditPointY0XPixel"/>
+       </item>
+       <item row="3" column="2">
+        <widget class="QLineEdit" name="lineEditPointY0YPixel"/>
+       </item>
+       <item row="3" column="3">
+        <widget class="QLineEdit" name="lineEditPointY0Valeur"/>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="labelPointY1">
+         <property name="text">
+          <string>Point Y1</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QLineEdit" name="lineEditPointY1XPixel"/>
+       </item>
+       <item row="4" column="2">
+        <widget class="QLineEdit" name="lineEditPointY1YPixel"/>
+       </item>
+       <item row="4" column="3">
+        <widget class="QLineEdit" name="lineEditPointY1Valeur"/>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QGroupBox" name="groupBoxCoordonneesCourbe">
+      <property name="maximumSize">
+       <size>
+        <width>350</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="title">
+       <string>Coordonnées de la courbe</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayoutCoordonneesCourbe">
+       <item row="0" column="1">
+        <widget class="QLabel" name="labelXPixel_2">
+         <property name="text">
+          <string>X Pixel</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QLabel" name="labelYPixel_2">
+         <property name="text">
+          <string>Y Pixel</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="QLabel" name="labelXReel">
+         <property name="text">
+          <string>X Réel</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="4">
+        <widget class="QLabel" name="labelYReel">
+         <property name="text">
+          <string>Y Réel</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="labelPointDepart">
+         <property name="text">
+          <string>Point de départ</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLineEdit" name="lineEditPointDepartXPixel"/>
+       </item>
+       <item row="1" column="2">
+        <widget class="QLineEdit" name="lineEditPointDepartYPixel"/>
+       </item>
+       <item row="1" column="3">
+        <widget class="QLineEdit" name="lineEditPointDepartXReel">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="4">
+        <widget class="QLineEdit" name="lineEditPointDepartYReel">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="labelPointArrivee">
+         <property name="text">
+          <string>Point d'arrivée</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLineEdit" name="lineEditPointArriveeXPixel"/>
+       </item>
+       <item row="2" column="2">
+        <widget class="QLineEdit" name="lineEditPointArriveeYPixel"/>
+       </item>
+       <item row="2" column="3">
+        <widget class="QLineEdit" name="lineEditPointArriveeXReel">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="4">
+        <widget class="QLineEdit" name="lineEditPointArriveeYReel">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0" colspan="5">
+        <widget class="QPushButton" name="pushButtonRechercherPoints">
+         <property name="text">
+          <string>Rechercher les points</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="3" column="1">
+     <widget class="QGroupBox" name="groupBoxListePoints">
+      <property name="maximumSize">
+       <size>
+        <width>350</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="title">
+       <string>Liste des points</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayoutListePoints">
+       <item row="0" column="0" colspan="3">
+        <widget class="QTableWidget" name="tableWidgetListePoints">
+         <property name="editTriggers">
+          <set>QAbstractItemView::NoEditTriggers</set>
+         </property>
+         <column>
+          <property name="text">
+           <string>X Pixel</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Y Pixel</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>X Réel</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Y Réel</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QPushButton" name="pushButtonSupprimerTout">
+         <property name="text">
+          <string>Supprimer tout</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QPushButton" name="pushButtonSupprimerSelection">
+         <property name="text">
+          <string>Supprimer la sélection</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QPushButton" name="pushButtonGraphique">
+         <property name="text">
+          <string>Graphique</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFichier">
+    <property name="title">
+     <string>Fichier</string>
+    </property>
+    <addaction name="actionCreer"/>
+    <addaction name="actionCharger"/>
+    <addaction name="actionSauver"/>
+    <addaction name="actionExporter"/>
+    <addaction name="separator"/>
+    <addaction name="actionQuitter"/>
+   </widget>
+   <widget class="QMenu" name="menuInformations">
+    <property name="title">
+     <string>Informations</string>
+    </property>
+    <addaction name="actionDocumentation"/>
+    <addaction name="actionAbout"/>
+   </widget>
+   <widget class="QMenu" name="menuParametres">
+    <property name="title">
+     <string>Paramètres</string>
+    </property>
+    <addaction name="actionParametresAffichage"/>
+    <addaction name="actionParametresConversion"/>
+    <addaction name="actionParametresRecherche"/>
+    <addaction name="actionParametresExport"/>
+   </widget>
+   <addaction name="menuFichier"/>
+   <addaction name="menuParametres"/>
+   <addaction name="menuInformations"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionCreer">
+   <property name="text">
+    <string>Créer une nouvelle étude...</string>
+   </property>
+  </action>
+  <action name="actionCharger">
+   <property name="text">
+    <string>Charger une étude existante...</string>
+   </property>
+  </action>
+  <action name="actionSauver">
+   <property name="text">
+    <string>Sauver l'étude courante...</string>
+   </property>
+  </action>
+  <action name="actionExporter">
+   <property name="text">
+    <string>Exporter l'étude courante...</string>
+   </property>
+  </action>
+  <action name="actionQuitter">
+   <property name="text">
+    <string>Quitter</string>
+   </property>
+  </action>
+  <action name="actionParametresConversion">
+   <property name="text">
+    <string>Paramètres de conversion...</string>
+   </property>
+  </action>
+  <action name="actionParametresRecherche">
+   <property name="text">
+    <string>Paramètres de recherche...</string>
+   </property>
+  </action>
+  <action name="actionParametresAffichage">
+   <property name="text">
+    <string>Paramètres d'affichage...</string>
+   </property>
+  </action>
+  <action name="actionParametresExport">
+   <property name="text">
+    <string>Paramètres d'export...</string>
+   </property>
+  </action>
+  <action name="actionDocumentation">
+   <property name="text">
+    <string>Documentation...</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>À propos de NumerisationDeCourbes...</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
