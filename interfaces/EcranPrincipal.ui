@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>612</height>
+    <width>942</width>
+    <height>719</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,66 +16,65 @@
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayoutCentralWidget">
     <item row="0" column="0" rowspan="4">
-     <widget class="QGraphicsView" name="graphicsViewImage"/>
+     <widget class="QGraphicsView" name="graphicsViewImage">
+      <property name="minimumSize">
+       <size>
+        <width>600</width>
+        <height>600</height>
+       </size>
+      </property>
+     </widget>
     </item>
     <item row="0" column="1">
      <widget class="QGroupBox" name="groupBoxConversionImage">
-      <property name="maximumSize">
-       <size>
-        <width>350</width>
-        <height>16777215</height>
-       </size>
-      </property>
       <property name="title">
        <string>Conversion de l'image</string>
       </property>
       <layout class="QGridLayout" name="gridLayoutConversionImage">
-       <item row="0" column="0" colspan="2">
+       <item row="0" column="0">
         <widget class="QRadioButton" name="radioButtonNoirEtBlanc">
          <property name="text">
           <string>Noir et blanc</string>
          </property>
         </widget>
        </item>
-       <item row="1" column="0" colspan="2">
+       <item row="0" column="1">
         <widget class="QRadioButton" name="radioButtonNiveauxDeGris">
          <property name="text">
           <string>Niveaux de gris</string>
          </property>
         </widget>
        </item>
-       <item row="2" column="0" colspan="2">
+       <item row="0" column="2">
         <widget class="QRadioButton" name="radioButtonTeintesSaturees">
          <property name="text">
           <string>Teintes saturées</string>
          </property>
         </widget>
        </item>
-       <item row="3" column="0">
-        <widget class="QPushButton" name="pushButtonConvertir">
-         <property name="text">
-          <string>Convertir</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="1">
-        <widget class="QPushButton" name="pushButtonRestaurer">
-         <property name="text">
-          <string>Restaurer</string>
-         </property>
-        </widget>
+       <item row="1" column="0" colspan="3">
+        <layout class="QHBoxLayout" name="horizontalLayoutConversionImage">
+         <item>
+          <widget class="QPushButton" name="pushButtonConvertir">
+           <property name="text">
+            <string>Convertir</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButtonRestaurer">
+           <property name="text">
+            <string>Restaurer</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
       </layout>
      </widget>
     </item>
     <item row="1" column="1">
      <widget class="QGroupBox" name="groupBoxCoordonneesAxes">
-      <property name="maximumSize">
-       <size>
-        <width>350</width>
-        <height>16777215</height>
-       </size>
-      </property>
       <property name="title">
        <string>Coordonnées des axes</string>
       </property>
@@ -179,12 +178,6 @@
     </item>
     <item row="2" column="1">
      <widget class="QGroupBox" name="groupBoxCoordonneesCourbe">
-      <property name="maximumSize">
-       <size>
-        <width>350</width>
-        <height>16777215</height>
-       </size>
-      </property>
       <property name="title">
        <string>Coordonnées de la courbe</string>
       </property>
@@ -283,29 +276,61 @@
          </property>
         </widget>
        </item>
-       <item row="3" column="0" colspan="5">
-        <widget class="QPushButton" name="pushButtonRechercherPoints">
+       <item row="3" column="0">
+        <widget class="QLabel" name="labelPointManuel">
          <property name="text">
-          <string>Rechercher les points</string>
+          <string>Point manuel</string>
          </property>
         </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QLineEdit" name="lineEditPointManuelXPixel"/>
+       </item>
+       <item row="3" column="2">
+        <widget class="QLineEdit" name="lineEditPointManuelYPixel"/>
+       </item>
+       <item row="3" column="3">
+        <widget class="QLineEdit" name="lineEditPointManuelXReel">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="4">
+        <widget class="QLineEdit" name="lineEditPointManuelYReel">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0" colspan="5">
+        <layout class="QHBoxLayout" name="horizontalLayoutCoordonneesCourbe">
+         <item>
+          <widget class="QPushButton" name="pushButtonAjouter">
+           <property name="text">
+            <string>Ajouter</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButtonRechercher">
+           <property name="text">
+            <string>Rechercher</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
       </layout>
      </widget>
     </item>
     <item row="3" column="1">
      <widget class="QGroupBox" name="groupBoxListePoints">
-      <property name="maximumSize">
-       <size>
-        <width>350</width>
-        <height>16777215</height>
-       </size>
-      </property>
       <property name="title">
        <string>Liste des points</string>
       </property>
       <layout class="QGridLayout" name="gridLayoutListePoints">
-       <item row="0" column="0" colspan="3">
+       <item row="0" column="0">
         <widget class="QTableWidget" name="tableWidgetListePoints">
          <property name="editTriggers">
           <set>QAbstractItemView::NoEditTriggers</set>
@@ -333,25 +358,22 @@
         </widget>
        </item>
        <item row="1" column="0">
-        <widget class="QPushButton" name="pushButtonSupprimerTout">
-         <property name="text">
-          <string>Supprimer tout</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QPushButton" name="pushButtonSupprimerSelection">
-         <property name="text">
-          <string>Supprimer la sélection</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="2">
-        <widget class="QPushButton" name="pushButtonGraphique">
-         <property name="text">
-          <string>Graphique</string>
-         </property>
-        </widget>
+        <layout class="QHBoxLayout" name="horizontalLayoutListePoints">
+         <item>
+          <widget class="QPushButton" name="pushButtonSupprimer">
+           <property name="text">
+            <string>Supprimer</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButtonGraphique">
+           <property name="text">
+            <string>Graphique</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
       </layout>
      </widget>
@@ -363,7 +385,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>942</width>
      <height>21</height>
     </rect>
    </property>
@@ -378,13 +400,6 @@
     <addaction name="separator"/>
     <addaction name="actionQuitter"/>
    </widget>
-   <widget class="QMenu" name="menuInformations">
-    <property name="title">
-     <string>Informations</string>
-    </property>
-    <addaction name="actionDocumentation"/>
-    <addaction name="actionAbout"/>
-   </widget>
    <widget class="QMenu" name="menuParametres">
     <property name="title">
      <string>Paramètres</string>
@@ -393,6 +408,13 @@
     <addaction name="actionParametresConversion"/>
     <addaction name="actionParametresRecherche"/>
     <addaction name="actionParametresExport"/>
+   </widget>
+   <widget class="QMenu" name="menuInformations">
+    <property name="title">
+     <string>Informations</string>
+    </property>
+    <addaction name="actionDocumentation"/>
+    <addaction name="actionAbout"/>
    </widget>
    <addaction name="menuFichier"/>
    <addaction name="menuParametres"/>
@@ -403,25 +425,45 @@
    <property name="text">
     <string>Créer une nouvelle étude...</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
   </action>
   <action name="actionCharger">
    <property name="text">
     <string>Charger une étude existante...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
    </property>
   </action>
   <action name="actionSauver">
    <property name="text">
     <string>Sauver l'étude courante...</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
   </action>
   <action name="actionExporter">
    <property name="text">
     <string>Exporter l'étude courante...</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+E</string>
+   </property>
   </action>
   <action name="actionQuitter">
    <property name="text">
     <string>Quitter</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="actionParametresAffichage">
+   <property name="text">
+    <string>Paramètres d'affichage...</string>
    </property>
   </action>
   <action name="actionParametresConversion">
@@ -434,11 +476,6 @@
     <string>Paramètres de recherche...</string>
    </property>
   </action>
-  <action name="actionParametresAffichage">
-   <property name="text">
-    <string>Paramètres d'affichage...</string>
-   </property>
-  </action>
   <action name="actionParametresExport">
    <property name="text">
     <string>Paramètres d'export...</string>
@@ -448,10 +485,16 @@
    <property name="text">
     <string>Documentation...</string>
    </property>
+   <property name="shortcut">
+    <string>F1</string>
+   </property>
   </action>
   <action name="actionAbout">
    <property name="text">
     <string>À propos de NumerisationDeCourbes...</string>
+   </property>
+   <property name="shortcut">
+    <string>F2</string>
    </property>
   </action>
  </widget>

@@ -45,6 +45,7 @@ public:
     // TODO Méthodes spécifiques
     void pixelVersReel(const int& pointPixelX, const int& pointPixelY, double& pointReelX,
             double &pointReelY) const;
+    void pixelVersReel(Point& point) const;
 
 private:
     // Attributs de classe

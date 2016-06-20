@@ -37,9 +37,17 @@ public:
     // Méthodes spécifiques
     // TODO Méthodes spécifiques
 
+protected:
+    // TODO Méthodes spécifiques
+    void actualiserCoordonneesPoints();
+    void actualiserCoordonneesPointDepart();
+    void actualiserCoordonneesPointArrivee();
+    void actualiserCoordonneesPointManuel();
+    void actualiserCoordonneesListeDePoints();
+
 protected slots:
-    // Slots d'actions
-    // TODO Slots d'actions
+    // Connecteurs spécifiques
+    // TODO Connecteurs spécifiques
     void on_actionCreer_toggled();
     void on_actionCharger_toggled();
     void on_actionSauver_toggled();
@@ -73,9 +81,11 @@ protected slots:
     void on_lineEditPointDepartYPixel_textChanged();
     void on_lineEditPointArriveeXPixel_textChanged();
     void on_lineEditPointArriveeYPixel_textChanged();
-    void on_pushButtonRechercherPoints_clicked();
-    void on_pushButtonSupprimerTout_clicked();
-    void on_pushButtonSupprimerSelection_clicked();
+    void on_lineEditPointManuelXPixel_textChanged();
+    void on_lineEditPointManuelYPixel_textChanged();
+    void on_pushButtonAjouter_clicked();
+    void on_pushButtonRechercher_clicked();
+    void on_pushButtonSupprimer_clicked();
     void on_pushButtonGraphique_clicked();
 
 private:

@@ -26,6 +26,6 @@ SOURCES += source/NumerisationDeCourbes.cpp \
            source/Parametres.cpp \
            source/Point.cpp \
            source/Repere.cpp
-FORMS +=  interfaces/EcranPrincipal.ui
+FORMS += interfaces/EcranPrincipal.ui
 
 QMAKE_CXXFLAGS += -std=c++11
