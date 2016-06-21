@@ -39,6 +39,11 @@ public:
 
 protected:
     // TODO Méthodes spécifiques
+    void initialiserElementsGraphiques();
+    void creerNouvelleEtude();
+    void chargerEtudeExistante();
+    void sauverEtudeCourante();
+    bool verifierEtatSauvegardeEtude();
     void actualiserCoordonneesPoints();
     void actualiserCoordonneesPointDepart();
     void actualiserCoordonneesPointArrivee();
@@ -48,17 +53,17 @@ protected:
 protected slots:
     // Connecteurs spécifiques
     // TODO Connecteurs spécifiques
-    void on_actionCreer_toggled();
-    void on_actionCharger_toggled();
-    void on_actionSauver_toggled();
-    void on_actionExporter_toggled();
-    void on_actionQuitter_toggled();
-    void on_actionParametresAffichage_toggled();
-    void on_actionParametresConversion_toggled();
-    void on_actionParametresRecherche_toggled();
-    void on_actionParametresExport_toggled();
-    void on_actionDocumentation_toggled();
-    void on_actionAbout_toggled();
+    void on_actionCreer_triggered();
+    void on_actionCharger_triggered();
+    void on_actionSauver_triggered();
+    void on_actionExporter_triggered();
+    void on_actionQuitter_triggered();
+    void on_actionParametresAffichage_triggered();
+    void on_actionParametresConversion_triggered();
+    void on_actionParametresRecherche_triggered();
+    void on_actionParametresExport_triggered();
+    void on_actionDocumentation_triggered();
+    void on_actionAbout_triggered();
     // TODO void on_graphicsViewImage_*();
     void on_radioButtonNoirEtBlanc_clicked();
     void on_radioButtonNiveauxDeGris_clicked();
@@ -92,6 +97,7 @@ private:
     // Attributs de classe
     Ui::EcranPrincipal* ui;
     Etude etude;
+    Etude etudeReference;
 };
 
 #endif /* ECRANPRINCIPAL_H_ */

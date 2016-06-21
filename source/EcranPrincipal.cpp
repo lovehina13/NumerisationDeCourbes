@@ -9,19 +9,94 @@
 #include "Point.h"
 #include "Repere.h"
 #include "ui_EcranPrincipal.h"
+#include <QDoubleValidator>
+#include <QIntValidator>
 #include <QList>
+#include <QMessageBox>
 #include <QTableWidgetItem>
 
 EcranPrincipal::EcranPrincipal(QWidget* parent) :
         QMainWindow(parent), ui(new Ui::EcranPrincipal)
 {
     this->ui->setupUi(this);
+    this->initialiserElementsGraphiques();
+    this->creerNouvelleEtude();
     this->actualiserCoordonneesPoints();
 }
 
 EcranPrincipal::~EcranPrincipal()
 {
     delete this->ui;
+}
+
+void EcranPrincipal::initialiserElementsGraphiques()
+{
+    this->ui->radioButtonNoirEtBlanc->setChecked(true);
+
+    QIntValidator* nombreEntier = new QIntValidator(this);
+    this->ui->lineEditPointX0XPixel->setValidator(nombreEntier);
+    this->ui->lineEditPointX0YPixel->setValidator(nombreEntier);
+    this->ui->lineEditPointX1XPixel->setValidator(nombreEntier);
+    this->ui->lineEditPointX1YPixel->setValidator(nombreEntier);
+    this->ui->lineEditPointY0XPixel->setValidator(nombreEntier);
+    this->ui->lineEditPointY0YPixel->setValidator(nombreEntier);
+    this->ui->lineEditPointY1XPixel->setValidator(nombreEntier);
+    this->ui->lineEditPointY1YPixel->setValidator(nombreEntier);
+    this->ui->lineEditPointDepartXPixel->setValidator(nombreEntier);
+    this->ui->lineEditPointDepartYPixel->setValidator(nombreEntier);
+    this->ui->lineEditPointArriveeXPixel->setValidator(nombreEntier);
+    this->ui->lineEditPointArriveeYPixel->setValidator(nombreEntier);
+    this->ui->lineEditPointManuelXPixel->setValidator(nombreEntier);
+    this->ui->lineEditPointManuelYPixel->setValidator(nombreEntier);
+
+    QDoubleValidator* nombreReel = new QDoubleValidator(this);
+    this->ui->lineEditPointX0Valeur->setValidator(nombreReel);
+    this->ui->lineEditPointX1Valeur->setValidator(nombreReel);
+    this->ui->lineEditPointY0Valeur->setValidator(nombreReel);
+    this->ui->lineEditPointY1Valeur->setValidator(nombreReel);
+    this->ui->lineEditPointDepartXReel->setValidator(nombreReel);
+    this->ui->lineEditPointDepartYReel->setValidator(nombreReel);
+    this->ui->lineEditPointArriveeXReel->setValidator(nombreReel);
+    this->ui->lineEditPointArriveeYReel->setValidator(nombreReel);
+    this->ui->lineEditPointManuelXReel->setValidator(nombreReel);
+    this->ui->lineEditPointManuelYReel->setValidator(nombreReel);
+}
+
+void EcranPrincipal::creerNouvelleEtude()
+{
+    // TODO EcranPrincipal::creerNouvelleEtude()
+    this->etudeReference = this->etude;
+}
+
+void EcranPrincipal::chargerEtudeExistante()
+{
+    // TODO EcranPrincipal::chargerEtudeExistante()
+    this->etudeReference = this->etude;
+}
+
+void EcranPrincipal::sauverEtudeCourante()
+{
+    // TODO EcranPrincipal::sauverEtudeCourante()
+    this->etudeReference = this->etude;
+}
+
+bool EcranPrincipal::verifierEtatSauvegardeEtude()
+{
+    if (!this->etude.equals(this->etudeReference))
+    {
+        // TODO Mutualiser le code dans des classes FenetreMessageOK FenetreMessageOuiNon
+        QMessageBox* fenetreMessage = new QMessageBox(QMessageBox::Warning,
+                QString::fromUtf8("Sauvegarde de l'étude courante"),
+                QString::fromUtf8("Souhaitez-vous sauver l'étude courante ?"),
+                QMessageBox::Yes | QMessageBox::No, this);
+        fenetreMessage->setButtonText(QMessageBox::Yes, "Oui");
+        fenetreMessage->setButtonText(QMessageBox::No, "Non");
+        if (fenetreMessage->exec() == QMessageBox::No)
+            return false;
+        this->sauverEtudeCourante();
+    }
+    this->etudeReference = this->etude;
+    return true;
 }
 
 void EcranPrincipal::actualiserCoordonneesPoints()
@@ -100,59 +175,65 @@ void EcranPrincipal::actualiserCoordonneesListeDePoints()
     this->ui->tableWidgetListePoints->resizeColumnsToContents();
 }
 
-void EcranPrincipal::on_actionCreer_toggled()
+void EcranPrincipal::on_actionCreer_triggered()
 {
-    // TODO void EcranPrincipal::on_actionCreer_toggled()
+    if (!this->verifierEtatSauvegardeEtude())
+        return;
+    this->creerNouvelleEtude();
 }
 
-void EcranPrincipal::on_actionCharger_toggled()
+void EcranPrincipal::on_actionCharger_triggered()
 {
-    // TODO void EcranPrincipal::on_actionCharger_toggled()
+    if (!this->verifierEtatSauvegardeEtude())
+        return;
+    this->chargerEtudeExistante();
 }
 
-void EcranPrincipal::on_actionSauver_toggled()
+void EcranPrincipal::on_actionSauver_triggered()
 {
-    // TODO void EcranPrincipal::on_actionSauver_toggled()
+    if (!this->verifierEtatSauvegardeEtude())
+        return;
+    this->sauverEtudeCourante();
 }
 
-void EcranPrincipal::on_actionExporter_toggled()
+void EcranPrincipal::on_actionExporter_triggered()
 {
-    // TODO void EcranPrincipal::on_actionExporter_toggled()
+    // TODO void EcranPrincipal::on_actionExporter_triggered()
 }
 
-void EcranPrincipal::on_actionQuitter_toggled()
+void EcranPrincipal::on_actionQuitter_triggered()
 {
-    // TODO void EcranPrincipal::on_actionQuitter_toggled()
+    // TODO void EcranPrincipal::on_actionQuitter_triggered()
 }
 
-void EcranPrincipal::on_actionParametresAffichage_toggled()
+void EcranPrincipal::on_actionParametresAffichage_triggered()
 {
-    // TODO void EcranPrincipal::on_actionParametresAffichage_toggled()
+    // TODO void EcranPrincipal::on_actionParametresAffichage_triggered()
 }
 
-void EcranPrincipal::on_actionParametresConversion_toggled()
+void EcranPrincipal::on_actionParametresConversion_triggered()
 {
-    // TODO void EcranPrincipal::on_actionParametresConversion_toggled()
+    // TODO void EcranPrincipal::on_actionParametresConversion_triggered()
 }
 
-void EcranPrincipal::on_actionParametresRecherche_toggled()
+void EcranPrincipal::on_actionParametresRecherche_triggered()
 {
-    // TODO void EcranPrincipal::on_actionParametresRecherche_toggled()
+    // TODO void EcranPrincipal::on_actionParametresRecherche_triggered()
 }
 
-void EcranPrincipal::on_actionParametresExport_toggled()
+void EcranPrincipal::on_actionParametresExport_triggered()
 {
-    // TODO void EcranPrincipal::on_actionParametresExport_toggled()
+    // TODO void EcranPrincipal::on_actionParametresExport_triggered()
 }
 
-void EcranPrincipal::on_actionDocumentation_toggled()
+void EcranPrincipal::on_actionDocumentation_triggered()
 {
-    // TODO void EcranPrincipal::on_actionDocumentation_toggled()
+    // TODO void EcranPrincipal::on_actionDocumentation_triggered()
 }
 
-void EcranPrincipal::on_actionAbout_toggled()
+void EcranPrincipal::on_actionAbout_triggered()
 {
-    // TODO void EcranPrincipal::on_actionAbout_toggled()
+    // TODO void EcranPrincipal::on_actionAbout_triggered()
 }
 
 void EcranPrincipal::on_radioButtonNoirEtBlanc_clicked()
