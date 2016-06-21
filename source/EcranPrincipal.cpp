@@ -10,9 +10,11 @@
 #include "Repere.h"
 #include "ui_EcranPrincipal.h"
 #include <QDoubleValidator>
+#include <QFileDialog>
 #include <QIntValidator>
 #include <QList>
 #include <QMessageBox>
+#include <QString>
 #include <QTableWidgetItem>
 
 EcranPrincipal::EcranPrincipal(QWidget* parent) :
@@ -20,7 +22,6 @@ EcranPrincipal::EcranPrincipal(QWidget* parent) :
 {
     this->ui->setupUi(this);
     this->initialiserElementsGraphiques();
-    this->creerNouvelleEtude();
     this->actualiserCoordonneesPoints();
 }
 
@@ -64,27 +65,72 @@ void EcranPrincipal::initialiserElementsGraphiques()
 
 void EcranPrincipal::creerNouvelleEtude()
 {
-    // TODO EcranPrincipal::creerNouvelleEtude()
-    this->etudeReference = this->etude;
+    // TODO Sauvegarder et utiliser le dernier fichier sélectionné ?
+    // TODO Utiliser le chemin du fichier image courant ?
+    QString cheminFichierImageSource = QFileDialog::getOpenFileName(this,
+            QString::fromUtf8("Sélection d'un fichier image"), ".",
+            QString::fromUtf8("Fichier image (*.bmp *.jpg *.jpeg *.png)"));
+    if (cheminFichierImageSource.isEmpty())
+        return;
+
+    this->etude.clear();
+    this->actualiserEtudeReference();
+
+    Image image;
+    image.setImageSource(QImage(cheminFichierImageSource));
+    image.restaurerImage();
+    this->etude.setImage(image);
+    Parametres parametres;
+    parametres.setCheminFichierImageSource(cheminFichierImageSource);
+    this->etude.setParametres(parametres);
 }
 
 void EcranPrincipal::chargerEtudeExistante()
 {
-    // TODO EcranPrincipal::chargerEtudeExistante()
-    this->etudeReference = this->etude;
+    // TODO Sauvegarder et utiliser le dernier fichier sélectionné ?
+    // TODO Utiliser le chemin du fichier étude courant ?
+    QString cheminFichierEtude = QFileDialog::getOpenFileName(this,
+            QString::fromUtf8("Sélection d'un fichier étude"), ".",
+            QString::fromUtf8("Fichier étude (*.enc)"));
+    if (cheminFichierEtude.isEmpty())
+        return;
+
+    this->etude.chargerEtude(cheminFichierEtude);
+    this->actualiserEtudeReference();
 }
 
 void EcranPrincipal::sauverEtudeCourante()
 {
-    // TODO EcranPrincipal::sauverEtudeCourante()
-    this->etudeReference = this->etude;
+    // TODO Sauvegarder et utiliser le dernier fichier sélectionné ?
+    // TODO Utiliser le chemin du fichier étude courant ?
+    QString cheminFichierEtude = QFileDialog::getSaveFileName(this,
+            QString::fromUtf8("Sélection d'un fichier étude"), ".",
+            QString::fromUtf8("Fichier étude (*.enc)"));
+    if (cheminFichierEtude.isEmpty())
+        return;
+
+    this->etude.sauverEtude(cheminFichierEtude);
+    this->actualiserEtudeReference();
+}
+
+void EcranPrincipal::exporterEtudeCourante()
+{
+    // TODO Sauvegarder et utiliser le dernier fichier sélectionné ?
+    // TODO Utiliser le chemin du fichier export courant ?
+    QString cheminFichierExport = QFileDialog::getSaveFileName(this,
+            QString::fromUtf8("Sélection d'un fichier export"), ".",
+            QString::fromUtf8("Fichier export (*.csv)"));
+    if (cheminFichierExport.isEmpty())
+        return;
+
+    this->etude.exporterListeDePoints(cheminFichierExport);
 }
 
 bool EcranPrincipal::verifierEtatSauvegardeEtude()
 {
     if (!this->etude.equals(this->etudeReference))
     {
-        // TODO Mutualiser le code dans des classes FenetreMessageOK FenetreMessageOuiNon
+        // TODO Mutualiser le code dans des classes FenetreMessageOK FenetreMessageOuiNon ?
         QMessageBox* fenetreMessage = new QMessageBox(QMessageBox::Warning,
                 QString::fromUtf8("Sauvegarde de l'étude courante"),
                 QString::fromUtf8("Souhaitez-vous sauver l'étude courante ?"),
@@ -95,8 +141,12 @@ bool EcranPrincipal::verifierEtatSauvegardeEtude()
             return false;
         this->sauverEtudeCourante();
     }
-    this->etudeReference = this->etude;
     return true;
+}
+
+void EcranPrincipal::actualiserEtudeReference()
+{
+    this->etudeReference = this->etude;
 }
 
 void EcranPrincipal::actualiserCoordonneesPoints()
@@ -142,7 +192,7 @@ void EcranPrincipal::actualiserCoordonneesPointManuel()
 
 void EcranPrincipal::actualiserCoordonneesListeDePoints()
 {
-    // TODO Gérer les accès aux éléments à la liste de points via ajouterPoint(), supprimerPoint(), modifierPoint() et effacerPoints()
+    // TODO Gérer les accès aux éléments de la liste de points via des méthodes ajouterPoint(), supprimerPoint(), modifierPoint() et effacerPoints()
 
     QList<Point> listeDePoints;
     const int nombreDePoints = this->etude.getListeDePoints().size();
@@ -191,19 +241,18 @@ void EcranPrincipal::on_actionCharger_triggered()
 
 void EcranPrincipal::on_actionSauver_triggered()
 {
-    if (!this->verifierEtatSauvegardeEtude())
-        return;
     this->sauverEtudeCourante();
 }
 
 void EcranPrincipal::on_actionExporter_triggered()
 {
-    // TODO void EcranPrincipal::on_actionExporter_triggered()
+    this->exporterEtudeCourante();
 }
 
 void EcranPrincipal::on_actionQuitter_triggered()
 {
-    // TODO void EcranPrincipal::on_actionQuitter_triggered()
+    this->verifierEtatSauvegardeEtude();
+    this->close();
 }
 
 void EcranPrincipal::on_actionParametresAffichage_triggered()
@@ -233,7 +282,13 @@ void EcranPrincipal::on_actionDocumentation_triggered()
 
 void EcranPrincipal::on_actionAbout_triggered()
 {
-    // TODO void EcranPrincipal::on_actionAbout_triggered()
+    // TODO Mutualiser le code dans des classes FenetreMessageOK FenetreMessageOuiNon ?
+    QMessageBox* fenetreMessage = new QMessageBox(QMessageBox::Information,
+            QString::fromUtf8("NumerisationDeCourbes"),
+            QString::fromUtf8("NumerisationDeCourbes, version 1.0 (DD/MM/YYYY).\n"
+                    "Réalisée par Alexis Foerster (alexis.foerster@gmail.com)."), QMessageBox::Ok,
+            this);
+    fenetreMessage->exec();
 }
 
 void EcranPrincipal::on_radioButtonNoirEtBlanc_clicked()

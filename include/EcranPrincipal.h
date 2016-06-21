@@ -43,7 +43,9 @@ protected:
     void creerNouvelleEtude();
     void chargerEtudeExistante();
     void sauverEtudeCourante();
+    void exporterEtudeCourante();
     bool verifierEtatSauvegardeEtude();
+    void actualiserEtudeReference();
     void actualiserCoordonneesPoints();
     void actualiserCoordonneesPointDepart();
     void actualiserCoordonneesPointArrivee();
