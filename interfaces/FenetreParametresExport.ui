@@ -1,38 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <author/>
- <comment/>
- <exportmacro/>
  <class>FenetreParametresExport</class>
  <widget class="QDialog" name="FenetreParametresExport">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>360</width>
+    <height>171</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Paramètres d'export</string>
   </property>
-  <widget class="QDialogButtonBox" name="buttonBox">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>240</y>
-     <width>341</width>
-     <height>32</height>
-    </rect>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
-   </property>
-   <property name="standardButtons">
-    <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
-   </property>
-  </widget>
+  <layout class="QGridLayout" name="gridLayoutFenetreParametresExport">
+   <item row="0" column="0">
+    <widget class="QLabel" name="labelCaractereSeparation">
+     <property name="text">
+      <string>Caractère de séparation</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QComboBox" name="comboBoxCaractereSeparation">
+     <item>
+      <property name="text">
+       <string>Espace</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Tabulation</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Point-virgule</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLabel" name="labelSeuilInterpolationNumerique">
+     <property name="text">
+      <string>Seuil d'interpolation numérique</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QLineEdit" name="lineEditSeuilInterpolationNumerique"/>
+   </item>
+   <item row="2" column="0">
+    <widget class="QLabel" name="labelFormatNotationNombres">
+     <property name="text">
+      <string>Format de notation des nombres</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="QComboBox" name="comboBoxFormatNotationNombres">
+     <item>
+      <property name="text">
+       <string>Standard</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Scientifique</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QLabel" name="labelCaractereSeparateurDecimal">
+     <property name="text">
+      <string>Caractère de séparateur décimal</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="1">
+    <widget class="QComboBox" name="comboBoxCaractereSeparateurDecimal">
+     <item>
+      <property name="text">
+       <string>Point</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Virgule</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item row="4" column="0">
+    <widget class="QLabel" name="labelNombreDecimalesOuChiffresSignificatifs">
+     <property name="text">
+      <string>Nombre de décimales / chiffres significatifs</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="1">
+    <widget class="QSpinBox" name="spinBoxNombreDecimalesOuChiffresSignificatifs"/>
+   </item>
+   <item row="5" column="0" colspan="2">
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+     <property name="centerButtons">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+  </layout>
  </widget>
- <pixmapfunction/>
  <resources/>
  <connections>
   <connection>

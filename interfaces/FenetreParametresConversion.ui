@@ -1,38 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <author/>
- <comment/>
- <exportmacro/>
  <class>FenetreParametresConversion</class>
  <widget class="QDialog" name="FenetreParametresConversion">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>194</width>
+    <height>145</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Paramètres de conversion</string>
   </property>
-  <widget class="QDialogButtonBox" name="buttonBox">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>240</y>
-     <width>341</width>
-     <height>32</height>
-    </rect>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
-   </property>
-   <property name="standardButtons">
-    <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
-   </property>
-  </widget>
+  <layout class="QGridLayout" name="gridLayoutFenetreParametresConversion">
+   <item row="0" column="0">
+    <widget class="QLabel" name="labelSeuilNoirEtBlanc">
+     <property name="text">
+      <string>Seuil de noir et blanc</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QSpinBox" name="spinBoxSeuilNoirEtBlanc"/>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLabel" name="labelNombreNiveauxGris">
+     <property name="text">
+      <string>Nombre de niveaux de gris</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QSpinBox" name="spinBoxNombreNiveauxGris"/>
+   </item>
+   <item row="2" column="0">
+    <widget class="QLabel" name="labelNombreTeintesSaturees">
+     <property name="text">
+      <string>Nombre de teintes saturées</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="QSpinBox" name="spinBoxNombreTeintesSaturees"/>
+   </item>
+   <item row="3" column="0">
+    <widget class="QLabel" name="labelSeuilSaturation">
+     <property name="text">
+      <string>Seuil de saturation</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="1">
+    <widget class="QSpinBox" name="spinBoxSeuilSaturation"/>
+   </item>
+   <item row="4" column="0" colspan="2">
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+     <property name="centerButtons">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+  </layout>
  </widget>
- <pixmapfunction/>
  <resources/>
  <connections>
   <connection>

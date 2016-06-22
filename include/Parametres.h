@@ -104,7 +104,7 @@ private:
  *              - critères : primaires, secondaires
  *          - export :
  *              - caractère de séparation
- *              - seuil d'interpolation
- *              - affichage des nombres : notation classique/scientifique, nombre de décimales/chiffres significatifs
+ *              - seuil d'interpolation numérique
+ *              - format des nombres : notation standard/scientifique, séparateur décimal, nombre de décimales/chiffres significatifs
  * TODO Diviser en plusieurs classes
  */

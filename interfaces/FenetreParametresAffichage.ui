@@ -1,7 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <author/>
- <comment/>
- <exportmacro/>
  <class>FenetreParametresAffichage</class>
  <widget class="QDialog" name="FenetreParametresAffichage">
   <property name="geometry">
@@ -13,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Paramètres d'affichage</string>
   </property>
   <widget class="QDialogButtonBox" name="buttonBox">
    <property name="geometry">
@@ -24,15 +22,14 @@
      <height>32</height>
     </rect>
    </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
-   </property>
    <property name="standardButtons">
     <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
    </property>
+   <property name="centerButtons">
+    <bool>true</bool>
+   </property>
   </widget>
  </widget>
- <pixmapfunction/>
  <resources/>
  <connections>
   <connection>
