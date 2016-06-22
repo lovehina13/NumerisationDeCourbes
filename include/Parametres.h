@@ -92,10 +92,19 @@ private:
 #endif /* PARAMETRES_H_ */
 
 /* TODO Paramètres supplémentaires :
- *        - affichage des nombres : standard ou scientifique
- *        - interpolation numérique : active ou inactive, écart
- *        - axes : marqueurs, traits, couleurs, épaisseurs
- *        - courbes : marqueurs, traits, couleurs, épaisseurs
- *        - points : marqueurs, couleurs, épaisseurs
+ *          - affichage :
+ *              - point d'axe : marqueur, couleur, épaisseur
+ *              - point de courbe : marqueur, couleur, épaisseur
+ *              - point manuel : marqueur, couleur, épaisseur
+ *              - trait d'axe : style, couleur, épaisseur
+ *              - trait de courbe : style, couleur, épaisseur
+ *              - affichage des nombres : notation classique/scientifique, nombre de décimales/chiffres significatifs
+ *          - recherche :
+ *              - sélection des valeurs : moyennes, minimales et maximales
+ *              - critères : primaires, secondaires
+ *          - export :
+ *              - caractère de séparation
+ *              - seuil d'interpolation
+ *              - affichage des nombres : notation classique/scientifique, nombre de décimales/chiffres significatifs
  * TODO Diviser en plusieurs classes
  */

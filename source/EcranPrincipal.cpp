@@ -6,6 +6,10 @@
 //==============================================================================
 
 #include "EcranPrincipal.h"
+#include "FenetreParametresAffichage.h"
+#include "FenetreParametresConversion.h"
+#include "FenetreParametresExport.h"
+#include "FenetreParametresRecherche.h"
 #include "Point.h"
 #include "Repere.h"
 #include "ui_EcranPrincipal.h"
@@ -258,21 +262,30 @@ void EcranPrincipal::on_actionQuitter_triggered()
 void EcranPrincipal::on_actionParametresAffichage_triggered()
 {
     // TODO void EcranPrincipal::on_actionParametresAffichage_triggered()
+    FenetreParametresAffichage* fenetreParametresAffichage = new FenetreParametresAffichage(this);
+    fenetreParametresAffichage->exec();
 }
 
 void EcranPrincipal::on_actionParametresConversion_triggered()
 {
     // TODO void EcranPrincipal::on_actionParametresConversion_triggered()
+    FenetreParametresConversion* fenetreParametresConversion = new FenetreParametresConversion(
+            this);
+    fenetreParametresConversion->exec();
 }
 
 void EcranPrincipal::on_actionParametresRecherche_triggered()
 {
     // TODO void EcranPrincipal::on_actionParametresRecherche_triggered()
+    FenetreParametresRecherche* fenetreParametresRecherche = new FenetreParametresRecherche(this);
+    fenetreParametresRecherche->exec();
 }
 
 void EcranPrincipal::on_actionParametresExport_triggered()
 {
     // TODO void EcranPrincipal::on_actionParametresExport_triggered()
+    FenetreParametresExport* fenetreParametresExport = new FenetreParametresExport(this);
+    fenetreParametresExport->exec();
 }
 
 void EcranPrincipal::on_actionDocumentation_triggered()
@@ -285,7 +298,7 @@ void EcranPrincipal::on_actionAbout_triggered()
     // TODO Mutualiser le code dans des classes FenetreMessageOK FenetreMessageOuiNon ?
     QMessageBox* fenetreMessage = new QMessageBox(QMessageBox::Information,
             QString::fromUtf8("NumerisationDeCourbes"),
-            QString::fromUtf8("NumerisationDeCourbes, version 1.0 (DD/MM/YYYY).\n"
+            QString::fromUtf8("NumerisationDeCourbes - Version 1.0 (DD/MM/YYYY).\n"
                     "Réalisée par Alexis Foerster (alexis.foerster@gmail.com)."), QMessageBox::Ok,
             this);
     fenetreMessage->exec();
@@ -436,6 +449,26 @@ void EcranPrincipal::on_lineEditPointY1Valeur_textChanged()
     this->actualiserCoordonneesPoints();
 }
 
+void EcranPrincipal::on_pushButtonPointX0_clicked()
+{
+    // TODO void EcranPrincipal::on_pushButtonPointX0_clicked()
+}
+
+void EcranPrincipal::on_pushButtonPointX1_clicked()
+{
+    // TODO void EcranPrincipal::on_pushButtonPointX1_clicked()
+}
+
+void EcranPrincipal::on_pushButtonPointY0_clicked()
+{
+    // TODO void EcranPrincipal::on_pushButtonPointY0_clicked()
+}
+
+void EcranPrincipal::on_pushButtonPointY1_clicked()
+{
+    // TODO void EcranPrincipal::on_pushButtonPointY1_clicked()
+}
+
 void EcranPrincipal::on_lineEditPointDepartXPixel_textChanged()
 {
     this->actualiserCoordonneesPointDepart();
@@ -464,6 +497,21 @@ void EcranPrincipal::on_lineEditPointManuelXPixel_textChanged()
 void EcranPrincipal::on_lineEditPointManuelYPixel_textChanged()
 {
     this->actualiserCoordonneesPointManuel();
+}
+
+void EcranPrincipal::on_pushButtonPointDepart_clicked()
+{
+    // TODO void EcranPrincipal::on_pushButtonPointDepart_clicked()
+}
+
+void EcranPrincipal::on_pushButtonPointArrivee_clicked()
+{
+    // TODO void EcranPrincipal::on_pushButtonPointArrivee_clicked()
+}
+
+void EcranPrincipal::on_pushButtonPointManuel_clicked()
+{
+    // TODO void EcranPrincipal::on_pushButtonPointManuel_clicked()
 }
 
 void EcranPrincipal::on_pushButtonAjouter_clicked()
