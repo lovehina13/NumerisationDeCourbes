@@ -16,6 +16,8 @@ public:
     explicit FenetreParametresAffichage(QWidget* parent = 0);
     ~FenetreParametresAffichage();
 
+    // TODO Implémentation de la classe FenetreParametresAffichage
+
 private:
     Ui::FenetreParametresAffichage* ui;
 };

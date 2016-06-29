@@ -16,6 +16,8 @@ public:
     explicit FenetreParametresRecherche(QWidget* parent = 0);
     ~FenetreParametresRecherche();
 
+    // TODO Implémentation de la classe FenetreParametresRecherche
+
 private:
     Ui::FenetreParametresRecherche* ui;
 };

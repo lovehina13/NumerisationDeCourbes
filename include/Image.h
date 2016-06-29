@@ -49,22 +49,10 @@ public:
     bool verifierPresencePixel(const QPoint& pointPixel) const;
     QRgb recupererCouleurPixel(const QPoint& pointPixel) const;
 
-    // Enumération des méthodes de conversions
-    enum methodesConversion
-    {
-        BRUTE, NOIR_ET_BLANC, NIVEAUX_DE_GRIS, TEINTES_SATUREES
-    };
-
-    // Définition des valeurs par défaut des paramètres de conversions
-    static const int seuilNoirEtBlancDefaut = 90;
-    static const int nombreNiveauxDeGrisDefaut = 5;
-    static const int nombreTeintesSatureesDefaut = 6;
-    static const int seuilSaturationDefaut = 10;
-
 protected:
     // Méthodes spécifiques
     // TODO Méthodes spécifiques
-    void convertirImage(const int& typeConversion, const int& seuilNoirEtBlanc,
+    void convertirImage(const int& methodeConversion, const int& seuilNoirEtBlanc,
             const int& nombreNiveauxDeGris, const int& nombreTeintesSaturees,
             const int& seuilSaturation);
     double getPasNiveauxDeGris(const int& nombreNiveauxDeGris) const;

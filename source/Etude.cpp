@@ -138,7 +138,9 @@ bool Etude::chargerEtude(const QString& cheminFichierEtude)
 bool Etude::sauverEtude(const QString& cheminFichierEtude)
 {
     Parametres parametres = this->getParametres();
-    parametres.setCheminFichierEtude(cheminFichierEtude);
+    ParametresFichiers parametresFichiers = parametres.getParametresFichiers();
+    parametresFichiers.setCheminFichierEtude(cheminFichierEtude);
+    parametres.setParametresFichiers(parametresFichiers);
     this->setParametres(parametres);
 
     QFile fichierEtude(cheminFichierEtude);
@@ -165,7 +167,9 @@ bool Etude::sauverEtude(const QString& cheminFichierEtude)
 bool Etude::exporterImageConvertie(const QString& cheminFichierImageConvertie)
 {
     Parametres parametres = this->getParametres();
-    parametres.setCheminFichierImageConvertie(cheminFichierImageConvertie);
+    ParametresFichiers parametresFichiers = parametres.getParametresFichiers();
+    parametresFichiers.setCheminFichierImageConvertie(cheminFichierImageConvertie);
+    parametres.setParametresFichiers(parametresFichiers);
     this->setParametres(parametres);
 
     QFile fichierImageConvertie(cheminFichierImageConvertie);
@@ -180,7 +184,9 @@ bool Etude::exporterImageConvertie(const QString& cheminFichierImageConvertie)
 bool Etude::exporterListeDePoints(const QString& cheminFichierExport)
 {
     Parametres parametres = this->getParametres();
-    parametres.setCheminFichierExport(cheminFichierExport);
+    ParametresFichiers parametresFichiers = parametres.getParametresFichiers();
+    parametresFichiers.setCheminFichierExport(cheminFichierExport);
+    parametres.setParametresFichiers(parametresFichiers);
     this->setParametres(parametres);
 
     QFile fichierExport(cheminFichierExport);
@@ -218,9 +224,10 @@ void Etude::rechercherPointsProches(const QPoint& pointPixel, const QRgb& couleu
 {
     const QList<QPoint> listeDePointsProches = this->recupererListeDePointsProches(pointPixel);
     const int nombreDePointsProches = listeDePointsProches.length();
-    const int seuilToleranceNiveauxDeGris = this->getParametres().getSeuilToleranceNiveauxDeGris();
+    const int seuilToleranceNiveauxDeGris =
+            this->getParametres().getParametresRecherche().getSeuilToleranceNiveauxDeGris();
     const int seuilToleranceTeintesSaturees =
-            this->getParametres().getSeuilToleranceTeintesSaturees();
+            this->getParametres().getParametresRecherche().getSeuilToleranceTeintesSaturees();
     for (int itPoint = 0; itPoint < nombreDePointsProches; itPoint++)
     {
         const QPoint& pointCourant = listeDePointsProches.at(itPoint);

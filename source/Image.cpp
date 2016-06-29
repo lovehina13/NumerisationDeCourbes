@@ -6,6 +6,7 @@
 //==============================================================================
 
 #include "Image.h"
+#include "ParametresConversion.h"
 #include <cmath>
 #include <QColor>
 
@@ -96,20 +97,25 @@ void Image::restaurerImage()
 
 void Image::convertirImageNoirEtBlanc(const int& seuilNoirEtBlanc)
 {
-    this->convertirImage(NOIR_ET_BLANC, seuilNoirEtBlanc, (int) nombreNiveauxDeGrisDefaut,
-            (int) nombreTeintesSatureesDefaut, (int) seuilSaturationDefaut);
+    this->convertirImage(ParametresConversion::NOIR_ET_BLANC, seuilNoirEtBlanc,
+            (int) ParametresConversion::nombreNiveauxDeGrisDefaut,
+            (int) ParametresConversion::nombreTeintesSatureesDefaut,
+            (int) ParametresConversion::seuilSaturationDefaut);
 }
 
 void Image::convertirImageNiveauxDeGris(const int& nombreNiveauxDeGris)
 {
-    this->convertirImage(NIVEAUX_DE_GRIS, (int) seuilNoirEtBlancDefaut, nombreNiveauxDeGris,
-            (int) nombreTeintesSatureesDefaut, (int) seuilSaturationDefaut);
+    this->convertirImage(ParametresConversion::NIVEAUX_DE_GRIS,
+            (int) ParametresConversion::seuilNoirEtBlancDefaut, nombreNiveauxDeGris,
+            (int) ParametresConversion::nombreTeintesSatureesDefaut,
+            (int) ParametresConversion::seuilSaturationDefaut);
 }
 
 void Image::convertirImageTeintesSaturees(const int& nombreNiveauxDeGris,
         const int& nombreTeintesSaturees, const int& seuilSaturation)
 {
-    this->convertirImage(TEINTES_SATUREES, (int) seuilNoirEtBlancDefaut, nombreNiveauxDeGris,
+    this->convertirImage(ParametresConversion::TEINTES_SATUREES,
+            (int) ParametresConversion::seuilNoirEtBlancDefaut, nombreNiveauxDeGris,
             nombreTeintesSaturees, seuilSaturation);
 }
 
@@ -127,7 +133,7 @@ QRgb Image::recupererCouleurPixel(const QPoint& pointPixel) const
     return this->getImageConvertie().pixel(pointPixel.x(), pointPixel.y());
 }
 
-void Image::convertirImage(const int& typeConversion, const int& seuilNoirEtBlanc,
+void Image::convertirImage(const int& methodeConversion, const int& seuilNoirEtBlanc,
         const int& nombreNiveauxDeGris, const int& nombreTeintesSaturees,
         const int& seuilSaturation)
 {
@@ -144,19 +150,19 @@ void Image::convertirImage(const int& typeConversion, const int& seuilNoirEtBlan
         for (int y = 0; y < hauteurImage; y++)
         {
             QRgb couleurConvertie = imageConvertie.pixel(x, y);
-            if (typeConversion == NOIR_ET_BLANC)
+            if (methodeConversion == ParametresConversion::NOIR_ET_BLANC)
             {
                 couleurConvertie =
                         (((double) qGray(couleurConvertie) / 256.0)
                                 <= ((double) seuilNoirEtBlanc / 100.0)) ?
                                 QColor(Qt::black).rgb() : QColor(Qt::white).rgb();
             }
-            else if (typeConversion == NIVEAUX_DE_GRIS)
+            else if (methodeConversion == ParametresConversion::NIVEAUX_DE_GRIS)
             {
                 couleurConvertie = listeNiveauxDeGris.at(
                         (int) round((double) qGray(couleurConvertie) / pasNiveauxDeGris));
             }
-            else if (typeConversion == TEINTES_SATUREES)
+            else if (methodeConversion == ParametresConversion::TEINTES_SATUREES)
             {
                 if (QColor(couleurConvertie).hue() == -1
                         || QColor(couleurConvertie).saturationF()

@@ -6,32 +6,20 @@
 //==============================================================================
 
 #include "Parametres.h"
-#include "Image.h"
 
-Parametres::Parametres() :
-        nombreChiffresSignificatifs(nombreChiffresSignificatifsDefaut),
-                seuilToleranceNiveauxDeGris(seuilToleranceNiveauxDeGrisDefaut),
-                seuilToleranceTeintesSaturees(seuilToleranceTeintesSatureesDefaut),
-                methodeConversion(Image::BRUTE), seuilNoirEtBlanc(Image::seuilNoirEtBlancDefaut),
-                nombreNiveauxDeGris(Image::nombreNiveauxDeGrisDefaut),
-                nombreTeintesSaturees(Image::nombreTeintesSatureesDefaut),
-                seuilSaturation(Image::seuilSaturationDefaut)
+Parametres::Parametres()
 {
     this->clear();
 }
 
-Parametres::Parametres(const QString& cheminFichierEtude, const QString& cheminFichierImageSource,
-        const QString& cheminFichierImageConvertie, const QString& cheminFichierExport,
-        const int& nombreChiffresSignificatifs, const int& seuilToleranceNiveauxDeGris,
-        const int& seuilToleranceTeintesSaturees, const int& methodeConversion,
-        const int& seuilNoirEtBlanc, const int& nombreNiveauxDeGris,
-        const int& nombreTeintesSaturees, const int& seuilSaturation) :
+Parametres::Parametres(const ParametresFichiers& parametresFichiers,
+        const ParametresAffichage& parametresAffichage,
+        const ParametresConversion& parametresConversion,
+        const ParametresRecherche& parametresRecherche, const ParametresExport& parametresExport) :
         Parametres()
 {
-    this->set(cheminFichierEtude, cheminFichierImageSource, cheminFichierImageConvertie,
-            cheminFichierExport, nombreChiffresSignificatifs, seuilToleranceNiveauxDeGris,
-            seuilToleranceTeintesSaturees, methodeConversion, seuilNoirEtBlanc, nombreNiveauxDeGris,
-            nombreTeintesSaturees, seuilSaturation);
+    this->set(parametresFichiers, parametresAffichage, parametresConversion, parametresRecherche,
+            parametresExport);
 }
 
 Parametres::Parametres(const Parametres& parametres) :
@@ -44,197 +32,92 @@ Parametres::~Parametres()
 {
 }
 
-const QString& Parametres::getCheminFichierEtude() const
+const ParametresFichiers& Parametres::getParametresFichiers() const
 {
-    return this->cheminFichierEtude;
+    return this->parametresFichiers;
 }
 
-const QString& Parametres::getCheminFichierImageSource() const
+const ParametresAffichage& Parametres::getParametresAffichage() const
 {
-    return this->cheminFichierImageSource;
+    return this->parametresAffichage;
 }
 
-const QString& Parametres::getCheminFichierImageConvertie() const
+const ParametresConversion& Parametres::Parametres::getParametresConversion() const
 {
-    return this->cheminFichierImageConvertie;
+    return this->parametresConversion;
 }
 
-const QString& Parametres::getCheminFichierExport() const
+const ParametresRecherche& Parametres::getParametresRecherche() const
 {
-    return this->cheminFichierExport;
+    return this->parametresRecherche;
 }
 
-const int& Parametres::getNombreChiffresSignificatifs() const
+const ParametresExport& Parametres::getParametresExport() const
 {
-    return this->nombreChiffresSignificatifs;
+    return this->parametresExport;
 }
 
-const int& Parametres::getSeuilToleranceNiveauxDeGris() const
+void Parametres::setParametresFichiers(const ParametresFichiers& parametresFichiers)
 {
-    return this->seuilToleranceNiveauxDeGris;
+    this->parametresFichiers = parametresFichiers;
 }
 
-const int& Parametres::getSeuilToleranceTeintesSaturees() const
+void Parametres::setParametresAffichage(const ParametresAffichage& parametresAffichage)
 {
-    return this->seuilToleranceTeintesSaturees;
+    this->parametresAffichage = parametresAffichage;
 }
 
-const int& Parametres::getMethodeConversion() const
+void Parametres::setParametresConversion(const ParametresConversion& parametresConversion)
 {
-    return this->methodeConversion;
+    this->parametresConversion = parametresConversion;
 }
 
-const int& Parametres::getSeuilNoirEtBlanc() const
+void Parametres::setParametresRecherche(const ParametresRecherche& parametresRecherche)
 {
-    return this->seuilNoirEtBlanc;
+    this->parametresRecherche = parametresRecherche;
 }
 
-const int& Parametres::getNombreNiveauxDeGris() const
+void Parametres::setParametresExport(const ParametresExport& parametresExport)
 {
-    return this->nombreNiveauxDeGris;
-}
-
-const int& Parametres::getNombreTeintesSaturees() const
-{
-    return this->nombreTeintesSaturees;
-}
-
-const int& Parametres::getSeuilSaturation() const
-{
-    return this->seuilSaturation;
-}
-
-void Parametres::setCheminFichierEtude(const QString& cheminFichierEtude)
-{
-    this->cheminFichierEtude = cheminFichierEtude;
-}
-
-void Parametres::setCheminFichierImageSource(const QString& cheminFichierImageSource)
-{
-    this->cheminFichierImageSource = cheminFichierImageSource;
-}
-
-void Parametres::setCheminFichierImageConvertie(const QString& cheminFichierImageConvertie)
-{
-    this->cheminFichierImageConvertie = cheminFichierImageConvertie;
-}
-
-void Parametres::setCheminFichierExport(const QString& cheminFichierExport)
-{
-    this->cheminFichierExport = cheminFichierExport;
-}
-
-void Parametres::setNombreChiffresSignificatifs(const int& nombreChiffresSignificatifs)
-{
-    this->nombreChiffresSignificatifs = nombreChiffresSignificatifs;
-}
-
-void Parametres::setSeuilToleranceNiveauxDeGris(const int& seuilToleranceNiveauxDeGris)
-{
-    this->seuilToleranceNiveauxDeGris = seuilToleranceNiveauxDeGris;
-}
-
-void Parametres::setSeuilToleranceTeintesSaturees(const int& seuilToleranceTeintesSaturees)
-{
-    this->seuilToleranceTeintesSaturees = seuilToleranceTeintesSaturees;
-}
-
-void Parametres::setMethodeConversion(const int& methodeConversion)
-{
-    this->methodeConversion = methodeConversion;
-}
-
-void Parametres::setSeuilNoirEtBlanc(const int& seuilNoirEtBlanc)
-{
-    this->seuilNoirEtBlanc = seuilNoirEtBlanc;
-}
-
-void Parametres::setNombreNiveauxDeGris(const int& nombreNiveauxDeGris)
-{
-    this->nombreNiveauxDeGris = nombreNiveauxDeGris;
-}
-
-void Parametres::setNombreTeintesSaturees(const int& nombreTeintesSaturees)
-{
-    this->nombreTeintesSaturees = nombreTeintesSaturees;
-}
-
-void Parametres::setSeuilSaturation(const int& seuilSaturation)
-{
-    this->seuilSaturation = seuilSaturation;
+    this->parametresExport = parametresExport;
 }
 
 void Parametres::clear()
 {
-    this->set(QString(), QString(), QString(), QString(), (int) nombreChiffresSignificatifsDefaut,
-            (int) seuilToleranceNiveauxDeGrisDefaut, (int) seuilToleranceTeintesSatureesDefaut,
-            (int) Image::BRUTE, (int) Image::seuilNoirEtBlancDefaut,
-            (int) Image::nombreNiveauxDeGrisDefaut, (int) Image::nombreTeintesSatureesDefaut,
-            (int) Image::seuilSaturationDefaut);
+    this->set(ParametresFichiers(), ParametresAffichage(), ParametresConversion(),
+            ParametresRecherche(), ParametresExport());
 }
 
-void Parametres::set(const QString& cheminFichierEtude, const QString& cheminFichierImageSource,
-        const QString& cheminFichierImageConvertie, const QString& cheminFichierExport,
-        const int& nombreChiffresSignificatifs, const int& seuilToleranceNiveauxDeGris,
-        const int& seuilToleranceTeintesSaturees, const int& methodeConversion,
-        const int& seuilNoirEtBlanc, const int& nombreNiveauxDeGris,
-        const int& nombreTeintesSaturees, const int& seuilSaturation)
+void Parametres::set(const ParametresFichiers& parametresFichiers,
+        const ParametresAffichage& parametresAffichage,
+        const ParametresConversion& parametresConversion,
+        const ParametresRecherche& parametresRecherche, const ParametresExport& parametresExport)
 {
-    this->setCheminFichierEtude(cheminFichierEtude);
-    this->setCheminFichierImageSource(cheminFichierImageSource);
-    this->setCheminFichierImageConvertie(cheminFichierImageConvertie);
-    this->setCheminFichierExport(cheminFichierExport);
-    this->setNombreChiffresSignificatifs(nombreChiffresSignificatifs);
-    this->setSeuilToleranceNiveauxDeGris(seuilToleranceNiveauxDeGris);
-    this->setSeuilToleranceTeintesSaturees(seuilToleranceTeintesSaturees);
-    this->setMethodeConversion(methodeConversion);
-    this->setSeuilNoirEtBlanc(seuilNoirEtBlanc);
-    this->setNombreNiveauxDeGris(nombreNiveauxDeGris);
-    this->setNombreTeintesSaturees(nombreTeintesSaturees);
-    this->setSeuilSaturation(seuilSaturation);
+    this->setParametresFichiers(parametresFichiers);
+    this->setParametresAffichage(parametresAffichage);
+    this->setParametresConversion(parametresConversion);
+    this->setParametresRecherche(parametresRecherche);
+    this->setParametresExport(parametresExport);
 }
 
 void Parametres::copy(const Parametres& parametres)
 {
-    this->setCheminFichierEtude(parametres.getCheminFichierEtude());
-    this->setCheminFichierImageSource(parametres.getCheminFichierImageSource());
-    this->setCheminFichierImageConvertie(parametres.getCheminFichierImageConvertie());
-    this->setCheminFichierExport(parametres.getCheminFichierExport());
-    this->setNombreChiffresSignificatifs(parametres.getNombreChiffresSignificatifs());
-    this->setSeuilToleranceNiveauxDeGris(parametres.getSeuilToleranceNiveauxDeGris());
-    this->setSeuilToleranceTeintesSaturees(parametres.getSeuilToleranceTeintesSaturees());
-    this->setMethodeConversion(parametres.getMethodeConversion());
-    this->setSeuilNoirEtBlanc(parametres.getSeuilNoirEtBlanc());
-    this->setNombreNiveauxDeGris(parametres.getNombreNiveauxDeGris());
-    this->setNombreTeintesSaturees(parametres.getNombreTeintesSaturees());
-    this->setSeuilSaturation(parametres.getSeuilSaturation());
+    this->set(parametres.getParametresFichiers(), parametres.getParametresAffichage(),
+            parametres.getParametresConversion(), parametres.getParametresRecherche(),
+            parametres.getParametresExport());
 }
 
 bool Parametres::equals(const Parametres& parametres) const
 {
-    if (this->getCheminFichierEtude() != parametres.getCheminFichierEtude())
+    if (!this->getParametresFichiers().equals(parametres.getParametresFichiers()))
         return false;
-    if (this->getCheminFichierImageSource() != parametres.getCheminFichierImageSource())
+    if (!this->getParametresAffichage().equals(parametres.getParametresAffichage()))
         return false;
-    if (this->getCheminFichierImageConvertie() != parametres.getCheminFichierImageConvertie())
+    if (!this->getParametresConversion().equals(parametres.getParametresConversion()))
         return false;
-    if (this->getCheminFichierExport() != parametres.getCheminFichierExport())
+    if (!this->getParametresRecherche().equals(parametres.getParametresRecherche()))
         return false;
-    if (this->getNombreChiffresSignificatifs() != parametres.getNombreChiffresSignificatifs())
-        return false;
-    if (this->getSeuilToleranceNiveauxDeGris() != parametres.getSeuilToleranceNiveauxDeGris())
-        return false;
-    if (this->getSeuilToleranceTeintesSaturees() != parametres.getSeuilToleranceTeintesSaturees())
-        return false;
-    if (this->getMethodeConversion() != parametres.getMethodeConversion())
-        return false;
-    if (this->getSeuilNoirEtBlanc() != parametres.getSeuilNoirEtBlanc())
-        return false;
-    if (this->getNombreNiveauxDeGris() != parametres.getNombreNiveauxDeGris())
-        return false;
-    if (this->getNombreTeintesSaturees() != parametres.getNombreTeintesSaturees())
-        return false;
-    if (this->getSeuilSaturation() != parametres.getSeuilSaturation())
+    if (!this->getParametresExport().equals(parametres.getParametresExport()))
         return false;
     return true;
 }

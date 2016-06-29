@@ -16,6 +16,8 @@ public:
     explicit FenetreParametresExport(QWidget* parent = 0);
     ~FenetreParametresExport();
 
+    // TODO Implémentation de la classe FenetreParametresExport
+
 private:
     Ui::FenetreParametresExport* ui;
 };

@@ -85,7 +85,9 @@ void EcranPrincipal::creerNouvelleEtude()
     image.restaurerImage();
     this->etude.setImage(image);
     Parametres parametres;
-    parametres.setCheminFichierImageSource(cheminFichierImageSource);
+    ParametresFichiers parametresFichiers = parametres.getParametresFichiers();
+    parametresFichiers.setCheminFichierImageSource(cheminFichierImageSource);
+    parametres.setParametresFichiers(parametresFichiers);
     this->etude.setParametres(parametres);
 }
 

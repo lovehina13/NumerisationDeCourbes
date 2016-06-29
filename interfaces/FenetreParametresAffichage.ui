@@ -6,29 +6,352 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>463</width>
+    <height>468</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Paramètres d'affichage</string>
   </property>
-  <widget class="QDialogButtonBox" name="buttonBox">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>240</y>
-     <width>341</width>
-     <height>32</height>
-    </rect>
-   </property>
-   <property name="standardButtons">
-    <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
-   </property>
-   <property name="centerButtons">
-    <bool>true</bool>
-   </property>
-  </widget>
+  <layout class="QGridLayout" name="gridLayoutFenetreParametresAffichage">
+   <item row="0" column="0" colspan="2">
+    <widget class="QGroupBox" name="groupBoxNombres">
+     <property name="title">
+      <string>Nombres</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayoutNombres">
+      <item row="0" column="0">
+       <widget class="QLabel" name="labelFormatNotationNombres">
+        <property name="text">
+         <string>Format de notation des nombres</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QComboBox" name="comboBoxFormatNotationNombres">
+        <item>
+         <property name="text">
+          <string>Standard</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Scientifique</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="labelNombreDecimalesOuChiffresSignificatifs">
+        <property name="text">
+         <string>Nombre de décimales / chiffres significatifs</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QSpinBox" name="spinBoxNombreDecimalesOuChiffresSignificatifs"/>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QGroupBox" name="groupBoxAxes">
+     <property name="title">
+      <string>Axes</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayoutAxes">
+      <item row="0" column="0">
+       <widget class="QLabel" name="labelCouleurAxes">
+        <property name="text">
+         <string>Couleur des axes</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QPushButton" name="pushButtonCouleurAxes">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="labelEpaisseurAxes">
+        <property name="text">
+         <string>Epaisseur des axes</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QSpinBox" name="spinBoxEpaisseurAxes"/>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="labelTypeAxes">
+        <property name="text">
+         <string>Type des axes</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QComboBox" name="comboBoxTypeAxes">
+        <item>
+         <property name="text">
+          <string>Ligne</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Tirets</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Pointillés</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QGroupBox" name="groupBoxPointsAxes">
+     <property name="title">
+      <string>Points des axes</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayoutPointsAxes">
+      <item row="0" column="0">
+       <widget class="QLabel" name="labelCouleurPointsAxes">
+        <property name="text">
+         <string>Couleur des points des axes</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QPushButton" name="pushButtonCouleurPointsAxes">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="labelEpaisseurPointsAxes">
+        <property name="text">
+         <string>Epaisseur des points des axes</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QSpinBox" name="spinBoxEpaisseurPointsAxes"/>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="labelTypePointsAxes">
+        <property name="text">
+         <string>Type des points des axes</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QComboBox" name="comboBoxTypePointsAxes">
+        <item>
+         <property name="text">
+          <string>Carré</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Cercle</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QGroupBox" name="groupBoxCourbes">
+     <property name="title">
+      <string>Courbes</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayoutCourbes">
+      <item row="0" column="0">
+       <widget class="QLabel" name="labelCouleurCourbes">
+        <property name="text">
+         <string>Couleur des courbes</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QPushButton" name="pushButtonCouleurCourbes">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="labelEpaisseurCourbes">
+        <property name="text">
+         <string>Epaisseur des courbes</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QSpinBox" name="spinBoxEpaisseurCourbes"/>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="labelTypeCourbes">
+        <property name="text">
+         <string>Type des courbes</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QComboBox" name="comboBoxTypeCourbes">
+        <item>
+         <property name="text">
+          <string>Ligne</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Tirets</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Pontillés</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="QGroupBox" name="groupBoxPointsCourbes">
+     <property name="title">
+      <string>Points des courbes</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayoutPointsCourbes">
+      <item row="0" column="0">
+       <widget class="QLabel" name="labelCouleurPointsCourbes">
+        <property name="text">
+         <string>Couleur des points des courbes</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QPushButton" name="pushButtonCouleurPointsCourbes">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="labelEpaisseurPointsCourbes">
+        <property name="text">
+         <string>Epaisseur des points des courbes</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QSpinBox" name="spinBoxEpaisseurPointsCourbes"/>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="labelTypePointsCourbes">
+        <property name="text">
+         <string>Type des points des courbes</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QComboBox" name="comboBoxTypePointsCourbes">
+        <item>
+         <property name="text">
+          <string>Carré</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Cercle</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="3" column="1">
+    <widget class="QGroupBox" name="groupBoxPointsManuels">
+     <property name="title">
+      <string>Points manuels</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayoutPointsManuels">
+      <item row="0" column="0">
+       <widget class="QLabel" name="labelCouleurPointsManuels">
+        <property name="text">
+         <string>Couleur des points manuels</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QPushButton" name="pushButtonCouleurPointsManuels">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="labelEpaisseurPointsManuels">
+        <property name="text">
+         <string>Epaisseur des points manuels</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QSpinBox" name="spinBoxEpaisseurPointsManuels"/>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="labelTypePointsManuels">
+        <property name="text">
+         <string>Type des points manuels</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QComboBox" name="comboBoxTypePointsManuels">
+        <item>
+         <property name="text">
+          <string>Carré</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Cercle</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="4" column="0" colspan="2">
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+     <property name="centerButtons">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+  </layout>
+  <zorder>buttonBox</zorder>
+  <zorder>groupBoxNombres</zorder>
+  <zorder>groupBoxAxes</zorder>
+  <zorder>groupBoxCourbes</zorder>
+  <zorder>groupBoxPointsAxes</zorder>
+  <zorder>groupBoxPointsCourbes</zorder>
+  <zorder>groupBoxPointsManuels</zorder>
  </widget>
  <resources/>
  <connections>

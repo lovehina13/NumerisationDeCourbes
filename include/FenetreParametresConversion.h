@@ -16,6 +16,8 @@ public:
     explicit FenetreParametresConversion(QWidget* parent = 0);
     ~FenetreParametresConversion();
 
+    // TODO Implémentation de la classe FenetreParametresConversion
+
 private:
     Ui::FenetreParametresConversion* ui;
 };
