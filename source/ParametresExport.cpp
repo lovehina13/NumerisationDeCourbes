@@ -125,7 +125,7 @@ bool ParametresExport::equals(const ParametresExport& parametresExport) const
         return false;
     if (this->getSeuilInterpolationNumerique() != parametresExport.getSeuilInterpolationNumerique())
         return false;
-    return false;
+    return true;
 }
 
 void ParametresExport::fromString(const QString& fromString, const char& sep)

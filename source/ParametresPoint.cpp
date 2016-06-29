@@ -88,7 +88,7 @@ bool ParametresPoint::equals(const ParametresPoint& parametresPoint) const
         return false;
     if (this->getCouleurPoint() != parametresPoint.getCouleurPoint())
         return false;
-    return false;
+    return true;
 }
 
 void ParametresPoint::fromString(const QString& fromString, const char& sep)

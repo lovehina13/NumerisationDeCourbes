@@ -88,7 +88,7 @@ bool ParametresTrait::equals(const ParametresTrait& parametresTrait) const
         return false;
     if (this->getCouleurTrait() != parametresTrait.getCouleurTrait())
         return false;
-    return false;
+    return true;
 }
 
 void ParametresTrait::fromString(const QString& fromString, const char& sep)
