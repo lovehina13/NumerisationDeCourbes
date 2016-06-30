@@ -263,31 +263,59 @@ void EcranPrincipal::on_actionQuitter_triggered()
 
 void EcranPrincipal::on_actionParametresAffichage_triggered()
 {
-    // TODO void EcranPrincipal::on_actionParametresAffichage_triggered()
+    Parametres parametres = this->etude.getParametres();
+    ParametresAffichage parametresAffichage = parametres.getParametresAffichage();
     FenetreParametresAffichage* fenetreParametresAffichage = new FenetreParametresAffichage(this);
-    fenetreParametresAffichage->exec();
+    fenetreParametresAffichage->setParametresAffichage(parametresAffichage);
+    fenetreParametresAffichage->actualiserElementsGraphiques();
+    if (fenetreParametresAffichage->exec() == QMessageBox::Cancel)
+        return;
+    parametresAffichage = fenetreParametresAffichage->getParametresAffichage();
+    parametres.setParametresAffichage(parametresAffichage);
+    this->etude.setParametres(parametres);
 }
 
 void EcranPrincipal::on_actionParametresConversion_triggered()
 {
-    // TODO void EcranPrincipal::on_actionParametresConversion_triggered()
+    Parametres parametres = this->etude.getParametres();
+    ParametresConversion parametresConversion = parametres.getParametresConversion();
     FenetreParametresConversion* fenetreParametresConversion = new FenetreParametresConversion(
             this);
-    fenetreParametresConversion->exec();
+    fenetreParametresConversion->setParametresConversion(parametresConversion);
+    fenetreParametresConversion->actualiserElementsGraphiques();
+    if (fenetreParametresConversion->exec() == QMessageBox::Cancel)
+        return;
+    parametresConversion = fenetreParametresConversion->getParametresConversion();
+    parametres.setParametresConversion(parametresConversion);
+    this->etude.setParametres(parametres);
 }
 
 void EcranPrincipal::on_actionParametresRecherche_triggered()
 {
-    // TODO void EcranPrincipal::on_actionParametresRecherche_triggered()
+    Parametres parametres = this->etude.getParametres();
+    ParametresRecherche parametresRecherche = parametres.getParametresRecherche();
     FenetreParametresRecherche* fenetreParametresRecherche = new FenetreParametresRecherche(this);
-    fenetreParametresRecherche->exec();
+    fenetreParametresRecherche->setParametresRecherche(parametresRecherche);
+    fenetreParametresRecherche->actualiserElementsGraphiques();
+    if (fenetreParametresRecherche->exec() == QMessageBox::Cancel)
+        return;
+    parametresRecherche = fenetreParametresRecherche->getParametresRecherche();
+    parametres.setParametresRecherche(parametresRecherche);
+    this->etude.setParametres(parametres);
 }
 
 void EcranPrincipal::on_actionParametresExport_triggered()
 {
-    // TODO void EcranPrincipal::on_actionParametresExport_triggered()
+    Parametres parametres = this->etude.getParametres();
+    ParametresExport parametresExport = parametres.getParametresExport();
     FenetreParametresExport* fenetreParametresExport = new FenetreParametresExport(this);
-    fenetreParametresExport->exec();
+    fenetreParametresExport->setParametresExport(parametresExport);
+    fenetreParametresExport->actualiserElementsGraphiques();
+    if (fenetreParametresExport->exec() == QMessageBox::Cancel)
+        return;
+    parametresExport = fenetreParametresExport->getParametresExport();
+    parametres.setParametresExport(parametresExport);
+    this->etude.setParametres(parametres);
 }
 
 void EcranPrincipal::on_actionDocumentation_triggered()
