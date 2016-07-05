@@ -46,7 +46,10 @@ public:
     const QString toString(const char& sep) const;
 
     // Méthodes spécifiques
-    // TODO Méthodes spécifiques
+    int getIndiceCaractereSeparation() const;
+    int getIndiceCaractereSeparateurDecimal() const;
+    void setIndiceCaractereSeparation(const int& indiceCaractereSeparation);
+    void setIndiceCaractereSeparateurDecimal(const int& indiceCaractereSeparateurDecimal);
 
     // Enumération des formats de notation des nombres
     enum formatsNotationNombres
@@ -54,12 +57,24 @@ public:
         STANDARD, SCIENTIFIQUE
     };
 
+    // Enumération des correspondances entre caractères de séparation et indices
+    enum indicesCaracteresSeparation
+    {
+        ESPACE, TABULATION, POINT_VIRGULE
+    };
+
+    // Enumération des correspondances entre caractères de séparateur décimal et indices
+    enum indicesCaracteresSeparateurDecimal
+    {
+        POINT, VIRGULE
+    };
+
     // Définition des valeurs par défaut des paramètres d'export
     static const int formatNotationNombresDefaut = STANDARD;
     static const int nombreChiffresSignificatifsDefaut = 6;
     static const char caractereSeparationDefaut = '\t';
     static const char caractereSeparateurDecimalDefaut = '.';
-    static constexpr double seuilInterpolationNumeriqueDefaut = 1.0;
+    static constexpr double seuilInterpolationNumeriqueDefaut = 0.0;
 
 private:
     // Attributs de classe

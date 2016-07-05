@@ -55,7 +55,6 @@ public:
     const QString toString(const char& sep) const;
 
     // Méthodes spécifiques
-    // TODO Méthodes spécifiques
 
 private:
     // Attributs de classe

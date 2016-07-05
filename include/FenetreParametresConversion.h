@@ -26,27 +26,26 @@ public:
     ~FenetreParametresConversion();
 
     // Getters
-    // TODO Getters
     const ParametresConversion& getParametresConversion() const;
 
     // Setters
-    // TODO Setters
     void setParametresConversion(const ParametresConversion& parametresConversion);
 
     // Méthodes génériques
-    // TODO Méthodes génériques
 
     // Méthodes spécifiques
-    // TODO Méthodes spécifiques
     void actualiserElementsGraphiques();
 
 protected:
-    // TODO Méthodes spécifiques
+    // Méthodes spécifiques
     void initialiserElementsGraphiques();
 
 protected slots:
     // Connecteurs spécifiques
-    // TODO Connecteurs spécifiques
+    void on_spinBoxSeuilNoirEtBlanc_valueChanged();
+    void on_spinBoxNombreNiveauxDeGris_valueChanged();
+    void on_spinBoxNombreTeintesSaturees_valueChanged();
+    void on_spinBoxSeuilSaturation_valueChanged();
 
 private:
     // Attributs de classe

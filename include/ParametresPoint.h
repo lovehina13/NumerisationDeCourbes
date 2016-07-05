@@ -39,7 +39,6 @@ public:
     const QString toString(const char& sep) const;
 
     // Méthodes spécifiques
-    // TODO Méthodes spécifiques
 
     // Enumération des styles de points
     enum stylesPoints
@@ -50,10 +49,10 @@ public:
     // Définition des valeurs par défaut des paramètres d'un point
     static const int stylePointDefaut = CARRE;
     static const int epaisseurPointDefaut = 4;
-    static const QRgb couleurPointDefaut = Qt::black;
-    static const QRgb couleurPointAxeDefaut = Qt::red;
-    static const QRgb couleurPointCourbeDefaut = Qt::blue;
-    static const QRgb couleurPointManuelDefaut = Qt::green;
+    static const QRgb couleurPointDefaut;
+    static const QRgb couleurPointAxeDefaut;
+    static const QRgb couleurPointCourbeDefaut;
+    static const QRgb couleurPointManuelDefaut;
 
 private:
     // Attributs de classe

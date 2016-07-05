@@ -69,8 +69,8 @@ void EcranPrincipal::initialiserElementsGraphiques()
 
 void EcranPrincipal::creerNouvelleEtude()
 {
-    // TODO Sauvegarder et utiliser le dernier fichier sélectionné ?
-    // TODO Utiliser le chemin du fichier image courant ?
+    // TODO Sauvegarde et utilisation du dernier fichier sélectionné ?
+    // TODO Utilisation du chemin du fichier image courant ?
     QString cheminFichierImageSource = QFileDialog::getOpenFileName(this,
             QString::fromUtf8("Sélection d'un fichier image"), ".",
             QString::fromUtf8("Fichier image (*.bmp *.jpg *.jpeg *.png)"));
@@ -93,8 +93,8 @@ void EcranPrincipal::creerNouvelleEtude()
 
 void EcranPrincipal::chargerEtudeExistante()
 {
-    // TODO Sauvegarder et utiliser le dernier fichier sélectionné ?
-    // TODO Utiliser le chemin du fichier étude courant ?
+    // TODO Sauvegarde et utilisation du dernier fichier sélectionné ?
+    // TODO Utilisation du chemin du fichier étude courant ?
     QString cheminFichierEtude = QFileDialog::getOpenFileName(this,
             QString::fromUtf8("Sélection d'un fichier étude"), ".",
             QString::fromUtf8("Fichier étude (*.enc)"));
@@ -107,8 +107,8 @@ void EcranPrincipal::chargerEtudeExistante()
 
 void EcranPrincipal::sauverEtudeCourante()
 {
-    // TODO Sauvegarder et utiliser le dernier fichier sélectionné ?
-    // TODO Utiliser le chemin du fichier étude courant ?
+    // TODO Sauvegarde et utilisation du dernier fichier sélectionné ?
+    // TODO Utilisation du chemin du fichier étude courant ?
     QString cheminFichierEtude = QFileDialog::getSaveFileName(this,
             QString::fromUtf8("Sélection d'un fichier étude"), ".",
             QString::fromUtf8("Fichier étude (*.enc)"));
@@ -121,8 +121,8 @@ void EcranPrincipal::sauverEtudeCourante()
 
 void EcranPrincipal::exporterEtudeCourante()
 {
-    // TODO Sauvegarder et utiliser le dernier fichier sélectionné ?
-    // TODO Utiliser le chemin du fichier export courant ?
+    // TODO Sauvegarde et utilisation du dernier fichier sélectionné ?
+    // TODO Utilisation du chemin du fichier export courant ?
     QString cheminFichierExport = QFileDialog::getSaveFileName(this,
             QString::fromUtf8("Sélection d'un fichier export"), ".",
             QString::fromUtf8("Fichier export (*.csv)"));
@@ -136,7 +136,7 @@ bool EcranPrincipal::verifierEtatSauvegardeEtude()
 {
     if (!this->etude.equals(this->etudeReference))
     {
-        // TODO Mutualiser le code dans des classes FenetreMessageOK FenetreMessageOuiNon ?
+        // TODO Mutualisation du code dans des classes FenetreMessageOK FenetreMessageOuiNon ?
         QMessageBox* fenetreMessage = new QMessageBox(QMessageBox::Warning,
                 QString::fromUtf8("Sauvegarde de l'étude courante"),
                 QString::fromUtf8("Souhaitez-vous sauver l'étude courante ?"),
@@ -198,7 +198,7 @@ void EcranPrincipal::actualiserCoordonneesPointManuel()
 
 void EcranPrincipal::actualiserCoordonneesListeDePoints()
 {
-    // TODO Gérer les accès aux éléments de la liste de points via des méthodes ajouterPoint(), supprimerPoint(), modifierPoint() et effacerPoints()
+    // TODO Gestion des accès aux éléments de la liste de points via des méthodes ajouterPoint(), supprimerPoint(), modifierPoint() et effacerPoints()
 
     QList<Point> listeDePoints;
     const int nombreDePoints = this->etude.getListeDePoints().size();
@@ -229,6 +229,11 @@ void EcranPrincipal::actualiserCoordonneesListeDePoints()
         this->ui->tableWidgetListePoints->setItem(itPoint, 3, itemPointReelY);
     }
     this->ui->tableWidgetListePoints->resizeColumnsToContents();
+}
+
+void EcranPrincipal::dessiner()
+{
+    // TODO void EcranPrincipal::dessiner()
 }
 
 void EcranPrincipal::on_actionCreer_triggered()
@@ -268,7 +273,7 @@ void EcranPrincipal::on_actionParametresAffichage_triggered()
     FenetreParametresAffichage* fenetreParametresAffichage = new FenetreParametresAffichage(this);
     fenetreParametresAffichage->setParametresAffichage(parametresAffichage);
     fenetreParametresAffichage->actualiserElementsGraphiques();
-    if (fenetreParametresAffichage->exec() == QMessageBox::Cancel)
+    if (fenetreParametresAffichage->exec() == QMessageBox::Rejected)
         return;
     parametresAffichage = fenetreParametresAffichage->getParametresAffichage();
     parametres.setParametresAffichage(parametresAffichage);
@@ -283,7 +288,7 @@ void EcranPrincipal::on_actionParametresConversion_triggered()
             this);
     fenetreParametresConversion->setParametresConversion(parametresConversion);
     fenetreParametresConversion->actualiserElementsGraphiques();
-    if (fenetreParametresConversion->exec() == QMessageBox::Cancel)
+    if (fenetreParametresConversion->exec() == QMessageBox::Rejected)
         return;
     parametresConversion = fenetreParametresConversion->getParametresConversion();
     parametres.setParametresConversion(parametresConversion);
@@ -297,7 +302,7 @@ void EcranPrincipal::on_actionParametresRecherche_triggered()
     FenetreParametresRecherche* fenetreParametresRecherche = new FenetreParametresRecherche(this);
     fenetreParametresRecherche->setParametresRecherche(parametresRecherche);
     fenetreParametresRecherche->actualiserElementsGraphiques();
-    if (fenetreParametresRecherche->exec() == QMessageBox::Cancel)
+    if (fenetreParametresRecherche->exec() == QMessageBox::Rejected)
         return;
     parametresRecherche = fenetreParametresRecherche->getParametresRecherche();
     parametres.setParametresRecherche(parametresRecherche);
@@ -311,7 +316,7 @@ void EcranPrincipal::on_actionParametresExport_triggered()
     FenetreParametresExport* fenetreParametresExport = new FenetreParametresExport(this);
     fenetreParametresExport->setParametresExport(parametresExport);
     fenetreParametresExport->actualiserElementsGraphiques();
-    if (fenetreParametresExport->exec() == QMessageBox::Cancel)
+    if (fenetreParametresExport->exec() == QMessageBox::Rejected)
         return;
     parametresExport = fenetreParametresExport->getParametresExport();
     parametres.setParametresExport(parametresExport);
@@ -325,7 +330,7 @@ void EcranPrincipal::on_actionDocumentation_triggered()
 
 void EcranPrincipal::on_actionAbout_triggered()
 {
-    // TODO Mutualiser le code dans des classes FenetreMessageOK FenetreMessageOuiNon ?
+    // TODO Mutualisation du code dans des classes FenetreMessageOK FenetreMessageOuiNon ?
     QMessageBox* fenetreMessage = new QMessageBox(QMessageBox::Information,
             QString::fromUtf8("NumerisationDeCourbes"),
             QString::fromUtf8("NumerisationDeCourbes - Version 1.0 (DD/MM/YYYY).\n"
@@ -351,12 +356,60 @@ void EcranPrincipal::on_radioButtonTeintesSaturees_clicked()
 
 void EcranPrincipal::on_pushButtonConvertir_clicked()
 {
-    // TODO void EcranPrincipal::on_pushButtonConvertir_clicked()
+    int methodeConversion = ParametresConversion::BRUTE;
+    if (this->ui->radioButtonNoirEtBlanc->isChecked())
+    {
+        methodeConversion = ParametresConversion::NOIR_ET_BLANC;
+    }
+    else if (this->ui->radioButtonNiveauxDeGris->isChecked())
+    {
+        methodeConversion = ParametresConversion::NIVEAUX_DE_GRIS;
+    }
+    else if (this->ui->radioButtonTeintesSaturees->isChecked())
+    {
+        methodeConversion = ParametresConversion::TEINTES_SATUREES;
+    }
+    Parametres parametres = this->etude.getParametres();
+    ParametresConversion parametresConversion = parametres.getParametresConversion();
+    parametresConversion.setMethodeConversion(methodeConversion);
+    parametres.setParametresConversion(parametresConversion);
+    this->etude.setParametres(parametres);
+
+    methodeConversion = parametresConversion.getMethodeConversion();
+    Image image = this->etude.getImage();
+    if (methodeConversion == ParametresConversion::NOIR_ET_BLANC)
+    {
+        image.convertirImageNoirEtBlanc(parametresConversion.getSeuilNoirEtBlanc());
+    }
+    else if (methodeConversion == ParametresConversion::NIVEAUX_DE_GRIS)
+    {
+        image.convertirImageNiveauxDeGris(parametresConversion.getNombreNiveauxDeGris());
+    }
+    else if (methodeConversion == ParametresConversion::TEINTES_SATUREES)
+    {
+        image.convertirImageTeintesSaturees(parametresConversion.getNombreNiveauxDeGris(),
+                parametresConversion.getNombreTeintesSaturees(),
+                parametresConversion.getSeuilSaturation());
+    }
+    this->etude.setImage(image);
+
+    this->dessiner();
 }
 
 void EcranPrincipal::on_pushButtonRestaurer_clicked()
 {
-    // TODO void EcranPrincipal::on_pushButtonRestaurer_clicked()
+    int methodeConversion = ParametresConversion::BRUTE;
+    Parametres parametres = this->etude.getParametres();
+    ParametresConversion parametresConversion = parametres.getParametresConversion();
+    parametresConversion.setMethodeConversion(methodeConversion);
+    parametres.setParametresConversion(parametresConversion);
+    this->etude.setParametres(parametres);
+
+    Image image = this->etude.getImage();
+    image.restaurerImage();
+    this->etude.setImage(image);
+
+    this->dessiner();
 }
 
 void EcranPrincipal::on_lineEditPointX0XPixel_textChanged()

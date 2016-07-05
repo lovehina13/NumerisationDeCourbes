@@ -46,7 +46,6 @@ public:
     const QString toString(const char& sep) const;
 
     // Méthodes spécifiques
-    // TODO Méthodes spécifiques
 
     // Enumération des méthodes de conversion
     enum methodesConversion

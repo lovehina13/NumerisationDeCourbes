@@ -39,7 +39,6 @@ public:
     const QString toString(const char& sep) const;
 
     // Méthodes spécifiques
-    // TODO Méthodes spécifiques
 
     // Enumération des styles de traits
     enum stylesTraits
@@ -50,9 +49,9 @@ public:
     // Définition des valeurs par défaut des paramètres d'un trait
     static const int styleTraitDefaut = LIGNE;
     static const int epaisseurTraitDefaut = 2;
-    static const QRgb couleurTraitDefaut = Qt::black;
-    static const QRgb couleurTraitAxeDefaut = Qt::red;
-    static const QRgb couleurTraitCourbeDefaut = Qt::blue;
+    static const QRgb couleurTraitDefaut;
+    static const QRgb couleurTraitAxeDefaut;
+    static const QRgb couleurTraitCourbeDefaut;
 
 private:
     // Attributs de classe

@@ -52,7 +52,6 @@ public:
     const QString toString(const char& sep) const;
 
     // Méthodes spécifiques
-    // TODO Méthodes spécifiques
     bool operator==(const Point& point) const;
 
     // Enumération des types de points

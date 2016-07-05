@@ -6,6 +6,11 @@
 //==============================================================================
 
 #include "ParametresTrait.h"
+#include <QColor>
+
+const QRgb ParametresTrait::couleurTraitDefaut = QColor(Qt::black).rgb();
+const QRgb ParametresTrait::couleurTraitAxeDefaut = QColor(Qt::red).rgb();
+const QRgb ParametresTrait::couleurTraitCourbeDefaut = QColor(Qt::blue).rgb();
 
 ParametresTrait::ParametresTrait() :
         styleTrait(styleTraitDefaut), epaisseurTrait(epaisseurTraitDefaut),

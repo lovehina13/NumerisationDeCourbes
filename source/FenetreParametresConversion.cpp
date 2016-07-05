@@ -34,10 +34,44 @@ void FenetreParametresConversion::setParametresConversion(
 
 void FenetreParametresConversion::initialiserElementsGraphiques()
 {
-    // TODO void FenetreParametresConversion::initialiserElementsGraphiques()
+    this->ui->spinBoxSeuilNoirEtBlanc->setMinimum(0);
+    this->ui->spinBoxSeuilNoirEtBlanc->setMaximum(100);
+    this->ui->spinBoxNombreNiveauxDeGris->setMinimum(2);
+    this->ui->spinBoxNombreNiveauxDeGris->setMaximum(256);
+    this->ui->spinBoxNombreTeintesSaturees->setMinimum(1);
+    this->ui->spinBoxNombreTeintesSaturees->setMaximum(360);
+    this->ui->spinBoxSeuilSaturation->setMinimum(0);
+    this->ui->spinBoxSeuilSaturation->setMaximum(100);
 }
 
 void FenetreParametresConversion::actualiserElementsGraphiques()
 {
-    // TODO void FenetreParametresConversion::actualiserElementsGraphiques()
+    this->ui->spinBoxSeuilNoirEtBlanc->setValue(this->parametresConversion.getSeuilNoirEtBlanc());
+    this->ui->spinBoxNombreNiveauxDeGris->setValue(
+            this->parametresConversion.getNombreNiveauxDeGris());
+    this->ui->spinBoxNombreTeintesSaturees->setValue(
+            this->parametresConversion.getNombreTeintesSaturees());
+    this->ui->spinBoxSeuilSaturation->setValue(this->parametresConversion.getSeuilSaturation());
+}
+
+void FenetreParametresConversion::on_spinBoxSeuilNoirEtBlanc_valueChanged()
+{
+    this->parametresConversion.setSeuilNoirEtBlanc(this->ui->spinBoxSeuilNoirEtBlanc->value());
+}
+
+void FenetreParametresConversion::on_spinBoxNombreNiveauxDeGris_valueChanged()
+{
+    this->parametresConversion.setNombreNiveauxDeGris(
+            this->ui->spinBoxNombreNiveauxDeGris->value());
+}
+
+void FenetreParametresConversion::on_spinBoxNombreTeintesSaturees_valueChanged()
+{
+    this->parametresConversion.setNombreTeintesSaturees(
+            this->ui->spinBoxNombreTeintesSaturees->value());
+}
+
+void FenetreParametresConversion::on_spinBoxSeuilSaturation_valueChanged()
+{
+    this->parametresConversion.setSeuilSaturation(this->ui->spinBoxSeuilSaturation->value());
 }

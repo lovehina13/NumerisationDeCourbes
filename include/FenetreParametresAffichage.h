@@ -26,27 +26,39 @@ public:
     ~FenetreParametresAffichage();
 
     // Getters
-    // TODO Getters
     const ParametresAffichage& getParametresAffichage() const;
 
     // Setters
-    // TODO Setters
     void setParametresAffichage(const ParametresAffichage& parametresAffichage);
 
     // Méthodes génériques
-    // TODO Méthodes génériques
 
     // Méthodes spécifiques
-    // TODO Méthodes spécifiques
     void actualiserElementsGraphiques();
 
 protected:
-    // TODO Méthodes spécifiques
+    // Méthodes spécifiques
     void initialiserElementsGraphiques();
 
 protected slots:
     // Connecteurs spécifiques
-    // TODO Connecteurs spécifiques
+    void on_comboBoxFormatNotationNombres_currentIndexChanged();
+    void on_spinBoxNombreDecimalesOuChiffresSignificatifs_valueChanged();
+    void on_pushButtonCouleurAxes_clicked();
+    void on_spinBoxEpaisseurAxes_valueChanged();
+    void on_comboBoxTypeAxes_currentIndexChanged();
+    void on_pushButtonCouleurCourbes_clicked();
+    void on_spinBoxEpaisseurCourbes_valueChanged();
+    void on_comboBoxTypeCourbes_currentIndexChanged();
+    void on_pushButtonCouleurPointsAxes_clicked();
+    void on_spinBoxEpaisseurPointsAxes_valueChanged();
+    void on_comboBoxTypePointsAxes_currentIndexChanged();
+    void on_pushButtonCouleurPointsCourbes_clicked();
+    void on_spinBoxEpaisseurPointsCourbes_valueChanged();
+    void on_comboBoxTypePointsCourbes_currentIndexChanged();
+    void on_pushButtonCouleurPointsManuels_clicked();
+    void on_spinBoxEpaisseurPointsManuels_valueChanged();
+    void on_comboBoxTypePointsManuels_currentIndexChanged();
 
 private:
     // Attributs de classe

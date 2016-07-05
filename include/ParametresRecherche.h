@@ -46,7 +46,6 @@ public:
     const QString toString(const char& sep) const;
 
     // Méthodes spécifiques
-    // TODO Méthodes spécifiques
 
     // Définition des valeurs par défaut des paramètres de recherche
     static const int seuilToleranceNiveauxDeGrisDefaut = 32;

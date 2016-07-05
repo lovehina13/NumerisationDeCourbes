@@ -40,7 +40,6 @@ public:
     const QString toString(const char& sep) const;
 
     // Méthodes spécifiques
-    // TODO Méthodes spécifiques
     void restaurerImage();
     void convertirImageNoirEtBlanc(const int& seuilNoirEtBlanc);
     void convertirImageNiveauxDeGris(const int& nombreNiveauxDeGris);
@@ -51,7 +50,6 @@ public:
 
 protected:
     // Méthodes spécifiques
-    // TODO Méthodes spécifiques
     void convertirImage(const int& methodeConversion, const int& seuilNoirEtBlanc,
             const int& nombreNiveauxDeGris, const int& nombreTeintesSaturees,
             const int& seuilSaturation);

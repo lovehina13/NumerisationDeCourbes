@@ -26,19 +26,15 @@ public:
     ~EcranPrincipal();
 
     // Getters
-    // TODO Getters
 
     // Setters
-    // TODO Setters
 
     // Méthodes génériques
-    // TODO Méthodes génériques
 
     // Méthodes spécifiques
-    // TODO Méthodes spécifiques
 
 protected:
-    // TODO Méthodes spécifiques
+    // Méthodes spécifiques
     void initialiserElementsGraphiques();
     void creerNouvelleEtude();
     void chargerEtudeExistante();
@@ -51,10 +47,10 @@ protected:
     void actualiserCoordonneesPointArrivee();
     void actualiserCoordonneesPointManuel();
     void actualiserCoordonneesListeDePoints();
+    void dessiner();
 
 protected slots:
     // Connecteurs spécifiques
-    // TODO Connecteurs spécifiques
     void on_actionCreer_triggered();
     void on_actionCharger_triggered();
     void on_actionSauver_triggered();

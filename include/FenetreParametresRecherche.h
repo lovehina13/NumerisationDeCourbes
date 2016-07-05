@@ -26,27 +26,27 @@ public:
     ~FenetreParametresRecherche();
 
     // Getters
-    // TODO Getters
     const ParametresRecherche& getParametresRecherche() const;
 
     // Setters
-    // TODO Setters
     void setParametresRecherche(const ParametresRecherche& parametresRecherche);
 
     // Méthodes génériques
-    // TODO Méthodes génériques
 
     // Méthodes spécifiques
-    // TODO Méthodes spécifiques
     void actualiserElementsGraphiques();
 
 protected:
-    // TODO Méthodes spécifiques
+    // Méthodes spécifiques
     void initialiserElementsGraphiques();
 
 protected slots:
     // Connecteurs spécifiques
-    // TODO Connecteurs spécifiques
+    void on_spinBoxSeuilToleranceNiveauxDeGris_valueChanged();
+    void on_spinBoxSeuilToleranceTeintesSaturees_valueChanged();
+    void on_checkBoxSelectionValeursMoyennes_stateChanged();
+    void on_checkBoxSelectionValeursMinimales_stateChanged();
+    void on_checkBoxSelectionValeursMaximales_stateChanged();
 
 private:
     // Attributs de classe

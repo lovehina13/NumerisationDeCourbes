@@ -49,7 +49,6 @@ public:
     const QString toString(const char& sep) const;
 
     // Méthodes spécifiques
-    // TODO Méthodes spécifiques
     bool chargerEtude(const QString& cheminFichierEtude);
     bool sauverEtude(const QString& cheminFichierEtude);
     bool exporterImageConvertie(const QString& cheminFichierImageConvertie);
@@ -71,7 +70,6 @@ public:
 
 protected:
     // Méthodes spécifiques
-    // TODO Méthodes spécifiques
     void rechercherPointsProches(const QPoint& pointPixel, const QRgb& couleurReference);
     QList<QPoint> recupererListeDePointsProches(const QPoint& pointPixel) const;
     int verifierToleranceNiveauxDeGris(const QRgb& couleurCourante, const QRgb& couleurReference,

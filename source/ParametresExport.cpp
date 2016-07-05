@@ -141,3 +141,64 @@ const QString ParametresExport::toString(const char& sep) const
     Q_UNUSED(sep);
     return QString();
 }
+
+int ParametresExport::getIndiceCaractereSeparation() const
+{
+    const char& caractereSeparation = this->getCaractereSeparation();
+    if (caractereSeparation == ' ')
+    {
+        return ESPACE;
+    }
+    else if (caractereSeparation == '\t')
+    {
+        return TABULATION;
+    }
+    if (caractereSeparation == ';')
+    {
+        return POINT_VIRGULE;
+    }
+    return -1;
+}
+
+int ParametresExport::getIndiceCaractereSeparateurDecimal() const
+{
+    const char& caractereSeparateurDecimal = this->getCaractereSeparateurDecimal();
+    if (caractereSeparateurDecimal == '.')
+    {
+        return POINT;
+    }
+    else if (caractereSeparateurDecimal == ',')
+    {
+        return VIRGULE;
+    }
+    return -1;
+}
+
+void ParametresExport::setIndiceCaractereSeparation(const int& indiceCaractereSeparation)
+{
+    if (indiceCaractereSeparation == ESPACE)
+    {
+        this->setCaractereSeparation(' ');
+    }
+    else if (indiceCaractereSeparation == TABULATION)
+    {
+        this->setCaractereSeparation('\t');
+    }
+    else if (indiceCaractereSeparation == POINT_VIRGULE)
+    {
+        this->setCaractereSeparation(';');
+    }
+}
+
+void ParametresExport::setIndiceCaractereSeparateurDecimal(
+        const int& indiceCaractereSeparateurDecimal)
+{
+    if (indiceCaractereSeparateurDecimal == POINT)
+    {
+        this->setCaractereSeparateurDecimal('.');
+    }
+    else if (indiceCaractereSeparateurDecimal == VIRGULE)
+    {
+        this->setCaractereSeparateurDecimal(',');
+    }
+}

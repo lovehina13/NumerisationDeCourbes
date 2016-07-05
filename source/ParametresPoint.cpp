@@ -6,6 +6,12 @@
 //==============================================================================
 
 #include "ParametresPoint.h"
+#include <QColor>
+
+const QRgb ParametresPoint::couleurPointDefaut = QColor(Qt::black).rgb();
+const QRgb ParametresPoint::couleurPointAxeDefaut = QColor(Qt::red).rgb();
+const QRgb ParametresPoint::couleurPointCourbeDefaut = QColor(Qt::blue).rgb();
+const QRgb ParametresPoint::couleurPointManuelDefaut = QColor(Qt::green).rgb();
 
 ParametresPoint::ParametresPoint() :
         stylePoint(stylePointDefaut), epaisseurPoint(epaisseurPointDefaut),

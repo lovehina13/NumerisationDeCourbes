@@ -25,14 +25,14 @@
     <widget class="QSpinBox" name="spinBoxSeuilNoirEtBlanc"/>
    </item>
    <item row="1" column="0">
-    <widget class="QLabel" name="labelNombreNiveauxGris">
+    <widget class="QLabel" name="labelNombreNiveauxDeGris">
      <property name="text">
       <string>Nombre de niveaux de gris</string>
      </property>
     </widget>
    </item>
    <item row="1" column="1">
-    <widget class="QSpinBox" name="spinBoxNombreNiveauxGris"/>
+    <widget class="QSpinBox" name="spinBoxNombreNiveauxDeGris"/>
    </item>
    <item row="2" column="0">
     <widget class="QLabel" name="labelNombreTeintesSaturees">

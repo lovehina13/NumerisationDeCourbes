@@ -26,27 +26,27 @@ public:
     ~FenetreParametresExport();
 
     // Getters
-    // TODO Getters
     const ParametresExport& getParametresExport() const;
 
     // Setters
-    // TODO Setters
     void setParametresExport(const ParametresExport& parametresExport);
 
     // Méthodes génériques
-    // TODO Méthodes génériques
 
     // Méthodes spécifiques
-    // TODO Méthodes spécifiques
     void actualiserElementsGraphiques();
 
 protected:
-    // TODO Méthodes spécifiques
+    // Méthodes spécifiques
     void initialiserElementsGraphiques();
 
 protected slots:
     // Connecteurs spécifiques
-    // TODO Connecteurs spécifiques
+    void on_comboBoxCaractereSeparation_currentIndexChanged();
+    void on_lineEditSeuilInterpolationNumerique_textChanged();
+    void on_comboBoxFormatNotationNombres_currentIndexChanged();
+    void on_comboBoxCaractereSeparateurDecimal_currentIndexChanged();
+    void on_spinBoxNombreDecimalesOuChiffresSignificatifs_valueChanged();
 
 private:
     // Attributs de classe
