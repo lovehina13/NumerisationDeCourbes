@@ -153,8 +153,7 @@ void Image::convertirImage(const int& methodeConversion, const int& seuilNoirEtB
             if (methodeConversion == ParametresConversion::NOIR_ET_BLANC)
             {
                 couleurConvertie =
-                        (((double) qGray(couleurConvertie) / 256.0)
-                                <= ((double) seuilNoirEtBlanc / 100.0)) ?
+                        (qGray(couleurConvertie) <= seuilNoirEtBlanc) ?
                                 QColor(Qt::black).rgb() : QColor(Qt::white).rgb();
             }
             else if (methodeConversion == ParametresConversion::NIVEAUX_DE_GRIS)
@@ -165,8 +164,7 @@ void Image::convertirImage(const int& methodeConversion, const int& seuilNoirEtB
             else if (methodeConversion == ParametresConversion::TEINTES_SATUREES)
             {
                 if (QColor(couleurConvertie).hue() == -1
-                        || QColor(couleurConvertie).saturationF()
-                                <= ((double) seuilSaturation / 100.0))
+                        || QColor(couleurConvertie).saturation() <= seuilSaturation)
                 {
                     couleurConvertie = listeNiveauxDeGris.at(
                             (int) round((double) qGray(couleurConvertie) / pasNiveauxDeGris));

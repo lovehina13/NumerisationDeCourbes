@@ -34,18 +34,18 @@ void FenetreParametresRecherche::setParametresRecherche(
 
 void FenetreParametresRecherche::initialiserElementsGraphiques()
 {
-    this->ui->spinBoxSeuilToleranceNiveauxDeGris->setMinimum(0);
-    this->ui->spinBoxSeuilToleranceNiveauxDeGris->setMaximum(256);
-    this->ui->spinBoxSeuilToleranceTeintesSaturees->setMinimum(0);
-    this->ui->spinBoxSeuilToleranceTeintesSaturees->setMaximum(360);
+    this->ui->doubleSpinBoxSeuilToleranceNiveauxDeGris->setMinimum(0);
+    this->ui->doubleSpinBoxSeuilToleranceNiveauxDeGris->setMaximum(100);
+    this->ui->doubleSpinBoxSeuilToleranceTeintesSaturees->setMinimum(0);
+    this->ui->doubleSpinBoxSeuilToleranceTeintesSaturees->setMaximum(100);
 }
 
 void FenetreParametresRecherche::actualiserElementsGraphiques()
 {
-    this->ui->spinBoxSeuilToleranceNiveauxDeGris->setValue(
-            this->parametresRecherche.getSeuilToleranceNiveauxDeGris());
-    this->ui->spinBoxSeuilToleranceTeintesSaturees->setValue(
-            this->parametresRecherche.getSeuilToleranceTeintesSaturees());
+    this->ui->doubleSpinBoxSeuilToleranceNiveauxDeGris->setValue(
+            this->parametresRecherche.getSeuilToleranceNiveauxDeGrisFacteur() * 100.0);
+    this->ui->doubleSpinBoxSeuilToleranceTeintesSaturees->setValue(
+            this->parametresRecherche.getSeuilToleranceTeintesSatureesFacteur() * 100.0);
     this->ui->checkBoxSelectionValeursMoyennes->setChecked(
             this->parametresRecherche.getSelectionValeursMoyennes());
     this->ui->checkBoxSelectionValeursMinimales->setChecked(
@@ -54,16 +54,16 @@ void FenetreParametresRecherche::actualiserElementsGraphiques()
             this->parametresRecherche.getSelectionValeursMaximales());
 }
 
-void FenetreParametresRecherche::on_spinBoxSeuilToleranceNiveauxDeGris_valueChanged()
+void FenetreParametresRecherche::on_doubleSpinBoxSeuilToleranceNiveauxDeGris_valueChanged()
 {
-    this->parametresRecherche.setSeuilToleranceNiveauxDeGris(
-            this->ui->spinBoxSeuilToleranceNiveauxDeGris->value());
+    this->parametresRecherche.setSeuilToleranceNiveauxDeGrisFacteur(
+            this->ui->doubleSpinBoxSeuilToleranceNiveauxDeGris->value() / 100.0);
 }
 
-void FenetreParametresRecherche::on_spinBoxSeuilToleranceTeintesSaturees_valueChanged()
+void FenetreParametresRecherche::on_doubleSpinBoxSeuilToleranceTeintesSaturees_valueChanged()
 {
-    this->parametresRecherche.setSeuilToleranceTeintesSaturees(
-            this->ui->spinBoxSeuilToleranceTeintesSaturees->value());
+    this->parametresRecherche.setSeuilToleranceTeintesSatureesFacteur(
+            this->ui->doubleSpinBoxSeuilToleranceTeintesSaturees->value() / 100.0);
 }
 
 void FenetreParametresRecherche::on_checkBoxSelectionValeursMoyennes_stateChanged()

@@ -6,6 +6,7 @@
 //==============================================================================
 
 #include "ParametresConversion.h"
+#include <cmath>
 
 ParametresConversion::ParametresConversion() :
         methodeConversion(methodeConversionDefaut), seuilNoirEtBlanc(seuilNoirEtBlancDefaut),
@@ -139,4 +140,24 @@ const QString ParametresConversion::toString(const char& sep) const
     // TODO const QString ParametresConversion::toString(const char& sep) const
     Q_UNUSED(sep);
     return QString();
+}
+
+double ParametresConversion::getSeuilNoirEtBlancFacteur() const
+{
+    return (this->getSeuilNoirEtBlanc() / 256.0);
+}
+
+double ParametresConversion::getSeuilSaturationFacteur() const
+{
+    return (this->getSeuilSaturation() / 256.0);
+}
+
+void ParametresConversion::setSeuilNoirEtBlancFacteur(const double& seuilNoirEtBlancFacteur)
+{
+    this->setSeuilNoirEtBlanc((int) round(seuilNoirEtBlancFacteur * 256.0));
+}
+
+void ParametresConversion::setSeuilSaturationFacteur(const double& seuilSaturationFacteur)
+{
+    this->setSeuilSaturation((int) round(seuilSaturationFacteur * 256.0));
 }

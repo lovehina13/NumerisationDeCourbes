@@ -42,10 +42,10 @@ protected:
 
 protected slots:
     // Connecteurs spécifiques
-    void on_spinBoxSeuilNoirEtBlanc_valueChanged();
+    void on_doubleSpinBoxSeuilNoirEtBlanc_valueChanged();
     void on_spinBoxNombreNiveauxDeGris_valueChanged();
     void on_spinBoxNombreTeintesSaturees_valueChanged();
-    void on_spinBoxSeuilSaturation_valueChanged();
+    void on_doubleSpinBoxSeuilSaturation_valueChanged();
 
 private:
     // Attributs de classe

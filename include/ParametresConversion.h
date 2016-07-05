@@ -46,6 +46,10 @@ public:
     const QString toString(const char& sep) const;
 
     // Méthodes spécifiques
+    double getSeuilNoirEtBlancFacteur() const;
+    double getSeuilSaturationFacteur() const;
+    void setSeuilNoirEtBlancFacteur(const double& seuilNoirEtBlancFacteur);
+    void setSeuilSaturationFacteur(const double& seuilSaturationFacteur);
 
     // Enumération des méthodes de conversion
     enum methodesConversion
@@ -55,10 +59,10 @@ public:
 
     // Définition des valeurs par défaut des paramètres de conversion
     static const int methodeConversionDefaut = BRUTE;
-    static const int seuilNoirEtBlancDefaut = 90;
+    static const int seuilNoirEtBlancDefaut = 224;
     static const int nombreNiveauxDeGrisDefaut = 5;
     static const int nombreTeintesSatureesDefaut = 6;
-    static const int seuilSaturationDefaut = 10;
+    static const int seuilSaturationDefaut = 32;
 
 private:
     // Attributs de classe

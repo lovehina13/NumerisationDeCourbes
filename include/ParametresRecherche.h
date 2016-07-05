@@ -46,6 +46,11 @@ public:
     const QString toString(const char& sep) const;
 
     // Méthodes spécifiques
+    double getSeuilToleranceNiveauxDeGrisFacteur() const;
+    double getSeuilToleranceTeintesSatureesFacteur() const;
+    void setSeuilToleranceNiveauxDeGrisFacteur(const double& seuilToleranceNiveauxDeGrisFacteur);
+    void setSeuilToleranceTeintesSatureesFacteur(
+            const double& seuilToleranceTeintesSatureesFacteur);
 
     // Définition des valeurs par défaut des paramètres de recherche
     static const int seuilToleranceNiveauxDeGrisDefaut = 32;
