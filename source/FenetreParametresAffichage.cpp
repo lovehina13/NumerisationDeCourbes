@@ -9,7 +9,9 @@
 #include "ui_FenetreParametresAffichage.h"
 #include <QColor>
 #include <QColorDialog>
+#include <QDialogButtonBox>
 #include <QPalette>
+#include <QPushButton>
 
 FenetreParametresAffichage::FenetreParametresAffichage(QWidget* parent) :
         QDialog(parent), ui(new Ui::FenetreParametresAffichage)
@@ -49,6 +51,7 @@ void FenetreParametresAffichage::initialiserElementsGraphiques()
     this->ui->spinBoxEpaisseurPointsCourbes->setMaximum(20);
     this->ui->spinBoxEpaisseurPointsManuels->setMinimum(0);
     this->ui->spinBoxEpaisseurPointsManuels->setMaximum(20);
+    this->ui->buttonBox->button(QDialogButtonBox::Cancel)->setText("Annuler");
 }
 
 void FenetreParametresAffichage::actualiserElementsGraphiques()

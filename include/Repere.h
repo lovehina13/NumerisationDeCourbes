@@ -45,6 +45,10 @@ public:
     void pixelVersReel(const int& pointPixelX, const int& pointPixelY, double& pointReelX,
             double &pointReelY) const;
     void pixelVersReel(Point& point) const;
+    void interpolationNumerique(const double& pointReelX1, const double& pointReelY1,
+            const double& pointReelX2, const double& pointReelY2, const double& pointReelX,
+            double& pointReelY) const;
+    void interpolationNumerique(const Point& point1, const Point& point2, Point& point) const;
 
 private:
     // Attributs de classe

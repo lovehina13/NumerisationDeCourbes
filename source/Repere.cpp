@@ -156,3 +156,26 @@ void Repere::pixelVersReel(Point& point) const
     point.setPointReelX(pointReelX);
     point.setPointReelY(pointReelY);
 }
+
+void Repere::interpolationNumerique(const double& pointReelX1, const double& pointReelY1,
+        const double& pointReelX2, const double& pointReelY2, const double& pointReelX,
+        double& pointReelY) const
+{
+    const double pente = (pointReelY2 - pointReelY1) / (pointReelX2 - pointReelX1);
+
+    pointReelY = pente * (pointReelX - pointReelX1) + pointReelY1;
+}
+
+void Repere::interpolationNumerique(const Point& point1, const Point& point2, Point& point) const
+{
+    // TODO Modification du Y pixel ?
+    const double pointReelX1 = point1.getPointReelX();
+    const double pointReelY1 = point1.getPointReelY();
+    const double pointReelX2 = point2.getPointReelX();
+    const double pointReelY2 = point2.getPointReelY();
+    const double pointReelX = point.getPointReelX();
+    double pointReelY = 0.0;
+    this->interpolationNumerique(pointReelX1, pointReelY1, pointReelX2, pointReelY2, pointReelX,
+            pointReelY);
+    point.setPointReelY(pointReelY);
+}

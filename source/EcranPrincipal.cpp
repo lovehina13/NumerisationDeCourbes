@@ -136,7 +136,6 @@ bool EcranPrincipal::verifierEtatSauvegardeEtude()
 {
     if (!this->etude.equals(this->etudeReference))
     {
-        // TODO Mutualisation du code dans des classes FenetreMessageOK FenetreMessageOuiNon ?
         QMessageBox* fenetreMessage = new QMessageBox(QMessageBox::Warning,
                 QString::fromUtf8("Sauvegarde de l'étude courante"),
                 QString::fromUtf8("Souhaitez-vous sauver l'étude courante ?"),
@@ -330,28 +329,12 @@ void EcranPrincipal::on_actionDocumentation_triggered()
 
 void EcranPrincipal::on_actionAbout_triggered()
 {
-    // TODO Mutualisation du code dans des classes FenetreMessageOK FenetreMessageOuiNon ?
     QMessageBox* fenetreMessage = new QMessageBox(QMessageBox::Information,
             QString::fromUtf8("NumerisationDeCourbes"),
             QString::fromUtf8("NumerisationDeCourbes - Version 1.0 (DD/MM/YYYY).\n"
                     "Réalisée par Alexis Foerster (alexis.foerster@gmail.com)."), QMessageBox::Ok,
             this);
     fenetreMessage->exec();
-}
-
-void EcranPrincipal::on_radioButtonNoirEtBlanc_clicked()
-{
-    // TODO void EcranPrincipal::on_radioButtonNoirEtBlanc_clicked()
-}
-
-void EcranPrincipal::on_radioButtonNiveauxDeGris_clicked()
-{
-    // TODO void EcranPrincipal::on_radioButtonNiveauxDeGris_clicked()
-}
-
-void EcranPrincipal::on_radioButtonTeintesSaturees_clicked()
-{
-    // TODO void EcranPrincipal::on_radioButtonTeintesSaturees_clicked()
 }
 
 void EcranPrincipal::on_pushButtonConvertir_clicked()

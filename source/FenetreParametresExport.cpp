@@ -7,7 +7,9 @@
 
 #include "FenetreParametresExport.h"
 #include "ui_FenetreParametresExport.h"
+#include <QDialogButtonBox>
 #include <QDoubleValidator>
+#include <QPushButton>
 
 FenetreParametresExport::FenetreParametresExport(QWidget* parent) :
         QDialog(parent), ui(new Ui::FenetreParametresExport)
@@ -39,6 +41,7 @@ void FenetreParametresExport::initialiserElementsGraphiques()
     this->ui->lineEditSeuilInterpolationNumerique->setValidator(nombreReel);
     this->ui->spinBoxNombreDecimalesOuChiffresSignificatifs->setMinimum(0);
     this->ui->spinBoxNombreDecimalesOuChiffresSignificatifs->setMaximum(20);
+    this->ui->buttonBox->button(QDialogButtonBox::Cancel)->setText("Annuler");
 }
 
 void FenetreParametresExport::actualiserElementsGraphiques()

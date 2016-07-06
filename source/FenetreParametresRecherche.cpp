@@ -7,6 +7,8 @@
 
 #include "FenetreParametresRecherche.h"
 #include "ui_FenetreParametresRecherche.h"
+#include <QDialogButtonBox>
+#include <QPushButton>
 
 FenetreParametresRecherche::FenetreParametresRecherche(QWidget* parent) :
         QDialog(parent), ui(new Ui::FenetreParametresRecherche)
@@ -38,6 +40,7 @@ void FenetreParametresRecherche::initialiserElementsGraphiques()
     this->ui->doubleSpinBoxSeuilToleranceNiveauxDeGris->setMaximum(100);
     this->ui->doubleSpinBoxSeuilToleranceTeintesSaturees->setMinimum(0);
     this->ui->doubleSpinBoxSeuilToleranceTeintesSaturees->setMaximum(100);
+    this->ui->buttonBox->button(QDialogButtonBox::Cancel)->setText("Annuler");
 }
 
 void FenetreParametresRecherche::actualiserElementsGraphiques()

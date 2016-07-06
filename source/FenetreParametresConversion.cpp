@@ -7,6 +7,8 @@
 
 #include "FenetreParametresConversion.h"
 #include "ui_FenetreParametresConversion.h"
+#include <QDialogButtonBox>
+#include <QPushButton>
 
 FenetreParametresConversion::FenetreParametresConversion(QWidget* parent) :
         QDialog(parent), ui(new Ui::FenetreParametresConversion)
@@ -42,6 +44,7 @@ void FenetreParametresConversion::initialiserElementsGraphiques()
     this->ui->spinBoxNombreTeintesSaturees->setMaximum(360);
     this->ui->doubleSpinBoxSeuilSaturation->setMinimum(0);
     this->ui->doubleSpinBoxSeuilSaturation->setMaximum(100);
+    this->ui->buttonBox->button(QDialogButtonBox::Cancel)->setText("Annuler");
 }
 
 void FenetreParametresConversion::actualiserElementsGraphiques()

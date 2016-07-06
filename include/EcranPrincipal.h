@@ -63,9 +63,6 @@ protected slots:
     void on_actionDocumentation_triggered();
     void on_actionAbout_triggered();
     // TODO void on_graphicsViewImage_*();
-    void on_radioButtonNoirEtBlanc_clicked();
-    void on_radioButtonNiveauxDeGris_clicked();
-    void on_radioButtonTeintesSaturees_clicked();
     void on_pushButtonConvertir_clicked();
     void on_pushButtonRestaurer_clicked();
     void on_lineEditPointX0XPixel_textChanged();
