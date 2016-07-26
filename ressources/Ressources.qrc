@@ -1,11 +1,12 @@
 <RCC>
     <qresource prefix="/icones">
+        <file alias="iconeNumerisationDeCourbes">Icon_Mathematical_Plot.svg</file>
         <file alias="iconeActionCreer">Document-new.svg</file>
         <file alias="iconeActionCharger">Document-open.svg</file>
         <file alias="iconeActionSauver">Document-save.svg</file>
-        <file alias="iconeActionAbout">Help-browser.svg</file>
+        <file alias="iconeActionExporter">X-office-spreadsheet.svg</file>
         <file alias="iconeActionQuitter">System-log-out.svg</file>
         <file alias="iconeActionDocumentation">X-office-address-book.svg</file>
-        <file alias="iconeActionExporter">X-office-spreadsheet.svg</file>
+        <file alias="iconeActionAbout">Help-browser.svg</file>
     </qresource>
 </RCC>
