@@ -69,10 +69,9 @@ void EcranPrincipal::initialiserElementsGraphiques()
 
 void EcranPrincipal::creerNouvelleEtude()
 {
-    // TODO Sauvegarde et utilisation du dernier fichier sélectionné ?
-    // TODO Utilisation du chemin du fichier image courant ?
     QString cheminFichierImageSource = QFileDialog::getOpenFileName(this,
-            QString::fromUtf8("Sélection d'un fichier image"), ".",
+            QString::fromUtf8("Sélection d'un fichier image"),
+            this->etude.getParametres().getParametresFichiers().getCheminFichierImageSource(),
             QString::fromUtf8("Fichier image (*.bmp *.jpg *.jpeg *.png)"));
     if (cheminFichierImageSource.isEmpty())
         return;
@@ -93,11 +92,10 @@ void EcranPrincipal::creerNouvelleEtude()
 
 void EcranPrincipal::chargerEtudeExistante()
 {
-    // TODO Sauvegarde et utilisation du dernier fichier sélectionné ?
-    // TODO Utilisation du chemin du fichier étude courant ?
     QString cheminFichierEtude = QFileDialog::getOpenFileName(this,
-            QString::fromUtf8("Sélection d'un fichier étude"), ".",
-            QString::fromUtf8("Fichier étude (*.enc)"));
+            QString::fromUtf8("Sélection d'un fichier étude"),
+            this->etude.getParametres().getParametresFichiers().getCheminFichierEtude(),
+            QString::fromUtf8("Fichier étude (*.ndc)"));
     if (cheminFichierEtude.isEmpty())
         return;
 
@@ -107,11 +105,10 @@ void EcranPrincipal::chargerEtudeExistante()
 
 void EcranPrincipal::sauverEtudeCourante()
 {
-    // TODO Sauvegarde et utilisation du dernier fichier sélectionné ?
-    // TODO Utilisation du chemin du fichier étude courant ?
     QString cheminFichierEtude = QFileDialog::getSaveFileName(this,
-            QString::fromUtf8("Sélection d'un fichier étude"), ".",
-            QString::fromUtf8("Fichier étude (*.enc)"));
+            QString::fromUtf8("Sélection d'un fichier étude"),
+            this->etude.getParametres().getParametresFichiers().getCheminFichierEtude(),
+            QString::fromUtf8("Fichier étude (*.ndc)"));
     if (cheminFichierEtude.isEmpty())
         return;
 
@@ -121,10 +118,9 @@ void EcranPrincipal::sauverEtudeCourante()
 
 void EcranPrincipal::exporterEtudeCourante()
 {
-    // TODO Sauvegarde et utilisation du dernier fichier sélectionné ?
-    // TODO Utilisation du chemin du fichier export courant ?
     QString cheminFichierExport = QFileDialog::getSaveFileName(this,
-            QString::fromUtf8("Sélection d'un fichier export"), ".",
+            QString::fromUtf8("Sélection d'un fichier export"),
+            this->etude.getParametres().getParametresFichiers().getCheminFichierExport(),
             QString::fromUtf8("Fichier export (*.csv)"));
     if (cheminFichierExport.isEmpty())
         return;
@@ -132,21 +128,21 @@ void EcranPrincipal::exporterEtudeCourante()
     this->etude.exporterListeDePoints(cheminFichierExport);
 }
 
-bool EcranPrincipal::verifierEtatSauvegardeEtude()
+void EcranPrincipal::verifierEtatSauvegardeEtude()
 {
-    if (!this->etude.equals(this->etudeReference))
-    {
-        QMessageBox* fenetreMessage = new QMessageBox(QMessageBox::Warning,
-                QString::fromUtf8("Sauvegarde de l'étude courante"),
-                QString::fromUtf8("Souhaitez-vous sauver l'étude courante ?"),
-                QMessageBox::Yes | QMessageBox::No, this);
-        fenetreMessage->setButtonText(QMessageBox::Yes, "Oui");
-        fenetreMessage->setButtonText(QMessageBox::No, "Non");
-        if (fenetreMessage->exec() == QMessageBox::No)
-            return false;
-        this->sauverEtudeCourante();
-    }
-    return true;
+    if (this->etude.equals(this->etudeReference))
+        return;
+
+    QMessageBox* fenetreMessage = new QMessageBox(QMessageBox::Warning,
+            QString::fromUtf8("Sauvegarde de l'étude courante"),
+            QString::fromUtf8("Souhaitez-vous sauver l'étude courante ?"),
+            QMessageBox::Yes | QMessageBox::No, this);
+    fenetreMessage->setButtonText(QMessageBox::Yes, "Oui");
+    fenetreMessage->setButtonText(QMessageBox::No, "Non");
+    if (fenetreMessage->exec() == QMessageBox::No)
+        return;
+
+    this->sauverEtudeCourante();
 }
 
 void EcranPrincipal::actualiserEtudeReference()
@@ -237,15 +233,13 @@ void EcranPrincipal::dessiner()
 
 void EcranPrincipal::on_actionCreer_triggered()
 {
-    if (!this->verifierEtatSauvegardeEtude())
-        return;
+    this->verifierEtatSauvegardeEtude();
     this->creerNouvelleEtude();
 }
 
 void EcranPrincipal::on_actionCharger_triggered()
 {
-    if (!this->verifierEtatSauvegardeEtude())
-        return;
+    this->verifierEtatSauvegardeEtude();
     this->chargerEtudeExistante();
 }
 

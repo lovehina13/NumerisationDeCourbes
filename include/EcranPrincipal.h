@@ -40,7 +40,7 @@ protected:
     void chargerEtudeExistante();
     void sauverEtudeCourante();
     void exporterEtudeCourante();
-    bool verifierEtatSauvegardeEtude();
+    void verifierEtatSauvegardeEtude();
     void actualiserEtudeReference();
     void actualiserCoordonneesPoints();
     void actualiserCoordonneesPointDepart();
