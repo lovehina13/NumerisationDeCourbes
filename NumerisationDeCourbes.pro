@@ -53,5 +53,6 @@ FORMS += interfaces/EcranPrincipal.ui \
          interfaces/FenetreParametresConversion.ui \
          interfaces/FenetreParametresExport.ui \
          interfaces/FenetreParametresRecherche.ui
+RESOURCES += ressources/Ressources.qrc
 
 QMAKE_CXXFLAGS += -std=c++11

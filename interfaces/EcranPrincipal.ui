@@ -422,6 +422,10 @@
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionCreer">
+   <property name="icon">
+    <iconset resource="../ressources/Ressources.qrc">
+     <normaloff>:/icones/iconeActionCreer</normaloff>:/icones/iconeActionCreer</iconset>
+   </property>
    <property name="text">
     <string>Créer une nouvelle étude...</string>
    </property>
@@ -430,6 +434,10 @@
    </property>
   </action>
   <action name="actionCharger">
+   <property name="icon">
+    <iconset resource="../ressources/Ressources.qrc">
+     <normaloff>:/icones/iconeActionCharger</normaloff>:/icones/iconeActionCharger</iconset>
+   </property>
    <property name="text">
     <string>Charger une étude existante...</string>
    </property>
@@ -438,6 +446,10 @@
    </property>
   </action>
   <action name="actionSauver">
+   <property name="icon">
+    <iconset resource="../ressources/Ressources.qrc">
+     <normaloff>:/icones/iconeActionSauver</normaloff>:/icones/iconeActionSauver</iconset>
+   </property>
    <property name="text">
     <string>Sauver l'étude courante...</string>
    </property>
@@ -446,6 +458,10 @@
    </property>
   </action>
   <action name="actionExporter">
+   <property name="icon">
+    <iconset resource="../ressources/Ressources.qrc">
+     <normaloff>:/icones/iconeActionExporter</normaloff>:/icones/iconeActionExporter</iconset>
+   </property>
    <property name="text">
     <string>Exporter l'étude courante...</string>
    </property>
@@ -454,6 +470,10 @@
    </property>
   </action>
   <action name="actionQuitter">
+   <property name="icon">
+    <iconset resource="../ressources/Ressources.qrc">
+     <normaloff>:/icones/iconeActionQuitter</normaloff>:/icones/iconeActionQuitter</iconset>
+   </property>
    <property name="text">
     <string>Quitter</string>
    </property>
@@ -494,6 +514,10 @@
    </property>
   </action>
   <action name="actionDocumentation">
+   <property name="icon">
+    <iconset resource="../ressources/Ressources.qrc">
+     <normaloff>:/icones/iconeActionDocumentation</normaloff>:/icones/iconeActionDocumentation</iconset>
+   </property>
    <property name="text">
     <string>Documentation...</string>
    </property>
@@ -502,6 +526,10 @@
    </property>
   </action>
   <action name="actionAbout">
+   <property name="icon">
+    <iconset resource="../ressources/Ressources.qrc">
+     <normaloff>:/icones/iconeActionAbout</normaloff>:/icones/iconeActionAbout</iconset>
+   </property>
    <property name="text">
     <string>À propos de NumerisationDeCourbes...</string>
    </property>
@@ -510,6 +538,8 @@
    </property>
   </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="../ressources/Ressources.qrc"/>
+ </resources>
  <connections/>
 </ui>
