@@ -140,9 +140,13 @@ void ParametresRecherche::fromString(const QString& fromString, const char& sep)
 
 const QString ParametresRecherche::toString(const char& sep) const
 {
-    // TODO const QString ParametresRecherche::toString(const char& sep) const
-    Q_UNUSED(sep);
-    return QString();
+    QString toString;
+    toString += QString::number(this->getSeuilToleranceNiveauxDeGris()) + sep;
+    toString += QString::number(this->getSeuilToleranceTeintesSaturees()) + sep;
+    toString += QString::number(this->getSelectionValeursMoyennes()) + sep;
+    toString += QString::number(this->getSelectionValeursMinimales()) + sep;
+    toString += QString::number(this->getSelectionValeursMaximales());
+    return toString;
 }
 
 double ParametresRecherche::getSeuilToleranceNiveauxDeGrisFacteur() const

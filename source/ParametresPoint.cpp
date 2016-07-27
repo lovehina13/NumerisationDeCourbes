@@ -106,8 +106,10 @@ void ParametresPoint::fromString(const QString& fromString, const char& sep)
 
 const QString ParametresPoint::toString(const char& sep) const
 {
-    // TODO const QString ParametresPoint::toString(const char& sep) const
-    Q_UNUSED(sep);
-    return QString();
+    QString toString;
+    toString += QString::number(this->getStylePoint()) + sep;
+    toString += QString::number(this->getEpaisseurPoint()) + sep;
+    toString += QColor::fromRgb(this->getCouleurPoint()).name();
+    return toString;
 }
 

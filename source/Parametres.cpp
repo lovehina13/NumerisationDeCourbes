@@ -131,7 +131,11 @@ void Parametres::fromString(const QString& fromString, const char& sep)
 
 const QString Parametres::toString(const char& sep) const
 {
-    // TODO const QString Parametres::toString(const char& sep) const
-    Q_UNUSED(sep);
-    return QString();
+    QString toString;
+    toString += "(" + this->getParametresFichiers().toString(sep) + ")" + sep;
+    toString += "(" + this->getParametresAffichage().toString(sep) + ")" + sep;
+    toString += "(" + this->getParametresConversion().toString(sep) + ")" + sep;
+    toString += "(" + this->getParametresRecherche().toString(sep) + ")" + sep;
+    toString += "(" + this->getParametresExport().toString(sep) + ")";
+    return toString;
 }

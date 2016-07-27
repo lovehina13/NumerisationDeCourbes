@@ -115,9 +115,25 @@ void Etude::fromString(const QString& fromString, const char& sep)
 
 const QString Etude::toString(const char& sep) const
 {
-    // TODO const QString Etude::toString(const char& sep) const
-    Q_UNUSED(sep);
-    return QString();
+    QString toString;
+    const QList<Point>& listeDePoints = this->getListeDePoints();
+    const int nombreDePoints = listeDePoints.length();
+    toString += "(" + this->getImage().toString(sep) + ")" + sep;
+    toString += "(" + this->getRepere().toString(sep) + ")" + sep;
+    toString += "[";
+    for (int itPoint = 0; itPoint < nombreDePoints; itPoint++)
+    {
+        const Point& pointCourant = listeDePoints.at(itPoint);
+        toString += "(" + pointCourant.toString(sep) + ")";
+        if (itPoint < (nombreDePoints - 1))
+        {
+            toString += sep;
+        }
+    }
+    toString += "]";
+    toString += sep;
+    toString += "(" + this->getParametres().toString(sep) + ")";
+    return toString;
 }
 
 bool Etude::chargerEtude(const QString& cheminFichierEtude)

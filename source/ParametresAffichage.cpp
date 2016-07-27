@@ -186,8 +186,14 @@ void ParametresAffichage::fromString(const QString& fromString, const char& sep)
 
 const QString ParametresAffichage::toString(const char& sep) const
 {
-    // TODO const QString ParametresAffichage::toString(const char& sep) const
-    Q_UNUSED(sep);
-    return QString();
+    QString toString;
+    toString += QString::number(this->getFormatNotationNombres()) + sep;
+    toString += QString::number(this->getNombreChiffresSignificatifs()) + sep;
+    toString += "(" + this->getParametresAxes().toString(sep) + ")" + sep;
+    toString += "(" + this->getParametresCourbes().toString(sep) + ")" + sep;
+    toString += "(" + this->getParametresPointsAxes().toString(sep) + ")" + sep;
+    toString += "(" + this->getParametresPointsCourbes().toString(sep) + ")" + sep;
+    toString += "(" + this->getParametresPointsManuels().toString(sep) + ")";
+    return toString;
 }
 

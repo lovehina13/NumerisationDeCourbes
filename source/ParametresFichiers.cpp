@@ -117,7 +117,10 @@ void ParametresFichiers::fromString(const QString& fromString, const char& sep)
 
 const QString ParametresFichiers::toString(const char& sep) const
 {
-    // TODO const QString ParametresFichiers::toString(const char& sep) const
-    Q_UNUSED(sep);
-    return QString();
+    QString toString;
+    toString += "\"" + this->getCheminFichierEtude() + "\"" + sep;
+    toString += "\"" + this->getCheminFichierImageSource() + "\"" + sep;
+    toString += "\"" + this->getCheminFichierImageConvertie() + "\"" + sep;
+    toString += "\"" + this->getCheminFichierExport() + "\"";
+    return toString;
 }

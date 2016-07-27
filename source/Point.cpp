@@ -153,8 +153,42 @@ void Point::fromString(const QString& fromString, const char& sep)
 
 const QString Point::toString(const char& sep) const
 {
-    // TODO const QString Point::toString(const char& sep) const
-    Q_UNUSED(sep);
+    QString toString;
+    toString += QString::number(this->getPointPixelX()) + sep;
+    toString += QString::number(this->getPointPixelY()) + sep;
+    toString += QString::number(this->getPointReelX()) + sep;
+    toString += QString::number(this->getPointReelY()) + sep;
+    toString += QString::number(this->getTypePoint());
+    return toString;
+}
+
+const QString Point::getTexteTypePoint() const
+{
+    const int& typePoint = this->getTypePoint();
+    if (typePoint == INDEFINI)
+    {
+        return QString("Indéfini");
+    }
+    else if (typePoint == REPERE)
+    {
+        return QString("Repère");
+    }
+    else if (typePoint == MANUEL)
+    {
+        return QString("Manuel");
+    }
+    else if (typePoint == GENERE)
+    {
+        return QString("Généré");
+    }
+    else if (typePoint == GENERE_DEBUT)
+    {
+        return QString("Généré début");
+    }
+    else if (typePoint == GENERE_FIN)
+    {
+        return QString("Généré fin");
+    }
     return QString();
 }
 

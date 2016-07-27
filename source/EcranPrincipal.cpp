@@ -218,10 +218,12 @@ void EcranPrincipal::actualiserCoordonneesListeDePoints()
                 QString::number(point.getPointReelX()));
         QTableWidgetItem* itemPointReelY = new QTableWidgetItem(
                 QString::number(point.getPointReelY()));
+        QTableWidgetItem* itemTypePoint = new QTableWidgetItem(point.getTexteTypePoint());
         this->ui->tableWidgetListePoints->setItem(itPoint, 0, itemPointPixelX);
         this->ui->tableWidgetListePoints->setItem(itPoint, 1, itemPointPixelY);
         this->ui->tableWidgetListePoints->setItem(itPoint, 2, itemPointReelX);
         this->ui->tableWidgetListePoints->setItem(itPoint, 3, itemPointReelY);
+        this->ui->tableWidgetListePoints->setItem(itPoint, 4, itemTypePoint);
     }
     this->ui->tableWidgetListePoints->resizeColumnsToContents();
 }

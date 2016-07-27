@@ -105,7 +105,9 @@ void ParametresTrait::fromString(const QString& fromString, const char& sep)
 
 const QString ParametresTrait::toString(const char& sep) const
 {
-    // TODO const QString ParametresTrait::toString(const char& sep) const
-    Q_UNUSED(sep);
-    return QString();
+    QString toString;
+    toString += QString::number(this->getStyleTrait()) + sep;
+    toString += QString::number(this->getEpaisseurTrait()) + sep;
+    toString += QColor::fromRgb(this->getCouleurTrait()).name();
+    return toString;
 }

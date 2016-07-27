@@ -137,9 +137,13 @@ void ParametresExport::fromString(const QString& fromString, const char& sep)
 
 const QString ParametresExport::toString(const char& sep) const
 {
-    // TODO const QString ParametresExport::toString(const char& sep) const
-    Q_UNUSED(sep);
-    return QString();
+    QString toString;
+    toString += QString::number(this->getFormatNotationNombres()) + sep;
+    toString += QString::number(this->getNombreChiffresSignificatifs()) + sep;
+    toString += "'" + QString(this->getCaractereSeparation()) + "'" + sep;
+    toString += "'" + QString(this->getCaractereSeparateurDecimal()) + "'" + sep;
+    toString += QString::number(this->getSeuilInterpolationNumerique());
+    return toString;
 }
 
 int ParametresExport::getIndiceCaractereSeparation() const

@@ -85,9 +85,10 @@ void Image::fromString(const QString& fromString, const char& sep)
 
 const QString Image::toString(const char& sep) const
 {
-    // TODO const QString Image::toString(const char& sep) const
-    Q_UNUSED(sep);
-    return QString();
+    QString toString;
+    toString += "(" + this->getImageSource().text() + ")" + sep;
+    toString += "(" + this->getImageConvertie().text() + ")" + sep;
+    return toString;
 }
 
 void Image::restaurerImage()

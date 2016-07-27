@@ -137,9 +137,13 @@ void ParametresConversion::fromString(const QString& fromString, const char& sep
 
 const QString ParametresConversion::toString(const char& sep) const
 {
-    // TODO const QString ParametresConversion::toString(const char& sep) const
-    Q_UNUSED(sep);
-    return QString();
+    QString toString;
+    toString += QString::number(this->getMethodeConversion()) + sep;
+    toString += QString::number(this->getSeuilNoirEtBlanc()) + sep;
+    toString += QString::number(this->getNombreNiveauxDeGris()) + sep;
+    toString += QString::number(this->getNombreTeintesSaturees()) + sep;
+    toString += QString::number(this->getSeuilSaturation());
+    return toString;
 }
 
 double ParametresConversion::getSeuilNoirEtBlancFacteur() const
