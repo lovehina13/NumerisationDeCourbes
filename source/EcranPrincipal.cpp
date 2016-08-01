@@ -6,6 +6,7 @@
 //==============================================================================
 
 #include "EcranPrincipal.h"
+#include "FenetreDocumentation.h"
 #include "FenetreParametresAffichage.h"
 #include "FenetreParametresConversion.h"
 #include "FenetreParametresExport.h"
@@ -328,7 +329,8 @@ void EcranPrincipal::on_actionParametresExport_triggered()
 
 void EcranPrincipal::on_actionDocumentation_triggered()
 {
-    // TODO void EcranPrincipal::on_actionDocumentation_triggered()
+    FenetreDocumentation* fenetreDocumentation = new FenetreDocumentation(this);
+    fenetreDocumentation->exec();
 }
 
 void EcranPrincipal::on_actionAbout_triggered()

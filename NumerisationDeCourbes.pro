@@ -13,6 +13,7 @@ OBJECTS_DIR = objects
 
 HEADERS += include/EcranPrincipal.h \
            include/Etude.h \
+           include/FenetreDocumentation.h \
            include/FenetreParametresAffichage.h \
            include/FenetreParametresConversion.h \
            include/FenetreParametresExport.h \
@@ -33,6 +34,7 @@ HEADERS += include/EcranPrincipal.h \
 SOURCES += source/NumerisationDeCourbes.cpp \
            source/EcranPrincipal.cpp \
            source/Etude.cpp \
+           source/FenetreDocumentation.cpp \
            source/FenetreParametresAffichage.cpp \
            source/FenetreParametresConversion.cpp \
            source/FenetreParametresExport.cpp \
@@ -51,6 +53,7 @@ SOURCES += source/NumerisationDeCourbes.cpp \
            source/Repere.cpp \
            source/VueGraphiqueEtude.cpp
 FORMS += interfaces/EcranPrincipal.ui \
+         interfaces/FenetreDocumentation.ui \
          interfaces/FenetreParametresAffichage.ui \
          interfaces/FenetreParametresConversion.ui \
          interfaces/FenetreParametresExport.ui \
