@@ -8,6 +8,7 @@
 #include "Image.h"
 #include "ParametresConversion.h"
 #include <cmath>
+#include <QByteArray>
 #include <QColor>
 
 Image::Image()
@@ -86,8 +87,12 @@ void Image::fromString(const QString& fromString, const char& sep)
 const QString Image::toString(const char& sep) const
 {
     QString toString;
-    toString += "(" + this->getImageSource().text() + ")" + sep;
-    toString += "(" + this->getImageConvertie().text() + ")" + sep;
+    const QImage& imageSource = this->getImageSource();
+    const QImage& imageConvertie = this->getImageConvertie();
+    toString += "(" + QByteArray((char*) imageSource.bits(), imageSource.numBytes()).toHex() + ")"
+            + sep;
+    toString += "(" + QByteArray((char*) imageConvertie.bits(), imageConvertie.numBytes()).toHex()
+            + ")";
     return toString;
 }
 

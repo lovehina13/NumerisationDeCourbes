@@ -10,6 +10,7 @@
 
 #include "Etude.h"
 #include <QMainWindow>
+#include <QWidget>
 
 namespace Ui
 {
@@ -47,7 +48,8 @@ protected:
     void actualiserCoordonneesPointArrivee();
     void actualiserCoordonneesPointManuel();
     void actualiserCoordonneesListeDePoints();
-    void dessiner();
+    void effacerVueGraphiqueEtude();
+    void dessinerVueGraphiqueEtude();
 
 protected slots:
     // Connecteurs spécifiques
@@ -62,7 +64,6 @@ protected slots:
     void on_actionParametresExport_triggered();
     void on_actionDocumentation_triggered();
     void on_actionAbout_triggered();
-    // TODO void on_graphicsViewImage_*();
     void on_pushButtonConvertir_clicked();
     void on_pushButtonRestaurer_clicked();
     void on_lineEditPointX0XPixel_textChanged();

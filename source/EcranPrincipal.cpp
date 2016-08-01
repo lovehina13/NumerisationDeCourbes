@@ -10,11 +10,10 @@
 #include "FenetreParametresConversion.h"
 #include "FenetreParametresExport.h"
 #include "FenetreParametresRecherche.h"
-#include "Point.h"
-#include "Repere.h"
 #include "ui_EcranPrincipal.h"
 #include <QDoubleValidator>
 #include <QFileDialog>
+#include <QImage>
 #include <QIntValidator>
 #include <QList>
 #include <QMessageBox>
@@ -88,6 +87,8 @@ void EcranPrincipal::creerNouvelleEtude()
     parametresFichiers.setCheminFichierImageSource(cheminFichierImageSource);
     parametres.setParametresFichiers(parametresFichiers);
     this->etude.setParametres(parametres);
+
+    this->dessinerVueGraphiqueEtude();
 }
 
 void EcranPrincipal::chargerEtudeExistante()
@@ -101,6 +102,8 @@ void EcranPrincipal::chargerEtudeExistante()
 
     this->etude.chargerEtude(cheminFichierEtude);
     this->actualiserEtudeReference();
+
+    this->dessinerVueGraphiqueEtude();
 }
 
 void EcranPrincipal::sauverEtudeCourante()
@@ -228,9 +231,14 @@ void EcranPrincipal::actualiserCoordonneesListeDePoints()
     this->ui->tableWidgetListePoints->resizeColumnsToContents();
 }
 
-void EcranPrincipal::dessiner()
+void EcranPrincipal::effacerVueGraphiqueEtude()
 {
-    // TODO void EcranPrincipal::dessiner()
+    this->ui->vueGraphiqueEtude->effacer();
+}
+
+void EcranPrincipal::dessinerVueGraphiqueEtude()
+{
+    this->ui->vueGraphiqueEtude->dessiner(this->etude);
 }
 
 void EcranPrincipal::on_actionCreer_triggered()
@@ -372,7 +380,7 @@ void EcranPrincipal::on_pushButtonConvertir_clicked()
     }
     this->etude.setImage(image);
 
-    this->dessiner();
+    this->dessinerVueGraphiqueEtude();
 }
 
 void EcranPrincipal::on_pushButtonRestaurer_clicked()
@@ -388,7 +396,7 @@ void EcranPrincipal::on_pushButtonRestaurer_clicked()
     image.restaurerImage();
     this->etude.setImage(image);
 
-    this->dessiner();
+    this->dessinerVueGraphiqueEtude();
 }
 
 void EcranPrincipal::on_lineEditPointX0XPixel_textChanged()

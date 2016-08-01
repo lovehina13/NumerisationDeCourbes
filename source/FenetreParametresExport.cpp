@@ -10,6 +10,7 @@
 #include <QDialogButtonBox>
 #include <QDoubleValidator>
 #include <QPushButton>
+#include <QString>
 
 FenetreParametresExport::FenetreParametresExport(QWidget* parent) :
         QDialog(parent), ui(new Ui::FenetreParametresExport)

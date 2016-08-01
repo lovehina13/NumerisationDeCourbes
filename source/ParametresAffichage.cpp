@@ -6,6 +6,7 @@
 //==============================================================================
 
 #include "ParametresAffichage.h"
+#include <QRgb>
 
 const ParametresTrait ParametresAffichage::parametresAxesDefaut = ParametresTrait(
         (int) ParametresTrait::styleTraitDefaut, (int) ParametresTrait::epaisseurTraitDefaut,

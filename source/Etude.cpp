@@ -8,6 +8,7 @@
 #include "Etude.h"
 #include <QColor>
 #include <QFile>
+#include <QImage>
 #include <QIODevice>
 #include <QTextStream>
 

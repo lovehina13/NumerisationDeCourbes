@@ -28,7 +28,8 @@ HEADERS += include/EcranPrincipal.h \
            include/ParametresRecherche.h \
            include/ParametresTrait.h \
            include/Point.h \
-           include/Repere.h
+           include/Repere.h \
+           include/VueGraphiqueEtude.h
 SOURCES += source/NumerisationDeCourbes.cpp \
            source/EcranPrincipal.cpp \
            source/Etude.cpp \
@@ -47,7 +48,8 @@ SOURCES += source/NumerisationDeCourbes.cpp \
            source/ParametresRecherche.cpp \
            source/ParametresTrait.cpp \
            source/Point.cpp \
-           source/Repere.cpp
+           source/Repere.cpp \
+           source/VueGraphiqueEtude.cpp
 FORMS += interfaces/EcranPrincipal.ui \
          interfaces/FenetreParametresAffichage.ui \
          interfaces/FenetreParametresConversion.ui \

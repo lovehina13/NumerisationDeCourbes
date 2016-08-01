@@ -10,6 +10,7 @@
 
 #include "ParametresConversion.h"
 #include <QDialog>
+#include <QWidget>
 
 namespace Ui
 {

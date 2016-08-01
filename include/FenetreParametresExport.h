@@ -10,6 +10,7 @@
 
 #include "ParametresExport.h"
 #include <QDialog>
+#include <QWidget>
 
 namespace Ui
 {
