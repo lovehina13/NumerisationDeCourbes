@@ -37,6 +37,8 @@ public:
 protected:
     // Méthodes spécifiques
     void initialiserElementsGraphiques();
+    void effacerElementsGraphiques();
+    void actualiserElementsGraphiques();
     void creerNouvelleEtude();
     void chargerEtudeExistante();
     void sauverEtudeCourante();

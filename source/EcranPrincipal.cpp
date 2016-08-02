@@ -29,7 +29,7 @@ EcranPrincipal::EcranPrincipal(QWidget* parent) :
 {
     this->ui->setupUi(this);
     this->initialiserElementsGraphiques();
-    this->actualiserCoordonneesPoints();
+    this->effacerElementsGraphiques();
 }
 
 EcranPrincipal::~EcranPrincipal()
@@ -70,6 +70,82 @@ void EcranPrincipal::initialiserElementsGraphiques()
     this->ui->lineEditPointManuelYReel->setValidator(nombreReel);
 }
 
+void EcranPrincipal::effacerElementsGraphiques()
+{
+    this->ui->radioButtonNoirEtBlanc->setChecked(true);
+
+    this->ui->lineEditPointX0XPixel->clear();
+    this->ui->lineEditPointX0YPixel->clear();
+    this->ui->lineEditPointX0Valeur->clear();
+    this->ui->lineEditPointX1XPixel->clear();
+    this->ui->lineEditPointX1YPixel->clear();
+    this->ui->lineEditPointX1Valeur->clear();
+    this->ui->lineEditPointY0XPixel->clear();
+    this->ui->lineEditPointY0YPixel->clear();
+    this->ui->lineEditPointY0Valeur->clear();
+    this->ui->lineEditPointY1XPixel->clear();
+    this->ui->lineEditPointY1YPixel->clear();
+    this->ui->lineEditPointY1Valeur->clear();
+
+    this->ui->lineEditPointDepartXPixel->clear();
+    this->ui->lineEditPointDepartYPixel->clear();
+    this->ui->lineEditPointDepartXReel->clear();
+    this->ui->lineEditPointDepartYReel->clear();
+    this->ui->lineEditPointArriveeXPixel->clear();
+    this->ui->lineEditPointArriveeYPixel->clear();
+    this->ui->lineEditPointArriveeXReel->clear();
+    this->ui->lineEditPointArriveeYReel->clear();
+    this->ui->lineEditPointManuelXPixel->clear();
+    this->ui->lineEditPointManuelYPixel->clear();
+    this->ui->lineEditPointManuelXReel->clear();
+    this->ui->lineEditPointManuelYReel->clear();
+
+    this->ui->tableWidgetListePoints->clearContents();
+    this->ui->tableWidgetListePoints->setRowCount(0);
+    this->ui->tableWidgetListePoints->resizeColumnsToContents();
+
+    this->effacerVueGraphiqueEtude();
+}
+
+void EcranPrincipal::actualiserElementsGraphiques()
+{
+    const Repere& repere = this->etude.getRepere();
+    const int methodeConversion =
+            this->etude.getParametres().getParametresConversion().getMethodeConversion();
+
+    if ((methodeConversion == ParametresConversion::BRUTE)
+            || (methodeConversion == ParametresConversion::NOIR_ET_BLANC))
+    {
+        this->ui->radioButtonNoirEtBlanc->setChecked(true);
+    }
+    else if (methodeConversion == ParametresConversion::NIVEAUX_DE_GRIS)
+    {
+        this->ui->radioButtonNiveauxDeGris->setChecked(true);
+    }
+    else if (methodeConversion == ParametresConversion::TEINTES_SATUREES)
+    {
+        this->ui->radioButtonTeintesSaturees->setChecked(true);
+    }
+
+    this->ui->lineEditPointX0XPixel->setText(QString::number(repere.getPointX0().getPointPixelX()));
+    this->ui->lineEditPointX0YPixel->setText(QString::number(repere.getPointX0().getPointPixelY()));
+    this->ui->lineEditPointX0Valeur->setText(QString::number(repere.getPointX0().getPointReelX()));
+    this->ui->lineEditPointX1XPixel->setText(QString::number(repere.getPointX1().getPointPixelX()));
+    this->ui->lineEditPointX1YPixel->setText(QString::number(repere.getPointX1().getPointPixelY()));
+    this->ui->lineEditPointX1Valeur->setText(QString::number(repere.getPointX1().getPointReelX()));
+    this->ui->lineEditPointY0XPixel->setText(QString::number(repere.getPointY0().getPointPixelX()));
+    this->ui->lineEditPointY0YPixel->setText(QString::number(repere.getPointY0().getPointPixelY()));
+    this->ui->lineEditPointY0Valeur->setText(QString::number(repere.getPointY0().getPointReelY()));
+    this->ui->lineEditPointY1XPixel->setText(QString::number(repere.getPointY1().getPointPixelX()));
+    this->ui->lineEditPointY1YPixel->setText(QString::number(repere.getPointY1().getPointPixelY()));
+    this->ui->lineEditPointY1Valeur->setText(QString::number(repere.getPointY1().getPointReelY()));
+
+    this->actualiserCoordonneesListeDePoints();
+
+    // TODO Conversion de l'image
+    this->dessinerVueGraphiqueEtude();
+}
+
 void EcranPrincipal::creerNouvelleEtude()
 {
     QString cheminFichierImageSource = QFileDialog::getOpenFileName(this,
@@ -92,6 +168,7 @@ void EcranPrincipal::creerNouvelleEtude()
     parametres.setParametresFichiers(parametresFichiers);
     this->etude.setParametres(parametres);
 
+    this->effacerElementsGraphiques();
     this->dessinerVueGraphiqueEtude();
 }
 
@@ -107,7 +184,7 @@ void EcranPrincipal::chargerEtudeExistante()
     this->etude.chargerEtude(cheminFichierEtude);
     this->actualiserEtudeReference();
 
-    this->dessinerVueGraphiqueEtude();
+    this->actualiserElementsGraphiques();
 }
 
 void EcranPrincipal::sauverEtudeCourante()
@@ -285,6 +362,8 @@ void EcranPrincipal::on_actionParametresAffichage_triggered()
     parametresAffichage = fenetreParametresAffichage->getParametresAffichage();
     parametres.setParametresAffichage(parametresAffichage);
     this->etude.setParametres(parametres);
+
+    this->dessinerVueGraphiqueEtude();
 }
 
 void EcranPrincipal::on_actionParametresConversion_triggered()
@@ -367,7 +446,6 @@ void EcranPrincipal::on_pushButtonConvertir_clicked()
     parametres.setParametresConversion(parametresConversion);
     this->etude.setParametres(parametres);
 
-    methodeConversion = parametresConversion.getMethodeConversion();
     Image image = this->etude.getImage();
     if (methodeConversion == ParametresConversion::NOIR_ET_BLANC)
     {
@@ -411,7 +489,9 @@ void EcranPrincipal::on_lineEditPointX0XPixel_textChanged()
     pointX0.setPointPixelX(this->ui->lineEditPointX0XPixel->text().toInt());
     repere.setPointX0(pointX0);
     this->etude.setRepere(repere);
+
     this->actualiserCoordonneesPoints();
+    this->dessinerVueGraphiqueEtude();
 }
 
 void EcranPrincipal::on_lineEditPointX0YPixel_textChanged()
@@ -421,7 +501,9 @@ void EcranPrincipal::on_lineEditPointX0YPixel_textChanged()
     pointX0.setPointPixelY(this->ui->lineEditPointX0YPixel->text().toInt());
     repere.setPointX0(pointX0);
     this->etude.setRepere(repere);
+
     this->actualiserCoordonneesPoints();
+    this->dessinerVueGraphiqueEtude();
 }
 
 void EcranPrincipal::on_lineEditPointX0Valeur_textChanged()
@@ -431,7 +513,9 @@ void EcranPrincipal::on_lineEditPointX0Valeur_textChanged()
     pointX0.setPointReelX(this->ui->lineEditPointX0Valeur->text().toDouble());
     repere.setPointX0(pointX0);
     this->etude.setRepere(repere);
+
     this->actualiserCoordonneesPoints();
+    this->dessinerVueGraphiqueEtude();
 }
 
 void EcranPrincipal::on_lineEditPointX1XPixel_textChanged()
@@ -441,7 +525,9 @@ void EcranPrincipal::on_lineEditPointX1XPixel_textChanged()
     pointX1.setPointPixelX(this->ui->lineEditPointX1XPixel->text().toInt());
     repere.setPointX1(pointX1);
     this->etude.setRepere(repere);
+
     this->actualiserCoordonneesPoints();
+    this->dessinerVueGraphiqueEtude();
 }
 
 void EcranPrincipal::on_lineEditPointX1YPixel_textChanged()
@@ -451,7 +537,9 @@ void EcranPrincipal::on_lineEditPointX1YPixel_textChanged()
     pointX1.setPointPixelY(this->ui->lineEditPointX1YPixel->text().toInt());
     repere.setPointX1(pointX1);
     this->etude.setRepere(repere);
+
     this->actualiserCoordonneesPoints();
+    this->dessinerVueGraphiqueEtude();
 }
 
 void EcranPrincipal::on_lineEditPointX1Valeur_textChanged()
@@ -461,7 +549,9 @@ void EcranPrincipal::on_lineEditPointX1Valeur_textChanged()
     pointX1.setPointReelX(this->ui->lineEditPointX1Valeur->text().toDouble());
     repere.setPointX1(pointX1);
     this->etude.setRepere(repere);
+
     this->actualiserCoordonneesPoints();
+    this->dessinerVueGraphiqueEtude();
 }
 
 void EcranPrincipal::on_lineEditPointY0XPixel_textChanged()
@@ -471,7 +561,9 @@ void EcranPrincipal::on_lineEditPointY0XPixel_textChanged()
     pointY0.setPointPixelX(this->ui->lineEditPointY0XPixel->text().toInt());
     repere.setPointY0(pointY0);
     this->etude.setRepere(repere);
+
     this->actualiserCoordonneesPoints();
+    this->dessinerVueGraphiqueEtude();
 }
 
 void EcranPrincipal::on_lineEditPointY0YPixel_textChanged()
@@ -481,7 +573,9 @@ void EcranPrincipal::on_lineEditPointY0YPixel_textChanged()
     pointY0.setPointPixelY(this->ui->lineEditPointY0YPixel->text().toInt());
     repere.setPointY0(pointY0);
     this->etude.setRepere(repere);
+
     this->actualiserCoordonneesPoints();
+    this->dessinerVueGraphiqueEtude();
 }
 
 void EcranPrincipal::on_lineEditPointY0Valeur_textChanged()
@@ -491,7 +585,9 @@ void EcranPrincipal::on_lineEditPointY0Valeur_textChanged()
     pointY0.setPointReelY(this->ui->lineEditPointY0Valeur->text().toDouble());
     repere.setPointY0(pointY0);
     this->etude.setRepere(repere);
+
     this->actualiserCoordonneesPoints();
+    this->dessinerVueGraphiqueEtude();
 }
 
 void EcranPrincipal::on_lineEditPointY1XPixel_textChanged()
@@ -501,7 +597,9 @@ void EcranPrincipal::on_lineEditPointY1XPixel_textChanged()
     pointY1.setPointPixelX(this->ui->lineEditPointY1XPixel->text().toInt());
     repere.setPointY1(pointY1);
     this->etude.setRepere(repere);
+
     this->actualiserCoordonneesPoints();
+    this->dessinerVueGraphiqueEtude();
 }
 
 void EcranPrincipal::on_lineEditPointY1YPixel_textChanged()
@@ -511,7 +609,9 @@ void EcranPrincipal::on_lineEditPointY1YPixel_textChanged()
     pointY1.setPointPixelY(this->ui->lineEditPointY1YPixel->text().toInt());
     repere.setPointY1(pointY1);
     this->etude.setRepere(repere);
+
     this->actualiserCoordonneesPoints();
+    this->dessinerVueGraphiqueEtude();
 }
 
 void EcranPrincipal::on_lineEditPointY1Valeur_textChanged()
@@ -521,7 +621,9 @@ void EcranPrincipal::on_lineEditPointY1Valeur_textChanged()
     pointY1.setPointReelY(this->ui->lineEditPointY1Valeur->text().toDouble());
     repere.setPointY1(pointY1);
     this->etude.setRepere(repere);
+
     this->actualiserCoordonneesPoints();
+    this->dessinerVueGraphiqueEtude();
 }
 
 void EcranPrincipal::on_pushButtonPointX0_clicked()

@@ -17,6 +17,7 @@
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include <QList>
+#include <QMouseEvent>
 #include <QWheelEvent>
 #include <QWidget>
 
@@ -45,6 +46,7 @@ public:
 
 protected:
     // Méthodes spécifiques
+    void mouseMoveEvent(QMouseEvent* event);
     void wheelEvent(QWheelEvent* event);
 };
 
