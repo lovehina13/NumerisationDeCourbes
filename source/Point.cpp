@@ -167,27 +167,27 @@ const QString Point::getTexteTypePoint() const
     const int& typePoint = this->getTypePoint();
     if (typePoint == INDEFINI)
     {
-        return QString("Indéfini");
+        return QString::fromUtf8("Indéfini");
     }
     else if (typePoint == REPERE)
     {
-        return QString("Repère");
+        return QString::fromUtf8("Repère");
     }
     else if (typePoint == MANUEL)
     {
-        return QString("Manuel");
+        return QString::fromUtf8("Manuel");
     }
-    else if (typePoint == GENERE)
+    else if (typePoint == COURBE)
     {
-        return QString("Généré");
+        return QString::fromUtf8("Courbe");
     }
-    else if (typePoint == GENERE_DEBUT)
+    else if (typePoint == COURBE_DEBUT)
     {
-        return QString("Généré début");
+        return QString::fromUtf8("Courbe début");
     }
-    else if (typePoint == GENERE_FIN)
+    else if (typePoint == COURBE_FIN)
     {
-        return QString("Généré fin");
+        return QString::fromUtf8("Courbe fin");
     }
     return QString();
 }

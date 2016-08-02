@@ -18,6 +18,9 @@
 #include <QIntValidator>
 #include <QList>
 #include <QMessageBox>
+#include <QModelIndexList>
+#include <QPoint>
+#include <QPointF>
 #include <QString>
 #include <QTableWidgetItem>
 
@@ -600,16 +603,54 @@ void EcranPrincipal::on_pushButtonAjouter_clicked()
     this->etude.setListeDePoints(listeDePoints);
 
     this->actualiserCoordonneesListeDePoints();
+    this->dessinerVueGraphiqueEtude();
 }
 
 void EcranPrincipal::on_pushButtonRechercher_clicked()
 {
-    // TODO void EcranPrincipal::on_pushButtonRechercher_clicked()
+    const QPoint pointPixelDepart = QPoint(this->ui->lineEditPointDepartXPixel->text().toInt(),
+            this->ui->lineEditPointDepartYPixel->text().toInt());
+    const QPoint pointPixelArrivee = QPoint(this->ui->lineEditPointArriveeXPixel->text().toInt(),
+            this->ui->lineEditPointArriveeYPixel->text().toInt());
+    const QList<QPoint> listeDePointsCourbe = this->etude.rechercherCourbe(pointPixelDepart,
+            pointPixelArrivee);
+
+    QList<Point> listeDePoints = this->etude.getListeDePoints();
+    const int nombreDePointsCourbe = listeDePointsCourbe.size();
+    for (int itPointCourbe = 0; itPointCourbe < nombreDePointsCourbe; itPointCourbe++)
+    {
+        Point pointCourbe = Point(listeDePointsCourbe.at(itPointCourbe), QPointF(),
+                (itPointCourbe == 0) ? Point::COURBE_DEBUT :
+                (itPointCourbe == (nombreDePointsCourbe - 1)) ? Point::COURBE_FIN : Point::COURBE);
+        this->etude.getRepere().pixelVersReel(pointCourbe);
+        listeDePoints.append(pointCourbe);
+    }
+    this->etude.setListeDePoints(listeDePoints);
+
+    this->actualiserCoordonneesListeDePoints();
+    this->dessinerVueGraphiqueEtude();
 }
 
 void EcranPrincipal::on_pushButtonSupprimer_clicked()
 {
-    // TODO void EcranPrincipal::on_pushButtonSupprimer_clicked()
+    const QModelIndexList lignesSelectionnees =
+            this->ui->tableWidgetListePoints->selectionModel()->selectedRows();
+
+    QList<Point> listeDePoints = this->etude.getListeDePoints();
+    const int nombreLignesSelectionnees = lignesSelectionnees.count();
+    for (int itLigneSelectionnee = 0; itLigneSelectionnee < nombreLignesSelectionnees;
+            itLigneSelectionnee++)
+    {
+        listeDePoints.removeAt(itLigneSelectionnee);
+    }
+    if (nombreLignesSelectionnees == 0)
+    {
+        listeDePoints.clear();
+    }
+    this->etude.setListeDePoints(listeDePoints);
+
+    this->actualiserCoordonneesListeDePoints();
+    this->dessinerVueGraphiqueEtude();
 }
 
 void EcranPrincipal::on_pushButtonGraphique_clicked()

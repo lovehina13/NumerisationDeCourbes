@@ -58,7 +58,7 @@ public:
     // Enumération des types de points
     enum typesPoints
     {
-        INDEFINI, REPERE, MANUEL, GENERE, GENERE_DEBUT, GENERE_FIN
+        INDEFINI, REPERE, MANUEL, COURBE, COURBE_DEBUT, COURBE_FIN
     };
 
 private:

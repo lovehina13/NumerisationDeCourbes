@@ -226,7 +226,8 @@ bool Etude::exporterListeDePoints(const QString& cheminFichierExport)
     // TODO Implémentation de l'interpolation numérique
 }
 
-void Etude::rechercherCourbe(const QPoint& pointPixelDepart, const QPoint& pointPixelArrivee)
+QList<QPoint> Etude::rechercherCourbe(const QPoint& pointPixelDepart,
+        const QPoint& pointPixelArrivee)
 {
     this->listeDePointsDeRecherche.clear();
     this->pointPixelDepart = pointPixelDepart;
@@ -235,6 +236,7 @@ void Etude::rechercherCourbe(const QPoint& pointPixelDepart, const QPoint& point
     const QRgb couleurReference = this->getImage().recupererCouleurPixel(pointPixelDepart);
     this->rechercherPointsProches(this->pointPixelDepart, couleurReference);
     this->filterListeDePoints(this->listeDePointsDeRecherche);
+    return this->listeDePointsDeRecherche;
 }
 
 void Etude::rechercherPointsProches(const QPoint& pointPixel, const QRgb& couleurReference)

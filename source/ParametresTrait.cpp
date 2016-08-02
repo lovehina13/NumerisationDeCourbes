@@ -108,6 +108,6 @@ const QString ParametresTrait::toString(const char& sep) const
     QString toString;
     toString += QString::number(this->getStyleTrait()) + sep;
     toString += QString::number(this->getEpaisseurTrait()) + sep;
-    toString += QColor::fromRgb(this->getCouleurTrait()).name();
+    toString += QColor(this->getCouleurTrait()).name();
     return toString;
 }

@@ -58,47 +58,58 @@ void FenetreParametresAffichage::actualiserElementsGraphiques()
 {
     // TODO Gestion de la couleur des boutons sous Microsoft Windows
 
+    const QRgb& couleurAxes = this->parametresAffichage.getParametresAxes().getCouleurTrait();
+    const QRgb& couleurCourbes = this->parametresAffichage.getParametresCourbes().getCouleurTrait();
+    const QRgb& couleurPointsAxes =
+            this->parametresAffichage.getParametresPointsAxes().getCouleurPoint();
+    const QRgb& couleurPointsCourbes =
+            this->parametresAffichage.getParametresPointsCourbes().getCouleurPoint();
+    const QRgb& couleurPointsManuels =
+            this->parametresAffichage.getParametresPointsManuels().getCouleurPoint();
+
     QPalette paletteCouleurAxes = this->ui->pushButtonCouleurAxes->palette();
     QPalette paletteCouleurCourbes = this->ui->pushButtonCouleurCourbes->palette();
     QPalette paletteCouleurPointsAxes = this->ui->pushButtonCouleurPointsAxes->palette();
     QPalette paletteCouleurPointsCourbes = this->ui->pushButtonCouleurPointsCourbes->palette();
     QPalette paletteCouleurPointsManuels = this->ui->pushButtonCouleurPointsManuels->palette();
 
-    paletteCouleurAxes.setColor(QPalette::Base,
-            QColor(this->parametresAffichage.getParametresAxes().getCouleurTrait()));
-    paletteCouleurCourbes.setColor(QPalette::Base,
-            QColor(this->parametresAffichage.getParametresCourbes().getCouleurTrait()));
-    paletteCouleurPointsAxes.setColor(QPalette::Base,
-            QColor(this->parametresAffichage.getParametresPointsAxes().getCouleurPoint()));
-    paletteCouleurPointsCourbes.setColor(QPalette::Base,
-            QColor(this->parametresAffichage.getParametresPointsCourbes().getCouleurPoint()));
-    paletteCouleurPointsManuels.setColor(QPalette::Base,
-            QColor(this->parametresAffichage.getParametresPointsManuels().getCouleurPoint()));
+    paletteCouleurAxes.setColor(QPalette::Base, QColor(couleurAxes));
+    paletteCouleurCourbes.setColor(QPalette::Base, QColor(couleurCourbes));
+    paletteCouleurPointsAxes.setColor(QPalette::Base, QColor(couleurPointsAxes));
+    paletteCouleurPointsCourbes.setColor(QPalette::Base, QColor(couleurPointsCourbes));
+    paletteCouleurPointsManuels.setColor(QPalette::Base, QColor(couleurPointsManuels));
 
     this->ui->comboBoxFormatNotationNombres->setCurrentIndex(
             this->parametresAffichage.getFormatNotationNombres());
     this->ui->spinBoxNombreDecimalesOuChiffresSignificatifs->setValue(
             this->parametresAffichage.getNombreChiffresSignificatifs());
+    this->ui->pushButtonCouleurAxes->setText(QColor(couleurAxes).name().toUpper());
     this->ui->pushButtonCouleurAxes->setPalette(paletteCouleurAxes);
     this->ui->spinBoxEpaisseurAxes->setValue(
             this->parametresAffichage.getParametresAxes().getEpaisseurTrait());
     this->ui->comboBoxTypeAxes->setCurrentIndex(
             this->parametresAffichage.getParametresAxes().getStyleTrait());
+    this->ui->pushButtonCouleurCourbes->setText(QColor(couleurCourbes).name().toUpper());
     this->ui->pushButtonCouleurCourbes->setPalette(paletteCouleurCourbes);
     this->ui->spinBoxEpaisseurCourbes->setValue(
             this->parametresAffichage.getParametresCourbes().getEpaisseurTrait());
     this->ui->comboBoxTypeCourbes->setCurrentIndex(
             this->parametresAffichage.getParametresCourbes().getStyleTrait());
+    this->ui->pushButtonCouleurPointsAxes->setText(QColor(couleurPointsAxes).name().toUpper());
     this->ui->pushButtonCouleurPointsAxes->setPalette(paletteCouleurPointsAxes);
     this->ui->spinBoxEpaisseurPointsAxes->setValue(
             this->parametresAffichage.getParametresPointsAxes().getEpaisseurPoint());
     this->ui->comboBoxTypePointsAxes->setCurrentIndex(
             this->parametresAffichage.getParametresPointsAxes().getStylePoint());
+    this->ui->pushButtonCouleurPointsCourbes->setText(
+            QColor(couleurPointsCourbes).name().toUpper());
     this->ui->pushButtonCouleurPointsCourbes->setPalette(paletteCouleurPointsCourbes);
     this->ui->spinBoxEpaisseurPointsCourbes->setValue(
             this->parametresAffichage.getParametresPointsCourbes().getEpaisseurPoint());
     this->ui->comboBoxTypePointsCourbes->setCurrentIndex(
             this->parametresAffichage.getParametresPointsCourbes().getStylePoint());
+    this->ui->pushButtonCouleurPointsManuels->setText(
+            QColor(couleurPointsManuels).name().toUpper());
     this->ui->pushButtonCouleurPointsManuels->setPalette(paletteCouleurPointsManuels);
     this->ui->spinBoxEpaisseurPointsManuels->setValue(
             this->parametresAffichage.getParametresPointsManuels().getEpaisseurPoint());
@@ -127,6 +138,7 @@ void FenetreParametresAffichage::on_pushButtonCouleurAxes_clicked()
         return;
     parametresAxes.setCouleurTrait(fenetreCouleurAxes->selectedColor().rgb());
     this->parametresAffichage.setParametresAxes(parametresAxes);
+    this->actualiserElementsGraphiques();
 }
 
 void FenetreParametresAffichage::on_spinBoxEpaisseurAxes_valueChanged()
@@ -152,6 +164,7 @@ void FenetreParametresAffichage::on_pushButtonCouleurCourbes_clicked()
         return;
     parametresCourbes.setCouleurTrait(fenetreCouleurCourbes->selectedColor().rgb());
     this->parametresAffichage.setParametresCourbes(parametresCourbes);
+    this->actualiserElementsGraphiques();
 }
 
 void FenetreParametresAffichage::on_spinBoxEpaisseurCourbes_valueChanged()
@@ -177,6 +190,7 @@ void FenetreParametresAffichage::on_pushButtonCouleurPointsAxes_clicked()
         return;
     parametresPointsAxes.setCouleurPoint(fenetreCouleurPointsAxes->selectedColor().rgb());
     this->parametresAffichage.setParametresPointsAxes(parametresPointsAxes);
+    this->actualiserElementsGraphiques();
 }
 
 void FenetreParametresAffichage::on_spinBoxEpaisseurPointsAxes_valueChanged()
@@ -203,6 +217,7 @@ void FenetreParametresAffichage::on_pushButtonCouleurPointsCourbes_clicked()
         return;
     parametresPointsCourbes.setCouleurPoint(fenetreCouleurPointsCourbes->selectedColor().rgb());
     this->parametresAffichage.setParametresPointsCourbes(parametresPointsCourbes);
+    this->actualiserElementsGraphiques();
 }
 
 void FenetreParametresAffichage::on_spinBoxEpaisseurPointsCourbes_valueChanged()
@@ -231,6 +246,7 @@ void FenetreParametresAffichage::on_pushButtonCouleurPointsManuels_clicked()
         return;
     parametresPointsManuels.setCouleurPoint(fenetreCouleurPointsManuels->selectedColor().rgb());
     this->parametresAffichage.setParametresPointsManuels(parametresPointsManuels);
+    this->actualiserElementsGraphiques();
 }
 
 void FenetreParametresAffichage::on_spinBoxEpaisseurPointsManuels_valueChanged()
