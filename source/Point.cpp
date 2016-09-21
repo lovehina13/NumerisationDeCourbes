@@ -151,7 +151,8 @@ void Point::fromString(const QString& fromString, const char& sep)
     this->setPointPixelX(fromStringList.at(0).toInt());
     this->setPointPixelY(fromStringList.at(1).toInt());
     this->setPointReelX(fromStringList.at(2).toDouble());
-    this->setPointReelY(fromStringList.at(2).toDouble());
+    this->setPointReelY(fromStringList.at(3).toDouble());
+    this->setTypePoint(fromStringList.at(4).toInt());
 }
 
 const QString Point::toString(const char& sep) const
