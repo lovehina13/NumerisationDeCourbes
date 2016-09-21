@@ -147,7 +147,7 @@ void VueGraphiqueEtude::dessinerCourbe(const QList<Point> listeDePoints,
 
 void VueGraphiqueEtude::mouseMoveEvent(QMouseEvent* event)
 {
-    // TODO void VueGraphiqueEtude::void mouseMoveEvent(QMouseEvent* event)
+    // TODO void VueGraphiqueEtude::mouseMoveEvent(QMouseEvent* event)
     Q_UNUSED(event);
 }
 

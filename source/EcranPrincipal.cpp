@@ -140,7 +140,7 @@ void EcranPrincipal::actualiserElementsGraphiques()
     this->ui->lineEditPointY1YPixel->setText(QString::number(repere.getPointY1().getPointPixelY()));
     this->ui->lineEditPointY1Valeur->setText(QString::number(repere.getPointY1().getPointReelY()));
 
-    this->actualiserCoordonneesListeDePoints();
+    this->actualiserCoordonneesPoints();
 
     // TODO Conversion de l'image
     this->dessinerVueGraphiqueEtude();
@@ -184,6 +184,7 @@ void EcranPrincipal::chargerEtudeExistante()
     this->etude.chargerEtude(cheminFichierEtude);
     this->actualiserEtudeReference();
 
+    this->effacerElementsGraphiques();
     this->actualiserElementsGraphiques();
 }
 

@@ -6,6 +6,7 @@
 //==============================================================================
 
 #include "Point.h"
+#include <QStringList>
 
 Point::Point() :
         typePoint(INDEFINI)
@@ -146,9 +147,11 @@ bool Point::equals(const Point& point) const
 
 void Point::fromString(const QString& fromString, const char& sep)
 {
-    // TODO void Point::fromString(const QString& fromString, const char& sep)
-    Q_UNUSED(fromString);
-    Q_UNUSED(sep);
+    QStringList fromStringList = fromString.split(sep);
+    this->setPointPixelX(fromStringList.at(0).toInt());
+    this->setPointPixelY(fromStringList.at(1).toInt());
+    this->setPointReelX(fromStringList.at(2).toDouble());
+    this->setPointReelY(fromStringList.at(2).toDouble());
 }
 
 const QString Point::toString(const char& sep) const

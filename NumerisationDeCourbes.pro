@@ -10,6 +10,8 @@ TARGET = NumerisationDeCourbes
 DEPENDPATH += . include source
 INCLUDEPATH += . include
 OBJECTS_DIR = objects
+MOC_DIR = objects
+RCC_DIR = objects
 UI_DIR = objects
 
 HEADERS += include/EcranPrincipal.h \
