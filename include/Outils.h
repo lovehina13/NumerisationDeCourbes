@@ -8,6 +8,10 @@
 #ifndef OUTILS_H_
 #define OUTILS_H_
 
+#include <QString>
+#include <QStringList>
+
+QStringList listeSousElements(const QString& chaineElements, const char& sep);
 void genererImageTest();
 void testerConversionNoirEtBlanc(const int& seuilNoirEtBlanc);
 void testerConversionNiveauxDeGris(const int& nombreNiveauxDeGris);

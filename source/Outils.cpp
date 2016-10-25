@@ -11,6 +11,38 @@
 #include <QColor>
 #include <QImage>
 
+QStringList listeSousElements(const QString& chaineElements, const char& sep)
+{
+    QStringList listeSousElements;
+    QString elementCourant;
+    int compteurParentheses = 0;
+    const int nombreChaineElements = chaineElements.count();
+    for (int itChaineElements = 0; itChaineElements < nombreChaineElements; itChaineElements++)
+    {
+        QChar caractereCourant = chaineElements.at(itChaineElements);
+        if (caractereCourant == '(')
+        {
+            compteurParentheses++;
+        }
+        else if (caractereCourant == ')')
+        {
+            compteurParentheses--;
+        }
+        if (caractereCourant == sep && compteurParentheses == 0)
+        {
+            listeSousElements.append(elementCourant);
+            elementCourant.clear();
+        }
+        else if (!(caractereCourant == '(' && compteurParentheses == 1)
+                && !(caractereCourant == ')' && compteurParentheses == 0))
+        {
+            elementCourant += caractereCourant;
+        }
+    }
+    listeSousElements.append(elementCourant);
+    return listeSousElements;
+}
+
 void genererImageTest()
 {
     // Définition de l'image de test

@@ -281,7 +281,7 @@ void EcranPrincipal::actualiserCoordonneesListeDePoints()
     // TODO Gestion des accès aux éléments de la liste de points via des méthodes ajouterPoint(), supprimerPoint(), modifierPoint() et effacerPoints()
 
     QList<Point> listeDePoints;
-    const int nombreDePoints = this->etude.getListeDePoints().size();
+    const int nombreDePoints = this->etude.getListeDePoints().count();
     for (int itPoint = 0; itPoint < nombreDePoints; itPoint++)
     {
         Point point = this->etude.getListeDePoints().at(itPoint);
@@ -719,7 +719,7 @@ void EcranPrincipal::on_pushButtonRechercher_clicked()
             pointPixelArrivee);
 
     QList<Point> listeDePoints = this->etude.getListeDePoints();
-    const int nombreDePointsCourbe = listeDePointsCourbe.size();
+    const int nombreDePointsCourbe = listeDePointsCourbe.count();
     for (int itPointCourbe = 0; itPointCourbe < nombreDePointsCourbe; itPointCourbe++)
     {
         Point pointCourbe = Point(listeDePointsCourbe.at(itPointCourbe), QPointF(),
@@ -736,11 +736,11 @@ void EcranPrincipal::on_pushButtonRechercher_clicked()
 
 void EcranPrincipal::on_pushButtonSupprimer_clicked()
 {
-    const QModelIndexList lignesSelectionnees =
+    const QModelIndexList listeLignesSelectionnees =
             this->ui->tableWidgetListePoints->selectionModel()->selectedRows();
 
     QList<Point> listeDePoints = this->etude.getListeDePoints();
-    const int nombreLignesSelectionnees = lignesSelectionnees.count();
+    const int nombreLignesSelectionnees = listeLignesSelectionnees.count();
     for (int itLigneSelectionnee = 0; itLigneSelectionnee < nombreLignesSelectionnees;
             itLigneSelectionnee++)
     {

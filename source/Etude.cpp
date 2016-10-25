@@ -118,7 +118,7 @@ const QString Etude::toString(const char& sep) const
 {
     QString toString;
     const QList<Point>& listeDePoints = this->getListeDePoints();
-    const int nombreDePoints = listeDePoints.length();
+    const int nombreDePoints = listeDePoints.count();
     toString += "(" + this->getImage().toString(sep) + ")" + sep;
     toString += "(" + this->getRepere().toString(sep) + ")" + sep;
     toString += "[";
@@ -172,7 +172,7 @@ bool Etude::sauverEtude(const QString& cheminFichierEtude)
     fluxSortie << this->getRepere().toString(separateur) << endl;
     fluxSortie << "[POINTS]" << endl;
     const QList<Point>& listeDePoints = this->getListeDePoints();
-    const int nombreDePoints = listeDePoints.length();
+    const int nombreDePoints = listeDePoints.count();
     for (int itPoint = 0; itPoint < nombreDePoints; itPoint++)
     {
         const Point& pointCourant = listeDePoints.at(itPoint);
@@ -213,7 +213,7 @@ bool Etude::exporterListeDePoints(const QString& cheminFichierExport)
     const char separateur = ';';
     QTextStream fluxSortie(&fichierExport);
     const QList<Point>& listeDePoints = this->getListeDePoints();
-    const int nombreDePoints = listeDePoints.length();
+    const int nombreDePoints = listeDePoints.count();
     for (int itPoint = 0; itPoint < nombreDePoints; itPoint++)
     {
         const Point& pointCourant = listeDePoints.at(itPoint);
@@ -242,14 +242,14 @@ QList<QPoint> Etude::rechercherCourbe(const QPoint& pointPixelDepart,
 void Etude::rechercherPointsProches(const QPoint& pointPixel, const QRgb& couleurReference)
 {
     const QList<QPoint> listeDePointsProches = this->recupererListeDePointsProches(pointPixel);
-    const int nombreDePointsProches = listeDePointsProches.length();
+    const int nombreDePointsProches = listeDePointsProches.count();
     const int seuilToleranceNiveauxDeGris =
             this->getParametres().getParametresRecherche().getSeuilToleranceNiveauxDeGris();
     const int seuilToleranceTeintesSaturees =
             this->getParametres().getParametresRecherche().getSeuilToleranceTeintesSaturees();
-    for (int itPoint = 0; itPoint < nombreDePointsProches; itPoint++)
+    for (int itPointProche = 0; itPointProche < nombreDePointsProches; itPointProche++)
     {
-        const QPoint& pointCourant = listeDePointsProches.at(itPoint);
+        const QPoint& pointCourant = listeDePointsProches.at(itPointProche);
         if (this->listeDePointsDeRecherche.contains(pointCourant))
             continue;
         const QRgb& couleurCourante = this->getImage().recupererCouleurPixel(pointCourant);

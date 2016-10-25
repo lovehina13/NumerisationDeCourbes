@@ -6,6 +6,8 @@
 //==============================================================================
 
 #include "Repere.h"
+#include "Outils.h"
+#include <QStringList>
 
 Repere::Repere()
 {
@@ -104,9 +106,19 @@ bool Repere::equals(const Repere& repere) const
 
 void Repere::fromString(const QString& fromString, const char& sep)
 {
-    // TODO void Repere::fromString(const QString& fromString, const char& sep)
-    Q_UNUSED(fromString);
-    Q_UNUSED(sep);
+    QStringList fromStringList = listeSousElements(fromString, sep);
+    Point pointX0 = this->getPointX0();
+    Point pointX1 = this->getPointX1();
+    Point pointY0 = this->getPointY0();
+    Point pointY1 = this->getPointY1();
+    pointX0.fromString(fromStringList.at(0), sep);
+    pointX1.fromString(fromStringList.at(1), sep);
+    pointY0.fromString(fromStringList.at(2), sep);
+    pointY1.fromString(fromStringList.at(3), sep);
+    this->setPointX0(pointX0);
+    this->setPointX1(pointX1);
+    this->setPointY0(pointY0);
+    this->setPointY1(pointY1);
 }
 
 const QString Repere::toString(const char& sep) const
