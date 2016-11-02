@@ -6,7 +6,9 @@
 //==============================================================================
 
 #include "ParametresConversion.h"
+#include "Outils.h"
 #include <cmath>
+#include <QStringList>
 
 ParametresConversion::ParametresConversion() :
         methodeConversion(methodeConversionDefaut), seuilNoirEtBlanc(seuilNoirEtBlancDefaut),
@@ -130,9 +132,12 @@ bool ParametresConversion::equals(const ParametresConversion& parametresConversi
 
 void ParametresConversion::fromString(const QString& fromString, const char& sep)
 {
-    // TODO void ParametresConversion::fromString(const QString& fromString, const char& sep)
-    Q_UNUSED(fromString);
-    Q_UNUSED(sep);
+    QStringList fromStringList = listeSousElements(fromString, sep);
+    this->setMethodeConversion(fromStringList.at(0).toInt());
+    this->setSeuilNoirEtBlanc(fromStringList.at(1).toInt());
+    this->setNombreNiveauxDeGris(fromStringList.at(2).toInt());
+    this->setNombreTeintesSaturees(fromStringList.at(3).toInt());
+    this->setSeuilSaturation(fromStringList.at(4).toInt());
 }
 
 const QString ParametresConversion::toString(const char& sep) const

@@ -6,6 +6,8 @@
 //==============================================================================
 
 #include "ParametresExport.h"
+#include "Outils.h"
+#include <QStringList>
 
 ParametresExport::ParametresExport() :
         formatNotationNombres(formatNotationNombresDefaut),
@@ -130,9 +132,12 @@ bool ParametresExport::equals(const ParametresExport& parametresExport) const
 
 void ParametresExport::fromString(const QString& fromString, const char& sep)
 {
-    // TODO void ParametresExport::fromString(const QString& fromString, const char& sep)
-    Q_UNUSED(fromString);
-    Q_UNUSED(sep);
+    QStringList fromStringList = listeSousElements(fromString, sep);
+    this->setFormatNotationNombres(fromStringList.at(0).toInt());
+    this->setNombreChiffresSignificatifs(fromStringList.at(1).toInt());
+    this->setCaractereSeparation(fromStringList.at(2).at(1).toAscii());
+    this->setCaractereSeparateurDecimal(fromStringList.at(3).at(1).toAscii());
+    this->setSeuilInterpolationNumerique(fromStringList.at(4).toDouble());
 }
 
 const QString ParametresExport::toString(const char& sep) const

@@ -6,6 +6,8 @@
 //==============================================================================
 
 #include "ParametresFichiers.h"
+#include "Outils.h"
+#include <QStringList>
 
 ParametresFichiers::ParametresFichiers()
 {
@@ -110,9 +112,13 @@ bool ParametresFichiers::equals(const ParametresFichiers& parametresFichiers) co
 
 void ParametresFichiers::fromString(const QString& fromString, const char& sep)
 {
-    // TODO void ParametresFichiers::fromString(const QString& fromString, const char& sep)
-    Q_UNUSED(fromString);
-    Q_UNUSED(sep);
+    QStringList fromStringList = listeSousElements(fromString, sep);
+    this->setCheminFichierEtude(fromStringList.at(0).mid(1, (fromStringList.at(0).count() - 2)));
+    this->setCheminFichierImageSource(
+            fromStringList.at(1).mid(1, (fromStringList.at(1).count() - 2)));
+    this->setCheminFichierImageConvertie(
+            fromStringList.at(2).mid(1, (fromStringList.at(2).count() - 2)));
+    this->setCheminFichierExport(fromStringList.at(3).mid(1, (fromStringList.at(3).count() - 2)));
 }
 
 const QString ParametresFichiers::toString(const char& sep) const

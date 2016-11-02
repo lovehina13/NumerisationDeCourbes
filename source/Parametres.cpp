@@ -6,6 +6,8 @@
 //==============================================================================
 
 #include "Parametres.h"
+#include "Outils.h"
+#include <QStringList>
 
 Parametres::Parametres()
 {
@@ -124,9 +126,22 @@ bool Parametres::equals(const Parametres& parametres) const
 
 void Parametres::fromString(const QString& fromString, const char& sep)
 {
-    // TODO void Parametres::fromString(const QString& fromString, const char& sep)
-    Q_UNUSED(fromString);
-    Q_UNUSED(sep);
+    QStringList fromStringList = listeSousElements(fromString, sep);
+    ParametresFichiers parametresFichiers = this->getParametresFichiers();
+    ParametresAffichage parametresAffichage = this->getParametresAffichage();
+    ParametresConversion parametresConversion = this->getParametresConversion();
+    ParametresRecherche parametresRecherche = this->getParametresRecherche();
+    ParametresExport parametresExport = this->getParametresExport();
+    parametresFichiers.fromString(fromStringList.at(0), sep);
+    parametresAffichage.fromString(fromStringList.at(1), sep);
+    parametresConversion.fromString(fromStringList.at(2), sep);
+    parametresRecherche.fromString(fromStringList.at(3), sep);
+    parametresExport.fromString(fromStringList.at(4), sep);
+    this->setParametresFichiers(parametresFichiers);
+    this->setParametresAffichage(parametresAffichage);
+    this->setParametresConversion(parametresConversion);
+    this->setParametresRecherche(parametresRecherche);
+    this->setParametresExport(parametresExport);
 }
 
 const QString Parametres::toString(const char& sep) const

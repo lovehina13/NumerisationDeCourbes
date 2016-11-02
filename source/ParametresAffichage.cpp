@@ -6,7 +6,9 @@
 //==============================================================================
 
 #include "ParametresAffichage.h"
+#include "Outils.h"
 #include <QRgb>
+#include <QStringList>
 
 const ParametresTrait ParametresAffichage::parametresAxesDefaut = ParametresTrait(
         (int) ParametresTrait::styleTraitDefaut, (int) ParametresTrait::epaisseurTraitDefaut,
@@ -180,9 +182,24 @@ bool ParametresAffichage::equals(const ParametresAffichage& parametresAffichage)
 
 void ParametresAffichage::fromString(const QString& fromString, const char& sep)
 {
-    // TODO void ParametresAffichage::fromString(const QString& fromString, const char& sep)
-    Q_UNUSED(fromString);
-    Q_UNUSED(sep);
+    QStringList fromStringList = listeSousElements(fromString, sep);
+    this->setFormatNotationNombres(fromStringList.at(0).toInt());
+    this->setNombreChiffresSignificatifs(fromStringList.at(1).toInt());
+    ParametresTrait parametresAxes = this->getParametresAxes();
+    ParametresTrait parametresCourbes = this->getParametresCourbes();
+    ParametresPoint parametresPointsAxes = this->getParametresPointsAxes();
+    ParametresPoint parametresPointsCourbes = this->getParametresPointsCourbes();
+    ParametresPoint parametresPointsManuels = this->getParametresPointsManuels();
+    parametresAxes.fromString(fromStringList.at(2), sep);
+    parametresCourbes.fromString(fromStringList.at(3), sep);
+    parametresPointsAxes.fromString(fromStringList.at(4), sep);
+    parametresPointsCourbes.fromString(fromStringList.at(5), sep);
+    parametresPointsManuels.fromString(fromStringList.at(6), sep);
+    this->setParametresAxes(parametresAxes);
+    this->setParametresCourbes(parametresCourbes);
+    this->setParametresPointsAxes(parametresPointsAxes);
+    this->setParametresPointsCourbes(parametresPointsCourbes);
+    this->setParametresPointsManuels(parametresPointsManuels);
 }
 
 const QString ParametresAffichage::toString(const char& sep) const

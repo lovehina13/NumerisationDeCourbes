@@ -6,7 +6,9 @@
 //==============================================================================
 
 #include "ParametresRecherche.h"
+#include "Outils.h"
 #include <cmath>
+#include <QStringList>
 
 ParametresRecherche::ParametresRecherche() :
         seuilToleranceNiveauxDeGris(seuilToleranceNiveauxDeGrisDefaut),
@@ -133,9 +135,12 @@ bool ParametresRecherche::equals(const ParametresRecherche& parametresRecherche)
 
 void ParametresRecherche::fromString(const QString& fromString, const char& sep)
 {
-    // TODO void ParametresRecherche::fromString(const QString& fromString, const char& sep)
-    Q_UNUSED(fromString);
-    Q_UNUSED(sep);
+    QStringList fromStringList = listeSousElements(fromString, sep);
+    this->setSeuilToleranceNiveauxDeGris(fromStringList.at(0).toInt());
+    this->setSeuilToleranceTeintesSaturees(fromStringList.at(1).toInt());
+    this->setSelectionValeursMoyennes((bool) fromStringList.at(2).toInt());
+    this->setSelectionValeursMinimales((bool) fromStringList.at(3).toInt());
+    this->setSelectionValeursMaximales((bool) fromStringList.at(4).toInt());
 }
 
 const QString ParametresRecherche::toString(const char& sep) const

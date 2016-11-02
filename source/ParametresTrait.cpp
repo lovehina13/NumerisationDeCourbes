@@ -6,7 +6,9 @@
 //==============================================================================
 
 #include "ParametresTrait.h"
+#include "Outils.h"
 #include <QColor>
+#include <QStringList>
 
 const QRgb ParametresTrait::couleurTraitDefaut = QColor(Qt::black).rgb();
 const QRgb ParametresTrait::couleurTraitAxeDefaut = QColor(Qt::red).rgb();
@@ -98,9 +100,10 @@ bool ParametresTrait::equals(const ParametresTrait& parametresTrait) const
 
 void ParametresTrait::fromString(const QString& fromString, const char& sep)
 {
-    // TODO void ParametresTrait::fromString(const QString& fromString, const char& sep)
-    Q_UNUSED(fromString);
-    Q_UNUSED(sep);
+    QStringList fromStringList = listeSousElements(fromString, sep);
+    this->setStyleTrait(fromStringList.at(0).toInt());
+    this->setEpaisseurTrait(fromStringList.at(1).toInt());
+    this->setCouleurTrait(QColor(fromStringList.at(2)).rgb());
 }
 
 const QString ParametresTrait::toString(const char& sep) const

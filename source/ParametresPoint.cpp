@@ -6,7 +6,9 @@
 //==============================================================================
 
 #include "ParametresPoint.h"
+#include "Outils.h"
 #include <QColor>
+#include <QStringList>
 
 const QRgb ParametresPoint::couleurPointDefaut = QColor(Qt::black).rgb();
 const QRgb ParametresPoint::couleurPointAxeDefaut = QColor(Qt::red).rgb();
@@ -99,9 +101,10 @@ bool ParametresPoint::equals(const ParametresPoint& parametresPoint) const
 
 void ParametresPoint::fromString(const QString& fromString, const char& sep)
 {
-    // TODO void ParametresPoint::fromString(const QString& fromString, const char& sep)
-    Q_UNUSED(fromString);
-    Q_UNUSED(sep);
+    QStringList fromStringList = listeSousElements(fromString, sep);
+    this->setStylePoint(fromStringList.at(0).toInt());
+    this->setEpaisseurPoint(fromStringList.at(1).toInt());
+    this->setCouleurPoint(QColor(fromStringList.at(2)).rgb());
 }
 
 const QString ParametresPoint::toString(const char& sep) const
