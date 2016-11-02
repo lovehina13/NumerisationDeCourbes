@@ -70,11 +70,11 @@ public:
     };
 
     // Définition des valeurs par défaut des paramètres d'export
-    static const int formatNotationNombresDefaut = STANDARD;
-    static const int nombreChiffresSignificatifsDefaut = 6;
-    static const char caractereSeparationDefaut = '\t';
-    static const char caractereSeparateurDecimalDefaut = '.';
-    static constexpr double seuilInterpolationNumeriqueDefaut = 0.0;
+    static const int formatNotationNombresDefaut;
+    static const int nombreChiffresSignificatifsDefaut;
+    static const char caractereSeparationDefaut;
+    static const char caractereSeparateurDecimalDefaut;
+    static const double seuilInterpolationNumeriqueDefaut;
 
 private:
     // Attributs de classe

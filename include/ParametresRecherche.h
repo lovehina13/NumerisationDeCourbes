@@ -53,11 +53,11 @@ public:
             const double& seuilToleranceTeintesSatureesFacteur);
 
     // Définition des valeurs par défaut des paramètres de recherche
-    static const int seuilToleranceNiveauxDeGrisDefaut = 32;
-    static const int seuilToleranceTeintesSatureesDefaut = 60;
-    static const bool selectionValeursMoyennesDefaut = true;
-    static const bool selectionValeursMinimalesDefaut = false;
-    static const bool selectionValeursMaximalesDefaut = false;
+    static const int seuilToleranceNiveauxDeGrisDefaut;
+    static const int seuilToleranceTeintesSatureesDefaut;
+    static const bool selectionValeursMoyennesDefaut;
+    static const bool selectionValeursMinimalesDefaut;
+    static const bool selectionValeursMaximalesDefaut;
 
 private:
     // Attributs de classe

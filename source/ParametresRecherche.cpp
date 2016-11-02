@@ -10,6 +10,12 @@
 #include <cmath>
 #include <QStringList>
 
+const int ParametresRecherche::seuilToleranceNiveauxDeGrisDefaut = 32;
+const int ParametresRecherche::seuilToleranceTeintesSatureesDefaut = 60;
+const bool ParametresRecherche::selectionValeursMoyennesDefaut = true;
+const bool ParametresRecherche::selectionValeursMinimalesDefaut = false;
+const bool ParametresRecherche::selectionValeursMaximalesDefaut = false;
+
 ParametresRecherche::ParametresRecherche() :
         seuilToleranceNiveauxDeGris(seuilToleranceNiveauxDeGrisDefaut),
                 seuilToleranceTeintesSaturees(seuilToleranceTeintesSatureesDefaut),
@@ -91,9 +97,9 @@ void ParametresRecherche::setSelectionValeursMaximales(const bool& selectionVale
 
 void ParametresRecherche::clear()
 {
-    this->set((int) seuilToleranceNiveauxDeGrisDefaut, (int) seuilToleranceTeintesSatureesDefaut,
-            (bool) selectionValeursMoyennesDefaut, (bool) selectionValeursMinimalesDefaut,
-            (bool) selectionValeursMaximalesDefaut);
+    this->set(seuilToleranceNiveauxDeGrisDefaut, seuilToleranceTeintesSatureesDefaut,
+            selectionValeursMoyennesDefaut, selectionValeursMinimalesDefaut,
+            selectionValeursMaximalesDefaut);
 }
 
 void ParametresRecherche::set(const int& seuilToleranceNiveauxDeGris,

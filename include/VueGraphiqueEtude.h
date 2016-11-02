@@ -36,7 +36,7 @@ public:
 
     // Méthodes spécifiques
     void effacer();
-    void dessiner(const Etude &etude);
+    void dessiner(const Etude& etude);
     void dessinerImage(const Image& image);
     void dessinerRepere(const Repere& repere, const ParametresTrait& parametresAxes,
             const ParametresPoint& parametresPointsAxes);

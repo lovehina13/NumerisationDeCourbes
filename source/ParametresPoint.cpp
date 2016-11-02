@@ -10,6 +10,8 @@
 #include <QColor>
 #include <QStringList>
 
+const int ParametresPoint::stylePointDefaut = CARRE;
+const int ParametresPoint::epaisseurPointDefaut = 4;
 const QRgb ParametresPoint::couleurPointDefaut = QColor(Qt::black).rgb();
 const QRgb ParametresPoint::couleurPointAxeDefaut = QColor(Qt::red).rgb();
 const QRgb ParametresPoint::couleurPointCourbeDefaut = QColor(Qt::blue).rgb();
@@ -71,7 +73,7 @@ void ParametresPoint::setCouleurPoint(const QRgb& couleurPoint)
 
 void ParametresPoint::clear()
 {
-    this->set((int) stylePointDefaut, (int) epaisseurPointDefaut, (QRgb) couleurPointDefaut);
+    this->set(stylePointDefaut, epaisseurPointDefaut, couleurPointDefaut);
 }
 
 void ParametresPoint::set(const int& stylePoint, const int& epaisseurPoint,

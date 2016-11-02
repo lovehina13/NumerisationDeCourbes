@@ -47,8 +47,8 @@ public:
     };
 
     // Définition des valeurs par défaut des paramètres d'un point
-    static const int stylePointDefaut = CARRE;
-    static const int epaisseurPointDefaut = 4;
+    static const int stylePointDefaut;
+    static const int epaisseurPointDefaut;
     static const QRgb couleurPointDefaut;
     static const QRgb couleurPointAxeDefaut;
     static const QRgb couleurPointCourbeDefaut;

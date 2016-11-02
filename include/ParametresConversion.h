@@ -58,11 +58,11 @@ public:
     };
 
     // Définition des valeurs par défaut des paramètres de conversion
-    static const int methodeConversionDefaut = BRUTE;
-    static const int seuilNoirEtBlancDefaut = 224;
-    static const int nombreNiveauxDeGrisDefaut = 5;
-    static const int nombreTeintesSatureesDefaut = 6;
-    static const int seuilSaturationDefaut = 32;
+    static const int methodeConversionDefaut;
+    static const int seuilNoirEtBlancDefaut;
+    static const int nombreNiveauxDeGrisDefaut;
+    static const int nombreTeintesSatureesDefaut;
+    static const int seuilSaturationDefaut;
 
 private:
     // Attributs de classe

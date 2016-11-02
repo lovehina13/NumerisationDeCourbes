@@ -10,6 +10,12 @@
 #include <cmath>
 #include <QStringList>
 
+const int ParametresConversion::methodeConversionDefaut = BRUTE;
+const int ParametresConversion::seuilNoirEtBlancDefaut = 224;
+const int ParametresConversion::nombreNiveauxDeGrisDefaut = 5;
+const int ParametresConversion::nombreTeintesSatureesDefaut = 6;
+const int ParametresConversion::seuilSaturationDefaut = 32;
+
 ParametresConversion::ParametresConversion() :
         methodeConversion(methodeConversionDefaut), seuilNoirEtBlanc(seuilNoirEtBlancDefaut),
                 nombreNiveauxDeGris(nombreNiveauxDeGrisDefaut),
@@ -90,9 +96,8 @@ void ParametresConversion::setSeuilSaturation(const int& seuilSaturation)
 
 void ParametresConversion::clear()
 {
-    this->set((int) methodeConversionDefaut, (int) seuilNoirEtBlancDefaut,
-            (int) nombreNiveauxDeGrisDefaut, (int) nombreTeintesSatureesDefaut,
-            (int) seuilSaturationDefaut);
+    this->set(methodeConversionDefaut, seuilNoirEtBlancDefaut, nombreNiveauxDeGrisDefaut,
+            nombreTeintesSatureesDefaut, seuilSaturationDefaut);
 }
 
 void ParametresConversion::set(const int& methodeConversion, const int& seuilNoirEtBlanc,

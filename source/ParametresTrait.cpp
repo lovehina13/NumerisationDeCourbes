@@ -10,6 +10,8 @@
 #include <QColor>
 #include <QStringList>
 
+const int ParametresTrait::styleTraitDefaut = LIGNE;
+const int ParametresTrait::epaisseurTraitDefaut = 2;
 const QRgb ParametresTrait::couleurTraitDefaut = QColor(Qt::black).rgb();
 const QRgb ParametresTrait::couleurTraitAxeDefaut = QColor(Qt::red).rgb();
 const QRgb ParametresTrait::couleurTraitCourbeDefaut = QColor(Qt::blue).rgb();
@@ -70,7 +72,7 @@ void ParametresTrait::setCouleurTrait(const QRgb& couleurTrait)
 
 void ParametresTrait::clear()
 {
-    this->set((int) styleTraitDefaut, (int) epaisseurTraitDefaut, (QRgb) couleurTraitDefaut);
+    this->set(styleTraitDefaut, epaisseurTraitDefaut, couleurTraitDefaut);
 }
 
 void ParametresTrait::set(const int& styleTrait, const int& epaisseurTrait,

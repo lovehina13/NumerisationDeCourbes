@@ -132,7 +132,7 @@ const QString Repere::toString(const char& sep) const
 }
 
 void Repere::pixelVersReel(const int& pointPixelX, const int& pointPixelY, double& pointReelX,
-        double &pointReelY) const
+        double& pointReelY) const
 {
     const double x0px = (double) this->getPointX0().getPointPixelX();
     const double x0py = (double) this->getPointX0().getPointPixelY();

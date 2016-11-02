@@ -10,21 +10,23 @@
 #include <QRgb>
 #include <QStringList>
 
+const int ParametresAffichage::formatNotationNombresDefaut = STANDARD;
+const int ParametresAffichage::nombreChiffresSignificatifsDefaut = 6;
 const ParametresTrait ParametresAffichage::parametresAxesDefaut = ParametresTrait(
-        (int) ParametresTrait::styleTraitDefaut, (int) ParametresTrait::epaisseurTraitDefaut,
-        (QRgb) ParametresTrait::couleurTraitAxeDefaut);
+        ParametresTrait::styleTraitDefaut, ParametresTrait::epaisseurTraitDefaut,
+        ParametresTrait::couleurTraitAxeDefaut);
 const ParametresTrait ParametresAffichage::parametresCourbesDefaut = ParametresTrait(
-        (int) ParametresTrait::styleTraitDefaut, (int) ParametresTrait::epaisseurTraitDefaut,
-        (QRgb) ParametresTrait::couleurTraitCourbeDefaut);
+        ParametresTrait::styleTraitDefaut, ParametresTrait::epaisseurTraitDefaut,
+        ParametresTrait::couleurTraitCourbeDefaut);
 const ParametresPoint ParametresAffichage::parametresPointsAxesDefaut = ParametresPoint(
-        (int) ParametresPoint::stylePointDefaut, (int) ParametresPoint::epaisseurPointDefaut,
-        (QRgb) ParametresPoint::couleurPointAxeDefaut);
+        ParametresPoint::stylePointDefaut, ParametresPoint::epaisseurPointDefaut,
+        ParametresPoint::couleurPointAxeDefaut);
 const ParametresPoint ParametresAffichage::parametresPointsCourbesDefaut = ParametresPoint(
-        (int) ParametresPoint::stylePointDefaut, (int) ParametresPoint::epaisseurPointDefaut,
-        (QRgb) ParametresPoint::couleurPointCourbeDefaut);
+        ParametresPoint::stylePointDefaut, ParametresPoint::epaisseurPointDefaut,
+        ParametresPoint::couleurPointCourbeDefaut);
 const ParametresPoint ParametresAffichage::parametresPointsManuelsDefaut = ParametresPoint(
-        (int) ParametresPoint::stylePointDefaut, (int) ParametresPoint::epaisseurPointDefaut,
-        (QRgb) ParametresPoint::couleurPointManuelDefaut);
+        ParametresPoint::stylePointDefaut, ParametresPoint::epaisseurPointDefaut,
+        ParametresPoint::couleurPointManuelDefaut);
 
 ParametresAffichage::ParametresAffichage() :
         formatNotationNombres(formatNotationNombresDefaut),
@@ -126,11 +128,9 @@ void ParametresAffichage::setParametresPointsManuels(const ParametresPoint& para
 
 void ParametresAffichage::clear()
 {
-    this->set((int) formatNotationNombresDefaut, (int) nombreChiffresSignificatifsDefaut,
-            (ParametresTrait) parametresAxesDefaut, (ParametresTrait) parametresCourbesDefaut,
-            (ParametresPoint) parametresPointsAxesDefaut,
-            (ParametresPoint) parametresPointsCourbesDefaut,
-            (ParametresPoint) parametresPointsManuelsDefaut);
+    this->set(formatNotationNombresDefaut, nombreChiffresSignificatifsDefaut, parametresAxesDefaut,
+            parametresCourbesDefaut, parametresPointsAxesDefaut, parametresPointsCourbesDefaut,
+            parametresPointsManuelsDefaut);
 }
 
 void ParametresAffichage::set(const int& formatNotationNombres,

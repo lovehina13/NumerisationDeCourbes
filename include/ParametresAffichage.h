@@ -64,8 +64,8 @@ public:
     };
 
     // Définition des valeurs par défaut des paramètres d'affichage
-    static const int formatNotationNombresDefaut = STANDARD;
-    static const int nombreChiffresSignificatifsDefaut = 6;
+    static const int formatNotationNombresDefaut;
+    static const int nombreChiffresSignificatifsDefaut;
     static const ParametresTrait parametresAxesDefaut;
     static const ParametresTrait parametresCourbesDefaut;
     static const ParametresPoint parametresPointsAxesDefaut;

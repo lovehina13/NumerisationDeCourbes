@@ -104,24 +104,24 @@ void Image::restaurerImage()
 void Image::convertirImageNoirEtBlanc(const int& seuilNoirEtBlanc)
 {
     this->convertirImage(ParametresConversion::NOIR_ET_BLANC, seuilNoirEtBlanc,
-            (int) ParametresConversion::nombreNiveauxDeGrisDefaut,
-            (int) ParametresConversion::nombreTeintesSatureesDefaut,
-            (int) ParametresConversion::seuilSaturationDefaut);
+            ParametresConversion::nombreNiveauxDeGrisDefaut,
+            ParametresConversion::nombreTeintesSatureesDefaut,
+            ParametresConversion::seuilSaturationDefaut);
 }
 
 void Image::convertirImageNiveauxDeGris(const int& nombreNiveauxDeGris)
 {
     this->convertirImage(ParametresConversion::NIVEAUX_DE_GRIS,
-            (int) ParametresConversion::seuilNoirEtBlancDefaut, nombreNiveauxDeGris,
-            (int) ParametresConversion::nombreTeintesSatureesDefaut,
-            (int) ParametresConversion::seuilSaturationDefaut);
+            ParametresConversion::seuilNoirEtBlancDefaut, nombreNiveauxDeGris,
+            ParametresConversion::nombreTeintesSatureesDefaut,
+            ParametresConversion::seuilSaturationDefaut);
 }
 
 void Image::convertirImageTeintesSaturees(const int& nombreNiveauxDeGris,
         const int& nombreTeintesSaturees, const int& seuilSaturation)
 {
     this->convertirImage(ParametresConversion::TEINTES_SATUREES,
-            (int) ParametresConversion::seuilNoirEtBlancDefaut, nombreNiveauxDeGris,
+            ParametresConversion::seuilNoirEtBlancDefaut, nombreNiveauxDeGris,
             nombreTeintesSaturees, seuilSaturation);
 }
 

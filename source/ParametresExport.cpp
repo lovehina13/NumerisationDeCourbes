@@ -9,6 +9,12 @@
 #include "Outils.h"
 #include <QStringList>
 
+const int ParametresExport::formatNotationNombresDefaut = STANDARD;
+const int ParametresExport::nombreChiffresSignificatifsDefaut = 6;
+const char ParametresExport::caractereSeparationDefaut = '\t';
+const char ParametresExport::caractereSeparateurDecimalDefaut = '.';
+const double ParametresExport::seuilInterpolationNumeriqueDefaut = 0.0;
+
 ParametresExport::ParametresExport() :
         formatNotationNombres(formatNotationNombresDefaut),
                 nombreChiffresSignificatifs(nombreChiffresSignificatifsDefaut),
@@ -90,9 +96,9 @@ void ParametresExport::setSeuilInterpolationNumerique(const double& seuilInterpo
 
 void ParametresExport::clear()
 {
-    this->set((int) formatNotationNombresDefaut, (int) nombreChiffresSignificatifsDefaut,
-            (char) caractereSeparationDefaut, (char) caractereSeparateurDecimalDefaut,
-            (double) seuilInterpolationNumeriqueDefaut);
+    this->set(formatNotationNombresDefaut, nombreChiffresSignificatifsDefaut,
+            caractereSeparationDefaut, caractereSeparateurDecimalDefaut,
+            seuilInterpolationNumeriqueDefaut);
 }
 
 void ParametresExport::set(const int& formatNotationNombres, const int& nombreChiffresSignificatifs,

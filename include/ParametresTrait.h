@@ -47,8 +47,8 @@ public:
     };
 
     // Définition des valeurs par défaut des paramètres d'un trait
-    static const int styleTraitDefaut = LIGNE;
-    static const int epaisseurTraitDefaut = 2;
+    static const int styleTraitDefaut;
+    static const int epaisseurTraitDefaut;
     static const QRgb couleurTraitDefaut;
     static const QRgb couleurTraitAxeDefaut;
     static const QRgb couleurTraitCourbeDefaut;
