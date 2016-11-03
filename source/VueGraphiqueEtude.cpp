@@ -18,6 +18,7 @@ VueGraphiqueEtude::VueGraphiqueEtude(QWidget* parent) :
 {
     QGraphicsScene* graphicsScene = new QGraphicsScene(parent);
     this->setScene(graphicsScene);
+    this->setMouseTracking(true);
 }
 
 VueGraphiqueEtude::VueGraphiqueEtude(QGraphicsScene* scene, QWidget* parent) :

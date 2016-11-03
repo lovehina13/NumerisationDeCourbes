@@ -215,3 +215,28 @@ const QString ParametresAffichage::toString(const char& sep) const
     return toString;
 }
 
+char ParametresAffichage::getFormatNotationNombresTexte() const
+{
+    const int& formatNotationNombres = this->getFormatNotationNombres();
+    if (formatNotationNombres == STANDARD)
+    {
+        return 'f';
+    }
+    else if (formatNotationNombres == SCIENTIFIQUE)
+    {
+        return 'e';
+    }
+    return '\0';
+}
+
+void ParametresAffichage::setFormatNotationNombresTexte(const char& formatNotationNombresTexte)
+{
+    if (formatNotationNombresTexte == 'f')
+    {
+        this->setFormatNotationNombres(STANDARD);
+    }
+    else if (formatNotationNombresTexte == 'e')
+    {
+        this->setFormatNotationNombres(SCIENTIFIQUE);
+    }
+}

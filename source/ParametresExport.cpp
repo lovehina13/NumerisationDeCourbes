@@ -157,6 +157,20 @@ const QString ParametresExport::toString(const char& sep) const
     return toString;
 }
 
+char ParametresExport::getFormatNotationNombresTexte() const
+{
+    const int& formatNotationNombres = this->getFormatNotationNombres();
+    if (formatNotationNombres == STANDARD)
+    {
+        return 'f';
+    }
+    else if (formatNotationNombres == SCIENTIFIQUE)
+    {
+        return 'e';
+    }
+    return '\0';
+}
+
 int ParametresExport::getIndiceCaractereSeparation() const
 {
     const char& caractereSeparation = this->getCaractereSeparation();
@@ -187,6 +201,18 @@ int ParametresExport::getIndiceCaractereSeparateurDecimal() const
         return VIRGULE;
     }
     return -1;
+}
+
+void ParametresExport::setFormatNotationNombresTexte(const char& formatNotationNombresTexte)
+{
+    if (formatNotationNombresTexte == 'f')
+    {
+        this->setFormatNotationNombres(STANDARD);
+    }
+    else if (formatNotationNombresTexte == 'e')
+    {
+        this->setFormatNotationNombres(SCIENTIFIQUE);
+    }
 }
 
 void ParametresExport::setIndiceCaractereSeparation(const int& indiceCaractereSeparation)

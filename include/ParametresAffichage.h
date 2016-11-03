@@ -56,6 +56,8 @@ public:
     const QString toString(const char& sep) const;
 
     // Méthodes spécifiques
+    char getFormatNotationNombresTexte() const;
+    void setFormatNotationNombresTexte(const char& formatNotationNombresTexte);
 
     // Enumération des formats de notation des nombres
     enum formatsNotationNombres

@@ -7,6 +7,7 @@
 
 #include "Repere.h"
 #include "Outils.h"
+#include <cmath>
 #include <QStringList>
 
 Repere::Repere()
@@ -184,14 +185,20 @@ void Repere::interpolationNumerique(const double& pointReelX1, const double& poi
 
 void Repere::interpolationNumerique(const Point& point1, const Point& point2, Point& point) const
 {
-    // TODO Modification du Y pixel ?
-    const double pointReelX1 = point1.getPointReelX();
-    const double pointReelY1 = point1.getPointReelY();
-    const double pointReelX2 = point2.getPointReelX();
-    const double pointReelY2 = point2.getPointReelY();
+    const double p1px = (double) point1.getPointPixelX();
+    const double p1py = (double) point1.getPointPixelY();
+    const double p2px = (double) point2.getPointPixelX();
+    const double p2py = (double) point2.getPointPixelY();
+    const double p1rx = point1.getPointReelX();
+    const double p1ry = point1.getPointReelY();
+    const double p2rx = point2.getPointReelX();
+    const double p2ry = point2.getPointReelY();
+    const double pointPixelX = (double) point.getPointPixelX();
     const double pointReelX = point.getPointReelX();
+    double pointPixelY = 0.0;
     double pointReelY = 0.0;
-    this->interpolationNumerique(pointReelX1, pointReelY1, pointReelX2, pointReelY2, pointReelX,
-            pointReelY);
+    this->interpolationNumerique(p1px, p1py, p2px, p2py, pointPixelX, pointPixelY);
+    this->interpolationNumerique(p1rx, p1ry, p2rx, p2ry, pointReelX, pointReelY);
+    point.setPointPixelY((int) round(pointPixelY));
     point.setPointReelY(pointReelY);
 }

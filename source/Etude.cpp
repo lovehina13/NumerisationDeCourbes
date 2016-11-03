@@ -210,19 +210,28 @@ bool Etude::exporterListeDePoints(const QString& cheminFichierExport)
     if (!fichierExport.open(QIODevice::WriteOnly | QIODevice::Text))
         return false;
 
-    const char separateur = ';';
+    const ParametresExport& parametresExport = parametres.getParametresExport();
+    const char formatNotationNombresTexte = parametresExport.getFormatNotationNombresTexte();
+    const int& nombreChiffresSignificatifs = parametresExport.getNombreChiffresSignificatifs();
+    const char& caractereSeparation = parametresExport.getCaractereSeparation();
+    const char& caractereSeparateurDecimal = parametresExport.getCaractereSeparateurDecimal();
+
     QTextStream fluxSortie(&fichierExport);
     const QList<Point>& listeDePoints = this->getListeDePoints();
     const int nombreDePoints = listeDePoints.count();
     for (int itPoint = 0; itPoint < nombreDePoints; itPoint++)
     {
         const Point& pointCourant = listeDePoints.at(itPoint);
-        fluxSortie << pointCourant.getPointReelX() << separateur << pointCourant.getPointReelY()
+        fluxSortie
+                << QString::number(pointCourant.getPointReelX(), formatNotationNombresTexte,
+                        nombreChiffresSignificatifs).replace('.', caractereSeparateurDecimal)
+                << caractereSeparation
+                << QString::number(pointCourant.getPointReelY(), formatNotationNombresTexte,
+                        nombreChiffresSignificatifs).replace('.', caractereSeparateurDecimal)
                 << endl;
     }
     return true;
 
-    // TODO Implémentation de la précision selon le nombre de chiffres significatifs
     // TODO Implémentation de l'interpolation numérique
 }
 

@@ -46,8 +46,10 @@ public:
     const QString toString(const char& sep) const;
 
     // Méthodes spécifiques
+    char getFormatNotationNombresTexte() const;
     int getIndiceCaractereSeparation() const;
     int getIndiceCaractereSeparateurDecimal() const;
+    void setFormatNotationNombresTexte(const char& formatNotationNombresTexte);
     void setIndiceCaractereSeparation(const int& indiceCaractereSeparation);
     void setIndiceCaractereSeparateurDecimal(const int& indiceCaractereSeparateurDecimal);
 
