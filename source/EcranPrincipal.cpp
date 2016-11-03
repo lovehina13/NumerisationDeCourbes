@@ -215,7 +215,16 @@ void EcranPrincipal::exporterEtudeCourante()
 
 void EcranPrincipal::exporterImageConvertieCourante()
 {
-    // TODO void EcranPrincipal::exporterImageConvertieCourante()
+    QString cheminFichierImageConvertie = QFileDialog::getSaveFileName(this,
+            QString::fromUtf8("Sélection d'un fichier image"),
+            this->etude.getParametres().getParametresFichiers().getCheminFichierImageConvertie(),
+            QString::fromUtf8("Fichier image Windows Bitmap (*.bmp);;"
+                    "Fichier image JPEG (*.jpg *.jpeg);;"
+                    "Fichier image PNG (*.png)"));
+    if (cheminFichierImageConvertie.isEmpty())
+        return;
+
+    this->etude.exporterImageConvertie(cheminFichierImageConvertie);
 }
 
 void EcranPrincipal::verifierEtatSauvegardeEtude()

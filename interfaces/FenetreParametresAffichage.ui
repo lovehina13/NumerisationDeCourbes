@@ -75,23 +75,13 @@
        </widget>
       </item>
       <item row="1" column="0">
-       <widget class="QLabel" name="labelEpaisseurAxes">
-        <property name="text">
-         <string>Epaisseur des axes</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QSpinBox" name="spinBoxEpaisseurAxes"/>
-      </item>
-      <item row="2" column="0">
        <widget class="QLabel" name="labelStyleAxes">
         <property name="text">
          <string>Style des axes</string>
         </property>
        </widget>
       </item>
-      <item row="2" column="1">
+      <item row="1" column="1">
        <widget class="QComboBox" name="comboBoxStyleAxes">
         <item>
          <property name="text">
@@ -109,6 +99,16 @@
          </property>
         </item>
        </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="labelEpaisseurAxes">
+        <property name="text">
+         <string>Epaisseur des axes</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QSpinBox" name="spinBoxEpaisseurAxes"/>
       </item>
      </layout>
     </widget>
@@ -134,23 +134,13 @@
        </widget>
       </item>
       <item row="1" column="0">
-       <widget class="QLabel" name="labelEpaisseurPointsAxes">
-        <property name="text">
-         <string>Epaisseur des points des axes</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QSpinBox" name="spinBoxEpaisseurPointsAxes"/>
-      </item>
-      <item row="2" column="0">
        <widget class="QLabel" name="labelStylePointsAxes">
         <property name="text">
          <string>Style des points des axes</string>
         </property>
        </widget>
       </item>
-      <item row="2" column="1">
+      <item row="1" column="1">
        <widget class="QComboBox" name="comboBoxStylePointsAxes">
         <item>
          <property name="text">
@@ -163,6 +153,16 @@
          </property>
         </item>
        </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="labelEpaisseurPointsAxes">
+        <property name="text">
+         <string>Epaisseur des points des axes</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QSpinBox" name="spinBoxEpaisseurPointsAxes"/>
       </item>
      </layout>
     </widget>
@@ -188,23 +188,13 @@
        </widget>
       </item>
       <item row="1" column="0">
-       <widget class="QLabel" name="labelEpaisseurCourbes">
-        <property name="text">
-         <string>Epaisseur des courbes</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QSpinBox" name="spinBoxEpaisseurCourbes"/>
-      </item>
-      <item row="2" column="0">
        <widget class="QLabel" name="labelStyleCourbes">
         <property name="text">
          <string>Style des courbes</string>
         </property>
        </widget>
       </item>
-      <item row="2" column="1">
+      <item row="1" column="1">
        <widget class="QComboBox" name="comboBoxStyleCourbes">
         <item>
          <property name="text">
@@ -222,6 +212,16 @@
          </property>
         </item>
        </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="labelEpaisseurCourbes">
+        <property name="text">
+         <string>Epaisseur des courbes</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QSpinBox" name="spinBoxEpaisseurCourbes"/>
       </item>
      </layout>
     </widget>
@@ -247,23 +247,13 @@
        </widget>
       </item>
       <item row="1" column="0">
-       <widget class="QLabel" name="labelEpaisseurPointsCourbes">
-        <property name="text">
-         <string>Epaisseur des points des courbes</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QSpinBox" name="spinBoxEpaisseurPointsCourbes"/>
-      </item>
-      <item row="2" column="0">
        <widget class="QLabel" name="labelStylePointsCourbes">
         <property name="text">
          <string>Style des points des courbes</string>
         </property>
        </widget>
       </item>
-      <item row="2" column="1">
+      <item row="1" column="1">
        <widget class="QComboBox" name="comboBoxStylePointsCourbes">
         <item>
          <property name="text">
@@ -276,6 +266,16 @@
          </property>
         </item>
        </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="labelEpaisseurPointsCourbes">
+        <property name="text">
+         <string>Epaisseur des points des courbes</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QSpinBox" name="spinBoxEpaisseurPointsCourbes"/>
       </item>
      </layout>
     </widget>
@@ -301,23 +301,13 @@
        </widget>
       </item>
       <item row="1" column="0">
-       <widget class="QLabel" name="labelEpaisseurPointsManuels">
-        <property name="text">
-         <string>Epaisseur des points manuels</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QSpinBox" name="spinBoxEpaisseurPointsManuels"/>
-      </item>
-      <item row="2" column="0">
        <widget class="QLabel" name="labelStylePointsManuels">
         <property name="text">
          <string>Style des points manuels</string>
         </property>
        </widget>
       </item>
-      <item row="2" column="1">
+      <item row="1" column="1">
        <widget class="QComboBox" name="comboBoxStylePointsManuels">
         <item>
          <property name="text">
@@ -330,6 +320,16 @@
          </property>
         </item>
        </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="labelEpaisseurPointsManuels">
+        <property name="text">
+         <string>Epaisseur des points manuels</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QSpinBox" name="spinBoxEpaisseurPointsManuels"/>
       </item>
      </layout>
     </widget>
