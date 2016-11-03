@@ -48,27 +48,21 @@ void FenetreParametresExport::initialiserElementsGraphiques()
 void FenetreParametresExport::actualiserElementsGraphiques()
 {
     this->ui->comboBoxCaractereSeparation->setCurrentIndex(
-            this->parametresExport.getIndiceCaractereSeparation());
+            this->parametresExport.getCaractereSeparationIndice());
     this->ui->lineEditSeuilInterpolationNumerique->setText(
             QString::number(this->parametresExport.getSeuilInterpolationNumerique()));
     this->ui->comboBoxFormatNotationNombres->setCurrentIndex(
             this->parametresExport.getFormatNotationNombres());
     this->ui->comboBoxCaractereSeparateurDecimal->setCurrentIndex(
-            this->parametresExport.getIndiceCaractereSeparateurDecimal());
+            this->parametresExport.getCaractereSeparateurDecimalIndice());
     this->ui->spinBoxNombreDecimalesOuChiffresSignificatifs->setValue(
             this->parametresExport.getNombreChiffresSignificatifs());
 }
 
 void FenetreParametresExport::on_comboBoxCaractereSeparation_currentIndexChanged()
 {
-    this->parametresExport.setIndiceCaractereSeparation(
+    this->parametresExport.setCaractereSeparationIndice(
             this->ui->comboBoxCaractereSeparation->currentIndex());
-}
-
-void FenetreParametresExport::on_lineEditSeuilInterpolationNumerique_textChanged()
-{
-    this->parametresExport.setSeuilInterpolationNumerique(
-            this->ui->lineEditSeuilInterpolationNumerique->text().toDouble());
 }
 
 void FenetreParametresExport::on_comboBoxFormatNotationNombres_currentIndexChanged()
@@ -79,7 +73,7 @@ void FenetreParametresExport::on_comboBoxFormatNotationNombres_currentIndexChang
 
 void FenetreParametresExport::on_comboBoxCaractereSeparateurDecimal_currentIndexChanged()
 {
-    this->parametresExport.setIndiceCaractereSeparateurDecimal(
+    this->parametresExport.setCaractereSeparateurDecimalIndice(
             this->ui->comboBoxCaractereSeparateurDecimal->currentIndex());
 }
 
@@ -87,4 +81,10 @@ void FenetreParametresExport::on_spinBoxNombreDecimalesOuChiffresSignificatifs_v
 {
     this->parametresExport.setNombreChiffresSignificatifs(
             this->ui->spinBoxNombreDecimalesOuChiffresSignificatifs->value());
+}
+
+void FenetreParametresExport::on_lineEditSeuilInterpolationNumerique_textChanged()
+{
+    this->parametresExport.setSeuilInterpolationNumerique(
+            this->ui->lineEditSeuilInterpolationNumerique->text().toDouble());
 }

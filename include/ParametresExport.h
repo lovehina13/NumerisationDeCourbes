@@ -47,11 +47,11 @@ public:
 
     // Méthodes spécifiques
     char getFormatNotationNombresTexte() const;
-    int getIndiceCaractereSeparation() const;
-    int getIndiceCaractereSeparateurDecimal() const;
+    int getCaractereSeparationIndice() const;
+    int getCaractereSeparateurDecimalIndice() const;
     void setFormatNotationNombresTexte(const char& formatNotationNombresTexte);
-    void setIndiceCaractereSeparation(const int& indiceCaractereSeparation);
-    void setIndiceCaractereSeparateurDecimal(const int& indiceCaractereSeparateurDecimal);
+    void setCaractereSeparationIndice(const int& caractereSeparationIndice);
+    void setCaractereSeparateurDecimalIndice(const int& caractereSeparateurDecimalIndice);
 
     // Enumération des formats de notation des nombres
     enum formatsNotationNombres

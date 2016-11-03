@@ -156,6 +156,12 @@ const QString ParametresConversion::toString(const char& sep) const
     return toString;
 }
 
+QString ParametresConversion::getMethodeConversionTexte() const
+{
+    // TODO QString ParametresConversion::getMethodeConversionTexte() const
+    return QString();
+}
+
 double ParametresConversion::getSeuilNoirEtBlancFacteur() const
 {
     return (this->getSeuilNoirEtBlanc() / 256.0);
@@ -164,6 +170,12 @@ double ParametresConversion::getSeuilNoirEtBlancFacteur() const
 double ParametresConversion::getSeuilSaturationFacteur() const
 {
     return (this->getSeuilSaturation() / 256.0);
+}
+
+void ParametresConversion::setMethodeConversionTexte(const QString& methodeConversionTexte)
+{
+    // TODO void ParametresConversion::setMethodeConversionTexte(const QString& methodeConversionTexte)
+    Q_UNUSED(methodeConversionTexte);
 }
 
 void ParametresConversion::setSeuilNoirEtBlancFacteur(const double& seuilNoirEtBlancFacteur)

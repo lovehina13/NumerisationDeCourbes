@@ -47,19 +47,19 @@ protected slots:
     void on_spinBoxNombreDecimalesOuChiffresSignificatifs_valueChanged();
     void on_pushButtonCouleurAxes_clicked();
     void on_spinBoxEpaisseurAxes_valueChanged();
-    void on_comboBoxTypeAxes_currentIndexChanged();
+    void on_comboBoxStyleAxes_currentIndexChanged();
     void on_pushButtonCouleurCourbes_clicked();
     void on_spinBoxEpaisseurCourbes_valueChanged();
-    void on_comboBoxTypeCourbes_currentIndexChanged();
+    void on_comboBoxStyleCourbes_currentIndexChanged();
     void on_pushButtonCouleurPointsAxes_clicked();
     void on_spinBoxEpaisseurPointsAxes_valueChanged();
-    void on_comboBoxTypePointsAxes_currentIndexChanged();
+    void on_comboBoxStylePointsAxes_currentIndexChanged();
     void on_pushButtonCouleurPointsCourbes_clicked();
     void on_spinBoxEpaisseurPointsCourbes_valueChanged();
-    void on_comboBoxTypePointsCourbes_currentIndexChanged();
+    void on_comboBoxStylePointsCourbes_currentIndexChanged();
     void on_pushButtonCouleurPointsManuels_clicked();
     void on_spinBoxEpaisseurPointsManuels_valueChanged();
-    void on_comboBoxTypePointsManuels_currentIndexChanged();
+    void on_comboBoxStylePointsManuels_currentIndexChanged();
 
 private:
     // Attributs de classe

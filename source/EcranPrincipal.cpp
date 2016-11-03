@@ -213,6 +213,11 @@ void EcranPrincipal::exporterEtudeCourante()
     this->etude.exporterListeDePoints(cheminFichierExport);
 }
 
+void EcranPrincipal::exporterImageConvertieCourante()
+{
+    // TODO void EcranPrincipal::exporterImageConvertieCourante()
+}
+
 void EcranPrincipal::verifierEtatSauvegardeEtude()
 {
     if (this->etude.equals(this->etudeReference))
@@ -303,7 +308,7 @@ void EcranPrincipal::actualiserCoordonneesListeDePoints()
                 QString::number(point.getPointReelX()));
         QTableWidgetItem* itemPointReelY = new QTableWidgetItem(
                 QString::number(point.getPointReelY()));
-        QTableWidgetItem* itemTypePoint = new QTableWidgetItem(point.getTexteTypePoint());
+        QTableWidgetItem* itemTypePoint = new QTableWidgetItem(point.getTypePointTexte());
         this->ui->tableWidgetListePoints->setItem(itPoint, 0, itemPointPixelX);
         this->ui->tableWidgetListePoints->setItem(itPoint, 1, itemPointPixelY);
         this->ui->tableWidgetListePoints->setItem(itPoint, 2, itemPointReelX);
@@ -343,6 +348,11 @@ void EcranPrincipal::on_actionSauver_triggered()
 void EcranPrincipal::on_actionExporter_triggered()
 {
     this->exporterEtudeCourante();
+}
+
+void EcranPrincipal::on_actionImage_triggered()
+{
+    this->exporterImageConvertieCourante();
 }
 
 void EcranPrincipal::on_actionQuitter_triggered()

@@ -171,7 +171,7 @@ char ParametresExport::getFormatNotationNombresTexte() const
     return '\0';
 }
 
-int ParametresExport::getIndiceCaractereSeparation() const
+int ParametresExport::getCaractereSeparationIndice() const
 {
     const char& caractereSeparation = this->getCaractereSeparation();
     if (caractereSeparation == ' ')
@@ -189,7 +189,7 @@ int ParametresExport::getIndiceCaractereSeparation() const
     return -1;
 }
 
-int ParametresExport::getIndiceCaractereSeparateurDecimal() const
+int ParametresExport::getCaractereSeparateurDecimalIndice() const
 {
     const char& caractereSeparateurDecimal = this->getCaractereSeparateurDecimal();
     if (caractereSeparateurDecimal == '.')
@@ -215,30 +215,30 @@ void ParametresExport::setFormatNotationNombresTexte(const char& formatNotationN
     }
 }
 
-void ParametresExport::setIndiceCaractereSeparation(const int& indiceCaractereSeparation)
+void ParametresExport::setCaractereSeparationIndice(const int& caractereSeparationIndice)
 {
-    if (indiceCaractereSeparation == ESPACE)
+    if (caractereSeparationIndice == ESPACE)
     {
         this->setCaractereSeparation(' ');
     }
-    else if (indiceCaractereSeparation == TABULATION)
+    else if (caractereSeparationIndice == TABULATION)
     {
         this->setCaractereSeparation('\t');
     }
-    else if (indiceCaractereSeparation == POINT_VIRGULE)
+    else if (caractereSeparationIndice == POINT_VIRGULE)
     {
         this->setCaractereSeparation(';');
     }
 }
 
-void ParametresExport::setIndiceCaractereSeparateurDecimal(
-        const int& indiceCaractereSeparateurDecimal)
+void ParametresExport::setCaractereSeparateurDecimalIndice(
+        const int& caractereSeparateurDecimalIndice)
 {
-    if (indiceCaractereSeparateurDecimal == POINT)
+    if (caractereSeparateurDecimalIndice == POINT)
     {
         this->setCaractereSeparateurDecimal('.');
     }
-    else if (indiceCaractereSeparateurDecimal == VIRGULE)
+    else if (caractereSeparateurDecimalIndice == VIRGULE)
     {
         this->setCaractereSeparateurDecimal(',');
     }

@@ -52,7 +52,8 @@ public:
     const QString toString(const char& sep) const;
 
     // Méthodes spécifiques
-    const QString getTexteTypePoint() const;
+    QString getTypePointTexte() const;
+    void setTypePointTexte(const QString& typePointTexte);
     bool operator==(const Point& point) const;
 
     // Enumération des types de points

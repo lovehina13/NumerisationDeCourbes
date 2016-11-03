@@ -409,6 +409,7 @@
     <addaction name="actionCharger"/>
     <addaction name="actionSauver"/>
     <addaction name="actionExporter"/>
+    <addaction name="actionImage"/>
     <addaction name="separator"/>
     <addaction name="actionQuitter"/>
    </widget>
@@ -479,6 +480,18 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+E</string>
+   </property>
+  </action>
+  <action name="actionImage">
+   <property name="icon">
+    <iconset resource="../ressources/Ressources.qrc">
+     <normaloff>:/icones/iconeActionImage</normaloff>:/icones/iconeActionImage</iconset>
+   </property>
+   <property name="text">
+    <string>Exporter l'image convertie...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+I</string>
    </property>
   </action>
   <action name="actionQuitter">

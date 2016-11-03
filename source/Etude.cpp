@@ -244,13 +244,13 @@ QList<QPoint> Etude::rechercherCourbe(const QPoint& pointPixelDepart,
     this->listeDePointsDeRecherche.append(pointPixelDepart);
     const QRgb couleurReference = this->getImage().recupererCouleurPixel(pointPixelDepart);
     this->rechercherPointsProches(this->pointPixelDepart, couleurReference);
-    this->filterListeDePoints(this->listeDePointsDeRecherche);
+    this->filtrerListeDePoints(this->listeDePointsDeRecherche);
     return this->listeDePointsDeRecherche;
 }
 
 void Etude::rechercherPointsProches(const QPoint& pointPixel, const QRgb& couleurReference)
 {
-    const QList<QPoint> listeDePointsProches = this->recupererListeDePointsProches(pointPixel);
+    const QList<QPoint> listeDePointsProches = this->rechercherListeDePointsProches(pointPixel);
     const int nombreDePointsProches = listeDePointsProches.count();
     const int seuilToleranceNiveauxDeGris =
             this->getParametres().getParametresRecherche().getSeuilToleranceNiveauxDeGris();
@@ -273,7 +273,7 @@ void Etude::rechercherPointsProches(const QPoint& pointPixel, const QRgb& couleu
     }
 }
 
-QList<QPoint> Etude::recupererListeDePointsProches(const QPoint& pointPixel) const
+QList<QPoint> Etude::rechercherListeDePointsProches(const QPoint& pointPixel) const
 {
     QList<QPoint> listeDePointsProches;
     const Image& image = this->getImage();
@@ -355,8 +355,8 @@ int Etude::verifierToleranceTeintesSaturees(const QRgb& couleurCourante,
     return TEINTE_SATUREE_COMPATIBLE;
 }
 
-void Etude::filterListeDePoints(const QList<QPoint>& listeDePoints)
+void Etude::filtrerListeDePoints(const QList<QPoint>& listeDePoints)
 {
-    // TODO void Etude::filterListeDePoints(const QList<QPoint> listeDePoints)
+    // TODO void Etude::filtrerListeDePoints(const QList<QPoint> listeDePoints)
     Q_UNUSED(listeDePoints);
 }

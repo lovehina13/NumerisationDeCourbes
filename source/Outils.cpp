@@ -43,6 +43,43 @@ QStringList listeSousElements(const QString& chaineElements, const char& sep)
     return listeSousElements;
 }
 
+void interpolationNumerique(const double& x1, const double& y1, const double& x2, const double& y2,
+        const double& x, double& y)
+{
+    const double pente = (y2 - y1) / (x2 - x1);
+    y = pente * (x - x1) + y1;
+}
+
+void interpolationNumerique(const Point& point1, const Point& point2, Point& point)
+{
+    const double p1px = (double) point1.getPointPixelX();
+    const double p1py = (double) point1.getPointPixelY();
+    const double p2px = (double) point2.getPointPixelX();
+    const double p2py = (double) point2.getPointPixelY();
+    const double p1rx = point1.getPointReelX();
+    const double p1ry = point1.getPointReelY();
+    const double p2rx = point2.getPointReelX();
+    const double p2ry = point2.getPointReelY();
+
+    const double ppx = (double) point.getPointPixelX();
+    const double prx = point.getPointReelX();
+    double ppy = 0.0;
+    double pry = 0.0;
+    interpolationNumerique(p1px, p1py, p2px, p2py, ppx, ppy);
+    interpolationNumerique(p1rx, p1ry, p2rx, p2ry, prx, pry);
+    point.setPointPixelY((int) round(ppy));
+    point.setPointReelY(pry);
+}
+
+QList<Point> interpolationNumerique(const QList<Point>& listeDePoints,
+        const double& seuilInterpolationNumerique)
+{
+    // TODO QList<Point> interpolationNumerique(const QList<Point>& listeDePoints, const double& seuilInterpolationNumerique)
+    Q_UNUSED(listeDePoints);
+    Q_UNUSED(seuilInterpolationNumerique);
+    return QList<Point>();
+}
+
 void genererImageTest()
 {
     // Définition de l'image de test

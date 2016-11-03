@@ -167,7 +167,7 @@ const QString Point::toString(const char& sep) const
     return toString;
 }
 
-const QString Point::getTexteTypePoint() const
+QString Point::getTypePointTexte() const
 {
     const int& typePoint = this->getTypePoint();
     if (typePoint == INDEFINI)
@@ -195,6 +195,34 @@ const QString Point::getTexteTypePoint() const
         return QString::fromUtf8("Courbe fin");
     }
     return QString();
+}
+
+void Point::setTypePointTexte(const QString& typePointTexte)
+{
+    if (typePointTexte == QString::fromUtf8("Indéfini"))
+    {
+        this->setTypePoint(INDEFINI);
+    }
+    else if (typePointTexte == QString::fromUtf8("Repère"))
+    {
+        this->setTypePoint(REPERE);
+    }
+    else if (typePointTexte == QString::fromUtf8("Manuel"))
+    {
+        this->setTypePoint(MANUEL);
+    }
+    else if (typePointTexte == QString::fromUtf8("Courbe"))
+    {
+        this->setTypePoint(COURBE);
+    }
+    else if (typePointTexte == QString::fromUtf8("Courbe début"))
+    {
+        this->setTypePoint(COURBE_DEBUT);
+    }
+    else if (typePointTexte == QString::fromUtf8("Courbe fin"))
+    {
+        this->setTypePoint(COURBE_FIN);
+    }
 }
 
 bool Point::operator==(const Point& point) const

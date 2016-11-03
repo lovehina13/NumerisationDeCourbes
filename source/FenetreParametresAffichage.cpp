@@ -87,33 +87,33 @@ void FenetreParametresAffichage::actualiserElementsGraphiques()
     this->ui->pushButtonCouleurAxes->setPalette(paletteCouleurAxes);
     this->ui->spinBoxEpaisseurAxes->setValue(
             this->parametresAffichage.getParametresAxes().getEpaisseurTrait());
-    this->ui->comboBoxTypeAxes->setCurrentIndex(
+    this->ui->comboBoxStyleAxes->setCurrentIndex(
             this->parametresAffichage.getParametresAxes().getStyleTrait());
     this->ui->pushButtonCouleurCourbes->setText(QColor(couleurCourbes).name().toUpper());
     this->ui->pushButtonCouleurCourbes->setPalette(paletteCouleurCourbes);
     this->ui->spinBoxEpaisseurCourbes->setValue(
             this->parametresAffichage.getParametresCourbes().getEpaisseurTrait());
-    this->ui->comboBoxTypeCourbes->setCurrentIndex(
+    this->ui->comboBoxStyleCourbes->setCurrentIndex(
             this->parametresAffichage.getParametresCourbes().getStyleTrait());
     this->ui->pushButtonCouleurPointsAxes->setText(QColor(couleurPointsAxes).name().toUpper());
     this->ui->pushButtonCouleurPointsAxes->setPalette(paletteCouleurPointsAxes);
     this->ui->spinBoxEpaisseurPointsAxes->setValue(
             this->parametresAffichage.getParametresPointsAxes().getEpaisseurPoint());
-    this->ui->comboBoxTypePointsAxes->setCurrentIndex(
+    this->ui->comboBoxStylePointsAxes->setCurrentIndex(
             this->parametresAffichage.getParametresPointsAxes().getStylePoint());
     this->ui->pushButtonCouleurPointsCourbes->setText(
             QColor(couleurPointsCourbes).name().toUpper());
     this->ui->pushButtonCouleurPointsCourbes->setPalette(paletteCouleurPointsCourbes);
     this->ui->spinBoxEpaisseurPointsCourbes->setValue(
             this->parametresAffichage.getParametresPointsCourbes().getEpaisseurPoint());
-    this->ui->comboBoxTypePointsCourbes->setCurrentIndex(
+    this->ui->comboBoxStylePointsCourbes->setCurrentIndex(
             this->parametresAffichage.getParametresPointsCourbes().getStylePoint());
     this->ui->pushButtonCouleurPointsManuels->setText(
             QColor(couleurPointsManuels).name().toUpper());
     this->ui->pushButtonCouleurPointsManuels->setPalette(paletteCouleurPointsManuels);
     this->ui->spinBoxEpaisseurPointsManuels->setValue(
             this->parametresAffichage.getParametresPointsManuels().getEpaisseurPoint());
-    this->ui->comboBoxTypePointsManuels->setCurrentIndex(
+    this->ui->comboBoxStylePointsManuels->setCurrentIndex(
             this->parametresAffichage.getParametresPointsManuels().getStylePoint());
 }
 
@@ -148,10 +148,10 @@ void FenetreParametresAffichage::on_spinBoxEpaisseurAxes_valueChanged()
     this->parametresAffichage.setParametresAxes(parametresAxes);
 }
 
-void FenetreParametresAffichage::on_comboBoxTypeAxes_currentIndexChanged()
+void FenetreParametresAffichage::on_comboBoxStyleAxes_currentIndexChanged()
 {
     ParametresTrait parametresAxes = this->parametresAffichage.getParametresAxes();
-    parametresAxes.setStyleTrait(this->ui->comboBoxTypeAxes->currentIndex());
+    parametresAxes.setStyleTrait(this->ui->comboBoxStyleAxes->currentIndex());
     this->parametresAffichage.setParametresAxes(parametresAxes);
 }
 
@@ -174,10 +174,10 @@ void FenetreParametresAffichage::on_spinBoxEpaisseurCourbes_valueChanged()
     this->parametresAffichage.setParametresCourbes(parametresCourbes);
 }
 
-void FenetreParametresAffichage::on_comboBoxTypeCourbes_currentIndexChanged()
+void FenetreParametresAffichage::on_comboBoxStyleCourbes_currentIndexChanged()
 {
     ParametresTrait parametresCourbes = this->parametresAffichage.getParametresCourbes();
-    parametresCourbes.setStyleTrait(this->ui->comboBoxTypeCourbes->currentIndex());
+    parametresCourbes.setStyleTrait(this->ui->comboBoxStyleCourbes->currentIndex());
     this->parametresAffichage.setParametresCourbes(parametresCourbes);
 }
 
@@ -200,10 +200,10 @@ void FenetreParametresAffichage::on_spinBoxEpaisseurPointsAxes_valueChanged()
     this->parametresAffichage.setParametresPointsAxes(parametresPointsAxes);
 }
 
-void FenetreParametresAffichage::on_comboBoxTypePointsAxes_currentIndexChanged()
+void FenetreParametresAffichage::on_comboBoxStylePointsAxes_currentIndexChanged()
 {
     ParametresPoint parametresPointsAxes = this->parametresAffichage.getParametresPointsAxes();
-    parametresPointsAxes.setStylePoint(this->ui->comboBoxTypePointsAxes->currentIndex());
+    parametresPointsAxes.setStylePoint(this->ui->comboBoxStylePointsAxes->currentIndex());
     this->parametresAffichage.setParametresPointsAxes(parametresPointsAxes);
 }
 
@@ -228,11 +228,11 @@ void FenetreParametresAffichage::on_spinBoxEpaisseurPointsCourbes_valueChanged()
     this->parametresAffichage.setParametresPointsCourbes(parametresPointsCourbes);
 }
 
-void FenetreParametresAffichage::on_comboBoxTypePointsCourbes_currentIndexChanged()
+void FenetreParametresAffichage::on_comboBoxStylePointsCourbes_currentIndexChanged()
 {
     ParametresPoint parametresPointsCourbes =
             this->parametresAffichage.getParametresPointsCourbes();
-    parametresPointsCourbes.setStylePoint(this->ui->comboBoxTypePointsCourbes->currentIndex());
+    parametresPointsCourbes.setStylePoint(this->ui->comboBoxStylePointsCourbes->currentIndex());
     this->parametresAffichage.setParametresPointsCourbes(parametresPointsCourbes);
 }
 
@@ -257,10 +257,10 @@ void FenetreParametresAffichage::on_spinBoxEpaisseurPointsManuels_valueChanged()
     this->parametresAffichage.setParametresPointsManuels(parametresPointsManuels);
 }
 
-void FenetreParametresAffichage::on_comboBoxTypePointsManuels_currentIndexChanged()
+void FenetreParametresAffichage::on_comboBoxStylePointsManuels_currentIndexChanged()
 {
     ParametresPoint parametresPointsManuels =
             this->parametresAffichage.getParametresPointsManuels();
-    parametresPointsManuels.setStylePoint(this->ui->comboBoxTypePointsManuels->currentIndex());
+    parametresPointsManuels.setStylePoint(this->ui->comboBoxStylePointsManuels->currentIndex());
     this->parametresAffichage.setParametresPointsManuels(parametresPointsManuels);
 }

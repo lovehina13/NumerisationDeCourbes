@@ -71,12 +71,12 @@ public:
 protected:
     // Méthodes spécifiques
     void rechercherPointsProches(const QPoint& pointPixel, const QRgb& couleurReference);
-    QList<QPoint> recupererListeDePointsProches(const QPoint& pointPixel) const;
+    QList<QPoint> rechercherListeDePointsProches(const QPoint& pointPixel) const;
     int verifierToleranceNiveauxDeGris(const QRgb& couleurCourante, const QRgb& couleurReference,
             const int& seuilToleranceNiveauxDeGris) const;
     int verifierToleranceTeintesSaturees(const QRgb& couleurCourante, const QRgb& couleurReference,
             const int& seuilToleranceTeintesSaturees) const;
-    void filterListeDePoints(const QList<QPoint>& listeDePoints);
+    void filtrerListeDePoints(const QList<QPoint>& listeDePoints);
 
 private:
     // Attributs de classe

@@ -85,14 +85,14 @@
        <widget class="QSpinBox" name="spinBoxEpaisseurAxes"/>
       </item>
       <item row="2" column="0">
-       <widget class="QLabel" name="labelTypeAxes">
+       <widget class="QLabel" name="labelStyleAxes">
         <property name="text">
-         <string>Type des axes</string>
+         <string>Style des axes</string>
         </property>
        </widget>
       </item>
       <item row="2" column="1">
-       <widget class="QComboBox" name="comboBoxTypeAxes">
+       <widget class="QComboBox" name="comboBoxStyleAxes">
         <item>
          <property name="text">
           <string>Ligne</string>
@@ -144,14 +144,14 @@
        <widget class="QSpinBox" name="spinBoxEpaisseurPointsAxes"/>
       </item>
       <item row="2" column="0">
-       <widget class="QLabel" name="labelTypePointsAxes">
+       <widget class="QLabel" name="labelStylePointsAxes">
         <property name="text">
-         <string>Type des points des axes</string>
+         <string>Style des points des axes</string>
         </property>
        </widget>
       </item>
       <item row="2" column="1">
-       <widget class="QComboBox" name="comboBoxTypePointsAxes">
+       <widget class="QComboBox" name="comboBoxStylePointsAxes">
         <item>
          <property name="text">
           <string>Carré</string>
@@ -198,14 +198,14 @@
        <widget class="QSpinBox" name="spinBoxEpaisseurCourbes"/>
       </item>
       <item row="2" column="0">
-       <widget class="QLabel" name="labelTypeCourbes">
+       <widget class="QLabel" name="labelStyleCourbes">
         <property name="text">
-         <string>Type des courbes</string>
+         <string>Style des courbes</string>
         </property>
        </widget>
       </item>
       <item row="2" column="1">
-       <widget class="QComboBox" name="comboBoxTypeCourbes">
+       <widget class="QComboBox" name="comboBoxStyleCourbes">
         <item>
          <property name="text">
           <string>Ligne</string>
@@ -257,14 +257,14 @@
        <widget class="QSpinBox" name="spinBoxEpaisseurPointsCourbes"/>
       </item>
       <item row="2" column="0">
-       <widget class="QLabel" name="labelTypePointsCourbes">
+       <widget class="QLabel" name="labelStylePointsCourbes">
         <property name="text">
-         <string>Type des points des courbes</string>
+         <string>Style des points des courbes</string>
         </property>
        </widget>
       </item>
       <item row="2" column="1">
-       <widget class="QComboBox" name="comboBoxTypePointsCourbes">
+       <widget class="QComboBox" name="comboBoxStylePointsCourbes">
         <item>
          <property name="text">
           <string>Carré</string>
@@ -311,14 +311,14 @@
        <widget class="QSpinBox" name="spinBoxEpaisseurPointsManuels"/>
       </item>
       <item row="2" column="0">
-       <widget class="QLabel" name="labelTypePointsManuels">
+       <widget class="QLabel" name="labelStylePointsManuels">
         <property name="text">
-         <string>Type des points manuels</string>
+         <string>Style des points manuels</string>
         </property>
        </widget>
       </item>
       <item row="2" column="1">
-       <widget class="QComboBox" name="comboBoxTypePointsManuels">
+       <widget class="QComboBox" name="comboBoxStylePointsManuels">
         <item>
          <property name="text">
           <string>Carré</string>

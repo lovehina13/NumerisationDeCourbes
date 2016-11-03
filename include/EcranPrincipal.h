@@ -43,6 +43,7 @@ protected:
     void chargerEtudeExistante();
     void sauverEtudeCourante();
     void exporterEtudeCourante();
+    void exporterImageConvertieCourante();
     void verifierEtatSauvegardeEtude();
     void actualiserEtudeReference();
     void actualiserCoordonneesPoints();
@@ -59,6 +60,7 @@ protected slots:
     void on_actionCharger_triggered();
     void on_actionSauver_triggered();
     void on_actionExporter_triggered();
+    void on_actionImage_triggered();
     void on_actionQuitter_triggered();
     void on_actionParametresAffichage_triggered();
     void on_actionParametresConversion_triggered();

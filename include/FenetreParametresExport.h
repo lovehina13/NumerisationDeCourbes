@@ -44,10 +44,10 @@ protected:
 protected slots:
     // Connecteurs spécifiques
     void on_comboBoxCaractereSeparation_currentIndexChanged();
-    void on_lineEditSeuilInterpolationNumerique_textChanged();
     void on_comboBoxFormatNotationNombres_currentIndexChanged();
     void on_comboBoxCaractereSeparateurDecimal_currentIndexChanged();
     void on_spinBoxNombreDecimalesOuChiffresSignificatifs_valueChanged();
+    void on_lineEditSeuilInterpolationNumerique_textChanged();
 
 private:
     // Attributs de classe
