@@ -56,8 +56,6 @@ void FenetreParametresAffichage::initialiserElementsGraphiques()
 
 void FenetreParametresAffichage::actualiserElementsGraphiques()
 {
-    // TODO Gestion de la couleur des boutons sous Microsoft Windows
-
     const QRgb& couleurAxes = this->parametresAffichage.getParametresAxes().getCouleurTrait();
     const QRgb& couleurCourbes = this->parametresAffichage.getParametresCourbes().getCouleurTrait();
     const QRgb& couleurPointsAxes =
@@ -67,50 +65,47 @@ void FenetreParametresAffichage::actualiserElementsGraphiques()
     const QRgb& couleurPointsManuels =
             this->parametresAffichage.getParametresPointsManuels().getCouleurPoint();
 
-    QPalette paletteCouleurAxes = this->ui->pushButtonCouleurAxes->palette();
-    QPalette paletteCouleurCourbes = this->ui->pushButtonCouleurCourbes->palette();
-    QPalette paletteCouleurPointsAxes = this->ui->pushButtonCouleurPointsAxes->palette();
-    QPalette paletteCouleurPointsCourbes = this->ui->pushButtonCouleurPointsCourbes->palette();
-    QPalette paletteCouleurPointsManuels = this->ui->pushButtonCouleurPointsManuels->palette();
-
-    paletteCouleurAxes.setColor(QPalette::Base, QColor(couleurAxes));
-    paletteCouleurCourbes.setColor(QPalette::Base, QColor(couleurCourbes));
-    paletteCouleurPointsAxes.setColor(QPalette::Base, QColor(couleurPointsAxes));
-    paletteCouleurPointsCourbes.setColor(QPalette::Base, QColor(couleurPointsCourbes));
-    paletteCouleurPointsManuels.setColor(QPalette::Base, QColor(couleurPointsManuels));
+    const QString texteCouleurAxes = QColor(couleurAxes).name().toUpper();
+    const QString texteCouleurCourbes = QColor(couleurCourbes).name().toUpper();
+    const QString texteCouleurPointsAxes = QColor(couleurPointsAxes).name().toUpper();
+    const QString texteCouleurPointsCourbes = QColor(couleurPointsCourbes).name().toUpper();
+    const QString texteCouleurPointsManuels = QColor(couleurPointsManuels).name().toUpper();
 
     this->ui->comboBoxFormatNotationNombres->setCurrentIndex(
             this->parametresAffichage.getFormatNotationNombres());
     this->ui->spinBoxNombreDecimalesOuChiffresSignificatifs->setValue(
             this->parametresAffichage.getNombreChiffresSignificatifs());
-    this->ui->pushButtonCouleurAxes->setText(QColor(couleurAxes).name().toUpper());
-    this->ui->pushButtonCouleurAxes->setPalette(paletteCouleurAxes);
+    this->ui->pushButtonCouleurAxes->setText(texteCouleurAxes);
+    this->ui->pushButtonCouleurAxes->setStyleSheet(
+            QString("background-color: %1").arg(texteCouleurAxes));
     this->ui->spinBoxEpaisseurAxes->setValue(
             this->parametresAffichage.getParametresAxes().getEpaisseurTrait());
     this->ui->comboBoxStyleAxes->setCurrentIndex(
             this->parametresAffichage.getParametresAxes().getStyleTrait());
-    this->ui->pushButtonCouleurCourbes->setText(QColor(couleurCourbes).name().toUpper());
-    this->ui->pushButtonCouleurCourbes->setPalette(paletteCouleurCourbes);
+    this->ui->pushButtonCouleurCourbes->setText(texteCouleurCourbes);
+    this->ui->pushButtonCouleurCourbes->setStyleSheet(
+            QString("background-color: %1").arg(texteCouleurCourbes));
     this->ui->spinBoxEpaisseurCourbes->setValue(
             this->parametresAffichage.getParametresCourbes().getEpaisseurTrait());
     this->ui->comboBoxStyleCourbes->setCurrentIndex(
             this->parametresAffichage.getParametresCourbes().getStyleTrait());
-    this->ui->pushButtonCouleurPointsAxes->setText(QColor(couleurPointsAxes).name().toUpper());
-    this->ui->pushButtonCouleurPointsAxes->setPalette(paletteCouleurPointsAxes);
+    this->ui->pushButtonCouleurPointsAxes->setText(texteCouleurPointsAxes);
+    this->ui->pushButtonCouleurPointsAxes->setStyleSheet(
+            QString("background-color: %1").arg(texteCouleurPointsAxes));
     this->ui->spinBoxEpaisseurPointsAxes->setValue(
             this->parametresAffichage.getParametresPointsAxes().getEpaisseurPoint());
     this->ui->comboBoxStylePointsAxes->setCurrentIndex(
             this->parametresAffichage.getParametresPointsAxes().getStylePoint());
-    this->ui->pushButtonCouleurPointsCourbes->setText(
-            QColor(couleurPointsCourbes).name().toUpper());
-    this->ui->pushButtonCouleurPointsCourbes->setPalette(paletteCouleurPointsCourbes);
+    this->ui->pushButtonCouleurPointsCourbes->setText(texteCouleurPointsCourbes);
+    this->ui->pushButtonCouleurPointsCourbes->setStyleSheet(
+            QString("background-color: %1").arg(texteCouleurPointsCourbes));
     this->ui->spinBoxEpaisseurPointsCourbes->setValue(
             this->parametresAffichage.getParametresPointsCourbes().getEpaisseurPoint());
     this->ui->comboBoxStylePointsCourbes->setCurrentIndex(
             this->parametresAffichage.getParametresPointsCourbes().getStylePoint());
-    this->ui->pushButtonCouleurPointsManuels->setText(
-            QColor(couleurPointsManuels).name().toUpper());
-    this->ui->pushButtonCouleurPointsManuels->setPalette(paletteCouleurPointsManuels);
+    this->ui->pushButtonCouleurPointsManuels->setText(texteCouleurPointsManuels);
+    this->ui->pushButtonCouleurPointsManuels->setStyleSheet(
+            QString("background-color: %1").arg(texteCouleurPointsManuels));
     this->ui->spinBoxEpaisseurPointsManuels->setValue(
             this->parametresAffichage.getParametresPointsManuels().getEpaisseurPoint());
     this->ui->comboBoxStylePointsManuels->setCurrentIndex(
