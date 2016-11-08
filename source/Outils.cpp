@@ -104,8 +104,7 @@ void genererImageTest()
     {
         for (int y = 0; y < hauteurSpectre; y++)
         {
-            int valeurGris = (int) round(x * (256.0 / largeurSpectre));
-            valeurGris = (valeurGris < 0) ? 0 : (valeurGris > 255) ? 255 : valeurGris;
+            int valeurGris = (int) round(x * (255.0 / largeurSpectre));
             couleurGris.setRgb(valeurGris, valeurGris, valeurGris);
             imageTest.setPixel(x + 20, y + 20, couleurGris.rgb());
         }
@@ -117,9 +116,7 @@ void genererImageTest()
     {
         for (int y = 0; y < hauteurSpectre; y++)
         {
-            int valeurSaturation = (int) round(x * (256.0 / largeurSpectre));
-            valeurSaturation = (valeurSaturation < 0) ? 0 :
-                               (valeurSaturation > 255) ? 255 : valeurSaturation;
+            int valeurSaturation = (int) round(x * (255.0 / largeurSpectre));
             couleurSaturation = QColor::fromHsv(couleurSaturation.hue(), valeurSaturation, 255);
             imageTest.setPixel(x + 20, y + 90, couleurSaturation.rgb());
         }
@@ -131,9 +128,7 @@ void genererImageTest()
     {
         for (int y = 0; y < hauteurSpectre; y++)
         {
-            int valeurBrillance = (int) round(x * (256.0 / largeurSpectre));
-            valeurBrillance = (valeurBrillance < 0) ? 0 :
-                              (valeurBrillance > 255) ? 255 : valeurBrillance;
+            int valeurBrillance = (int) round(x * (255.0 / largeurSpectre));
             couleurBrillance = QColor::fromHsv(couleurBrillance.hue(), 255, valeurBrillance);
             imageTest.setPixel(x + 20, y + 160, couleurBrillance.rgb());
         }

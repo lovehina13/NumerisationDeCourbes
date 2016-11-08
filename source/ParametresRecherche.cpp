@@ -162,7 +162,7 @@ const QString ParametresRecherche::toString(const char& sep) const
 
 double ParametresRecherche::getSeuilToleranceNiveauxDeGrisFacteur() const
 {
-    return (this->getSeuilToleranceNiveauxDeGris() / 256.0);
+    return (this->getSeuilToleranceNiveauxDeGris() / 255.0);
 }
 
 double ParametresRecherche::getSeuilToleranceTeintesSatureesFacteur() const
@@ -173,7 +173,7 @@ double ParametresRecherche::getSeuilToleranceTeintesSatureesFacteur() const
 void ParametresRecherche::setSeuilToleranceNiveauxDeGrisFacteur(
         const double& seuilToleranceNiveauxDeGrisFacteur)
 {
-    this->setSeuilToleranceNiveauxDeGris((int) round(seuilToleranceNiveauxDeGrisFacteur * 256.0));
+    this->setSeuilToleranceNiveauxDeGris((int) round(seuilToleranceNiveauxDeGrisFacteur * 255.0));
 }
 
 void ParametresRecherche::setSeuilToleranceTeintesSatureesFacteur(

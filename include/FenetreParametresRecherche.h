@@ -43,8 +43,10 @@ protected:
 
 protected slots:
     // Connecteurs spécifiques
-    void on_doubleSpinBoxSeuilToleranceNiveauxDeGris_valueChanged();
-    void on_doubleSpinBoxSeuilToleranceTeintesSaturees_valueChanged();
+    void on_spinBoxSeuilToleranceNiveauxDeGris_valueChanged();
+    void on_doubleSpinBoxSeuilToleranceNiveauxDeGrisFacteur_valueChanged();
+    void on_spinBoxSeuilToleranceTeintesSaturees_valueChanged();
+    void on_doubleSpinBoxSeuilToleranceTeintesSatureesFacteur_valueChanged();
     void on_checkBoxSelectionValeursMoyennes_stateChanged();
     void on_checkBoxSelectionValeursMinimales_stateChanged();
     void on_checkBoxSelectionValeursMaximales_stateChanged();

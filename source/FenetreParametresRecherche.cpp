@@ -36,18 +36,26 @@ void FenetreParametresRecherche::setParametresRecherche(
 
 void FenetreParametresRecherche::initialiserElementsGraphiques()
 {
-    this->ui->doubleSpinBoxSeuilToleranceNiveauxDeGris->setMinimum(0);
-    this->ui->doubleSpinBoxSeuilToleranceNiveauxDeGris->setMaximum(100);
-    this->ui->doubleSpinBoxSeuilToleranceTeintesSaturees->setMinimum(0);
-    this->ui->doubleSpinBoxSeuilToleranceTeintesSaturees->setMaximum(100);
+    this->ui->spinBoxSeuilToleranceNiveauxDeGris->setMinimum(0);
+    this->ui->spinBoxSeuilToleranceNiveauxDeGris->setMaximum(255);
+    this->ui->doubleSpinBoxSeuilToleranceNiveauxDeGrisFacteur->setMinimum(0.0);
+    this->ui->doubleSpinBoxSeuilToleranceNiveauxDeGrisFacteur->setMaximum(100.0);
+    this->ui->spinBoxSeuilToleranceTeintesSaturees->setMinimum(0);
+    this->ui->spinBoxSeuilToleranceTeintesSaturees->setMaximum(255);
+    this->ui->doubleSpinBoxSeuilToleranceTeintesSatureesFacteur->setMinimum(0.0);
+    this->ui->doubleSpinBoxSeuilToleranceTeintesSatureesFacteur->setMaximum(100.0);
     this->ui->buttonBox->button(QDialogButtonBox::Cancel)->setText("Annuler");
 }
 
 void FenetreParametresRecherche::actualiserElementsGraphiques()
 {
-    this->ui->doubleSpinBoxSeuilToleranceNiveauxDeGris->setValue(
+    this->ui->spinBoxSeuilToleranceNiveauxDeGris->setValue(
+            this->parametresRecherche.getSeuilToleranceNiveauxDeGris());
+    this->ui->doubleSpinBoxSeuilToleranceNiveauxDeGrisFacteur->setValue(
             this->parametresRecherche.getSeuilToleranceNiveauxDeGrisFacteur() * 100.0);
-    this->ui->doubleSpinBoxSeuilToleranceTeintesSaturees->setValue(
+    this->ui->spinBoxSeuilToleranceTeintesSaturees->setValue(
+            this->parametresRecherche.getSeuilToleranceTeintesSaturees());
+    this->ui->doubleSpinBoxSeuilToleranceTeintesSatureesFacteur->setValue(
             this->parametresRecherche.getSeuilToleranceTeintesSatureesFacteur() * 100.0);
     this->ui->checkBoxSelectionValeursMoyennes->setChecked(
             this->parametresRecherche.getSelectionValeursMoyennes());
@@ -57,16 +65,44 @@ void FenetreParametresRecherche::actualiserElementsGraphiques()
             this->parametresRecherche.getSelectionValeursMaximales());
 }
 
-void FenetreParametresRecherche::on_doubleSpinBoxSeuilToleranceNiveauxDeGris_valueChanged()
+void FenetreParametresRecherche::on_spinBoxSeuilToleranceNiveauxDeGris_valueChanged()
 {
-    this->parametresRecherche.setSeuilToleranceNiveauxDeGrisFacteur(
-            this->ui->doubleSpinBoxSeuilToleranceNiveauxDeGris->value() / 100.0);
+    this->parametresRecherche.setSeuilToleranceNiveauxDeGris(
+            this->ui->spinBoxSeuilToleranceNiveauxDeGris->value());
+    this->ui->doubleSpinBoxSeuilToleranceNiveauxDeGrisFacteur->blockSignals(true);
+    this->ui->doubleSpinBoxSeuilToleranceNiveauxDeGrisFacteur->setValue(
+            this->parametresRecherche.getSeuilToleranceNiveauxDeGrisFacteur() * 100.0);
+    this->ui->doubleSpinBoxSeuilToleranceNiveauxDeGrisFacteur->blockSignals(false);
 }
 
-void FenetreParametresRecherche::on_doubleSpinBoxSeuilToleranceTeintesSaturees_valueChanged()
+void FenetreParametresRecherche::on_doubleSpinBoxSeuilToleranceNiveauxDeGrisFacteur_valueChanged()
+{
+    this->parametresRecherche.setSeuilToleranceNiveauxDeGrisFacteur(
+            this->ui->doubleSpinBoxSeuilToleranceNiveauxDeGrisFacteur->value() / 100.0);
+    this->ui->spinBoxSeuilToleranceNiveauxDeGris->blockSignals(true);
+    this->ui->spinBoxSeuilToleranceNiveauxDeGris->setValue(
+            this->parametresRecherche.getSeuilToleranceNiveauxDeGris());
+    this->ui->spinBoxSeuilToleranceNiveauxDeGris->blockSignals(false);
+}
+
+void FenetreParametresRecherche::on_spinBoxSeuilToleranceTeintesSaturees_valueChanged()
+{
+    this->parametresRecherche.setSeuilToleranceTeintesSaturees(
+            this->ui->spinBoxSeuilToleranceTeintesSaturees->value());
+    this->ui->doubleSpinBoxSeuilToleranceTeintesSatureesFacteur->blockSignals(true);
+    this->ui->doubleSpinBoxSeuilToleranceTeintesSatureesFacteur->setValue(
+            this->parametresRecherche.getSeuilToleranceTeintesSatureesFacteur() * 100.0);
+    this->ui->doubleSpinBoxSeuilToleranceTeintesSatureesFacteur->blockSignals(false);
+}
+
+void FenetreParametresRecherche::on_doubleSpinBoxSeuilToleranceTeintesSatureesFacteur_valueChanged()
 {
     this->parametresRecherche.setSeuilToleranceTeintesSatureesFacteur(
-            this->ui->doubleSpinBoxSeuilToleranceTeintesSaturees->value() / 100.0);
+            this->ui->doubleSpinBoxSeuilToleranceTeintesSatureesFacteur->value() / 100.0);
+    this->ui->spinBoxSeuilToleranceTeintesSaturees->blockSignals(true);
+    this->ui->spinBoxSeuilToleranceTeintesSaturees->setValue(
+            this->parametresRecherche.getSeuilToleranceTeintesSaturees());
+    this->ui->spinBoxSeuilToleranceTeintesSaturees->blockSignals(false);
 }
 
 void FenetreParametresRecherche::on_checkBoxSelectionValeursMoyennes_stateChanged()

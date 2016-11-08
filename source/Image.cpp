@@ -191,7 +191,7 @@ void Image::convertirImage(const int& methodeConversion, const int& seuilNoirEtB
 
 double Image::getPasNiveauxDeGris(const int& nombreNiveauxDeGris) const
 {
-    return 256.0 / (double) (nombreNiveauxDeGris - 1);
+    return 255.0 / (double) (nombreNiveauxDeGris - 1);
 }
 
 double Image::getPasTeintesSaturees(const int& nombreTeintesSaturees) const
@@ -205,9 +205,7 @@ QList<QRgb> Image::getListeNiveauxDeGris(const int& nombreNiveauxDeGris) const
     const double pasNiveauxDeGris = this->getPasNiveauxDeGris(nombreNiveauxDeGris);
     for (int itNiveauDeGris = 0; itNiveauDeGris < nombreNiveauxDeGris; itNiveauDeGris++)
     {
-        const int valeurGrisBrute = (int) round((double) itNiveauDeGris * pasNiveauxDeGris);
-        const int valeurGris = (valeurGrisBrute < 0) ? 0 :
-                               (valeurGrisBrute > 255) ? 255 : valeurGrisBrute;
+        const int valeurGris = (int) round((double) itNiveauDeGris * pasNiveauxDeGris);
         QRgb niveauDeGris = QColor::fromRgb(valeurGris, valeurGris, valeurGris).rgb();
         listeNiveauxDeGris.append(niveauDeGris);
     }
