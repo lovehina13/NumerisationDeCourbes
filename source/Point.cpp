@@ -9,7 +9,12 @@
 #include "Outils.h"
 #include <QStringList>
 
-const QMap<int, QString> Point::typesPointsTexte = { }; // TODO
+const QMap<int, QString> Point::typesPointsTexte = QMap<int, QString>(
+        std::map<int, QString> { { INDEFINI, QString::fromUtf8("Indéfini") }, { REPERE,
+                QString::fromUtf8("Repère") }, { MANUEL, QString::fromUtf8("Manuel") }, { COURBE,
+                QString::fromUtf8("Courbe") },
+                { COURBE_DEBUT, QString::fromUtf8("Début de courbe") }, { COURBE_FIN,
+                        QString::fromUtf8("Fin de courbe") } });
 
 Point::Point() :
         typePoint(INDEFINI)

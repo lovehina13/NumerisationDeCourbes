@@ -15,12 +15,21 @@ const char ParametresExport::caractereSeparationDefaut = '\t';
 const char ParametresExport::caractereSeparateurDecimalDefaut = '.';
 const double ParametresExport::seuilInterpolationNumeriqueDefaut = 0.0;
 
-const QMap<int, char> ParametresExport::formatsNotationNombresCaractere = { }; // TODO
-const QMap<int, QString> ParametresExport::formatsNotationNombresTexte = { }; // TODO
-const QMap<char, int> ParametresExport::caracteresSeparationIndice = { }; // TODO
-const QMap<char, QString> ParametresExport::caracteresSeparationTexte = { }; // TODO
-const QMap<char, int> ParametresExport::caracteresSeparateurDecimalIndice = { }; // TODO
-const QMap<char, QString> ParametresExport::caracteresSeparateurDecimalTexte = { }; // TODO
+const QMap<int, char> ParametresExport::formatsNotationNombresCaractere = QMap<int, char>(
+        std::map<int, char> { { STANDARD, 'f' }, { SCIENTIFIQUE, 'e' } });
+const QMap<int, QString> ParametresExport::formatsNotationNombresTexte = QMap<int, QString>(
+        std::map<int, QString> { { STANDARD, QString::fromUtf8("Standard") }, { SCIENTIFIQUE,
+                QString::fromUtf8("Scientifique") } });
+const QMap<char, int> ParametresExport::caracteresSeparationIndice = QMap<char, int>(
+        std::map<char, int> { { ' ', ESPACE }, { '\t', TABULATION }, { ';', POINT_VIRGULE } });
+const QMap<char, QString> ParametresExport::caracteresSeparationTexte = QMap<char, QString>(
+        std::map<char, QString> { { ' ', QString::fromUtf8("Espace") }, { '\t', QString::fromUtf8(
+                "Tabulation") }, { ';', QString::fromUtf8("Point-virgule") } });
+const QMap<char, int> ParametresExport::caracteresSeparateurDecimalIndice = QMap<char, int>(
+        std::map<char, int> { { '.', POINT }, { ',', VIRGULE } });
+const QMap<char, QString> ParametresExport::caracteresSeparateurDecimalTexte = QMap<char, QString>(
+        std::map<char, QString> { { '.', QString::fromUtf8("Point") }, { ',', QString::fromUtf8(
+                "Virgule") } });
 
 ParametresExport::ParametresExport() :
         formatNotationNombres(formatNotationNombresDefaut),

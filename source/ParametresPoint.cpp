@@ -17,7 +17,9 @@ const QRgb ParametresPoint::couleurPointAxeDefaut = QColor(Qt::red).rgb();
 const QRgb ParametresPoint::couleurPointCourbeDefaut = QColor(Qt::blue).rgb();
 const QRgb ParametresPoint::couleurPointManuelDefaut = QColor(Qt::green).rgb();
 
-const QMap<int, QString> ParametresPoint::stylesPointsTexte = { }; // TODO
+const QMap<int, QString> ParametresPoint::stylesPointsTexte = QMap<int, QString>(
+        std::map<int, QString> { { CARRE, QString::fromUtf8("Carré") }, { CERCLE, QString::fromUtf8(
+                "Cercle") } });
 
 ParametresPoint::ParametresPoint() :
         stylePoint(stylePointDefaut), epaisseurPoint(epaisseurPointDefaut),

@@ -16,7 +16,12 @@ const int ParametresConversion::nombreNiveauxDeGrisDefaut = 5;
 const int ParametresConversion::nombreTeintesSatureesDefaut = 6;
 const int ParametresConversion::seuilSaturationDefaut = 32;
 
-const QMap<int, QString> ParametresConversion::methodesConversionTexte = { }; // TODO
+const QMap<int, QString> ParametresConversion::methodesConversionTexte =
+        QMap<int, QString>(
+                std::map<int, QString> { { BRUTE, QString::fromUtf8("Brute") }, { NOIR_ET_BLANC,
+                        QString::fromUtf8("Noir et blanc") }, { NIVEAUX_DE_GRIS, QString::fromUtf8(
+                        "Niveaux de gris") }, { TEINTES_SATUREES, QString::fromUtf8(
+                        "Teintes saturées") } });
 
 ParametresConversion::ParametresConversion() :
         methodeConversion(methodeConversionDefaut), seuilNoirEtBlanc(seuilNoirEtBlancDefaut),

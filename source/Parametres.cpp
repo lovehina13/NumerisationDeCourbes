@@ -44,7 +44,7 @@ const ParametresAffichage& Parametres::getParametresAffichage() const
     return this->parametresAffichage;
 }
 
-const ParametresConversion& Parametres::Parametres::getParametresConversion() const
+const ParametresConversion& Parametres::getParametresConversion() const
 {
     return this->parametresConversion;
 }
