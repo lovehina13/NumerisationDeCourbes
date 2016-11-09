@@ -42,7 +42,7 @@ protected:
     void creerNouvelleEtude();
     void chargerEtudeExistante();
     void sauverEtudeCourante();
-    void exporterEtudeCourante();
+    void exporterListeDePointsCourante();
     void exporterImageConvertieCourante();
     void verifierEtatSauvegardeEtude();
     void actualiserEtudeReference();
@@ -56,11 +56,11 @@ protected:
 
 protected slots:
     // Connecteurs spécifiques
-    void on_actionCreer_triggered();
-    void on_actionCharger_triggered();
-    void on_actionSauver_triggered();
-    void on_actionExporter_triggered();
-    void on_actionImage_triggered();
+    void on_actionCreerEtude_triggered();
+    void on_actionChargerEtude_triggered();
+    void on_actionSauverEtude_triggered();
+    void on_actionExporterListePoints_triggered();
+    void on_actionExporterImage_triggered();
     void on_actionQuitter_triggered();
     void on_actionParametresAffichage_triggered();
     void on_actionParametresConversion_triggered();

@@ -405,11 +405,11 @@
     <property name="title">
      <string>Fichier</string>
     </property>
-    <addaction name="actionCreer"/>
-    <addaction name="actionCharger"/>
-    <addaction name="actionSauver"/>
-    <addaction name="actionExporter"/>
-    <addaction name="actionImage"/>
+    <addaction name="actionCreerEtude"/>
+    <addaction name="actionChargerEtude"/>
+    <addaction name="actionSauverEtude"/>
+    <addaction name="actionExporterListePoints"/>
+    <addaction name="actionExporterImage"/>
     <addaction name="separator"/>
     <addaction name="actionQuitter"/>
    </widget>
@@ -434,10 +434,10 @@
    <addaction name="menuInformations"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
-  <action name="actionCreer">
+  <action name="actionCreerEtude">
    <property name="icon">
     <iconset resource="../ressources/Ressources.qrc">
-     <normaloff>:/icones/iconeActionCreer</normaloff>:/icones/iconeActionCreer</iconset>
+     <normaloff>:/icones/iconeActionCreerEtude</normaloff>:/icones/iconeActionCreerEtude</iconset>
    </property>
    <property name="text">
     <string>Créer une nouvelle étude...</string>
@@ -446,10 +446,10 @@
     <string>Ctrl+N</string>
    </property>
   </action>
-  <action name="actionCharger">
+  <action name="actionChargerEtude">
    <property name="icon">
     <iconset resource="../ressources/Ressources.qrc">
-     <normaloff>:/icones/iconeActionCharger</normaloff>:/icones/iconeActionCharger</iconset>
+     <normaloff>:/icones/iconeActionChargerEtude</normaloff>:/icones/iconeActionChargerEtude</iconset>
    </property>
    <property name="text">
     <string>Charger une étude existante...</string>
@@ -458,10 +458,10 @@
     <string>Ctrl+O</string>
    </property>
   </action>
-  <action name="actionSauver">
+  <action name="actionSauverEtude">
    <property name="icon">
     <iconset resource="../ressources/Ressources.qrc">
-     <normaloff>:/icones/iconeActionSauver</normaloff>:/icones/iconeActionSauver</iconset>
+     <normaloff>:/icones/iconeActionSauverEtude</normaloff>:/icones/iconeActionSauverEtude</iconset>
    </property>
    <property name="text">
     <string>Sauver l'étude courante...</string>
@@ -470,22 +470,22 @@
     <string>Ctrl+S</string>
    </property>
   </action>
-  <action name="actionExporter">
+  <action name="actionExporterListePoints">
    <property name="icon">
     <iconset resource="../ressources/Ressources.qrc">
-     <normaloff>:/icones/iconeActionExporter</normaloff>:/icones/iconeActionExporter</iconset>
+     <normaloff>:/icones/iconeActionExporterListePoints</normaloff>:/icones/iconeActionExporterListePoints</iconset>
    </property>
    <property name="text">
-    <string>Exporter l'étude courante...</string>
+    <string>Exporter la liste des points...</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+E</string>
    </property>
   </action>
-  <action name="actionImage">
+  <action name="actionExporterImage">
    <property name="icon">
     <iconset resource="../ressources/Ressources.qrc">
-     <normaloff>:/icones/iconeActionImage</normaloff>:/icones/iconeActionImage</iconset>
+     <normaloff>:/icones/iconeActionExporterImage</normaloff>:/icones/iconeActionExporterImage</iconset>
    </property>
    <property name="text">
     <string>Exporter l'image convertie...</string>

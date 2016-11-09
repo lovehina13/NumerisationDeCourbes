@@ -201,7 +201,7 @@ void EcranPrincipal::sauverEtudeCourante()
     this->actualiserEtudeReference();
 }
 
-void EcranPrincipal::exporterEtudeCourante()
+void EcranPrincipal::exporterListeDePointsCourante()
 {
     QString cheminFichierExport = QFileDialog::getSaveFileName(this,
             QString::fromUtf8("Sélection d'un fichier export"),
@@ -337,29 +337,29 @@ void EcranPrincipal::dessinerVueGraphiqueEtude()
     this->ui->vueGraphiqueEtude->dessiner(this->etude);
 }
 
-void EcranPrincipal::on_actionCreer_triggered()
+void EcranPrincipal::on_actionCreerEtude_triggered()
 {
     this->verifierEtatSauvegardeEtude();
     this->creerNouvelleEtude();
 }
 
-void EcranPrincipal::on_actionCharger_triggered()
+void EcranPrincipal::on_actionChargerEtude_triggered()
 {
     this->verifierEtatSauvegardeEtude();
     this->chargerEtudeExistante();
 }
 
-void EcranPrincipal::on_actionSauver_triggered()
+void EcranPrincipal::on_actionSauverEtude_triggered()
 {
     this->sauverEtudeCourante();
 }
 
-void EcranPrincipal::on_actionExporter_triggered()
+void EcranPrincipal::on_actionExporterListePoints_triggered()
 {
-    this->exporterEtudeCourante();
+    this->exporterListeDePointsCourante();
 }
 
-void EcranPrincipal::on_actionImage_triggered()
+void EcranPrincipal::on_actionExporterImage_triggered()
 {
     this->exporterImageConvertieCourante();
 }
