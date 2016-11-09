@@ -142,7 +142,8 @@ void EcranPrincipal::actualiserElementsGraphiques()
 
     this->actualiserCoordonneesPoints();
 
-    // TODO Conversion de l'image
+    this->etude.restaurerImage();
+    this->etude.convertirImage();
     this->dessinerVueGraphiqueEtude();
 }
 
@@ -466,22 +467,7 @@ void EcranPrincipal::on_pushButtonConvertir_clicked()
     parametres.setParametresConversion(parametresConversion);
     this->etude.setParametres(parametres);
 
-    Image image = this->etude.getImage();
-    if (methodeConversion == ParametresConversion::NOIR_ET_BLANC)
-    {
-        image.convertirImageNoirEtBlanc(parametresConversion.getSeuilNoirEtBlanc());
-    }
-    else if (methodeConversion == ParametresConversion::NIVEAUX_DE_GRIS)
-    {
-        image.convertirImageNiveauxDeGris(parametresConversion.getNombreNiveauxDeGris());
-    }
-    else if (methodeConversion == ParametresConversion::TEINTES_SATUREES)
-    {
-        image.convertirImageTeintesSaturees(parametresConversion.getNombreNiveauxDeGris(),
-                parametresConversion.getNombreTeintesSaturees(),
-                parametresConversion.getSeuilSaturation());
-    }
-    this->etude.setImage(image);
+    this->etude.convertirImage();
 
     this->dessinerVueGraphiqueEtude();
 }
@@ -495,9 +481,7 @@ void EcranPrincipal::on_pushButtonRestaurer_clicked()
     parametres.setParametresConversion(parametresConversion);
     this->etude.setParametres(parametres);
 
-    Image image = this->etude.getImage();
-    image.restaurerImage();
-    this->etude.setImage(image);
+    this->etude.restaurerImage();
 
     this->dessinerVueGraphiqueEtude();
 }

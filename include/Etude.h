@@ -53,6 +53,8 @@ public:
     bool sauverEtude(const QString& cheminFichierEtude);
     bool exporterImageConvertie(const QString& cheminFichierImageConvertie);
     bool exporterListeDePoints(const QString& cheminFichierExport);
+    void restaurerImage();
+    void convertirImage();
     QList<QPoint> rechercherCourbe(const QPoint& pointPixelDepart, const QPoint& pointPixelArrivee);
 
     // Enumération des types de tolérance de niveaux de gris

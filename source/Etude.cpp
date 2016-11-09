@@ -143,11 +143,43 @@ bool Etude::chargerEtude(const QString& cheminFichierEtude)
     if (!fichierEtude.open(QIODevice::ReadOnly | QIODevice::Text))
         return false;
 
+    const char separateur = ';';
     QTextStream fluxEntree(&fichierEtude);
     while (!fluxEntree.atEnd())
     {
-        QString ligneFichierEntree = fluxEntree.readLine();
-        // TODO Définition de l'étude à partir des lignes lues
+        QString ligneEntree = fluxEntree.readLine();
+        if (ligneEntree == "[PARAMETRES]")
+        {
+            ligneEntree = fluxEntree.readLine();
+            Parametres parametres = this->getParametres();
+            parametres.fromString(ligneEntree, separateur);
+            this->setParametres(parametres);
+            Image image;
+            image.setImageSource(
+                    QImage(parametres.getParametresFichiers().getCheminFichierImageSource()));
+            this->setImage(image);
+            this->restaurerImage();
+            this->convertirImage();
+        }
+        else if (ligneEntree == "[REPERE]")
+        {
+            ligneEntree = fluxEntree.readLine();
+            Repere repere = this->getRepere();
+            repere.fromString(ligneEntree, separateur);
+            this->setRepere(repere);
+        }
+        else if (ligneEntree == "[POINTS]")
+        {
+            QList<Point> listeDePoints;
+            while (!fluxEntree.atEnd())
+            {
+                ligneEntree = fluxEntree.readLine();
+                Point point;
+                point.fromString(ligneEntree, separateur);
+                listeDePoints.append(point);
+            }
+            this->setListeDePoints(listeDePoints);
+        }
     }
     return true;
 }
@@ -234,6 +266,41 @@ bool Etude::exporterListeDePoints(const QString& cheminFichierExport)
     return true;
 
     // TODO Implémentation de l'interpolation numérique
+}
+
+void Etude::restaurerImage()
+{
+    Image image = this->getImage();
+    image.restaurerImage();
+    this->setImage(image);
+}
+
+void Etude::convertirImage()
+{
+    const Parametres& parametres = this->getParametres();
+    const ParametresConversion& parametresConversion = parametres.getParametresConversion();
+    const int& methodeConversion = parametresConversion.getMethodeConversion();
+
+    Image image = this->getImage();
+    if (methodeConversion == ParametresConversion::BRUTE)
+    {
+        image.restaurerImage();
+    }
+    else if (methodeConversion == ParametresConversion::NOIR_ET_BLANC)
+    {
+        image.convertirImageNoirEtBlanc(parametresConversion.getSeuilNoirEtBlanc());
+    }
+    else if (methodeConversion == ParametresConversion::NIVEAUX_DE_GRIS)
+    {
+        image.convertirImageNiveauxDeGris(parametresConversion.getNombreNiveauxDeGris());
+    }
+    else if (methodeConversion == ParametresConversion::TEINTES_SATUREES)
+    {
+        image.convertirImageTeintesSaturees(parametresConversion.getNombreNiveauxDeGris(),
+                parametresConversion.getNombreTeintesSaturees(),
+                parametresConversion.getSeuilSaturation());
+    }
+    this->setImage(image);
 }
 
 QList<QPoint> Etude::rechercherCourbe(const QPoint& pointPixelDepart,
