@@ -46,7 +46,7 @@ QStringList listeSousElements(const QString& chaineElements, const char& sep)
 void interpolationNumerique(const double& x1, const double& y1, const double& x2, const double& y2,
         const double& x, double& y)
 {
-    const double pente = (y2 - y1) / (x2 - x1);
+    const double pente = (x1 != x2) ? ((y2 - y1) / (x2 - x1)) : (y2 - y1);
     y = pente * (x - x1) + y1;
 }
 
@@ -71,13 +71,56 @@ void interpolationNumerique(const Point& point1, const Point& point2, Point& poi
     point.setPointReelY(pry);
 }
 
-QList<Point> interpolationNumerique(const QList<Point>& listeDePoints,
-        const double& seuilInterpolationNumerique)
+QList<Point> interpolationNumerique(const QList<Point>& listeDePoints, const double& pas)
 {
-    // TODO QList<Point> interpolationNumerique(const QList<Point>& listeDePoints, const double& seuilInterpolationNumerique)
-    Q_UNUSED(listeDePoints);
-    Q_UNUSED(seuilInterpolationNumerique);
-    return QList<Point>();
+    QList<Point> listeDePointsInterpoles;
+    const int nombreDePoints = listeDePoints.count();
+    if (nombreDePoints > 0)
+    {
+        const double borneInferieure = listeDePoints.at(0).getPointReelX();
+        const double borneSuperieure = listeDePoints.at(nombreDePoints - 1).getPointReelX();
+        const double xMinimal = floor(borneInferieure / pas) * pas;
+        const double xMaximal = ceil(borneSuperieure / pas) * pas;
+        const int nombreDePointsInterpoles = (int) round((xMaximal - xMinimal) / pas) + 1;
+        for (int itPas = 0; itPas < nombreDePointsInterpoles; itPas++)
+        {
+            const double xInterpole = xMinimal + ((double) itPas * (double) pas);
+            Point pointInterpole;
+            Point pointPrecedent;
+            Point pointSuivant;
+            for (int itPoint = 0; itPoint < nombreDePoints; itPoint++)
+            {
+                const Point& pointReference = listeDePoints.at(itPoint);
+                const double xReference = pointReference.getPointReelX();
+                if (xReference <= xInterpole)
+                {
+                    pointPrecedent = pointReference;
+                }
+                if (xReference >= xInterpole)
+                {
+                    pointSuivant = pointReference;
+                    break;
+                }
+            }
+            if (pointPrecedent.getTypePoint() == Point::INDEFINI)
+            {
+                pointPrecedent = listeDePoints.at(0);
+                pointSuivant = (nombreDePoints > 1) ? listeDePoints.at(1) : listeDePoints.at(0);
+            }
+            if (pointSuivant.getTypePoint() == Point::INDEFINI)
+            {
+                pointPrecedent =
+                        (nombreDePoints > 1) ?
+                                listeDePoints.at(nombreDePoints - 2) :
+                                listeDePoints.at(nombreDePoints - 1);
+                pointSuivant = listeDePoints.at(nombreDePoints - 1);
+            }
+            pointInterpole.setPointReelX(xInterpole);
+            interpolationNumerique(pointPrecedent, pointSuivant, pointInterpole);
+            listeDePointsInterpoles.append(pointInterpole);
+        }
+    }
+    return listeDePointsInterpoles;
 }
 
 void genererImageTest()

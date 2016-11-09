@@ -17,8 +17,7 @@ QStringList listeSousElements(const QString& chaineElements, const char& sep);
 void interpolationNumerique(const double& x1, const double& y1, const double& x2, const double& y2,
         const double& x, double& y);
 void interpolationNumerique(const Point& point1, const Point& point2, Point& point);
-QList<Point> interpolationNumerique(const QList<Point>& listeDePoints,
-        const double& seuilInterpolationNumerique);
+QList<Point> interpolationNumerique(const QList<Point>& listeDePoints, const double& pas);
 void genererImageTest();
 void testerConversionNoirEtBlanc(const int& seuilNoirEtBlanc);
 void testerConversionNiveauxDeGris(const int& nombreNiveauxDeGris);
