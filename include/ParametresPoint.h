@@ -8,6 +8,7 @@
 #ifndef PARAMETRESPOINT_H_
 #define PARAMETRESPOINT_H_
 
+#include <QMap>
 #include <QRgb>
 #include <QString>
 
@@ -39,6 +40,8 @@ public:
     const QString toString(const char& sep) const;
 
     // Méthodes spécifiques
+    QString getStylePointTexte() const;
+    void setStylePointTexte(const QString& stylePointTexte);
 
     // Enumération des styles de points
     enum stylesPoints
@@ -59,6 +62,9 @@ private:
     int stylePoint;
     int epaisseurPoint;
     QRgb couleurPoint;
+
+    // Attributs de classe non accessibles
+    static const QMap<int, QString> stylesPointsTexte;
 };
 
 #endif /* PARAMETRESPOINT_H_ */

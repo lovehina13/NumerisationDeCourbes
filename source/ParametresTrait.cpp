@@ -16,6 +16,8 @@ const QRgb ParametresTrait::couleurTraitDefaut = QColor(Qt::black).rgb();
 const QRgb ParametresTrait::couleurTraitAxeDefaut = QColor(Qt::red).rgb();
 const QRgb ParametresTrait::couleurTraitCourbeDefaut = QColor(Qt::blue).rgb();
 
+const QMap<int, QString> ParametresTrait::stylesTraitsTexte = { }; // TODO
+
 ParametresTrait::ParametresTrait() :
         styleTrait(styleTraitDefaut), epaisseurTrait(epaisseurTraitDefaut),
                 couleurTrait(couleurTraitDefaut)
@@ -115,4 +117,14 @@ const QString ParametresTrait::toString(const char& sep) const
     toString += QString::number(this->getEpaisseurTrait()) + sep;
     toString += QColor(this->getCouleurTrait()).name();
     return toString;
+}
+
+QString ParametresTrait::getStyleTraitTexte() const
+{
+    return stylesTraitsTexte.value(this->getStyleTrait());
+}
+
+void ParametresTrait::setStyleTraitTexte(const QString& styleTraitTexte)
+{
+    this->setStyleTrait(stylesTraitsTexte.key(styleTraitTexte));
 }

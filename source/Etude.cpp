@@ -211,7 +211,8 @@ bool Etude::exporterListeDePoints(const QString& cheminFichierExport)
         return false;
 
     const ParametresExport& parametresExport = parametres.getParametresExport();
-    const char formatNotationNombresTexte = parametresExport.getFormatNotationNombresTexte();
+    const char formatNotationNombresCaractere =
+            parametresExport.getFormatNotationNombresCaractere();
     const int& nombreChiffresSignificatifs = parametresExport.getNombreChiffresSignificatifs();
     const char& caractereSeparation = parametresExport.getCaractereSeparation();
     const char& caractereSeparateurDecimal = parametresExport.getCaractereSeparateurDecimal();
@@ -223,10 +224,10 @@ bool Etude::exporterListeDePoints(const QString& cheminFichierExport)
     {
         const Point& pointCourant = listeDePoints.at(itPoint);
         fluxSortie
-                << QString::number(pointCourant.getPointReelX(), formatNotationNombresTexte,
+                << QString::number(pointCourant.getPointReelX(), formatNotationNombresCaractere,
                         nombreChiffresSignificatifs).replace('.', caractereSeparateurDecimal)
                 << caractereSeparation
-                << QString::number(pointCourant.getPointReelY(), formatNotationNombresTexte,
+                << QString::number(pointCourant.getPointReelY(), formatNotationNombresCaractere,
                         nombreChiffresSignificatifs).replace('.', caractereSeparateurDecimal)
                 << endl;
     }

@@ -10,6 +10,7 @@
 
 #include "ParametresPoint.h"
 #include "ParametresTrait.h"
+#include <QMap>
 #include <QString>
 
 class ParametresAffichage
@@ -56,8 +57,10 @@ public:
     const QString toString(const char& sep) const;
 
     // Méthodes spécifiques
-    char getFormatNotationNombresTexte() const;
-    void setFormatNotationNombresTexte(const char& formatNotationNombresTexte);
+    char getFormatNotationNombresCaractere() const;
+    QString getFormatNotationNombresTexte() const;
+    void setFormatNotationNombresCaractere(const char& formatNotationNombresCaractere);
+    void setFormatNotationNombresTexte(const QString& formatNotationNombresTexte);
 
     // Enumération des formats de notation des nombres
     enum formatsNotationNombres
@@ -83,6 +86,10 @@ private:
     ParametresPoint parametresPointsAxes;
     ParametresPoint parametresPointsCourbes;
     ParametresPoint parametresPointsManuels;
+
+    // Attributs de classe non accessibles
+    static const QMap<int, char> formatsNotationNombresCaractere;
+    static const QMap<int, QString> formatsNotationNombresTexte;
 };
 
 #endif /* PARAMETRESAFFICHAGE_H_ */

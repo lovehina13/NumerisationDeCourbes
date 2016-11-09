@@ -16,6 +16,8 @@ const int ParametresConversion::nombreNiveauxDeGrisDefaut = 5;
 const int ParametresConversion::nombreTeintesSatureesDefaut = 6;
 const int ParametresConversion::seuilSaturationDefaut = 32;
 
+const QMap<int, QString> ParametresConversion::methodesConversionTexte = { }; // TODO
+
 ParametresConversion::ParametresConversion() :
         methodeConversion(methodeConversionDefaut), seuilNoirEtBlanc(seuilNoirEtBlancDefaut),
                 nombreNiveauxDeGris(nombreNiveauxDeGrisDefaut),
@@ -158,8 +160,7 @@ const QString ParametresConversion::toString(const char& sep) const
 
 QString ParametresConversion::getMethodeConversionTexte() const
 {
-    // TODO QString ParametresConversion::getMethodeConversionTexte() const
-    return QString();
+    return methodesConversionTexte.value(this->getMethodeConversion());
 }
 
 double ParametresConversion::getSeuilNoirEtBlancFacteur() const
@@ -174,8 +175,7 @@ double ParametresConversion::getSeuilSaturationFacteur() const
 
 void ParametresConversion::setMethodeConversionTexte(const QString& methodeConversionTexte)
 {
-    // TODO void ParametresConversion::setMethodeConversionTexte(const QString& methodeConversionTexte)
-    Q_UNUSED(methodeConversionTexte);
+    this->setMethodeConversion(methodesConversionTexte.key(methodeConversionTexte));
 }
 
 void ParametresConversion::setSeuilNoirEtBlancFacteur(const double& seuilNoirEtBlancFacteur)

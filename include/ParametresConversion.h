@@ -8,6 +8,7 @@
 #ifndef PARAMETRESCONVERSION_H_
 #define PARAMETRESCONVERSION_H_
 
+#include <QMap>
 #include <QString>
 
 class ParametresConversion
@@ -73,6 +74,9 @@ private:
     int nombreNiveauxDeGris;
     int nombreTeintesSaturees;
     int seuilSaturation;
+
+    // Attributs de classe non accessibles
+    static const QMap<int, QString> methodesConversionTexte;
 };
 
 #endif /* PARAMETRESCONVERSION_H_ */

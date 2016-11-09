@@ -28,6 +28,9 @@ const ParametresPoint ParametresAffichage::parametresPointsManuelsDefaut = Param
         ParametresPoint::stylePointDefaut, ParametresPoint::epaisseurPointDefaut,
         ParametresPoint::couleurPointManuelDefaut);
 
+const QMap<int, char> ParametresAffichage::formatsNotationNombresCaractere = { }; // TODO
+const QMap<int, QString> ParametresAffichage::formatsNotationNombresTexte = { }; // TODO
+
 ParametresAffichage::ParametresAffichage() :
         formatNotationNombres(formatNotationNombresDefaut),
                 nombreChiffresSignificatifs(nombreChiffresSignificatifsDefaut)
@@ -215,28 +218,24 @@ const QString ParametresAffichage::toString(const char& sep) const
     return toString;
 }
 
-char ParametresAffichage::getFormatNotationNombresTexte() const
+char ParametresAffichage::getFormatNotationNombresCaractere() const
 {
-    const int& formatNotationNombres = this->getFormatNotationNombres();
-    if (formatNotationNombres == STANDARD)
-    {
-        return 'f';
-    }
-    else if (formatNotationNombres == SCIENTIFIQUE)
-    {
-        return 'e';
-    }
-    return '\0';
+    return formatsNotationNombresCaractere.value(this->getFormatNotationNombres());
 }
 
-void ParametresAffichage::setFormatNotationNombresTexte(const char& formatNotationNombresTexte)
+QString ParametresAffichage::getFormatNotationNombresTexte() const
 {
-    if (formatNotationNombresTexte == 'f')
-    {
-        this->setFormatNotationNombres(STANDARD);
-    }
-    else if (formatNotationNombresTexte == 'e')
-    {
-        this->setFormatNotationNombres(SCIENTIFIQUE);
-    }
+    return formatsNotationNombresTexte.value(this->getFormatNotationNombres());
+}
+
+void ParametresAffichage::setFormatNotationNombresCaractere(
+        const char& formatNotationNombresCaractere)
+{
+    this->setFormatNotationNombres(
+            formatsNotationNombresCaractere.key(formatNotationNombresCaractere));
+}
+
+void ParametresAffichage::setFormatNotationNombresTexte(const QString& formatNotationNombresTexte)
+{
+    this->setFormatNotationNombres(formatsNotationNombresTexte.key(formatNotationNombresTexte));
 }

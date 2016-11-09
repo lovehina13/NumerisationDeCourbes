@@ -9,6 +9,8 @@
 #include "Outils.h"
 #include <QStringList>
 
+const QMap<int, QString> Point::typesPointsTexte = { }; // TODO
+
 Point::Point() :
         typePoint(INDEFINI)
 {
@@ -169,60 +171,12 @@ const QString Point::toString(const char& sep) const
 
 QString Point::getTypePointTexte() const
 {
-    const int& typePoint = this->getTypePoint();
-    if (typePoint == INDEFINI)
-    {
-        return QString::fromUtf8("Indéfini");
-    }
-    else if (typePoint == REPERE)
-    {
-        return QString::fromUtf8("Repère");
-    }
-    else if (typePoint == MANUEL)
-    {
-        return QString::fromUtf8("Manuel");
-    }
-    else if (typePoint == COURBE)
-    {
-        return QString::fromUtf8("Courbe");
-    }
-    else if (typePoint == COURBE_DEBUT)
-    {
-        return QString::fromUtf8("Courbe début");
-    }
-    else if (typePoint == COURBE_FIN)
-    {
-        return QString::fromUtf8("Courbe fin");
-    }
-    return QString();
+    return typesPointsTexte.value(this->getTypePoint());
 }
 
 void Point::setTypePointTexte(const QString& typePointTexte)
 {
-    if (typePointTexte == QString::fromUtf8("Indéfini"))
-    {
-        this->setTypePoint(INDEFINI);
-    }
-    else if (typePointTexte == QString::fromUtf8("Repère"))
-    {
-        this->setTypePoint(REPERE);
-    }
-    else if (typePointTexte == QString::fromUtf8("Manuel"))
-    {
-        this->setTypePoint(MANUEL);
-    }
-    else if (typePointTexte == QString::fromUtf8("Courbe"))
-    {
-        this->setTypePoint(COURBE);
-    }
-    else if (typePointTexte == QString::fromUtf8("Courbe début"))
-    {
-        this->setTypePoint(COURBE_DEBUT);
-    }
-    else if (typePointTexte == QString::fromUtf8("Courbe fin"))
-    {
-        this->setTypePoint(COURBE_FIN);
-    }
+    this->setTypePoint(typesPointsTexte.key(typePointTexte));
 }
 
 bool Point::operator==(const Point& point) const

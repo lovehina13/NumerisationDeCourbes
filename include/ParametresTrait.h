@@ -8,6 +8,7 @@
 #ifndef PARAMETRESTRAIT_H_
 #define PARAMETRESTRAIT_H_
 
+#include <QMap>
 #include <QRgb>
 #include <QString>
 
@@ -39,6 +40,8 @@ public:
     const QString toString(const char& sep) const;
 
     // Méthodes spécifiques
+    QString getStyleTraitTexte() const;
+    void setStyleTraitTexte(const QString& styleTraitTexte);
 
     // Enumération des styles de traits
     enum stylesTraits
@@ -58,6 +61,9 @@ private:
     int styleTrait;
     int epaisseurTrait;
     QRgb couleurTrait;
+
+    // Attributs de classe non accessibles
+    static const QMap<int, QString> stylesTraitsTexte;
 };
 
 #endif /* PARAMETRESTRAIT_H_ */

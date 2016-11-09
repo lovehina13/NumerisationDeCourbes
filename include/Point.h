@@ -8,6 +8,7 @@
 #ifndef POINT_H_
 #define POINT_H_
 
+#include <QMap>
 #include <QPoint>
 #include <QPointF>
 #include <QString>
@@ -67,6 +68,9 @@ private:
     QPoint pointPixel;
     QPointF pointReel;
     int typePoint;
+
+    // Attributs de classes non accessibles
+    static const QMap<int, QString> typesPointsTexte;
 };
 
 #endif /* POINT_H_ */

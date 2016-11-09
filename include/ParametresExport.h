@@ -8,6 +8,7 @@
 #ifndef PARAMETRESEXPORT_H_
 #define PARAMETRESEXPORT_H_
 
+#include <QMap>
 #include <QString>
 
 class ParametresExport
@@ -46,12 +47,18 @@ public:
     const QString toString(const char& sep) const;
 
     // Méthodes spécifiques
-    char getFormatNotationNombresTexte() const;
+    char getFormatNotationNombresCaractere() const;
+    QString getFormatNotationNombresTexte() const;
     int getCaractereSeparationIndice() const;
+    QString getCaractereSeparationTexte() const;
     int getCaractereSeparateurDecimalIndice() const;
-    void setFormatNotationNombresTexte(const char& formatNotationNombresTexte);
+    QString getCaractereSeparateurDecimalTexte() const;
+    void setFormatNotationNombresCaractere(const char& formatNotationNombresCaractere);
+    void setFormatNotationNombresTexte(const QString& formatNotationNombresTexte);
     void setCaractereSeparationIndice(const int& caractereSeparationIndice);
+    void setCaractereSeparationTexte(const QString& caractereSeparationTexte);
     void setCaractereSeparateurDecimalIndice(const int& caractereSeparateurDecimalIndice);
+    void setCaractereSeparateurDecimalTexte(const QString& caractereSeparateurDecimalTexte);
 
     // Enumération des formats de notation des nombres
     enum formatsNotationNombres
@@ -85,6 +92,14 @@ private:
     char caractereSeparation;
     char caractereSeparateurDecimal;
     double seuilInterpolationNumerique;
+
+    // Attributs de classe non accessibles
+    static const QMap<int, char> formatsNotationNombresCaractere;
+    static const QMap<int, QString> formatsNotationNombresTexte;
+    static const QMap<char, int> caracteresSeparationIndice;
+    static const QMap<char, QString> caracteresSeparationTexte;
+    static const QMap<char, int> caracteresSeparateurDecimalIndice;
+    static const QMap<char, QString> caracteresSeparateurDecimalTexte;
 };
 
 #endif /* PARAMETRESEXPORT_H_ */
