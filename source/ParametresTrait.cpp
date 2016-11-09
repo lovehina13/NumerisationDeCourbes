@@ -17,8 +17,8 @@ const QRgb ParametresTrait::couleurTraitAxeDefaut = QColor(Qt::red).rgb();
 const QRgb ParametresTrait::couleurTraitCourbeDefaut = QColor(Qt::blue).rgb();
 
 const QMap<int, QString> ParametresTrait::stylesTraitsTexte = QMap<int, QString>(
-        std::map<int, QString> { { LIGNE, QString::fromUtf8("Ligne") }, { TIRETS, QString::fromUtf8(
-                "Tirets") }, { POINTILLES, QString::fromUtf8("Pointillés") } });
+        std::map<int, QString> { {LIGNE, QString::fromUtf8("Ligne")}, {TIRETS, QString::fromUtf8(
+                "Tirets")}, {POINTILLES, QString::fromUtf8("Pointillés")}});
 
 ParametresTrait::ParametresTrait() :
         styleTrait(styleTraitDefaut), epaisseurTrait(epaisseurTraitDefaut),
