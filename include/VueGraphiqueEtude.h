@@ -40,9 +40,13 @@ public:
     void dessinerImage(const Image& image);
     void dessinerRepere(const Repere& repere, const ParametresTrait& parametresAxes,
             const ParametresPoint& parametresPointsAxes);
-    void dessinerPoint(const Point& point, const ParametresPoint& parametresPointsManuels);
-    void dessinerCourbe(const QList<Point> listeDePoints, const ParametresTrait& parametresCourbes,
+    void dessinerCourbe(const QList<Point> pointsCourbe, const ParametresTrait& parametresCourbes,
             const ParametresPoint& parametresPointsCourbes);
+    void dessinerPointManuel(const Point& pointManuel,
+            const ParametresPoint& parametresPointsManuels);
+    void dessinerPoint(const Point& point, const ParametresPoint& parametresPoint);
+    void dessinerTrait(const Point& point1, const Point& point2,
+            const ParametresTrait& parametresTrait);
 
 protected:
     // Méthodes spécifiques

@@ -54,8 +54,8 @@ void VueGraphiqueEtude::dessiner(const Etude& etude)
     this->effacer();
     this->dessinerImage(image);
     this->dessinerRepere(repere, parametresAxes, parametresPointsAxes);
-    // TODO Utilisation de this->dessinerPoint()
     // TODO Utilisation de this->dessinerCourbes()
+    // TODO Utilisation de this->dessinerPointManuel()
     Q_UNUSED(listeDePoints);
     Q_UNUSED(parametresCourbes);
     Q_UNUSED(parametresPointsCourbes);
@@ -72,78 +72,74 @@ void VueGraphiqueEtude::dessinerImage(const Image& image)
 void VueGraphiqueEtude::dessinerRepere(const Repere& repere, const ParametresTrait& parametresAxes,
         const ParametresPoint& parametresPointsAxes)
 {
-    const double x0px = (double) repere.getPointX0().getPointPixelX();
-    const double x0py = (double) repere.getPointX0().getPointPixelY();
-    const double x1px = (double) repere.getPointX1().getPointPixelX();
-    const double x1py = (double) repere.getPointX1().getPointPixelY();
-    const double y0px = (double) repere.getPointY0().getPointPixelX();
-    const double y0py = (double) repere.getPointY0().getPointPixelY();
-    const double y1px = (double) repere.getPointY1().getPointPixelX();
-    const double y1py = (double) repere.getPointY1().getPointPixelY();
+    const Point& pointX0 = repere.getPointX0();
+    const Point& pointX1 = repere.getPointX1();
+    const Point& pointY0 = repere.getPointY0();
+    const Point& pointY1 = repere.getPointY1();
 
-    const int& styleAxes = parametresAxes.getStyleTrait();
-    const int& epaisseurAxes = parametresAxes.getEpaisseurTrait();
-    const QRgb& couleurAxes = parametresAxes.getCouleurTrait();
-    const int& stylePointsAxes = parametresPointsAxes.getStylePoint();
-    const int& epaisseurPointsAxes = parametresPointsAxes.getEpaisseurPoint();
-    const QRgb& couleurPointsAxes = parametresPointsAxes.getCouleurPoint();
-
-    const double x0px_edit = x0px - ((double) epaisseurPointsAxes / 2.0);
-    const double x0py_edit = x0py - ((double) epaisseurPointsAxes / 2.0);
-    const double x1px_edit = x1px - ((double) epaisseurPointsAxes / 2.0);
-    const double x1py_edit = x1py - ((double) epaisseurPointsAxes / 2.0);
-    const double y0px_edit = y0px - ((double) epaisseurPointsAxes / 2.0);
-    const double y0py_edit = y0py - ((double) epaisseurPointsAxes / 2.0);
-    const double y1px_edit = y1px - ((double) epaisseurPointsAxes / 2.0);
-    const double y1py_edit = y1py - ((double) epaisseurPointsAxes / 2.0);
-
-    QBrush brosseAxes = QBrush(QColor(couleurAxes), Qt::SolidPattern);
-    QBrush brossePointsAxes = QBrush(QColor(couleurPointsAxes), Qt::SolidPattern);
-    QPen pinceauAxes = QPen(brosseAxes, epaisseurAxes, (Qt::PenStyle) (styleAxes + 1));
-    QPen pinceauPointsAxes = QPen(brossePointsAxes, 0, Qt::SolidLine);
-
-    this->scene()->addLine(x0px, x0py, x1px, x1py, pinceauAxes);
-    this->scene()->addLine(y0px, y0py, y1px, y1py, pinceauAxes);
-
-    if (stylePointsAxes == ParametresPoint::CARRE)
-    {
-        this->scene()->addRect(x0px_edit, x0py_edit, epaisseurPointsAxes, epaisseurPointsAxes,
-                pinceauPointsAxes, brossePointsAxes);
-        this->scene()->addRect(x1px_edit, x1py_edit, epaisseurPointsAxes, epaisseurPointsAxes,
-                pinceauPointsAxes, brossePointsAxes);
-        this->scene()->addRect(y0px_edit, y0py_edit, epaisseurPointsAxes, epaisseurPointsAxes,
-                pinceauPointsAxes, brossePointsAxes);
-        this->scene()->addRect(y1px_edit, y1py_edit, epaisseurPointsAxes, epaisseurPointsAxes,
-                pinceauPointsAxes, brossePointsAxes);
-    }
-    else if (stylePointsAxes == ParametresPoint::CERCLE)
-    {
-        this->scene()->addEllipse(x0px_edit, x0py_edit, epaisseurPointsAxes, epaisseurPointsAxes,
-                pinceauPointsAxes, brossePointsAxes);
-        this->scene()->addEllipse(x1px_edit, x1py_edit, epaisseurPointsAxes, epaisseurPointsAxes,
-                pinceauPointsAxes, brossePointsAxes);
-        this->scene()->addEllipse(y0px_edit, y0py_edit, epaisseurPointsAxes, epaisseurPointsAxes,
-                pinceauPointsAxes, brossePointsAxes);
-        this->scene()->addEllipse(y1px_edit, y1py_edit, epaisseurPointsAxes, epaisseurPointsAxes,
-                pinceauPointsAxes, brossePointsAxes);
-    }
+    this->dessinerTrait(pointX0, pointX1, parametresAxes);
+    this->dessinerTrait(pointY0, pointY1, parametresAxes);
+    this->dessinerPoint(pointX0, parametresPointsAxes);
+    this->dessinerPoint(pointX1, parametresPointsAxes);
+    this->dessinerPoint(pointY0, parametresPointsAxes);
+    this->dessinerPoint(pointY1, parametresPointsAxes);
 }
 
-void VueGraphiqueEtude::dessinerPoint(const Point& point,
-        const ParametresPoint& parametresPointsManuels)
-{
-    // TODO void VueGraphiqueEtude::dessinerPoint(const Point& point, const ParametresPoint& parametresPointsManuels)
-    Q_UNUSED(point);
-    Q_UNUSED(parametresPointsManuels);
-}
-
-void VueGraphiqueEtude::dessinerCourbe(const QList<Point> listeDePoints,
+void VueGraphiqueEtude::dessinerCourbe(const QList<Point> pointsCourbe,
         const ParametresTrait& parametresCourbes, const ParametresPoint& parametresPointsCourbes)
 {
-    // TODO void VueGraphiqueEtude::dessinerCourbe(const QList<Point> listeDePoints, const ParametresTrait& parametresCourbes, const ParametresPoint& parametresPointsCourbes)
-    Q_UNUSED(listeDePoints);
+    // TODO void VueGraphiqueEtude::dessinerCourbe(const QList<Point> pointsCourbe, const ParametresTrait& parametresCourbes, const ParametresPoint& parametresPointsCourbes)
+    Q_UNUSED(pointsCourbe);
     Q_UNUSED(parametresCourbes);
     Q_UNUSED(parametresPointsCourbes);
+}
+
+void VueGraphiqueEtude::dessinerPointManuel(const Point& pointManuel,
+        const ParametresPoint& parametresPointsManuels)
+{
+    this->dessinerPoint(pointManuel, parametresPointsManuels);
+}
+
+void VueGraphiqueEtude::dessinerPoint(const Point& point, const ParametresPoint& parametresPoint)
+{
+    const int& stylePoint = parametresPoint.getStylePoint();
+    const int& epaisseurPoint = parametresPoint.getEpaisseurPoint();
+    const QRgb& couleurPoint = parametresPoint.getCouleurPoint();
+    QBrush brossePoint = QBrush(QColor(couleurPoint), Qt::SolidPattern);
+    QPen pinceauPoint = QPen(brossePoint, 0, Qt::SolidLine);
+
+    const double ppx = (double) point.getPointPixelX();
+    const double ppy = (double) point.getPointPixelY();
+    const double ppx_edit = ppx - ((double) epaisseurPoint / 2.0);
+    const double ppy_edit = ppy - ((double) epaisseurPoint / 2.0);
+
+    if (stylePoint == ParametresPoint::CARRE)
+    {
+        this->scene()->addRect(ppx_edit, ppy_edit, epaisseurPoint, epaisseurPoint, pinceauPoint,
+                brossePoint);
+    }
+    else if (stylePoint == ParametresPoint::CERCLE)
+    {
+        this->scene()->addEllipse(ppx_edit, ppy_edit, epaisseurPoint, epaisseurPoint, pinceauPoint,
+                brossePoint);
+    }
+}
+
+void VueGraphiqueEtude::dessinerTrait(const Point& point1, const Point& point2,
+        const ParametresTrait& parametresTrait)
+{
+    const int& styleTrait = parametresTrait.getStyleTrait();
+    const int& epaisseurTrait = parametresTrait.getEpaisseurTrait();
+    const QRgb& couleurTrait = parametresTrait.getCouleurTrait();
+    QBrush brosseTrait = QBrush(QColor(couleurTrait), Qt::SolidPattern);
+    QPen pinceauTrait = QPen(brosseTrait, epaisseurTrait, (Qt::PenStyle) (styleTrait + 1));
+
+    const double p1px = (double) point1.getPointPixelX();
+    const double p1py = (double) point1.getPointPixelY();
+    const double p2px = (double) point2.getPointPixelX();
+    const double p2py = (double) point2.getPointPixelY();
+
+    this->scene()->addLine(p1px, p1py, p2px, p2py, pinceauTrait);
 }
 
 void VueGraphiqueEtude::mouseMoveEvent(QMouseEvent* event)
