@@ -69,7 +69,7 @@ private:
     QPointF pointReel;
     int typePoint;
 
-    // Attributs de classes non accessibles
+    // Attributs de classes inaccessibles
     static const QMap<int, QString> typesPointsTexte;
 };
 

@@ -12,6 +12,7 @@
 #include "FenetreParametresExport.h"
 #include "FenetreParametresRecherche.h"
 #include "ui_EcranPrincipal.h"
+#include <cmath>
 #include <QDoubleValidator>
 #include <QFileDialog>
 #include <QImage>
@@ -28,6 +29,10 @@ EcranPrincipal::EcranPrincipal(QWidget* parent) :
         QMainWindow(parent), ui(new Ui::EcranPrincipal)
 {
     this->ui->setupUi(this);
+    this->connect(this->ui->vueGraphiqueEtude, SIGNAL(mousePressEventSignal(const QPointF)), this,
+            SLOT(mousePressEventSlot(const QPointF)));
+    this->connect(this->ui->vueGraphiqueEtude, SIGNAL(mouseMoveEventSignal(const QPointF)), this,
+            SLOT(mouseMoveEventSlot(const QPointF)));
     this->initialiserElementsGraphiques();
     this->effacerElementsGraphiques();
 }
@@ -103,6 +108,8 @@ void EcranPrincipal::effacerElementsGraphiques()
     this->ui->tableWidgetListePoints->clearContents();
     this->ui->tableWidgetListePoints->setRowCount(0);
     this->ui->tableWidgetListePoints->resizeColumnsToContents();
+
+    this->ui->statusBar->clearMessage();
 
     this->effacerVueGraphiqueEtude();
 }
@@ -336,6 +343,22 @@ void EcranPrincipal::effacerVueGraphiqueEtude()
 void EcranPrincipal::dessinerVueGraphiqueEtude()
 {
     this->ui->vueGraphiqueEtude->dessiner(this->etude);
+}
+
+void EcranPrincipal::actualiserBarreStatut(const QPointF& pointVueGraphique)
+{
+    const int ppx = (int) floor(pointVueGraphique.x());
+    const int ppy = (int) floor(pointVueGraphique.y());
+    Point pointCourant = Point(QPoint(ppx, ppy), QPointF(), Point::INDEFINI);
+    this->etude.getRepere().pixelVersReel(pointCourant);
+
+    QString ppxTexte = QString::number(pointCourant.getPointPixelX());
+    QString ppyTexte = QString::number(pointCourant.getPointPixelY());
+    QString prxTexte = QString::number(pointCourant.getPointReelX());
+    QString pryTexte = QString::number(pointCourant.getPointReelY());
+    QString statusBarTexte = QString::fromUtf8("Pixel=(%1:%2) - Réel=(%3:%4)").arg(ppxTexte,
+            ppyTexte, prxTexte, pryTexte);
+    this->ui->statusBar->showMessage(statusBarTexte);
 }
 
 void EcranPrincipal::on_actionCreerEtude_triggered()
@@ -762,4 +785,15 @@ void EcranPrincipal::on_pushButtonSupprimer_clicked()
 void EcranPrincipal::on_pushButtonGraphique_clicked()
 {
     // TODO void EcranPrincipal::on_pushButtonGraphique_clicked()
+}
+
+void EcranPrincipal::mousePressEventSlot(const QPointF pointVueGraphique)
+{
+    // TODO void EcranPrincipal::mousePressEventSlot(const QPointF pointVueGraphique)
+    Q_UNUSED(pointVueGraphique);
+}
+
+void EcranPrincipal::mouseMoveEventSlot(const QPointF pointVueGraphique)
+{
+    this->actualiserBarreStatut(pointVueGraphique);
 }

@@ -16,13 +16,17 @@
 #include "Repere.h"
 #include <QGraphicsScene>
 #include <QGraphicsView>
+#include <QKeyEvent>
 #include <QList>
 #include <QMouseEvent>
+#include <QPointF>
 #include <QWheelEvent>
 #include <QWidget>
 
 class VueGraphiqueEtude : public QGraphicsView
 {
+    Q_OBJECT
+
 public:
     VueGraphiqueEtude(QWidget* parent);
     VueGraphiqueEtude(QGraphicsScene* scene, QWidget* parent);
@@ -50,8 +54,20 @@ public:
 
 protected:
     // Méthodes spécifiques
+    void keyPressEvent(QKeyEvent* event);
+    void mousePressEvent(QMouseEvent* event);
     void mouseMoveEvent(QMouseEvent* event);
     void wheelEvent(QWheelEvent* event);
+
+private:
+    // Attributs de classes inaccessibles
+    static const double facteurZoomIn;
+    static const double facteurZoomOut;
+
+signals:
+    // Signaux spécifiques
+    void mousePressEventSignal(const QPointF pointVueGraphique);
+    void mouseMoveEventSignal(const QPointF pointVueGraphique);
 };
 
 #endif /* VUEGRAPHIQUEETUDE_H_ */

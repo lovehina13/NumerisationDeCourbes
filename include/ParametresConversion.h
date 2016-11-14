@@ -75,7 +75,7 @@ private:
     int nombreTeintesSaturees;
     int seuilSaturation;
 
-    // Attributs de classe non accessibles
+    // Attributs de classe inaccessibles
     static const QMap<int, QString> methodesConversionTexte;
 };
 

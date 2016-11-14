@@ -87,7 +87,7 @@ private:
     ParametresPoint parametresPointsCourbes;
     ParametresPoint parametresPointsManuels;
 
-    // Attributs de classe non accessibles
+    // Attributs de classe inaccessibles
     static const QMap<int, char> formatsNotationNombresCaractere;
     static const QMap<int, QString> formatsNotationNombresTexte;
 };

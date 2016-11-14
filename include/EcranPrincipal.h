@@ -53,6 +53,7 @@ protected:
     void actualiserCoordonneesListeDePoints();
     void effacerVueGraphiqueEtude();
     void dessinerVueGraphiqueEtude();
+    void actualiserBarreStatut(const QPointF& pointVueGraphique);
 
 protected slots:
     // Connecteurs spécifiques
@@ -99,6 +100,8 @@ protected slots:
     void on_pushButtonRechercher_clicked();
     void on_pushButtonSupprimer_clicked();
     void on_pushButtonGraphique_clicked();
+    void mousePressEventSlot(const QPointF pointVueGraphique);
+    void mouseMoveEventSlot(const QPointF pointVueGraphique);
 
 private:
     // Attributs de classe

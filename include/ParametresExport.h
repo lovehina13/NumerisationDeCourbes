@@ -93,7 +93,7 @@ private:
     char caractereSeparateurDecimal;
     double seuilInterpolationNumerique;
 
-    // Attributs de classe non accessibles
+    // Attributs de classe inaccessibles
     static const QMap<int, char> formatsNotationNombresCaractere;
     static const QMap<int, QString> formatsNotationNombresTexte;
     static const QMap<char, int> caracteresSeparationIndice;

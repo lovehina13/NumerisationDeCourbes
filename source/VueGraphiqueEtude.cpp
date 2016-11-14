@@ -6,6 +6,7 @@
 //==============================================================================
 
 #include "VueGraphiqueEtude.h"
+#include <cmath>
 #include <QBrush>
 #include <QColor>
 #include <QGraphicsPixmapItem>
@@ -13,12 +14,16 @@
 #include <QPixmap>
 #include <QRgb>
 
+const double VueGraphiqueEtude::facteurZoomIn = 1.25;
+const double VueGraphiqueEtude::facteurZoomOut = 0.8;
+
 VueGraphiqueEtude::VueGraphiqueEtude(QWidget* parent) :
         QGraphicsView(parent)
 {
     QGraphicsScene* graphicsScene = new QGraphicsScene(parent);
     this->setScene(graphicsScene);
     this->setMouseTracking(true);
+    this->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
 }
 
 VueGraphiqueEtude::VueGraphiqueEtude(QGraphicsScene* scene, QWidget* parent) :
@@ -125,8 +130,8 @@ void VueGraphiqueEtude::dessinerPoint(const Point& point, const ParametresPoint&
 
     const double ppx = (double) point.getPointPixelX();
     const double ppy = (double) point.getPointPixelY();
-    const double ppx_edit = ppx - ((double) epaisseurPoint / 2.0);
-    const double ppy_edit = ppy - ((double) epaisseurPoint / 2.0);
+    const double ppx_edit = ppx - floor((double) epaisseurPoint / 2.0);
+    const double ppy_edit = ppy - floor((double) epaisseurPoint / 2.0);
 
     if (stylePoint == ParametresPoint::CARRE)
     {
@@ -147,8 +152,8 @@ void VueGraphiqueEtude::dessinerTrait(const Point& point1, const Point& point2,
     const int& epaisseurTrait = parametresTrait.getEpaisseurTrait();
     const QRgb& couleurTrait = parametresTrait.getCouleurTrait();
     QBrush brosseTrait = QBrush(QColor(couleurTrait), Qt::SolidPattern);
-    QPen pinceauTrait = QPen(brosseTrait, epaisseurTrait, (Qt::PenStyle) (styleTrait + 1));
-    // TODO Utilisation de Qt::RoundCap et Qt::RoundJoin ?
+    QPen pinceauTrait = QPen(brosseTrait, epaisseurTrait, (Qt::PenStyle) (styleTrait + 1),
+            Qt::RoundCap, Qt::RoundJoin);
 
     const double p1px = (double) point1.getPointPixelX();
     const double p1py = (double) point1.getPointPixelY();
@@ -158,14 +163,52 @@ void VueGraphiqueEtude::dessinerTrait(const Point& point1, const Point& point2,
     this->scene()->addLine(p1px, p1py, p2px, p2py, pinceauTrait);
 }
 
+void VueGraphiqueEtude::keyPressEvent(QKeyEvent* event)
+{
+    QGraphicsView::keyPressEvent(event);
+
+    if (event->key() == Qt::Key_Plus)
+    {
+        this->scale(facteurZoomIn, facteurZoomIn);
+    }
+    else if (event->key() == Qt::Key_Minus)
+    {
+        this->scale(facteurZoomOut, facteurZoomOut);
+    }
+    else if (event->key() == Qt::Key_0)
+    {
+        this->resetTransform();
+    }
+}
+
+void VueGraphiqueEtude::mousePressEvent(QMouseEvent* event)
+{
+    QGraphicsView::mousePressEvent(event);
+
+    if (event->button() == Qt::LeftButton)
+    {
+        emit this->mousePressEventSignal(this->mapToScene(event->pos()));
+    }
+}
+
 void VueGraphiqueEtude::mouseMoveEvent(QMouseEvent* event)
 {
-    // TODO void VueGraphiqueEtude::mouseMoveEvent(QMouseEvent* event)
-    Q_UNUSED(event);
+    QGraphicsView::mouseMoveEvent(event);
+
+    emit this->mouseMoveEventSignal(this->mapToScene(event->pos()));
 }
 
 void VueGraphiqueEtude::wheelEvent(QWheelEvent* event)
 {
-    // TODO void VueGraphiqueEtude::wheelEvent(QWheelEvent* event)
-    Q_UNUSED(event);
+    QGraphicsView::wheelEvent(event);
+
+    this->setTransformationAnchor(QGraphicsView::AnchorUnderMouse);
+    if (event->delta() > 0)
+    {
+        this->scale(facteurZoomIn, facteurZoomIn);
+    }
+    else if (event->delta() < 0)
+    {
+        this->scale(facteurZoomOut, facteurZoomOut);
+    }
 }

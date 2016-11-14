@@ -62,7 +62,7 @@ private:
     int epaisseurTrait;
     QRgb couleurTrait;
 
-    // Attributs de classe non accessibles
+    // Attributs de classe inaccessibles
     static const QMap<int, QString> stylesTraitsTexte;
 };
 
