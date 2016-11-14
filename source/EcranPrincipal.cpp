@@ -73,6 +73,9 @@ void EcranPrincipal::initialiserElementsGraphiques()
     this->ui->lineEditPointArriveeYReel->setValidator(nombreReel);
     this->ui->lineEditPointManuelXReel->setValidator(nombreReel);
     this->ui->lineEditPointManuelYReel->setValidator(nombreReel);
+
+    this->ui->pushButtonGraphique->setEnabled(false);
+    // TODO Gestion de la disponibilité selon la présence de Qwt
 }
 
 void EcranPrincipal::effacerElementsGraphiques()

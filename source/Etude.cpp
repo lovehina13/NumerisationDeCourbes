@@ -6,6 +6,7 @@
 //==============================================================================
 
 #include "Etude.h"
+#include "Outils.h"
 #include <QColor>
 #include <QFile>
 #include <QImage>
@@ -292,24 +293,65 @@ bool Etude::exporterListeDePoints(const QString& cheminFichierExport)
     const int& nombreChiffresSignificatifs = parametresExport.getNombreChiffresSignificatifs();
     const char& caractereSeparation = parametresExport.getCaractereSeparation();
     const char& caractereSeparateurDecimal = parametresExport.getCaractereSeparateurDecimal();
+    const double& seuilInterpolationNumerique = parametresExport.getSeuilInterpolationNumerique();
 
     QTextStream fluxSortie(&fichierExport);
-    const QList<Point>& listeDePoints = this->getListeDePoints();
-    const int nombreDePoints = listeDePoints.count();
-    for (int itPoint = 0; itPoint < nombreDePoints; itPoint++)
+    const QList<QList<Point>> listeDeCourbes = this->getListeDeCourbes();
+    const QList<Point> listeDePointsManuels = this->getListeDePointsManuels();
+    const int nombreDeCourbes = listeDeCourbes.count();
+    const int nombreDePointsManuels = listeDePointsManuels.count();
+    for (int itCourbe = 0; itCourbe < nombreDeCourbes; itCourbe++)
     {
-        const Point& pointCourant = listeDePoints.at(itPoint);
+        const QList<Point> pointsCourbe = listeDeCourbes.at(itCourbe);
+        const int nombreDePointsCourbe = pointsCourbe.count();
+        if (seuilInterpolationNumerique == 0.0)
+        {
+            for (int itPointCourbe = 0; itPointCourbe < nombreDePointsCourbe; itPointCourbe++)
+            {
+                const Point& pointCourbe = pointsCourbe.at(itPointCourbe);
+                fluxSortie
+                        << QString::number(pointCourbe.getPointReelX(),
+                                formatNotationNombresCaractere, nombreChiffresSignificatifs).replace(
+                                '.', caractereSeparateurDecimal) << caractereSeparation
+                        << QString::number(pointCourbe.getPointReelY(),
+                                formatNotationNombresCaractere, nombreChiffresSignificatifs).replace(
+                                '.', caractereSeparateurDecimal) << endl;
+            }
+        }
+        else
+        {
+            const QList<Point> pointsCourbeInterpoles = interpolationNumerique(pointsCourbe,
+                    seuilInterpolationNumerique);
+            const int nombreDePointsCourbeInterpoles = pointsCourbeInterpoles.count();
+            for (int itPointCourbeInterpole = 0;
+                    itPointCourbeInterpole < nombreDePointsCourbeInterpoles;
+                    itPointCourbeInterpole++)
+            {
+                const Point& pointCourbeInterpole = pointsCourbeInterpoles.at(
+                        itPointCourbeInterpole);
+                fluxSortie
+                        << QString::number(pointCourbeInterpole.getPointReelX(),
+                                formatNotationNombresCaractere, nombreChiffresSignificatifs).replace(
+                                '.', caractereSeparateurDecimal) << caractereSeparation
+                        << QString::number(pointCourbeInterpole.getPointReelY(),
+                                formatNotationNombresCaractere, nombreChiffresSignificatifs).replace(
+                                '.', caractereSeparateurDecimal) << endl;
+            }
+        }
+    }
+    for (int itPointManuel = 0; itPointManuel < nombreDePointsManuels; itPointManuel++)
+    {
+        const Point pointManuel = listeDePointsManuels.at(itPointManuel);
         fluxSortie
-                << QString::number(pointCourant.getPointReelX(), formatNotationNombresCaractere,
+                << QString::number(pointManuel.getPointReelX(), formatNotationNombresCaractere,
                         nombreChiffresSignificatifs).replace('.', caractereSeparateurDecimal)
                 << caractereSeparation
-                << QString::number(pointCourant.getPointReelY(), formatNotationNombresCaractere,
+                << QString::number(pointManuel.getPointReelY(), formatNotationNombresCaractere,
                         nombreChiffresSignificatifs).replace('.', caractereSeparateurDecimal)
                 << endl;
     }
+    // TODO Interpolation des points manuels (point le plus proche) ?
     return true;
-
-    // TODO Implémentation de l'interpolation numérique
 }
 
 void Etude::restaurerImage()
