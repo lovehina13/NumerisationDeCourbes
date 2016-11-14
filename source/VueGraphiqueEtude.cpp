@@ -39,7 +39,6 @@ void VueGraphiqueEtude::dessiner(const Etude& etude)
 {
     const Image& image = etude.getImage();
     const Repere& repere = etude.getRepere();
-    const QList<Point>& listeDePoints = etude.getListeDePoints();
     const ParametresTrait& parametresAxes =
             etude.getParametres().getParametresAffichage().getParametresAxes();
     const ParametresTrait& parametresCourbes =
@@ -47,19 +46,28 @@ void VueGraphiqueEtude::dessiner(const Etude& etude)
     const ParametresPoint& parametresPointsAxes =
             etude.getParametres().getParametresAffichage().getParametresPointsAxes();
     const ParametresPoint& parametresPointsCourbes =
-            etude.getParametres().getParametresAffichage().getParametresPointsManuels();
+            etude.getParametres().getParametresAffichage().getParametresPointsCourbes();
     const ParametresPoint& parametresPointsManuels =
             etude.getParametres().getParametresAffichage().getParametresPointsManuels();
+
+    const QList<QList<Point>> listeDeCourbes = etude.getListeDeCourbes();
+    const QList<Point> listeDePointsManuels = etude.getListeDePointsManuels();
+    const int nombreDeCourbes = listeDeCourbes.count();
+    const int nombreDePointsManuels = listeDePointsManuels.count();
 
     this->effacer();
     this->dessinerImage(image);
     this->dessinerRepere(repere, parametresAxes, parametresPointsAxes);
-    // TODO Utilisation de this->dessinerCourbes()
-    // TODO Utilisation de this->dessinerPointManuel()
-    Q_UNUSED(listeDePoints);
-    Q_UNUSED(parametresCourbes);
-    Q_UNUSED(parametresPointsCourbes);
-    Q_UNUSED(parametresPointsManuels);
+    for (int itCourbe = 0; itCourbe < nombreDeCourbes; itCourbe++)
+    {
+        const QList<Point> pointsCourbe = listeDeCourbes.at(itCourbe);
+        this->dessinerCourbe(pointsCourbe, parametresCourbes, parametresPointsCourbes);
+    }
+    for (int itPointManuel = 0; itPointManuel < nombreDePointsManuels; itPointManuel++)
+    {
+        const Point pointManuel = listeDePointsManuels.at(itPointManuel);
+        this->dessinerPointManuel(pointManuel, parametresPointsManuels);
+    }
 }
 
 void VueGraphiqueEtude::dessinerImage(const Image& image)
@@ -88,10 +96,17 @@ void VueGraphiqueEtude::dessinerRepere(const Repere& repere, const ParametresTra
 void VueGraphiqueEtude::dessinerCourbe(const QList<Point> pointsCourbe,
         const ParametresTrait& parametresCourbes, const ParametresPoint& parametresPointsCourbes)
 {
-    // TODO void VueGraphiqueEtude::dessinerCourbe(const QList<Point> pointsCourbe, const ParametresTrait& parametresCourbes, const ParametresPoint& parametresPointsCourbes)
-    Q_UNUSED(pointsCourbe);
-    Q_UNUSED(parametresCourbes);
-    Q_UNUSED(parametresPointsCourbes);
+    const int nombreDePointsCourbe = pointsCourbe.count();
+    for (int itPointCourbe = 0; itPointCourbe < (nombreDePointsCourbe - 1); itPointCourbe++)
+    {
+        const Point pointCourant = pointsCourbe.at(itPointCourbe);
+        const Point pointSuivant = pointsCourbe.at(itPointCourbe + 1);
+        this->dessinerTrait(pointCourant, pointSuivant, parametresCourbes);
+    }
+    const Point premierPoint = pointsCourbe.at(0);
+    const Point dernierPoint = pointsCourbe.at(nombreDePointsCourbe - 1);
+    this->dessinerPoint(premierPoint, parametresPointsCourbes);
+    this->dessinerPoint(dernierPoint, parametresPointsCourbes);
 }
 
 void VueGraphiqueEtude::dessinerPointManuel(const Point& pointManuel,
@@ -133,6 +148,7 @@ void VueGraphiqueEtude::dessinerTrait(const Point& point1, const Point& point2,
     const QRgb& couleurTrait = parametresTrait.getCouleurTrait();
     QBrush brosseTrait = QBrush(QColor(couleurTrait), Qt::SolidPattern);
     QPen pinceauTrait = QPen(brosseTrait, epaisseurTrait, (Qt::PenStyle) (styleTrait + 1));
+    // TODO Utilisation de Qt::RoundCap et Qt::RoundJoin ?
 
     const double p1px = (double) point1.getPointPixelX();
     const double p1py = (double) point1.getPointPixelY();

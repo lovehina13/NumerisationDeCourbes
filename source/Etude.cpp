@@ -137,6 +137,50 @@ const QString Etude::toString(const char& sep) const
     return toString;
 }
 
+QList<QList<Point>> Etude::getListeDeCourbes() const
+{
+    QList<QList<Point>> listeDeCourbes;
+    QList<Point> listeDePointsCourbe;
+    const QList<Point>& listeDePoints = this->getListeDePoints();
+    const int nombreDePoints = listeDePoints.count();
+    for (int itPoint = 0; itPoint < nombreDePoints; itPoint++)
+    {
+        const Point& pointCourant = listeDePoints.at(itPoint);
+        const int& typePointCourant = pointCourant.getTypePoint();
+        if (typePointCourant == Point::COURBE_DEBUT)
+        {
+            listeDePointsCourbe.clear();
+            listeDePointsCourbe.append(pointCourant);
+        }
+        else if (typePointCourant == Point::COURBE)
+        {
+            listeDePointsCourbe.append(pointCourant);
+        }
+        else if (typePointCourant == Point::COURBE_FIN)
+        {
+            listeDePointsCourbe.append(pointCourant);
+            listeDeCourbes.append(listeDePointsCourbe);
+        }
+    }
+    return listeDeCourbes;
+}
+
+QList<Point> Etude::getListeDePointsManuels() const
+{
+    QList<Point> listeDePointsManuels;
+    const QList<Point>& listeDePoints = this->getListeDePoints();
+    const int nombreDePoints = listeDePoints.count();
+    for (int itPoint = 0; itPoint < nombreDePoints; itPoint++)
+    {
+        const Point& pointCourant = listeDePoints.at(itPoint);
+        if (pointCourant.getTypePoint() == Point::MANUEL)
+        {
+            listeDePointsManuels.append(pointCourant);
+        }
+    }
+    return listeDePointsManuels;
+}
+
 bool Etude::chargerEtude(const QString& cheminFichierEtude)
 {
     QFile fichierEtude(cheminFichierEtude);

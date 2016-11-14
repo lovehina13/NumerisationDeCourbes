@@ -49,6 +49,8 @@ public:
     const QString toString(const char& sep) const;
 
     // Méthodes spécifiques
+    QList<QList<Point>> getListeDeCourbes() const;
+    QList<Point> getListeDePointsManuels() const;
     bool chargerEtude(const QString& cheminFichierEtude);
     bool sauverEtude(const QString& cheminFichierEtude);
     bool exporterImageConvertie(const QString& cheminFichierImageConvertie);
