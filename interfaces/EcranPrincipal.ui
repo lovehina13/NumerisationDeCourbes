@@ -118,6 +118,9 @@
          <property name="text">
           <string>Point X0</string>
          </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
         </widget>
        </item>
        <item row="1" column="1">
@@ -133,6 +136,9 @@
         <widget class="QPushButton" name="pushButtonPointX1">
          <property name="text">
           <string>Point X1</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
@@ -150,6 +156,9 @@
          <property name="text">
           <string>Point Y0</string>
          </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
         </widget>
        </item>
        <item row="3" column="1">
@@ -165,6 +174,9 @@
         <widget class="QPushButton" name="pushButtonPointY1">
          <property name="text">
           <string>Point Y1</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
@@ -231,6 +243,9 @@
          <property name="text">
           <string>Point de départ</string>
          </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
         </widget>
        </item>
        <item row="1" column="1">
@@ -258,6 +273,9 @@
          <property name="text">
           <string>Point d'arrivée</string>
          </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
         </widget>
        </item>
        <item row="2" column="1">
@@ -284,6 +302,9 @@
         <widget class="QPushButton" name="pushButtonPointManuel">
          <property name="text">
           <string>Point manuel</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
          </property>
         </widget>
        </item>

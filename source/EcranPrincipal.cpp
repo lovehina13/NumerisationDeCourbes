@@ -111,6 +111,8 @@ void EcranPrincipal::effacerElementsGraphiques()
 
     this->ui->statusBar->clearMessage();
 
+    this->activerBouton(0);
+
     this->effacerVueGraphiqueEtude();
 }
 
@@ -345,19 +347,162 @@ void EcranPrincipal::dessinerVueGraphiqueEtude()
     this->ui->vueGraphiqueEtude->dessiner(this->etude);
 }
 
+void EcranPrincipal::activerBouton(const QPushButton* pushButton)
+{
+    if (pushButton == 0 || !pushButton->isChecked())
+    {
+        this->ui->vueGraphiqueEtude->setDragMode(QGraphicsView::ScrollHandDrag);
+        this->ui->pushButtonPointX0->setChecked(false);
+        this->ui->pushButtonPointY0->setChecked(false);
+        this->ui->pushButtonPointX1->setChecked(false);
+        this->ui->pushButtonPointY1->setChecked(false);
+        this->ui->pushButtonPointDepart->setChecked(false);
+        this->ui->pushButtonPointArrivee->setChecked(false);
+        this->ui->pushButtonPointManuel->setChecked(false);
+        this->pushButtonActif = 0;
+    }
+    else
+    {
+        this->ui->vueGraphiqueEtude->setDragMode(QGraphicsView::NoDrag);
+        if (this->pushButtonActif != 0 && this->pushButtonActif != pushButton)
+        {
+            this->pushButtonActif->setChecked(false);
+        }
+        this->pushButtonActif = (QPushButton*) pushButton;
+    }
+}
+
+void EcranPrincipal::actualiserPoint(const QPointF& pointVueGraphique)
+{
+    if (this->pushButtonActif == this->ui->pushButtonPointX0
+            || this->pushButtonActif == this->ui->pushButtonPointX1
+            || this->pushButtonActif == this->ui->pushButtonPointY0
+            || this->pushButtonActif == this->ui->pushButtonPointY1)
+    {
+        this->actualiserPointRepere(pointVueGraphique);
+    }
+    else if (this->pushButtonActif == this->ui->pushButtonPointDepart
+            || this->pushButtonActif == this->ui->pushButtonPointArrivee
+            || this->pushButtonActif == this->ui->pushButtonPointManuel)
+    {
+        this->actualiserPointCourbe(pointVueGraphique);
+    }
+}
+
+void EcranPrincipal::actualiserPointRepere(const QPointF& pointVueGraphique)
+{
+    const int ppx = (int) floor(pointVueGraphique.x());
+    const int ppy = (int) floor(pointVueGraphique.y());
+    Repere repere = this->etude.getRepere();
+
+    QString ppxTexte = QString::number(ppx);
+    QString ppyTexte = QString::number(ppy);
+
+    if (this->pushButtonActif == this->ui->pushButtonPointX0)
+    {
+        Point pointX0 = repere.getPointX0();
+        pointX0.setPointPixelX(ppx);
+        pointX0.setPointPixelY(ppy);
+        repere.setPointX0(pointX0);
+        this->etude.setRepere(repere);
+        this->ui->lineEditPointX0XPixel->setText(ppxTexte);
+        this->ui->lineEditPointX0YPixel->setText(ppyTexte);
+        this->actualiserCoordonneesPoints();
+        this->dessinerVueGraphiqueEtude();
+        this->ui->lineEditPointX0Valeur->setFocus();
+    }
+    else if (this->pushButtonActif == this->ui->pushButtonPointX1)
+    {
+        Point pointX1 = repere.getPointX1();
+        pointX1.setPointPixelX(ppx);
+        pointX1.setPointPixelY(ppy);
+        repere.setPointX1(pointX1);
+        this->etude.setRepere(repere);
+        this->ui->lineEditPointX1XPixel->setText(ppxTexte);
+        this->ui->lineEditPointX1YPixel->setText(ppyTexte);
+        this->actualiserCoordonneesPoints();
+        this->dessinerVueGraphiqueEtude();
+        this->ui->lineEditPointX1Valeur->setFocus();
+    }
+    else if (this->pushButtonActif == this->ui->pushButtonPointY0)
+    {
+        Point pointY0 = repere.getPointY0();
+        pointY0.setPointPixelX(ppx);
+        pointY0.setPointPixelY(ppy);
+        repere.setPointY0(pointY0);
+        this->etude.setRepere(repere);
+        this->ui->lineEditPointY0XPixel->setText(ppxTexte);
+        this->ui->lineEditPointY0YPixel->setText(ppyTexte);
+        this->actualiserCoordonneesPoints();
+        this->dessinerVueGraphiqueEtude();
+        this->ui->lineEditPointY0Valeur->setFocus();
+    }
+    else if (this->pushButtonActif == this->ui->pushButtonPointY1)
+    {
+        Point pointY1 = repere.getPointY1();
+        pointY1.setPointPixelX(ppx);
+        pointY1.setPointPixelY(ppy);
+        repere.setPointY1(pointY1);
+        this->etude.setRepere(repere);
+        this->ui->lineEditPointY1XPixel->setText(ppxTexte);
+        this->ui->lineEditPointY1YPixel->setText(ppyTexte);
+        this->actualiserCoordonneesPoints();
+        this->dessinerVueGraphiqueEtude();
+        this->ui->lineEditPointY1Valeur->setFocus();
+    }
+}
+
+void EcranPrincipal::actualiserPointCourbe(const QPointF& pointVueGraphique)
+{
+    const int ppx = (int) floor(pointVueGraphique.x());
+    const int ppy = (int) floor(pointVueGraphique.y());
+    double prx = 0.0;
+    double pry = 0.0;
+    this->etude.getRepere().pixelVersReel(ppx, ppy, prx, pry);
+
+    QString ppxTexte = QString::number(ppx);
+    QString ppyTexte = QString::number(ppy);
+    QString prxTexte = QString::number(prx);
+    QString pryTexte = QString::number(pry);
+
+    if (this->pushButtonActif == this->ui->pushButtonPointDepart)
+    {
+        this->ui->lineEditPointDepartXPixel->setText(ppxTexte);
+        this->ui->lineEditPointDepartYPixel->setText(ppyTexte);
+        this->ui->lineEditPointDepartXReel->setText(prxTexte);
+        this->ui->lineEditPointDepartYReel->setText(pryTexte);
+    }
+    else if (this->pushButtonActif == this->ui->pushButtonPointArrivee)
+    {
+        this->ui->lineEditPointArriveeXPixel->setText(ppxTexte);
+        this->ui->lineEditPointArriveeYPixel->setText(ppyTexte);
+        this->ui->lineEditPointArriveeXReel->setText(prxTexte);
+        this->ui->lineEditPointArriveeYReel->setText(pryTexte);
+    }
+    else if (this->pushButtonActif == this->ui->pushButtonPointManuel)
+    {
+        this->ui->lineEditPointManuelXPixel->setText(ppxTexte);
+        this->ui->lineEditPointManuelYPixel->setText(ppyTexte);
+        this->ui->lineEditPointManuelXReel->setText(prxTexte);
+        this->ui->lineEditPointManuelYReel->setText(pryTexte);
+    }
+}
+
 void EcranPrincipal::actualiserBarreStatut(const QPointF& pointVueGraphique)
 {
     const int ppx = (int) floor(pointVueGraphique.x());
     const int ppy = (int) floor(pointVueGraphique.y());
-    Point pointCourant = Point(QPoint(ppx, ppy), QPointF(), Point::INDEFINI);
-    this->etude.getRepere().pixelVersReel(pointCourant);
+    double prx = 0.0;
+    double pry = 0.0;
+    this->etude.getRepere().pixelVersReel(ppx, ppy, prx, pry);
 
-    QString ppxTexte = QString::number(pointCourant.getPointPixelX());
-    QString ppyTexte = QString::number(pointCourant.getPointPixelY());
-    QString prxTexte = QString::number(pointCourant.getPointReelX());
-    QString pryTexte = QString::number(pointCourant.getPointReelY());
+    QString ppxTexte = QString::number(ppx);
+    QString ppyTexte = QString::number(ppy);
+    QString prxTexte = QString::number(prx);
+    QString pryTexte = QString::number(pry);
     QString statusBarTexte = QString::fromUtf8("Pixel=(%1:%2) - Réel=(%3:%4)").arg(ppxTexte,
             ppyTexte, prxTexte, pryTexte);
+
     this->ui->statusBar->showMessage(statusBarTexte);
 }
 
@@ -655,22 +800,22 @@ void EcranPrincipal::on_lineEditPointY1Valeur_textChanged()
 
 void EcranPrincipal::on_pushButtonPointX0_clicked()
 {
-    // TODO void EcranPrincipal::on_pushButtonPointX0_clicked()
+    this->activerBouton(this->ui->pushButtonPointX0);
 }
 
 void EcranPrincipal::on_pushButtonPointX1_clicked()
 {
-    // TODO void EcranPrincipal::on_pushButtonPointX1_clicked()
+    this->activerBouton(this->ui->pushButtonPointX1);
 }
 
 void EcranPrincipal::on_pushButtonPointY0_clicked()
 {
-    // TODO void EcranPrincipal::on_pushButtonPointY0_clicked()
+    this->activerBouton(this->ui->pushButtonPointY0);
 }
 
 void EcranPrincipal::on_pushButtonPointY1_clicked()
 {
-    // TODO void EcranPrincipal::on_pushButtonPointY1_clicked()
+    this->activerBouton(this->ui->pushButtonPointY1);
 }
 
 void EcranPrincipal::on_lineEditPointDepartXPixel_textChanged()
@@ -705,17 +850,17 @@ void EcranPrincipal::on_lineEditPointManuelYPixel_textChanged()
 
 void EcranPrincipal::on_pushButtonPointDepart_clicked()
 {
-    // TODO void EcranPrincipal::on_pushButtonPointDepart_clicked()
+    this->activerBouton(this->ui->pushButtonPointDepart);
 }
 
 void EcranPrincipal::on_pushButtonPointArrivee_clicked()
 {
-    // TODO void EcranPrincipal::on_pushButtonPointArrivee_clicked()
+    this->activerBouton(this->ui->pushButtonPointArrivee);
 }
 
 void EcranPrincipal::on_pushButtonPointManuel_clicked()
 {
-    // TODO void EcranPrincipal::on_pushButtonPointManuel_clicked()
+    this->activerBouton(this->ui->pushButtonPointManuel);
 }
 
 void EcranPrincipal::on_pushButtonAjouter_clicked()
@@ -789,8 +934,9 @@ void EcranPrincipal::on_pushButtonGraphique_clicked()
 
 void EcranPrincipal::mousePressEventSlot(const QPointF pointVueGraphique)
 {
-    // TODO void EcranPrincipal::mousePressEventSlot(const QPointF pointVueGraphique)
-    Q_UNUSED(pointVueGraphique);
+    this->actualiserPoint(pointVueGraphique);
+
+    this->activerBouton(0);
 }
 
 void EcranPrincipal::mouseMoveEventSlot(const QPointF pointVueGraphique)

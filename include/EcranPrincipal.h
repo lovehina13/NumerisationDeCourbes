@@ -10,6 +10,7 @@
 
 #include "Etude.h"
 #include <QMainWindow>
+#include <QPushButton>
 #include <QWidget>
 
 namespace Ui
@@ -53,6 +54,10 @@ protected:
     void actualiserCoordonneesListeDePoints();
     void effacerVueGraphiqueEtude();
     void dessinerVueGraphiqueEtude();
+    void activerBouton(const QPushButton* pushButton);
+    void actualiserPoint(const QPointF& pointVueGraphique);
+    void actualiserPointRepere(const QPointF& pointVueGraphique);
+    void actualiserPointCourbe(const QPointF& pointVueGraphique);
     void actualiserBarreStatut(const QPointF& pointVueGraphique);
 
 protected slots:
@@ -108,6 +113,7 @@ private:
     Ui::EcranPrincipal* ui;
     Etude etude;
     Etude etudeReference;
+    QPushButton* pushButtonActif;
 };
 
 #endif /* ECRANPRINCIPAL_H_ */
