@@ -11,6 +11,63 @@
 #include <QColor>
 #include <QImage>
 
+bool lessThanQPoint(const QPoint& point1, const QPoint& point2)
+{
+    return (point1.x() != point2.x()) ? (point1.x() < point2.x()) : (point1.y() < point2.y());
+}
+
+int getValeurMoyenne(const QList<int>& listeValeurs)
+{
+    int sommeValeurs = 0;
+    const int nombreValeurs = listeValeurs.count();
+    for (int itValeur = 0; itValeur < nombreValeurs; itValeur++)
+    {
+        const int& valeur = listeValeurs.at(itValeur);
+        sommeValeurs += valeur;
+    }
+    const int valeurMoyenne = (int) round((double) sommeValeurs / (double) nombreValeurs);
+    return valeurMoyenne;
+}
+
+int getValeurMinimale(const QList<int>& listeValeurs)
+{
+    int valeurMinimale = listeValeurs.at(0);
+    const int nombreValeurs = listeValeurs.count();
+    for (int itValeur = 0; itValeur < nombreValeurs; itValeur++)
+    {
+        const int& valeur = listeValeurs.at(itValeur);
+        if (valeur < valeurMinimale)
+        {
+            valeurMinimale = valeur;
+        }
+    }
+    return valeurMinimale;
+}
+
+int getValeurMaximale(const QList<int>& listeValeurs)
+{
+    int valeurMaximale = listeValeurs.at(0);
+    const int nombreValeurs = listeValeurs.count();
+    for (int itValeur = 0; itValeur < nombreValeurs; itValeur++)
+    {
+        const int& valeur = listeValeurs.at(itValeur);
+        if (valeur > valeurMaximale)
+        {
+            valeurMaximale = valeur;
+        }
+    }
+    return valeurMaximale;
+}
+
+QList<QList<int>> listesValeursAdjacentes(const QList<int>& listeValeurs)
+{
+    // TODO QList<QList<int>> listesValeursAdjacentes(const QList<int>& listeValeurs)
+
+    QList<QList<int>> listeValeursAdjacentes;
+    listeValeursAdjacentes.append(listeValeurs);
+    return listeValeursAdjacentes;
+}
+
 QStringList listeSousElements(const QString& chaineElements, const char& sep)
 {
     QStringList listeSousElements;
@@ -19,7 +76,7 @@ QStringList listeSousElements(const QString& chaineElements, const char& sep)
     const int nombreChaineElements = chaineElements.count();
     for (int itChaineElements = 0; itChaineElements < nombreChaineElements; itChaineElements++)
     {
-        QChar caractereCourant = chaineElements.at(itChaineElements);
+        const QChar& caractereCourant = chaineElements.at(itChaineElements);
         if (caractereCourant == '(')
         {
             compteurParentheses++;

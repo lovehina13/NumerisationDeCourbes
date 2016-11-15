@@ -39,6 +39,7 @@ public:
     // Méthodes génériques
 
     // Méthodes spécifiques
+    void repositionner();
     void effacer();
     void dessiner(const Etude& etude);
     void dessinerImage(const Image& image);

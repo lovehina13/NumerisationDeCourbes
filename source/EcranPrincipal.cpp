@@ -116,6 +116,7 @@ void EcranPrincipal::effacerElementsGraphiques()
 
     this->activerBouton(0);
 
+    this->repositionnerVueGraphiqueEtude();
     this->effacerVueGraphiqueEtude();
 }
 
@@ -321,7 +322,7 @@ void EcranPrincipal::actualiserCoordonneesListeDePoints()
     this->ui->tableWidgetListePoints->setRowCount(nombreDePoints);
     for (int itPoint = 0; itPoint < nombreDePoints; itPoint++)
     {
-        Point point = this->etude.getListeDePoints().at(itPoint);
+        const Point& point = this->etude.getListeDePoints().at(itPoint);
         QTableWidgetItem* itemPointPixelX = new QTableWidgetItem(
                 QString::number(point.getPointPixelX()));
         QTableWidgetItem* itemPointPixelY = new QTableWidgetItem(
@@ -338,6 +339,11 @@ void EcranPrincipal::actualiserCoordonneesListeDePoints()
         this->ui->tableWidgetListePoints->setItem(itPoint, 4, itemTypePoint);
     }
     this->ui->tableWidgetListePoints->resizeColumnsToContents();
+}
+
+void EcranPrincipal::repositionnerVueGraphiqueEtude()
+{
+    this->ui->vueGraphiqueEtude->repositionner();
 }
 
 void EcranPrincipal::effacerVueGraphiqueEtude()

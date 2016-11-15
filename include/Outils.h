@@ -13,6 +13,11 @@
 #include <QString>
 #include <QStringList>
 
+bool lessThanQPoint(const QPoint& point1, const QPoint& point2);
+int getValeurMoyenne(const QList<int>& listeValeurs);
+int getValeurMinimale(const QList<int>& listeValeurs);
+int getValeurMaximale(const QList<int>& listeValeurs);
+QList<QList<int>> listesValeursAdjacentes(const QList<int>& listeValeurs);
 QStringList listeSousElements(const QString& chaineElements, const char& sep);
 void interpolationNumerique(const double& x1, const double& y1, const double& x2, const double& y2,
         const double& x, double& y);

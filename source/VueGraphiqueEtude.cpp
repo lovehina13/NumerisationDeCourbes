@@ -35,6 +35,11 @@ VueGraphiqueEtude::~VueGraphiqueEtude()
 {
 }
 
+void VueGraphiqueEtude::repositionner()
+{
+    this->resetTransform();
+}
+
 void VueGraphiqueEtude::effacer()
 {
     this->scene()->clear();
@@ -65,12 +70,12 @@ void VueGraphiqueEtude::dessiner(const Etude& etude)
     this->dessinerRepere(repere, parametresAxes, parametresPointsAxes);
     for (int itCourbe = 0; itCourbe < nombreDeCourbes; itCourbe++)
     {
-        const QList<Point> pointsCourbe = listeDeCourbes.at(itCourbe);
+        const QList<Point>& pointsCourbe = listeDeCourbes.at(itCourbe);
         this->dessinerCourbe(pointsCourbe, parametresCourbes, parametresPointsCourbes);
     }
     for (int itPointManuel = 0; itPointManuel < nombreDePointsManuels; itPointManuel++)
     {
-        const Point pointManuel = listeDePointsManuels.at(itPointManuel);
+        const Point& pointManuel = listeDePointsManuels.at(itPointManuel);
         this->dessinerPointManuel(pointManuel, parametresPointsManuels);
     }
 }
@@ -104,12 +109,12 @@ void VueGraphiqueEtude::dessinerCourbe(const QList<Point> pointsCourbe,
     const int nombreDePointsCourbe = pointsCourbe.count();
     for (int itPointCourbe = 0; itPointCourbe < (nombreDePointsCourbe - 1); itPointCourbe++)
     {
-        const Point pointCourant = pointsCourbe.at(itPointCourbe);
-        const Point pointSuivant = pointsCourbe.at(itPointCourbe + 1);
+        const Point& pointCourant = pointsCourbe.at(itPointCourbe);
+        const Point& pointSuivant = pointsCourbe.at(itPointCourbe + 1);
         this->dessinerTrait(pointCourant, pointSuivant, parametresCourbes);
     }
-    const Point premierPoint = pointsCourbe.at(0);
-    const Point dernierPoint = pointsCourbe.at(nombreDePointsCourbe - 1);
+    const Point& premierPoint = pointsCourbe.at(0);
+    const Point& dernierPoint = pointsCourbe.at(nombreDePointsCourbe - 1);
     this->dessinerPoint(premierPoint, parametresPointsCourbes);
     this->dessinerPoint(dernierPoint, parametresPointsCourbes);
 }

@@ -11,6 +11,7 @@
 #include <QFile>
 #include <QImage>
 #include <QIODevice>
+#include <QMap>
 #include <QTextStream>
 
 Etude::Etude()
@@ -302,7 +303,7 @@ bool Etude::exporterListeDePoints(const QString& cheminFichierExport)
     const int nombreDePointsManuels = listeDePointsManuels.count();
     for (int itCourbe = 0; itCourbe < nombreDeCourbes; itCourbe++)
     {
-        const QList<Point> pointsCourbe = listeDeCourbes.at(itCourbe);
+        const QList<Point>& pointsCourbe = listeDeCourbes.at(itCourbe);
         const int nombreDePointsCourbe = pointsCourbe.count();
         if (seuilInterpolationNumerique == 0.0)
         {
@@ -341,7 +342,7 @@ bool Etude::exporterListeDePoints(const QString& cheminFichierExport)
     }
     for (int itPointManuel = 0; itPointManuel < nombreDePointsManuels; itPointManuel++)
     {
-        const Point pointManuel = listeDePointsManuels.at(itPointManuel);
+        const Point& pointManuel = listeDePointsManuels.at(itPointManuel);
         fluxSortie
                 << QString::number(pointManuel.getPointReelX(), formatNotationNombresCaractere,
                         nombreChiffresSignificatifs).replace('.', caractereSeparateurDecimal)
@@ -399,6 +400,7 @@ QList<QPoint> Etude::rechercherCourbe(const QPoint& pointPixelDepart,
     const QRgb couleurReference = this->getImage().recupererCouleurPixel(pointPixelDepart);
     this->rechercherPointsProches(this->pointPixelDepart, couleurReference);
     this->filtrerListeDePoints(this->listeDePointsDeRecherche);
+    this->traiterListeDePoints(this->listeDePointsDeRecherche);
     return this->listeDePointsDeRecherche;
 }
 
@@ -511,6 +513,80 @@ int Etude::verifierToleranceTeintesSaturees(const QRgb& couleurCourante,
 
 void Etude::filtrerListeDePoints(const QList<QPoint>& listeDePoints)
 {
-    // TODO void Etude::filtrerListeDePoints(const QList<QPoint> listeDePoints)
+    // TODO void Etude::filtrerListeDePoints(const QList<QPoint>& listeDePoints)
+    Q_UNUSED(listeDePoints);
+
+    if (!this->listeDePointsDeRecherche.contains(this->pointPixelDepart))
+        return;
+    if (!this->listeDePointsDeRecherche.contains(this->pointPixelArrivee))
+        return;
+
+    qSort(this->listeDePointsDeRecherche.begin(), this->listeDePointsDeRecherche.end(),
+            lessThanQPoint);
+
+    QMap<int, QList<int>> mapPointsRecherche;
+    const int nombreDePointsDeRecherche = this->listeDePointsDeRecherche.count();
+    for (int itPointRecherche = 0; itPointRecherche < nombreDePointsDeRecherche; itPointRecherche++)
+    {
+        const QPoint& pointRecherche = this->listeDePointsDeRecherche.at(itPointRecherche);
+        mapPointsRecherche[pointRecherche.x()].append(pointRecherche.y());
+    }
+
+    const int xDepart = this->pointPixelDepart.x();
+    const int xArrivee = this->pointPixelArrivee.x();
+    for (int x = (xDepart + 1); x <= xArrivee; x++)
+    {
+        QList<QList<int>> listeValeursAdjacentes = listesValeursAdjacentes(mapPointsRecherche[x]);
+        const int nombreValeursAdjacentes = listeValeursAdjacentes.count();
+        QList<int> valeursAdjacentesRetenues = listeValeursAdjacentes.at(0);
+        if (listeValeursAdjacentes.count() > 1)
+        {
+            double valeurMoyennePrecedente = getValeurMoyenne(mapPointsRecherche[x - 1]);
+            for (int itValeurAdjacente = 0; itValeurAdjacente < nombreValeursAdjacentes;
+                    itValeurAdjacente++)
+            {
+                QList<int> valeursAdjacentes = listeValeursAdjacentes.at(itValeurAdjacente);
+                double valeurMoyenne = getValeurMoyenne(valeursAdjacentes);
+                double valeurMoyenneRetenue = getValeurMoyenne(valeursAdjacentesRetenues);
+                if (fabs(valeurMoyenne - valeurMoyennePrecedente)
+                        < fabs(valeurMoyenneRetenue - valeurMoyennePrecedente))
+                {
+                    valeursAdjacentesRetenues = valeursAdjacentes;
+                }
+            }
+        }
+        mapPointsRecherche[x] = valeursAdjacentesRetenues;
+    }
+
+    this->listeDePointsDeRecherche.clear();
+    if (this->getParametres().getParametresRecherche().getSelectionValeursMoyennes())
+    {
+        for (int x = xDepart; x <= xArrivee; x++)
+        {
+            int y = getValeurMoyenne(mapPointsRecherche[x]);
+            this->listeDePointsDeRecherche.append(QPoint(x, y));
+        }
+    }
+    if (this->getParametres().getParametresRecherche().getSelectionValeursMinimales())
+    {
+        for (int x = xDepart; x <= xArrivee; x++)
+        {
+            int y = getValeurMinimale(mapPointsRecherche[x]);
+            this->listeDePointsDeRecherche.append(QPoint(x, y));
+        }
+    }
+    if (this->getParametres().getParametresRecherche().getSelectionValeursMaximales())
+    {
+        for (int x = xDepart; x <= xArrivee; x++)
+        {
+            int y = getValeurMaximale(mapPointsRecherche[x]);
+            this->listeDePointsDeRecherche.append(QPoint(x, y));
+        }
+    }
+}
+
+void Etude::traiterListeDePoints(const QList<QPoint>& listeDePoints)
+{
+    // TODO void Etude::traiterListeDePoints(const QList<QPoint>& listeDePoints)
     Q_UNUSED(listeDePoints);
 }

@@ -52,6 +52,7 @@ protected:
     void actualiserCoordonneesPointArrivee();
     void actualiserCoordonneesPointManuel();
     void actualiserCoordonneesListeDePoints();
+    void repositionnerVueGraphiqueEtude();
     void effacerVueGraphiqueEtude();
     void dessinerVueGraphiqueEtude();
     void activerBouton(const QPushButton* pushButton);

@@ -81,6 +81,7 @@ protected:
     int verifierToleranceTeintesSaturees(const QRgb& couleurCourante, const QRgb& couleurReference,
             const int& seuilToleranceTeintesSaturees) const;
     void filtrerListeDePoints(const QList<QPoint>& listeDePoints);
+    void traiterListeDePoints(const QList<QPoint>& listeDePoints);
 
 private:
     // Attributs de classe
