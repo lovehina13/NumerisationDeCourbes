@@ -31,6 +31,7 @@ int getValeurMoyenne(const QList<int>& listeValeurs)
 
 int getValeurMinimale(const QList<int>& listeValeurs)
 {
+    // TODO Tri des valeurs, en amont ?
     int valeurMinimale = listeValeurs.at(0);
     const int nombreValeurs = listeValeurs.count();
     for (int itValeur = 0; itValeur < nombreValeurs; itValeur++)
@@ -46,6 +47,7 @@ int getValeurMinimale(const QList<int>& listeValeurs)
 
 int getValeurMaximale(const QList<int>& listeValeurs)
 {
+    // TODO Tri des valeurs, en amont ?
     int valeurMaximale = listeValeurs.at(0);
     const int nombreValeurs = listeValeurs.count();
     for (int itValeur = 0; itValeur < nombreValeurs; itValeur++)
@@ -61,11 +63,24 @@ int getValeurMaximale(const QList<int>& listeValeurs)
 
 const QList<QList<int>> listesValeursAdjacentes(const QList<int>& listeValeurs)
 {
-    // TODO const QList<QList<int>> listesValeursAdjacentes(const QList<int>& listeValeurs)
-
-    QList<QList<int>> listeValeursAdjacentes;
-    listeValeursAdjacentes.append(listeValeurs);
-    return listeValeursAdjacentes;
+    // TODO Tri des valeurs, en amont ?
+    QList<QList<int>> listesValeursAdjacentes;
+    QList<int> listeValeursAdjacentes;
+    int valeurPrecedente = listeValeurs.at(0);
+    const int nombreValeurs = listeValeurs.count();
+    for (int itValeur = 0; itValeur < nombreValeurs; itValeur++)
+    {
+        const int& valeur = listeValeurs.at(itValeur);
+        if (valeur > (valeurPrecedente + 1))
+        {
+            listesValeursAdjacentes.append(listeValeursAdjacentes);
+            listeValeursAdjacentes.clear();
+        }
+        listeValeursAdjacentes.append(valeur);
+        valeurPrecedente = valeur;
+    }
+    listesValeursAdjacentes.append(listeValeursAdjacentes);
+    return listesValeursAdjacentes;
 }
 
 const QStringList listeSousElements(const QString& chaineElements, const char& sep)

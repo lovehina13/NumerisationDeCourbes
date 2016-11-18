@@ -29,9 +29,9 @@ class VueGraphiqueEtude : public QGraphicsView
 
 public:
     // Constructeurs et destructeurs
-    VueGraphiqueEtude(QWidget* parent);
-    VueGraphiqueEtude(QGraphicsScene* scene, QWidget* parent);
-    virtual ~VueGraphiqueEtude();
+    explicit VueGraphiqueEtude(QWidget* parent);
+    explicit VueGraphiqueEtude(QGraphicsScene* scene, QWidget* parent);
+    ~VueGraphiqueEtude();
 
     // Getters
 
