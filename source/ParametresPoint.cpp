@@ -122,7 +122,7 @@ const QString ParametresPoint::toString(const char& sep) const
     return toString;
 }
 
-QString ParametresPoint::getStylePointTexte() const
+const QString ParametresPoint::getStylePointTexte() const
 {
     return stylesPointsTexte.value(this->getStylePoint());
 }

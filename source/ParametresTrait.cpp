@@ -121,7 +121,7 @@ const QString ParametresTrait::toString(const char& sep) const
     return toString;
 }
 
-QString ParametresTrait::getStyleTraitTexte() const
+const QString ParametresTrait::getStyleTraitTexte() const
 {
     return stylesTraitsTexte.value(this->getStyleTrait());
 }

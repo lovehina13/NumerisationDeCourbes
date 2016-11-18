@@ -172,7 +172,7 @@ const QString Point::toString(const char& sep) const
     return toString;
 }
 
-QString Point::getTypePointTexte() const
+const QString Point::getTypePointTexte() const
 {
     return typesPointsTexte.value(this->getTypePoint());
 }

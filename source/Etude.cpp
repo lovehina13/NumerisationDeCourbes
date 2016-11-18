@@ -139,7 +139,7 @@ const QString Etude::toString(const char& sep) const
     return toString;
 }
 
-QList<QList<Point>> Etude::getListeDeCourbes() const
+const QList<QList<Point>> Etude::getListeDeCourbes() const
 {
     QList<QList<Point>> listeDeCourbes;
     QList<Point> listeDePointsCourbe;
@@ -167,7 +167,7 @@ QList<QList<Point>> Etude::getListeDeCourbes() const
     return listeDeCourbes;
 }
 
-QList<Point> Etude::getListeDePointsManuels() const
+const QList<Point> Etude::getListeDePointsManuels() const
 {
     QList<Point> listeDePointsManuels;
     const QList<Point>& listeDePoints = this->getListeDePoints();
@@ -390,7 +390,7 @@ void Etude::convertirImage()
     this->setImage(image);
 }
 
-QList<QPoint> Etude::rechercherCourbe(const QPoint& pointPixelDepart,
+const QList<QPoint> Etude::rechercherCourbe(const QPoint& pointPixelDepart,
         const QPoint& pointPixelArrivee)
 {
     this->listeDePointsDeRecherche.clear();
@@ -429,7 +429,7 @@ void Etude::rechercherPointsProches(const QPoint& pointPixel, const QRgb& couleu
     }
 }
 
-QList<QPoint> Etude::rechercherListeDePointsProches(const QPoint& pointPixel) const
+const QList<QPoint> Etude::rechercherListeDePointsProches(const QPoint& pointPixel) const
 {
     QList<QPoint> listeDePointsProches;
     const Image& image = this->getImage();

@@ -49,15 +49,16 @@ public:
     const QString toString(const char& sep) const;
 
     // Méthodes spécifiques
-    QList<QList<Point>> getListeDeCourbes() const;
-    QList<Point> getListeDePointsManuels() const;
+    const QList<QList<Point>> getListeDeCourbes() const;
+    const QList<Point> getListeDePointsManuels() const;
     bool chargerEtude(const QString& cheminFichierEtude);
     bool sauverEtude(const QString& cheminFichierEtude);
     bool exporterImageConvertie(const QString& cheminFichierImageConvertie);
     bool exporterListeDePoints(const QString& cheminFichierExport);
     void restaurerImage();
     void convertirImage();
-    QList<QPoint> rechercherCourbe(const QPoint& pointPixelDepart, const QPoint& pointPixelArrivee);
+    const QList<QPoint> rechercherCourbe(const QPoint& pointPixelDepart,
+            const QPoint& pointPixelArrivee);
 
     // Enumération des types de tolérance de niveaux de gris
     enum typesToleranceNiveauxDeGris
@@ -75,7 +76,7 @@ public:
 protected:
     // Méthodes spécifiques
     void rechercherPointsProches(const QPoint& pointPixel, const QRgb& couleurReference);
-    QList<QPoint> rechercherListeDePointsProches(const QPoint& pointPixel) const;
+    const QList<QPoint> rechercherListeDePointsProches(const QPoint& pointPixel) const;
     int verifierToleranceNiveauxDeGris(const QRgb& couleurCourante, const QRgb& couleurReference,
             const int& seuilToleranceNiveauxDeGris) const;
     int verifierToleranceTeintesSaturees(const QRgb& couleurCourante, const QRgb& couleurReference,

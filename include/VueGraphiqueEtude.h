@@ -28,6 +28,7 @@ class VueGraphiqueEtude : public QGraphicsView
     Q_OBJECT
 
 public:
+    // Constructeurs et destructeurs
     VueGraphiqueEtude(QWidget* parent);
     VueGraphiqueEtude(QGraphicsScene* scene, QWidget* parent);
     virtual ~VueGraphiqueEtude();
@@ -45,7 +46,7 @@ public:
     void dessinerImage(const Image& image);
     void dessinerRepere(const Repere& repere, const ParametresTrait& parametresAxes,
             const ParametresPoint& parametresPointsAxes);
-    void dessinerCourbe(const QList<Point> pointsCourbe, const ParametresTrait& parametresCourbes,
+    void dessinerCourbe(const QList<Point>& pointsCourbe, const ParametresTrait& parametresCourbes,
             const ParametresPoint& parametresPointsCourbes);
     void dessinerPointManuel(const Point& pointManuel,
             const ParametresPoint& parametresPointsManuels);
@@ -61,7 +62,9 @@ protected:
     void wheelEvent(QWheelEvent* event);
 
 private:
-    // Attributs de classes inaccessibles
+    // Attributs de classe
+
+    // Attributs de classe inaccessibles
     static const double facteurZoomIn;
     static const double facteurZoomOut;
 

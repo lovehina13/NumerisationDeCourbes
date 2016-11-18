@@ -55,8 +55,8 @@ protected:
             const int& seuilSaturation);
     double getPasNiveauxDeGris(const int& nombreNiveauxDeGris) const;
     double getPasTeintesSaturees(const int& nombreTeintesSaturees) const;
-    QList<QRgb> getListeNiveauxDeGris(const int& nombreNiveauxDeGris) const;
-    QList<QRgb> getListeTeintesSaturees(const int& nombreTeintesSaturees) const;
+    const QList<QRgb> getListeNiveauxDeGris(const int& nombreNiveauxDeGris) const;
+    const QList<QRgb> getListeTeintesSaturees(const int& nombreTeintesSaturees) const;
 
 private:
     // Attributs de classe

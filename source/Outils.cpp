@@ -59,16 +59,16 @@ int getValeurMaximale(const QList<int>& listeValeurs)
     return valeurMaximale;
 }
 
-QList<QList<int>> listesValeursAdjacentes(const QList<int>& listeValeurs)
+const QList<QList<int>> listesValeursAdjacentes(const QList<int>& listeValeurs)
 {
-    // TODO QList<QList<int>> listesValeursAdjacentes(const QList<int>& listeValeurs)
+    // TODO const QList<QList<int>> listesValeursAdjacentes(const QList<int>& listeValeurs)
 
     QList<QList<int>> listeValeursAdjacentes;
     listeValeursAdjacentes.append(listeValeurs);
     return listeValeursAdjacentes;
 }
 
-QStringList listeSousElements(const QString& chaineElements, const char& sep)
+const QStringList listeSousElements(const QString& chaineElements, const char& sep)
 {
     QStringList listeSousElements;
     QString elementCourant;
@@ -128,7 +128,7 @@ void interpolationNumerique(const Point& point1, const Point& point2, Point& poi
     point.setPointReelY(pry);
 }
 
-QList<Point> interpolationNumerique(const QList<Point>& listeDePoints, const double& pas)
+const QList<Point> interpolationNumerique(const QList<Point>& listeDePoints, const double& pas)
 {
     QList<Point> listeDePointsInterpoles;
     const int nombreDePoints = listeDePoints.count();

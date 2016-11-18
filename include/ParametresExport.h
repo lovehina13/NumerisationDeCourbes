@@ -48,11 +48,11 @@ public:
 
     // Méthodes spécifiques
     char getFormatNotationNombresCaractere() const;
-    QString getFormatNotationNombresTexte() const;
+    const QString getFormatNotationNombresTexte() const;
     int getCaractereSeparationIndice() const;
-    QString getCaractereSeparationTexte() const;
+    const QString getCaractereSeparationTexte() const;
     int getCaractereSeparateurDecimalIndice() const;
-    QString getCaractereSeparateurDecimalTexte() const;
+    const QString getCaractereSeparateurDecimalTexte() const;
     void setFormatNotationNombresCaractere(const char& formatNotationNombresCaractere);
     void setFormatNotationNombresTexte(const QString& formatNotationNombresTexte);
     void setCaractereSeparationIndice(const int& caractereSeparationIndice);

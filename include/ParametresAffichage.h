@@ -58,7 +58,7 @@ public:
 
     // Méthodes spécifiques
     char getFormatNotationNombresCaractere() const;
-    QString getFormatNotationNombresTexte() const;
+    const QString getFormatNotationNombresTexte() const;
     void setFormatNotationNombresCaractere(const char& formatNotationNombresCaractere);
     void setFormatNotationNombresTexte(const QString& formatNotationNombresTexte);
 

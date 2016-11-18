@@ -178,7 +178,7 @@ char ParametresExport::getFormatNotationNombresCaractere() const
     return formatsNotationNombresCaractere.value(this->getFormatNotationNombres());
 }
 
-QString ParametresExport::getFormatNotationNombresTexte() const
+const QString ParametresExport::getFormatNotationNombresTexte() const
 {
     return formatsNotationNombresTexte.value(this->getFormatNotationNombres());
 }
@@ -188,7 +188,7 @@ int ParametresExport::getCaractereSeparationIndice() const
     return caracteresSeparationIndice.value(this->getCaractereSeparation());
 }
 
-QString ParametresExport::getCaractereSeparationTexte() const
+const QString ParametresExport::getCaractereSeparationTexte() const
 {
     return caracteresSeparationTexte.value(this->getCaractereSeparation());
 }
@@ -198,7 +198,7 @@ int ParametresExport::getCaractereSeparateurDecimalIndice() const
     return caracteresSeparateurDecimalIndice.value(this->getCaractereSeparateurDecimal());
 }
 
-QString ParametresExport::getCaractereSeparateurDecimalTexte() const
+const QString ParametresExport::getCaractereSeparateurDecimalTexte() const
 {
     return caracteresSeparateurDecimalTexte.value(this->getCaractereSeparateurDecimal());
 }

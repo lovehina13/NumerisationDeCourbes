@@ -103,7 +103,7 @@ void VueGraphiqueEtude::dessinerRepere(const Repere& repere, const ParametresTra
     this->dessinerPoint(pointY1, parametresPointsAxes);
 }
 
-void VueGraphiqueEtude::dessinerCourbe(const QList<Point> pointsCourbe,
+void VueGraphiqueEtude::dessinerCourbe(const QList<Point>& pointsCourbe,
         const ParametresTrait& parametresCourbes, const ParametresPoint& parametresPointsCourbes)
 {
     const int nombreDePointsCourbe = pointsCourbe.count();

@@ -40,7 +40,7 @@ public:
     const QString toString(const char& sep) const;
 
     // Méthodes spécifiques
-    QString getStylePointTexte() const;
+    const QString getStylePointTexte() const;
     void setStylePointTexte(const QString& stylePointTexte);
 
     // Enumération des styles de points

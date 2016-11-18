@@ -199,7 +199,7 @@ double Image::getPasTeintesSaturees(const int& nombreTeintesSaturees) const
     return 360.0 / (double) nombreTeintesSaturees;
 }
 
-QList<QRgb> Image::getListeNiveauxDeGris(const int& nombreNiveauxDeGris) const
+const QList<QRgb> Image::getListeNiveauxDeGris(const int& nombreNiveauxDeGris) const
 {
     QList<QRgb> listeNiveauxDeGris;
     const double pasNiveauxDeGris = this->getPasNiveauxDeGris(nombreNiveauxDeGris);
@@ -212,7 +212,7 @@ QList<QRgb> Image::getListeNiveauxDeGris(const int& nombreNiveauxDeGris) const
     return listeNiveauxDeGris;
 }
 
-QList<QRgb> Image::getListeTeintesSaturees(const int& nombreTeintesSaturees) const
+const QList<QRgb> Image::getListeTeintesSaturees(const int& nombreTeintesSaturees) const
 {
     QList<QRgb> listeTeintesSaturees;
     const double pasTeintesSaturees = this->getPasTeintesSaturees(nombreTeintesSaturees);

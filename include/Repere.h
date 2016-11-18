@@ -42,9 +42,9 @@ public:
     const QString toString(const char& sep) const;
 
     // Méthodes spécifiques
+    void pixelVersReel(Point& point) const;
     void pixelVersReel(const int& pointPixelX, const int& pointPixelY, double& pointReelX,
             double& pointReelY) const;
-    void pixelVersReel(Point& point) const;
 
 private:
     // Attributs de classe

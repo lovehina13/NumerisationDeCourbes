@@ -53,7 +53,7 @@ public:
     const QString toString(const char& sep) const;
 
     // Méthodes spécifiques
-    QString getTypePointTexte() const;
+    const QString getTypePointTexte() const;
     void setTypePointTexte(const QString& typePointTexte);
     bool operator==(const Point& point) const;
 
@@ -69,7 +69,7 @@ private:
     QPointF pointReel;
     int typePoint;
 
-    // Attributs de classes inaccessibles
+    // Attributs de classe inaccessibles
     static const QMap<int, QString> typesPointsTexte;
 };
 

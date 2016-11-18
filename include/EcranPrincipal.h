@@ -10,6 +10,7 @@
 
 #include "Etude.h"
 #include <QMainWindow>
+#include <QPointF>
 #include <QPushButton>
 #include <QWidget>
 

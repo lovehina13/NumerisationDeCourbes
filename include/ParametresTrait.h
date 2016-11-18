@@ -40,7 +40,7 @@ public:
     const QString toString(const char& sep) const;
 
     // Méthodes spécifiques
-    QString getStyleTraitTexte() const;
+    const QString getStyleTraitTexte() const;
     void setStyleTraitTexte(const QString& styleTraitTexte);
 
     // Enumération des styles de traits

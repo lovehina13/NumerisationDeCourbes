@@ -226,7 +226,7 @@ char ParametresAffichage::getFormatNotationNombresCaractere() const
     return formatsNotationNombresCaractere.value(this->getFormatNotationNombres());
 }
 
-QString ParametresAffichage::getFormatNotationNombresTexte() const
+const QString ParametresAffichage::getFormatNotationNombresTexte() const
 {
     return formatsNotationNombresTexte.value(this->getFormatNotationNombres());
 }

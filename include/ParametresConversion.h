@@ -47,7 +47,7 @@ public:
     const QString toString(const char& sep) const;
 
     // Méthodes spécifiques
-    QString getMethodeConversionTexte() const;
+    const QString getMethodeConversionTexte() const;
     double getSeuilNoirEtBlancFacteur() const;
     double getSeuilSaturationFacteur() const;
     void setMethodeConversionTexte(const QString& methodeConversionTexte);

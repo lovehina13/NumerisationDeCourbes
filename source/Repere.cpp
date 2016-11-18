@@ -132,6 +132,17 @@ const QString Repere::toString(const char& sep) const
     return toString;
 }
 
+void Repere::pixelVersReel(Point& point) const
+{
+    const int pointPixelX = point.getPointPixelX();
+    const int pointPixelY = point.getPointPixelY();
+    double pointReelX = 0.0;
+    double pointReelY = 0.0;
+    this->pixelVersReel(pointPixelX, pointPixelY, pointReelX, pointReelY);
+    point.setPointReelX(pointReelX);
+    point.setPointReelY(pointReelY);
+}
+
 void Repere::pixelVersReel(const int& pointPixelX, const int& pointPixelY, double& pointReelX,
         double& pointReelY) const
 {
@@ -161,15 +172,4 @@ void Repere::pixelVersReel(const int& pointPixelX, const int& pointPixelY, doubl
 
     pointReelX = -penteX * (x1rx - x0rx) + x0rx;
     pointReelY = -penteY * (y1ry - y0ry) + y0ry;
-}
-
-void Repere::pixelVersReel(Point& point) const
-{
-    const int pointPixelX = point.getPointPixelX();
-    const int pointPixelY = point.getPointPixelY();
-    double pointReelX = 0.0;
-    double pointReelY = 0.0;
-    this->pixelVersReel(pointPixelX, pointPixelY, pointReelX, pointReelY);
-    point.setPointReelX(pointReelX);
-    point.setPointReelY(pointReelY);
 }

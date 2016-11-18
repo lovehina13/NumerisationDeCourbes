@@ -161,7 +161,7 @@ const QString ParametresConversion::toString(const char& sep) const
     return toString;
 }
 
-QString ParametresConversion::getMethodeConversionTexte() const
+const QString ParametresConversion::getMethodeConversionTexte() const
 {
     return methodesConversionTexte.value(this->getMethodeConversion());
 }
