@@ -7,7 +7,6 @@
 
 #include "ParametresAffichage.h"
 #include "Outils.h"
-#include <QRgb>
 #include <QStringList>
 
 const int ParametresAffichage::formatNotationNombresDefaut = STANDARD;
@@ -189,8 +188,6 @@ bool ParametresAffichage::equals(const ParametresAffichage& parametresAffichage)
 void ParametresAffichage::fromString(const QString& fromString, const char& sep)
 {
     QStringList fromStringList = listeSousElements(fromString, sep);
-    this->setFormatNotationNombres(fromStringList.at(0).toInt());
-    this->setNombreChiffresSignificatifs(fromStringList.at(1).toInt());
     ParametresTrait parametresAxes = this->getParametresAxes();
     ParametresTrait parametresCourbes = this->getParametresCourbes();
     ParametresPoint parametresPointsAxes = this->getParametresPointsAxes();
@@ -201,6 +198,8 @@ void ParametresAffichage::fromString(const QString& fromString, const char& sep)
     parametresPointsAxes.fromString(fromStringList.at(4), sep);
     parametresPointsCourbes.fromString(fromStringList.at(5), sep);
     parametresPointsManuels.fromString(fromStringList.at(6), sep);
+    this->setFormatNotationNombres(fromStringList.at(0).toInt());
+    this->setNombreChiffresSignificatifs(fromStringList.at(1).toInt());
     this->setParametresAxes(parametresAxes);
     this->setParametresCourbes(parametresCourbes);
     this->setParametresPointsAxes(parametresPointsAxes);

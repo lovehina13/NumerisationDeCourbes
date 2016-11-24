@@ -7,7 +7,6 @@
 
 #include "Image.h"
 #include "ParametresConversion.h"
-#include <cmath>
 #include <QByteArray>
 #include <QColor>
 
@@ -127,16 +126,20 @@ void Image::convertirImageTeintesSaturees(const int& nombreNiveauxDeGris,
 
 bool Image::verifierPresencePixel(const QPoint& pointPixel) const
 {
+    const QImage& imageConvertie = this->getImageConvertie();
+    const int largeurImage = imageConvertie.width();
+    const int hauteurImage = imageConvertie.height();
     const int x = pointPixel.x();
     const int y = pointPixel.y();
-    const int largeurImage = this->getImageConvertie().width();
-    const int hauteurImage = this->getImageConvertie().height();
     return (x >= 0 && x < largeurImage && y >= 0 && y < hauteurImage);
 }
 
 QRgb Image::recupererCouleurPixel(const QPoint& pointPixel) const
 {
-    return this->getImageConvertie().pixel(pointPixel.x(), pointPixel.y());
+    const QImage& imageConvertie = this->getImageConvertie();
+    const int x = pointPixel.x();
+    const int y = pointPixel.y();
+    return imageConvertie.pixel(x, y);
 }
 
 void Image::convertirImage(const int& methodeConversion, const int& seuilNoirEtBlanc,
@@ -169,8 +172,9 @@ void Image::convertirImage(const int& methodeConversion, const int& seuilNoirEtB
             }
             else if (methodeConversion == ParametresConversion::TEINTES_SATUREES)
             {
-                if (QColor(couleurConvertie).hue() == -1
-                        || QColor(couleurConvertie).saturation() <= seuilSaturation)
+                const int teinteCouleurConvertie = QColor(couleurConvertie).hue();
+                const int saturationCouleurConvertie = QColor(couleurConvertie).saturation();
+                if (teinteCouleurConvertie == -1 || saturationCouleurConvertie <= seuilSaturation)
                 {
                     couleurConvertie = listeNiveauxDeGris.at(
                             (int) round((double) qGray(couleurConvertie) / pasNiveauxDeGris));
@@ -178,9 +182,7 @@ void Image::convertirImage(const int& methodeConversion, const int& seuilNoirEtB
                 else
                 {
                     couleurConvertie = listeTeintesSaturees.at(
-                            (int) round(
-                                    (double) QColor(couleurConvertie).hue() / pasTeintesSaturees)
-                                    % nombreTeintesSaturees);
+                            (int) round((double) teinteCouleurConvertie / pasTeintesSaturees));
                 }
             }
             imageConvertie.setPixel(x, y, couleurConvertie);

@@ -7,7 +7,6 @@
 
 #include "Outils.h"
 #include "Image.h"
-#include <cmath>
 #include <QColor>
 #include <QImage>
 

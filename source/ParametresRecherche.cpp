@@ -7,7 +7,6 @@
 
 #include "ParametresRecherche.h"
 #include "Outils.h"
-#include <cmath>
 #include <QStringList>
 
 const int ParametresRecherche::seuilToleranceNiveauxDeGrisDefaut = 32;
@@ -154,20 +153,20 @@ const QString ParametresRecherche::toString(const char& sep) const
     QString toString;
     toString += QString::number(this->getSeuilToleranceNiveauxDeGris()) + sep;
     toString += QString::number(this->getSeuilToleranceTeintesSaturees()) + sep;
-    toString += QString::number(this->getSelectionValeursMoyennes()) + sep;
-    toString += QString::number(this->getSelectionValeursMinimales()) + sep;
-    toString += QString::number(this->getSelectionValeursMaximales());
+    toString += QString::number((int) this->getSelectionValeursMoyennes()) + sep;
+    toString += QString::number((int) this->getSelectionValeursMinimales()) + sep;
+    toString += QString::number((int) this->getSelectionValeursMaximales());
     return toString;
 }
 
 double ParametresRecherche::getSeuilToleranceNiveauxDeGrisFacteur() const
 {
-    return (this->getSeuilToleranceNiveauxDeGris() / 255.0);
+    return ((double) this->getSeuilToleranceNiveauxDeGris() / 255.0);
 }
 
 double ParametresRecherche::getSeuilToleranceTeintesSatureesFacteur() const
 {
-    return (this->getSeuilToleranceTeintesSaturees() / 360.0);
+    return ((double) this->getSeuilToleranceTeintesSaturees() / 360.0);
 }
 
 void ParametresRecherche::setSeuilToleranceNiveauxDeGrisFacteur(

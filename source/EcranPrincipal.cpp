@@ -12,7 +12,6 @@
 #include "FenetreParametresExport.h"
 #include "FenetreParametresRecherche.h"
 #include "ui_EcranPrincipal.h"
-#include <cmath>
 #include <QDoubleValidator>
 #include <QFileDialog>
 #include <QImage>

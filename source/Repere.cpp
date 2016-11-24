@@ -7,7 +7,6 @@
 
 #include "Repere.h"
 #include "Outils.h"
-#include <cmath>
 #include <QStringList>
 
 Repere::Repere()
@@ -146,19 +145,24 @@ void Repere::pixelVersReel(Point& point) const
 void Repere::pixelVersReel(const int& pointPixelX, const int& pointPixelY, double& pointReelX,
         double& pointReelY) const
 {
-    const double x0px = (double) this->getPointX0().getPointPixelX();
-    const double x0py = (double) this->getPointX0().getPointPixelY();
-    const double x1px = (double) this->getPointX1().getPointPixelX();
-    const double x1py = (double) this->getPointX1().getPointPixelY();
-    const double y0px = (double) this->getPointY0().getPointPixelX();
-    const double y0py = (double) this->getPointY0().getPointPixelY();
-    const double y1px = (double) this->getPointY1().getPointPixelX();
-    const double y1py = (double) this->getPointY1().getPointPixelY();
+    const Point& pointX0 = this->getPointX0();
+    const Point& pointX1 = this->getPointX1();
+    const Point& pointY0 = this->getPointY0();
+    const Point& pointY1 = this->getPointY1();
 
-    const double x0rx = this->getPointX0().getPointReelX();
-    const double x1rx = this->getPointX1().getPointReelX();
-    const double y0ry = this->getPointY0().getPointReelY();
-    const double y1ry = this->getPointY1().getPointReelY();
+    const double x0px = (double) pointX0.getPointPixelX();
+    const double x0py = (double) pointX0.getPointPixelY();
+    const double x1px = (double) pointX1.getPointPixelX();
+    const double x1py = (double) pointX1.getPointPixelY();
+    const double y0px = (double) pointY0.getPointPixelX();
+    const double y0py = (double) pointY0.getPointPixelY();
+    const double y1px = (double) pointY1.getPointPixelX();
+    const double y1py = (double) pointY1.getPointPixelY();
+
+    const double x0rx = pointX0.getPointReelX();
+    const double x1rx = pointX1.getPointReelX();
+    const double y0ry = pointY0.getPointReelY();
+    const double y1ry = pointY1.getPointReelY();
 
     const double x21 = x1px - x0px;
     const double y21 = x1py - x0py;
@@ -166,9 +170,9 @@ void Repere::pixelVersReel(const int& pointPixelX, const int& pointPixelY, doubl
     const double y43 = y1py - y0py;
 
     const double penteX = ((x0px - (double) pointPixelX)
-            - (x0py - (double) pointPixelY) * (x43 / y43)) / (x21 - ((y21 * x43) / y43));
+            - (x0py - (double) pointPixelY) * (x43 / y43)) / (x21 - y21 * (x43 / y43));
     const double penteY = ((y0py - (double) pointPixelY)
-            - (y0px - (double) pointPixelX) * (y21 / x21)) / (y43 - ((x43 * y21) / x21));
+            - (y0px - (double) pointPixelX) * (y21 / x21)) / (y43 - x43 * (y21 / x21));
 
     pointReelX = -penteX * (x1rx - x0rx) + x0rx;
     pointReelY = -penteY * (y1ry - y0ry) + y0ry;

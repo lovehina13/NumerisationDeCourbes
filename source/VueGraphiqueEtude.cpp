@@ -6,7 +6,6 @@
 //==============================================================================
 
 #include "VueGraphiqueEtude.h"
-#include <cmath>
 #include <QBrush>
 #include <QColor>
 #include <QGraphicsPixmapItem>

@@ -7,7 +7,6 @@
 
 #include "ParametresConversion.h"
 #include "Outils.h"
-#include <cmath>
 #include <QStringList>
 
 const int ParametresConversion::methodeConversionDefaut = BRUTE;
@@ -168,12 +167,12 @@ const QString ParametresConversion::getMethodeConversionTexte() const
 
 double ParametresConversion::getSeuilNoirEtBlancFacteur() const
 {
-    return (this->getSeuilNoirEtBlanc() / 255.0);
+    return ((double) this->getSeuilNoirEtBlanc() / 255.0);
 }
 
 double ParametresConversion::getSeuilSaturationFacteur() const
 {
-    return (this->getSeuilSaturation() / 255.0);
+    return ((double) this->getSeuilSaturation() / 255.0);
 }
 
 void ParametresConversion::setMethodeConversionTexte(const QString& methodeConversionTexte)
