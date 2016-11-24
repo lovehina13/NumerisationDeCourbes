@@ -25,7 +25,7 @@
 #include <QTableWidgetItem>
 
 EcranPrincipal::EcranPrincipal(QWidget* parent) :
-        QMainWindow(parent), ui(new Ui::EcranPrincipal)
+        QMainWindow(parent), ui(new Ui::EcranPrincipal), pushButtonActif(0)
 {
     this->ui->setupUi(this);
     this->connect(this->ui->vueGraphiqueEtude, SIGNAL(mousePressEventSignal(const QPointF)), this,

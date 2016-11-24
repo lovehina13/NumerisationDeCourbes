@@ -41,7 +41,7 @@ void FenetreParametresRecherche::initialiserElementsGraphiques()
     this->ui->doubleSpinBoxSeuilToleranceNiveauxDeGrisFacteur->setMinimum(0.0);
     this->ui->doubleSpinBoxSeuilToleranceNiveauxDeGrisFacteur->setMaximum(100.0);
     this->ui->spinBoxSeuilToleranceTeintesSaturees->setMinimum(0);
-    this->ui->spinBoxSeuilToleranceTeintesSaturees->setMaximum(255);
+    this->ui->spinBoxSeuilToleranceTeintesSaturees->setMaximum(360);
     this->ui->doubleSpinBoxSeuilToleranceTeintesSatureesFacteur->setMinimum(0.0);
     this->ui->doubleSpinBoxSeuilToleranceTeintesSatureesFacteur->setMaximum(100.0);
     this->ui->buttonBox->button(QDialogButtonBox::Cancel)->setText("Annuler");

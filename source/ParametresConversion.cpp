@@ -10,7 +10,7 @@
 #include <QStringList>
 
 const int ParametresConversion::methodeConversionDefaut = BRUTE;
-const int ParametresConversion::seuilNoirEtBlancDefaut = 224;
+const int ParametresConversion::seuilNoirEtBlancDefaut = 223;
 const int ParametresConversion::nombreNiveauxDeGrisDefaut = 5;
 const int ParametresConversion::nombreTeintesSatureesDefaut = 6;
 const int ParametresConversion::seuilSaturationDefaut = 32;
