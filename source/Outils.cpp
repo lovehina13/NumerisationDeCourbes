@@ -152,7 +152,7 @@ const QList<Point> interpolationNumerique(const QList<Point>& listeDePoints, con
         const int nombreDePointsInterpoles = (int) round((xMaximal - xMinimal) / pas) + 1;
         for (int itPas = 0; itPas < nombreDePointsInterpoles; itPas++)
         {
-            const double xInterpole = xMinimal + ((double) itPas * (double) pas);
+            const double xInterpole = xMinimal + ((double) itPas * pas);
             Point pointInterpole;
             Point pointPrecedent;
             Point pointSuivant;
@@ -194,76 +194,79 @@ const QList<Point> interpolationNumerique(const QList<Point>& listeDePoints, con
 void genererImageTest()
 {
     // Définition de l'image de test
-    QImage imageTest(640, 480, QImage::Format_RGB32);
+    const int largeurImage = 640;
+    const int hauteurImage = 480;
     const int largeurSpectre = 600;
     const int hauteurSpectre = 50;
     const int hauteurSpectreTeinte = 230;
+    QImage imageTest = QImage(largeurImage, hauteurImage, QImage::Format_RGB32);
 
     // Fond blanc
-    QColor couleurBlanc = Qt::white;
-    for (int x = 0; x < imageTest.width(); x++)
+    const QColor couleurBlanc = QColor(Qt::white);
+    for (int x = 0; x < largeurImage; x++)
     {
-        for (int y = 0; y < imageTest.height(); y++)
+        for (int y = 0; y < hauteurImage; y++)
         {
             imageTest.setPixel(x, y, couleurBlanc.rgb());
         }
     }
 
     // Spectre de gris
-    QColor couleurGris = Qt::black;
+    QColor couleurGris = QColor(Qt::black);
     for (int x = 0; x < largeurSpectre; x++)
     {
         for (int y = 0; y < hauteurSpectre; y++)
         {
             int valeurGris = (int) round(x * (255.0 / largeurSpectre));
             couleurGris.setRgb(valeurGris, valeurGris, valeurGris);
-            imageTest.setPixel(x + 20, y + 20, couleurGris.rgb());
+            imageTest.setPixel((x + 20), (y + 20), couleurGris.rgb());
         }
     }
 
     // Spectre de saturation
-    QColor couleurSaturation = Qt::red;
+    QColor couleurSaturation = QColor(Qt::red);
     for (int x = 0; x < largeurSpectre; x++)
     {
         for (int y = 0; y < hauteurSpectre; y++)
         {
             int valeurSaturation = (int) round(x * (255.0 / largeurSpectre));
             couleurSaturation = QColor::fromHsv(couleurSaturation.hue(), valeurSaturation, 255);
-            imageTest.setPixel(x + 20, y + 90, couleurSaturation.rgb());
+            imageTest.setPixel((x + 20), (y + 90), couleurSaturation.rgb());
         }
     }
 
     // Spectre de brillance
-    QColor couleurBrillance = Qt::red;
+    QColor couleurBrillance = QColor(Qt::red);
     for (int x = 0; x < largeurSpectre; x++)
     {
         for (int y = 0; y < hauteurSpectre; y++)
         {
             int valeurBrillance = (int) round(x * (255.0 / largeurSpectre));
             couleurBrillance = QColor::fromHsv(couleurBrillance.hue(), 255, valeurBrillance);
-            imageTest.setPixel(x + 20, y + 160, couleurBrillance.rgb());
+            imageTest.setPixel((x + 20), (y + 160), couleurBrillance.rgb());
         }
     }
 
     // Spectre de teinte
-    QColor couleurTeinte = Qt::black;
+    QColor couleurTeinte = QColor(Qt::black);
     for (int x = 0; x < largeurSpectre; x++)
     {
         for (int y = 0; y < hauteurSpectreTeinte; y++)
         {
-            int valeurTeinte = (int) round(x * (360.0 / largeurSpectre)) % 360;
+            int valeurTeinte = (int) round(x * (360.0 / largeurSpectre));
             couleurTeinte = QColor::fromHsv(valeurTeinte, 255, 255);
-            imageTest.setPixel(x + 20, y + 230, couleurTeinte.rgb());
+            imageTest.setPixel((x + 20), (y + 230), couleurTeinte.rgb());
         }
     }
 
+    // Ecriture de l'image
     imageTest.save("ImageTest.png");
 }
 
 void testerConversionNoirEtBlanc(const int& seuilNoirEtBlanc)
 {
     genererImageTest();
-    Image imageTest(QImage("ImageTest.png"), QImage());
+    Image imageTest = Image(QImage("ImageTest.png"), QImage());
     imageTest.convertirImageNoirEtBlanc(seuilNoirEtBlanc);
     imageTest.getImageConvertie().save("ImageTestConversionNoirEtBlanc.png");
 }
@@ -271,7 +274,7 @@ void testerConversionNoirEtBlanc(const int& seuilNoirEtBlanc)
 void testerConversionNiveauxDeGris(const int& nombreNiveauxDeGris)
 {
     genererImageTest();
-    Image imageTest(QImage("ImageTest.png"), QImage());
+    Image imageTest = Image(QImage("ImageTest.png"), QImage());
     imageTest.convertirImageNiveauxDeGris(nombreNiveauxDeGris);
     imageTest.getImageConvertie().save("ImageTestConversionNiveauxDeGris.png");
 }
@@ -280,7 +283,7 @@ void testerConversionTeintesSaturees(const int& nombreNiveauxDeGris,
         const int& nombreTeintesSaturees, const int& seuilSaturation)
 {
     genererImageTest();
-    Image imageTest(QImage("ImageTest.png"), QImage());
+    Image imageTest = Image(QImage("ImageTest.png"), QImage());
     imageTest.convertirImageTeintesSaturees(nombreNiveauxDeGris, nombreTeintesSaturees,
             seuilSaturation);
     imageTest.getImageConvertie().save("ImageTestConversionTeintesSaturees.png");
