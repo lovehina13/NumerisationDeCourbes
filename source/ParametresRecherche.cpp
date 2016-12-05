@@ -140,7 +140,7 @@ bool ParametresRecherche::equals(const ParametresRecherche& parametresRecherche)
 
 void ParametresRecherche::fromString(const QString& fromString, const char& sep)
 {
-    QStringList fromStringList = listeSousElements(fromString, sep);
+    const QStringList fromStringList = listeSousElements(fromString, sep);
     this->setSeuilToleranceNiveauxDeGris(fromStringList.at(0).toInt());
     this->setSeuilToleranceTeintesSaturees(fromStringList.at(1).toInt());
     this->setSelectionValeursMoyennes((bool) fromStringList.at(2).toInt());

@@ -126,7 +126,7 @@ bool Parametres::equals(const Parametres& parametres) const
 
 void Parametres::fromString(const QString& fromString, const char& sep)
 {
-    QStringList fromStringList = listeSousElements(fromString, sep);
+    const QStringList fromStringList = listeSousElements(fromString, sep);
     ParametresFichiers parametresFichiers = this->getParametresFichiers();
     ParametresAffichage parametresAffichage = this->getParametresAffichage();
     ParametresConversion parametresConversion = this->getParametresConversion();

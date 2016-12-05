@@ -187,7 +187,7 @@ bool ParametresAffichage::equals(const ParametresAffichage& parametresAffichage)
 
 void ParametresAffichage::fromString(const QString& fromString, const char& sep)
 {
-    QStringList fromStringList = listeSousElements(fromString, sep);
+    const QStringList fromStringList = listeSousElements(fromString, sep);
     ParametresTrait parametresAxes = this->getParametresAxes();
     ParametresTrait parametresCourbes = this->getParametresCourbes();
     ParametresPoint parametresPointsAxes = this->getParametresPointsAxes();

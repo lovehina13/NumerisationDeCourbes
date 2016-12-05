@@ -7,6 +7,8 @@
 
 #include "Etude.h"
 #include "Outils.h"
+#include "ParametresConversion.h"
+#include "ParametresFichiers.h"
 #include <QColor>
 #include <QFile>
 #include <QImage>
@@ -20,12 +22,14 @@ Etude::Etude()
 }
 
 Etude::Etude(const Image& image, const Repere& repere, const QList<Point>& listeDePoints,
-        const Parametres& parametres)
+        const Parametres& parametres) :
+        Etude()
 {
     this->set(image, repere, listeDePoints, parametres);
 }
 
-Etude::Etude(const Etude& etude)
+Etude::Etude(const Etude& etude) :
+        Etude()
 {
     this->copy(etude);
 }
@@ -90,10 +94,7 @@ void Etude::set(const Image& image, const Repere& repere, const QList<Point>& li
 
 void Etude::copy(const Etude& etude)
 {
-    this->setImage(etude.getImage());
-    this->setRepere(etude.getRepere());
-    this->setListeDePoints(etude.getListeDePoints());
-    this->setParametres(etude.getParametres());
+    this->set(etude.getImage(), etude.getRepere(), etude.getListeDePoints(), etude.getParametres());
 }
 
 bool Etude::equals(const Etude& etude) const
@@ -133,8 +134,7 @@ const QString Etude::toString(const char& sep) const
             toString += sep;
         }
     }
-    toString += "]";
-    toString += sep;
+    toString += "]" + sep;
     toString += "(" + this->getParametres().toString(sep) + ")";
     return toString;
 }
@@ -175,7 +175,8 @@ const QList<Point> Etude::getListeDePointsManuels() const
     for (int itPoint = 0; itPoint < nombreDePoints; itPoint++)
     {
         const Point& pointCourant = listeDePoints.at(itPoint);
-        if (pointCourant.getTypePoint() == Point::MANUEL)
+        const int& typePointCourant = pointCourant.getTypePoint();
+        if (typePointCourant == Point::MANUEL)
         {
             listeDePointsManuels.append(pointCourant);
         }
@@ -200,7 +201,7 @@ bool Etude::chargerEtude(const QString& cheminFichierEtude)
             Parametres parametres = this->getParametres();
             parametres.fromString(ligneEntree, separateur);
             this->setParametres(parametres);
-            Image image;
+            Image image = this->getImage();
             image.setImageSource(
                     QImage(parametres.getParametresFichiers().getCheminFichierImageSource()));
             this->setImage(image);
@@ -244,13 +245,13 @@ bool Etude::sauverEtude(const QString& cheminFichierEtude)
 
     const char separateur = ';';
     QTextStream fluxSortie(&fichierEtude);
+    const QList<Point>& listeDePoints = this->getListeDePoints();
+    const int nombreDePoints = listeDePoints.count();
     fluxSortie << "[PARAMETRES]" << endl;
     fluxSortie << this->getParametres().toString(separateur) << endl;
     fluxSortie << "[REPERE]" << endl;
     fluxSortie << this->getRepere().toString(separateur) << endl;
     fluxSortie << "[POINTS]" << endl;
-    const QList<Point>& listeDePoints = this->getListeDePoints();
-    const int nombreDePoints = listeDePoints.count();
     for (int itPoint = 0; itPoint < nombreDePoints; itPoint++)
     {
         const Point& pointCourant = listeDePoints.at(itPoint);
@@ -398,7 +399,7 @@ const QList<QPoint> Etude::rechercherCourbe(const QPoint& pointPixelDepart,
     this->pointPixelArrivee = pointPixelArrivee;
     this->listeDePointsDeRecherche.append(pointPixelDepart);
     const QRgb couleurReference = this->getImage().recupererCouleurPixel(pointPixelDepart);
-    this->rechercherPointsProches(this->pointPixelDepart, couleurReference);
+    this->rechercherPointsProches(pointPixelDepart, couleurReference);
     this->filtrerListeDePoints(this->listeDePointsDeRecherche);
     this->traiterListeDePoints(this->listeDePointsDeRecherche);
     return this->listeDePointsDeRecherche;
@@ -489,9 +490,13 @@ const QList<QPoint> Etude::rechercherListeDePointsProches(const QPoint& pointPix
 int Etude::verifierToleranceNiveauxDeGris(const QRgb& couleurCourante, const QRgb& couleurReference,
         const int& seuilToleranceNiveauxDeGris) const
 {
-    if (qGray(couleurCourante) < (qGray(couleurReference) - seuilToleranceNiveauxDeGris))
+    const int niveauDeGrisCouleurCourante = qGray(couleurCourante);
+    const int niveauDeGrisCouleurReference = qGray(couleurReference);
+    const int seuilMinimalNiveauDeGris = niveauDeGrisCouleurReference - seuilToleranceNiveauxDeGris;
+    const int seuilMaximalNiveauDeGris = niveauDeGrisCouleurReference + seuilToleranceNiveauxDeGris;
+    if (niveauDeGrisCouleurCourante < seuilMinimalNiveauDeGris)
         return NIVEAU_DE_GRIS_INFERIEUR;
-    else if (qGray(couleurCourante) > (qGray(couleurReference) + seuilToleranceNiveauxDeGris))
+    else if (niveauDeGrisCouleurCourante > seuilMaximalNiveauDeGris)
         return NIVEAU_DE_GRIS_SUPERIEUR;
     return NIVEAU_DE_GRIS_COMPATIBLE;
 }
@@ -499,15 +504,22 @@ int Etude::verifierToleranceNiveauxDeGris(const QRgb& couleurCourante, const QRg
 int Etude::verifierToleranceTeintesSaturees(const QRgb& couleurCourante,
         const QRgb& couleurReference, const int& seuilToleranceTeintesSaturees) const
 {
-    if (QColor(couleurCourante).hue()
-            < ((QColor(couleurReference).hue() - seuilToleranceTeintesSaturees) % 360))
-        return TEINTE_SATUREE_INFERIEURE;
-    else if (QColor(couleurCourante).hue()
-            > ((QColor(couleurReference).hue() + seuilToleranceTeintesSaturees) % 360))
-        return TEINTE_SATUREE_SUPERIEURE;
-    else if ((QColor(couleurCourante).hue() == -1 && QColor(couleurReference).hue() != -1)
-            || (QColor(couleurCourante).hue() != -1 && QColor(couleurReference).hue() == -1))
+    const int teinteCouleurCourante = QColor(couleurCourante).hue();
+    const int teinteCouleurReference = QColor(couleurReference).hue();
+    const int seuilMinimalTeinteSaturee = (teinteCouleurReference - seuilToleranceTeintesSaturees
+            + 360) % 360;
+    const int seuilMaximalTeinteSaturee = (teinteCouleurReference + seuilToleranceTeintesSaturees
+            + 360) % 360;
+    const bool seuilsInverses = (seuilMinimalTeinteSaturee > seuilMaximalTeinteSaturee);
+    if ((teinteCouleurCourante == -1 && teinteCouleurReference != -1)
+            || (teinteCouleurCourante != -1 && teinteCouleurReference == -1))
         return TEINTE_SATUREE_INCOMPATIBLE;
+    else if (teinteCouleurCourante < seuilMinimalTeinteSaturee
+            && (!seuilsInverses || (seuilsInverses && teinteCouleurCourante >= 180)))
+        return TEINTE_SATUREE_INFERIEURE;
+    else if (teinteCouleurCourante > seuilMaximalTeinteSaturee
+            && (!seuilsInverses || (seuilsInverses && teinteCouleurCourante <= 180)))
+        return TEINTE_SATUREE_SUPERIEURE;
     return TEINTE_SATUREE_COMPATIBLE;
 }
 

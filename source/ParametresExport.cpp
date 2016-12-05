@@ -154,7 +154,7 @@ bool ParametresExport::equals(const ParametresExport& parametresExport) const
 
 void ParametresExport::fromString(const QString& fromString, const char& sep)
 {
-    QStringList fromStringList = listeSousElements(fromString, sep);
+    const QStringList fromStringList = listeSousElements(fromString, sep);
     this->setFormatNotationNombres(fromStringList.at(0).toInt());
     this->setNombreChiffresSignificatifs(fromStringList.at(1).toInt());
     this->setCaractereSeparation(fromStringList.at(2).at(1).toAscii());

@@ -208,7 +208,7 @@ const QList<QRgb> Image::getListeNiveauxDeGris(const int& nombreNiveauxDeGris) c
     for (int itNiveauDeGris = 0; itNiveauDeGris < nombreNiveauxDeGris; itNiveauDeGris++)
     {
         const int valeurGris = (int) round((double) itNiveauDeGris * pasNiveauxDeGris);
-        QRgb niveauDeGris = QColor::fromRgb(valeurGris, valeurGris, valeurGris).rgb();
+        const QRgb niveauDeGris = QColor::fromRgb(valeurGris, valeurGris, valeurGris).rgb();
         listeNiveauxDeGris.append(niveauDeGris);
     }
     return listeNiveauxDeGris;
@@ -221,7 +221,7 @@ const QList<QRgb> Image::getListeTeintesSaturees(const int& nombreTeintesSaturee
     for (int itTeinteSaturee = 0; itTeinteSaturee < nombreTeintesSaturees; itTeinteSaturee++)
     {
         const int valeurTeinte = (int) round((double) itTeinteSaturee * pasTeintesSaturees);
-        QRgb teinteSaturee = QColor::fromHsv(valeurTeinte, 255, 255).rgb();
+        const QRgb teinteSaturee = QColor::fromHsv(valeurTeinte, 255, 255).rgb();
         listeTeintesSaturees.append(teinteSaturee);
     }
     return listeTeintesSaturees;

@@ -106,7 +106,7 @@ bool Repere::equals(const Repere& repere) const
 
 void Repere::fromString(const QString& fromString, const char& sep)
 {
-    QStringList fromStringList = listeSousElements(fromString, sep);
+    const QStringList fromStringList = listeSousElements(fromString, sep);
     Point pointX0 = this->getPointX0();
     Point pointX1 = this->getPointX1();
     Point pointY0 = this->getPointY0();

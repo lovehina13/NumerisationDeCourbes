@@ -106,7 +106,7 @@ bool ParametresTrait::equals(const ParametresTrait& parametresTrait) const
 
 void ParametresTrait::fromString(const QString& fromString, const char& sep)
 {
-    QStringList fromStringList = listeSousElements(fromString, sep);
+    const QStringList fromStringList = listeSousElements(fromString, sep);
     this->setStyleTrait(fromStringList.at(0).toInt());
     this->setEpaisseurTrait(fromStringList.at(1).toInt());
     this->setCouleurTrait(QColor(fromStringList.at(2)).rgb());

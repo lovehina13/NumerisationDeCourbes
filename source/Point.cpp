@@ -153,7 +153,7 @@ bool Point::equals(const Point& point) const
 
 void Point::fromString(const QString& fromString, const char& sep)
 {
-    QStringList fromStringList = listeSousElements(fromString, sep);
+    const QStringList fromStringList = listeSousElements(fromString, sep);
     this->setPointPixelX(fromStringList.at(0).toInt());
     this->setPointPixelY(fromStringList.at(1).toInt());
     this->setPointReelX(fromStringList.at(2).toDouble());

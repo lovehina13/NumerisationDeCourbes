@@ -107,7 +107,7 @@ bool ParametresPoint::equals(const ParametresPoint& parametresPoint) const
 
 void ParametresPoint::fromString(const QString& fromString, const char& sep)
 {
-    QStringList fromStringList = listeSousElements(fromString, sep);
+    const QStringList fromStringList = listeSousElements(fromString, sep);
     this->setStylePoint(fromStringList.at(0).toInt());
     this->setEpaisseurPoint(fromStringList.at(1).toInt());
     this->setCouleurPoint(QColor(fromStringList.at(2)).rgb());

@@ -112,7 +112,7 @@ bool ParametresFichiers::equals(const ParametresFichiers& parametresFichiers) co
 
 void ParametresFichiers::fromString(const QString& fromString, const char& sep)
 {
-    QStringList fromStringList = listeSousElements(fromString, sep);
+    const QStringList fromStringList = listeSousElements(fromString, sep);
     this->setCheminFichierEtude(fromStringList.at(0).mid(1, (fromStringList.at(0).count() - 2)));
     this->setCheminFichierImageSource(
             fromStringList.at(1).mid(1, (fromStringList.at(1).count() - 2)));

@@ -141,7 +141,7 @@ bool ParametresConversion::equals(const ParametresConversion& parametresConversi
 
 void ParametresConversion::fromString(const QString& fromString, const char& sep)
 {
-    QStringList fromStringList = listeSousElements(fromString, sep);
+    const QStringList fromStringList = listeSousElements(fromString, sep);
     this->setMethodeConversion(fromStringList.at(0).toInt());
     this->setSeuilNoirEtBlanc(fromStringList.at(1).toInt());
     this->setNombreNiveauxDeGris(fromStringList.at(2).toInt());
