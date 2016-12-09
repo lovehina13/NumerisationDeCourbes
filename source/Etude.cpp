@@ -8,7 +8,9 @@
 #include "Etude.h"
 #include "Outils.h"
 #include "ParametresConversion.h"
+#include "ParametresExport.h"
 #include "ParametresFichiers.h"
+#include "ParametresRecherche.h"
 #include <QColor>
 #include <QFile>
 #include <QImage>
@@ -201,9 +203,9 @@ bool Etude::chargerEtude(const QString& cheminFichierEtude)
             Parametres parametres = this->getParametres();
             parametres.fromString(ligneEntree, separateur);
             this->setParametres(parametres);
+            const ParametresFichiers& parametresFichier = parametres.getParametresFichiers();
             Image image = this->getImage();
-            image.setImageSource(
-                    QImage(parametres.getParametresFichiers().getCheminFichierImageSource()));
+            image.setImageSource(QImage(parametresFichier.getCheminFichierImageSource()));
             this->setImage(image);
             this->restaurerImage();
             this->convertirImage();
@@ -272,8 +274,7 @@ bool Etude::exporterImageConvertie(const QString& cheminFichierImageConvertie)
     if (!fichierImageConvertie.open(QIODevice::WriteOnly | QIODevice::Text))
         return false;
 
-    const QImage& imageConvertie = this->getImage().getImageConvertie();
-    imageConvertie.save(cheminFichierImageConvertie);
+    this->getImage().getImageConvertie().save(cheminFichierImageConvertie);
     return true;
 }
 
@@ -398,7 +399,8 @@ const QList<QPoint> Etude::rechercherCourbe(const QPoint& pointPixelDepart,
     this->pointPixelDepart = pointPixelDepart;
     this->pointPixelArrivee = pointPixelArrivee;
     this->listeDePointsDeRecherche.append(pointPixelDepart);
-    const QRgb couleurReference = this->getImage().recupererCouleurPixel(pointPixelDepart);
+    const Image& image = this->getImage();
+    const QRgb couleurReference = image.recupererCouleurPixel(pointPixelDepart);
     this->rechercherPointsProches(pointPixelDepart, couleurReference);
     this->filtrerListeDePoints(this->listeDePointsDeRecherche);
     this->traiterListeDePoints(this->listeDePointsDeRecherche);
@@ -409,16 +411,18 @@ void Etude::rechercherPointsProches(const QPoint& pointPixel, const QRgb& couleu
 {
     const QList<QPoint> listeDePointsProches = this->rechercherListeDePointsProches(pointPixel);
     const int nombreDePointsProches = listeDePointsProches.count();
-    const int seuilToleranceNiveauxDeGris =
-            this->getParametres().getParametresRecherche().getSeuilToleranceNiveauxDeGris();
-    const int seuilToleranceTeintesSaturees =
-            this->getParametres().getParametresRecherche().getSeuilToleranceTeintesSaturees();
+    const Image& image = this->getImage();
+    const Parametres& parametres = this->getParametres();
+    const ParametresRecherche& parametresRecherche = parametres.getParametresRecherche();
+    const int& seuilToleranceNiveauxDeGris = parametresRecherche.getSeuilToleranceNiveauxDeGris();
+    const int& seuilToleranceTeintesSaturees =
+            parametresRecherche.getSeuilToleranceTeintesSaturees();
     for (int itPointProche = 0; itPointProche < nombreDePointsProches; itPointProche++)
     {
         const QPoint& pointCourant = listeDePointsProches.at(itPointProche);
         if (this->listeDePointsDeRecherche.contains(pointCourant))
             continue;
-        const QRgb& couleurCourante = this->getImage().recupererCouleurPixel(pointCourant);
+        const QRgb& couleurCourante = image.recupererCouleurPixel(pointCourant);
         if (this->verifierToleranceNiveauxDeGris(couleurCourante, couleurReference,
                 seuilToleranceNiveauxDeGris) != NIVEAU_DE_GRIS_COMPATIBLE)
             continue;
@@ -434,56 +438,26 @@ const QList<QPoint> Etude::rechercherListeDePointsProches(const QPoint& pointPix
 {
     QList<QPoint> listeDePointsProches;
     const Image& image = this->getImage();
-
-    const int xCourant = pointPixel.x();
-    const int yCourant = pointPixel.y();
-    const int xPrecedent = xCourant - 1;
-    const int xSuivant = xCourant + 1;
-    const int yPrecedent = yCourant - 1;
-    const int ySuivant = yCourant + 1;
-
-    const QPoint pointHautGauche(xPrecedent, yPrecedent);
-    const QPoint pointHaut(xCourant, yPrecedent);
-    const QPoint pointHautDroite(xSuivant, yPrecedent);
-    const QPoint pointGauche(xPrecedent, yCourant);
-    const QPoint pointDroite(xSuivant, yCourant);
-    const QPoint pointBasGauche(xPrecedent, ySuivant);
-    const QPoint pointBas(xCourant, ySuivant);
-    const QPoint pointBasDroite(xSuivant, ySuivant);
-
-    if (image.verifierPresencePixel(pointHautGauche) && xPrecedent >= this->pointPixelDepart.x())
+    const int xMinimal = this->pointPixelDepart.x();
+    const int xMaximal = this->pointPixelArrivee.x();
+    const int xReference = pointPixel.x();
+    const int yReference = pointPixel.y();
+    const int xPrecedent = ((xReference - 1) > xMinimal) ? (xReference - 1) : xMinimal;
+    const int xSuivant = ((xReference + 1) < xMaximal) ? (xReference + 1) : xMaximal;
+    const int yPrecedent = yReference - 1;
+    const int ySuivant = yReference + 1;
+    for (int x = xPrecedent; x <= xSuivant; x++)
     {
-        listeDePointsProches.append(pointHautGauche);
+        for (int y = yPrecedent; y <= ySuivant; y++)
+        {
+            const QPoint pointCourant(x, y);
+            if (x == xReference && y == yReference)
+                continue;
+            if (!image.verifierPresencePixel(pointCourant))
+                continue;
+            listeDePointsProches.append(pointCourant);
+        }
     }
-    if (image.verifierPresencePixel(pointHaut))
-    {
-        listeDePointsProches.append(pointHaut);
-    }
-    if (image.verifierPresencePixel(pointHautDroite) && xSuivant <= this->pointPixelArrivee.x())
-    {
-        listeDePointsProches.append(pointHautDroite);
-    }
-    if (image.verifierPresencePixel(pointGauche) && xPrecedent >= this->pointPixelDepart.x())
-    {
-        listeDePointsProches.append(pointGauche);
-    }
-    if (image.verifierPresencePixel(pointDroite) && xSuivant <= this->pointPixelArrivee.x())
-    {
-        listeDePointsProches.append(pointDroite);
-    }
-    if (image.verifierPresencePixel(pointBasGauche) && xPrecedent >= this->pointPixelDepart.x())
-    {
-        listeDePointsProches.append(pointBasGauche);
-    }
-    if (image.verifierPresencePixel(pointBas))
-    {
-        listeDePointsProches.append(pointBas);
-    }
-    if (image.verifierPresencePixel(pointBasDroite) && xSuivant <= this->pointPixelArrivee.x())
-    {
-        listeDePointsProches.append(pointBasDroite);
-    }
-
     return listeDePointsProches;
 }
 
@@ -544,22 +518,23 @@ void Etude::filtrerListeDePoints(const QList<QPoint>& listeDePoints)
         mapPointsRecherche[pointRecherche.x()].append(pointRecherche.y());
     }
 
-    const int xDepart = this->pointPixelDepart.x();
-    const int xArrivee = this->pointPixelArrivee.x();
-    for (int x = (xDepart + 1); x <= xArrivee; x++)
+    const int xMinimal = this->pointPixelDepart.x();
+    const int xMaximal = this->pointPixelArrivee.x();
+    for (int x = (xMinimal + 1); x <= xMaximal; x++)
     {
-        QList<QList<int>> listeValeursAdjacentes = listesValeursAdjacentes(mapPointsRecherche[x]);
+        const QList<QList<int>> listeValeursAdjacentes = listesValeursAdjacentes(
+                mapPointsRecherche[x]);
         const int nombreValeursAdjacentes = listeValeursAdjacentes.count();
         QList<int> valeursAdjacentesRetenues = listeValeursAdjacentes.at(0);
         if (listeValeursAdjacentes.count() > 1)
         {
-            double valeurMoyennePrecedente = getValeurMoyenne(mapPointsRecherche[x - 1]);
-            for (int itValeurAdjacente = 0; itValeurAdjacente < nombreValeursAdjacentes;
-                    itValeurAdjacente++)
+            const double valeurMoyennePrecedente = getValeurMoyenne(mapPointsRecherche[x - 1]);
+            for (int itValeursAdjacentes = 0; itValeursAdjacentes < nombreValeursAdjacentes;
+                    itValeursAdjacentes++)
             {
-                QList<int> valeursAdjacentes = listeValeursAdjacentes.at(itValeurAdjacente);
-                double valeurMoyenne = getValeurMoyenne(valeursAdjacentes);
-                double valeurMoyenneRetenue = getValeurMoyenne(valeursAdjacentesRetenues);
+                const QList<int> valeursAdjacentes = listeValeursAdjacentes.at(itValeursAdjacentes);
+                const double valeurMoyenne = getValeurMoyenne(valeursAdjacentes);
+                const double valeurMoyenneRetenue = getValeurMoyenne(valeursAdjacentesRetenues);
                 if (fabs(valeurMoyenne - valeurMoyennePrecedente)
                         < fabs(valeurMoyenneRetenue - valeurMoyennePrecedente))
                 {
@@ -571,27 +546,29 @@ void Etude::filtrerListeDePoints(const QList<QPoint>& listeDePoints)
     }
 
     this->listeDePointsDeRecherche.clear();
-    if (this->getParametres().getParametresRecherche().getSelectionValeursMoyennes())
+    const Parametres& parametres = this->getParametres();
+    const ParametresRecherche& parametresRecherche = parametres.getParametresRecherche();
+    if (parametresRecherche.getSelectionValeursMoyennes())
     {
-        for (int x = xDepart; x <= xArrivee; x++)
+        for (int x = xMinimal; x <= xMaximal; x++)
         {
-            int y = getValeurMoyenne(mapPointsRecherche[x]);
+            const int y = getValeurMoyenne(mapPointsRecherche[x]);
             this->listeDePointsDeRecherche.append(QPoint(x, y));
         }
     }
-    if (this->getParametres().getParametresRecherche().getSelectionValeursMinimales())
+    if (parametresRecherche.getSelectionValeursMinimales())
     {
-        for (int x = xDepart; x <= xArrivee; x++)
+        for (int x = xMinimal; x <= xMaximal; x++)
         {
-            int y = getValeurMinimale(mapPointsRecherche[x]);
+            const int y = getValeurMinimale(mapPointsRecherche[x]);
             this->listeDePointsDeRecherche.append(QPoint(x, y));
         }
     }
-    if (this->getParametres().getParametresRecherche().getSelectionValeursMaximales())
+    if (parametresRecherche.getSelectionValeursMaximales())
     {
-        for (int x = xDepart; x <= xArrivee; x++)
+        for (int x = xMinimal; x <= xMaximal; x++)
         {
-            int y = getValeurMaximale(mapPointsRecherche[x]);
+            const int y = getValeurMaximale(mapPointsRecherche[x]);
             this->listeDePointsDeRecherche.append(QPoint(x, y));
         }
     }
