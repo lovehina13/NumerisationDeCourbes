@@ -16,6 +16,7 @@
 #include <QImage>
 #include <QIODevice>
 #include <QMap>
+#include <QPointF>
 #include <QTextStream>
 
 Etude::Etude()
@@ -141,9 +142,9 @@ const QString Etude::toString(const char& sep) const
     return toString;
 }
 
-const QList<QList<Point>> Etude::getListeDeCourbes() const
+const QList<Courbe> Etude::getListeDeCourbes() const
 {
-    QList<QList<Point>> listeDeCourbes;
+    QList<Courbe> listeDeCourbes;
     QList<Point> listeDePointsCourbe;
     const QList<Point>& listeDePoints = this->getListeDePoints();
     const int nombreDePoints = listeDePoints.count();
@@ -299,19 +300,19 @@ bool Etude::exporterListeDePoints(const QString& cheminFichierExport)
     const double& seuilInterpolationNumerique = parametresExport.getSeuilInterpolationNumerique();
 
     QTextStream fluxSortie(&fichierExport);
-    const QList<QList<Point>> listeDeCourbes = this->getListeDeCourbes();
+    const QList<Courbe> listeDeCourbes = this->getListeDeCourbes();
     const QList<Point> listeDePointsManuels = this->getListeDePointsManuels();
     const int nombreDeCourbes = listeDeCourbes.count();
     const int nombreDePointsManuels = listeDePointsManuels.count();
     for (int itCourbe = 0; itCourbe < nombreDeCourbes; itCourbe++)
     {
-        const QList<Point>& pointsCourbe = listeDeCourbes.at(itCourbe);
-        const int nombreDePointsCourbe = pointsCourbe.count();
+        const Courbe& listeDePointsCourbe = listeDeCourbes.at(itCourbe);
+        const int nombreDePointsCourbe = listeDePointsCourbe.count();
         if (seuilInterpolationNumerique == 0.0)
         {
             for (int itPointCourbe = 0; itPointCourbe < nombreDePointsCourbe; itPointCourbe++)
             {
-                const Point& pointCourbe = pointsCourbe.at(itPointCourbe);
+                const Point& pointCourbe = listeDePointsCourbe.at(itPointCourbe);
                 fluxSortie
                         << QString::number(pointCourbe.getPointReelX(),
                                 formatNotationNombresCaractere, nombreChiffresSignificatifs).replace(
@@ -323,14 +324,14 @@ bool Etude::exporterListeDePoints(const QString& cheminFichierExport)
         }
         else
         {
-            const QList<Point> pointsCourbeInterpoles = interpolationNumerique(pointsCourbe,
+            const Courbe listeDePointsCourbeInterpoles = interpolationNumerique(listeDePointsCourbe,
                     seuilInterpolationNumerique);
-            const int nombreDePointsCourbeInterpoles = pointsCourbeInterpoles.count();
+            const int nombreDePointsCourbeInterpoles = listeDePointsCourbeInterpoles.count();
             for (int itPointCourbeInterpole = 0;
                     itPointCourbeInterpole < nombreDePointsCourbeInterpoles;
                     itPointCourbeInterpole++)
             {
-                const Point& pointCourbeInterpole = pointsCourbeInterpoles.at(
+                const Point& pointCourbeInterpole = listeDePointsCourbeInterpoles.at(
                         itPointCourbeInterpole);
                 fluxSortie
                         << QString::number(pointCourbeInterpole.getPointReelX(),
@@ -392,7 +393,16 @@ void Etude::convertirImage()
     this->setImage(image);
 }
 
-const QList<QPoint> Etude::rechercherCourbe(const QPoint& pointPixelDepart,
+const QList<Courbe> Etude::rechercherCourbes(const QPoint& pointPixelDepart,
+        const QPoint& pointPixelArrivee)
+{
+    const QList<QPoint> listeDePointsCourbes = this->rechercherPointsCourbes(pointPixelDepart,
+            pointPixelArrivee);
+    const QList<Courbe> listeDeCourbes = this->construireCourbes(listeDePointsCourbes);
+    return listeDeCourbes;
+}
+
+const QList<QPoint> Etude::rechercherPointsCourbes(const QPoint& pointPixelDepart,
         const QPoint& pointPixelArrivee)
 {
     this->listeDePointsDeRecherche.clear();
@@ -401,15 +411,15 @@ const QList<QPoint> Etude::rechercherCourbe(const QPoint& pointPixelDepart,
     this->listeDePointsDeRecherche.append(pointPixelDepart);
     const Image& image = this->getImage();
     const QRgb couleurReference = image.recupererCouleurPixel(pointPixelDepart);
-    this->rechercherPointsProches(pointPixelDepart, couleurReference);
-    this->filtrerListeDePoints(this->listeDePointsDeRecherche);
-    this->traiterListeDePoints(this->listeDePointsDeRecherche);
-    return this->listeDePointsDeRecherche;
+    this->rechercherPoints(pointPixelDepart, couleurReference);
+    const QList<QPoint> listeDePointsCourbes = this->filtrerPointsCourbes(
+            this->listeDePointsDeRecherche, this->pointPixelDepart, this->pointPixelArrivee);
+    return listeDePointsCourbes;
 }
 
-void Etude::rechercherPointsProches(const QPoint& pointPixel, const QRgb& couleurReference)
+void Etude::rechercherPoints(const QPoint& pointPixel, const QRgb& couleurReference)
 {
-    const QList<QPoint> listeDePointsProches = this->rechercherListeDePointsProches(pointPixel);
+    const QList<QPoint> listeDePointsProches = this->recupererPointsProches(pointPixel);
     const int nombreDePointsProches = listeDePointsProches.count();
     const Image& image = this->getImage();
     const Parametres& parametres = this->getParametres();
@@ -430,11 +440,11 @@ void Etude::rechercherPointsProches(const QPoint& pointPixel, const QRgb& couleu
                 seuilToleranceTeintesSaturees) != TEINTE_SATUREE_COMPATIBLE)
             continue;
         this->listeDePointsDeRecherche.append(pointCourant);
-        this->rechercherPointsProches(pointCourant, couleurReference);
+        this->rechercherPoints(pointCourant, couleurReference);
     }
 }
 
-const QList<QPoint> Etude::rechercherListeDePointsProches(const QPoint& pointPixel) const
+const QList<QPoint> Etude::recupererPointsProches(const QPoint& pointPixel) const
 {
     QList<QPoint> listeDePointsProches;
     const Image& image = this->getImage();
@@ -497,29 +507,27 @@ int Etude::verifierToleranceTeintesSaturees(const QRgb& couleurCourante,
     return TEINTE_SATUREE_COMPATIBLE;
 }
 
-void Etude::filtrerListeDePoints(const QList<QPoint>& listeDePoints)
+const QList<QPoint> Etude::filtrerPointsCourbes(const QList<QPoint>& listeDePoints,
+        const QPoint& pointPixelDepart, const QPoint& pointPixelArrivee)
 {
-    // TODO void Etude::filtrerListeDePoints(const QList<QPoint>& listeDePoints)
-    Q_UNUSED(listeDePoints);
+    if (!listeDePoints.contains(pointPixelDepart))
+        return QList<QPoint>();
+    if (!listeDePoints.contains(pointPixelArrivee))
+        return QList<QPoint>();
 
-    if (!this->listeDePointsDeRecherche.contains(this->pointPixelDepart))
-        return;
-    if (!this->listeDePointsDeRecherche.contains(this->pointPixelArrivee))
-        return;
-
-    qSort(this->listeDePointsDeRecherche.begin(), this->listeDePointsDeRecherche.end(),
-            lessThanQPoint);
+    QList<QPoint> listeDePointsTries = listeDePoints;
+    qSort(listeDePointsTries.begin(), listeDePointsTries.end(), lessThanQPoint);
 
     QMap<int, QList<int>> mapPointsRecherche;
-    const int nombreDePointsDeRecherche = this->listeDePointsDeRecherche.count();
+    const int nombreDePointsDeRecherche = listeDePointsTries.count();
     for (int itPointRecherche = 0; itPointRecherche < nombreDePointsDeRecherche; itPointRecherche++)
     {
-        const QPoint& pointRecherche = this->listeDePointsDeRecherche.at(itPointRecherche);
+        const QPoint& pointRecherche = listeDePointsTries.at(itPointRecherche);
         mapPointsRecherche[pointRecherche.x()].append(pointRecherche.y());
     }
 
-    const int xMinimal = this->pointPixelDepart.x();
-    const int xMaximal = this->pointPixelArrivee.x();
+    const int xMinimal = pointPixelDepart.x();
+    const int xMaximal = pointPixelArrivee.x();
     for (int x = (xMinimal + 1); x <= xMaximal; x++)
     {
         const QList<QList<int>> listeValeursAdjacentes = listesValeursAdjacentes(
@@ -545,7 +553,7 @@ void Etude::filtrerListeDePoints(const QList<QPoint>& listeDePoints)
         mapPointsRecherche[x] = valeursAdjacentesRetenues;
     }
 
-    this->listeDePointsDeRecherche.clear();
+    QList<QPoint> listeDePointsFiltres;
     const Parametres& parametres = this->getParametres();
     const ParametresRecherche& parametresRecherche = parametres.getParametresRecherche();
     if (parametresRecherche.getSelectionValeursMoyennes())
@@ -553,7 +561,7 @@ void Etude::filtrerListeDePoints(const QList<QPoint>& listeDePoints)
         for (int x = xMinimal; x <= xMaximal; x++)
         {
             const int y = getValeurMoyenne(mapPointsRecherche[x]);
-            this->listeDePointsDeRecherche.append(QPoint(x, y));
+            listeDePointsFiltres.append(QPoint(x, y));
         }
     }
     if (parametresRecherche.getSelectionValeursMinimales())
@@ -561,7 +569,7 @@ void Etude::filtrerListeDePoints(const QList<QPoint>& listeDePoints)
         for (int x = xMinimal; x <= xMaximal; x++)
         {
             const int y = getValeurMinimale(mapPointsRecherche[x]);
-            this->listeDePointsDeRecherche.append(QPoint(x, y));
+            listeDePointsFiltres.append(QPoint(x, y));
         }
     }
     if (parametresRecherche.getSelectionValeursMaximales())
@@ -569,13 +577,41 @@ void Etude::filtrerListeDePoints(const QList<QPoint>& listeDePoints)
         for (int x = xMinimal; x <= xMaximal; x++)
         {
             const int y = getValeurMaximale(mapPointsRecherche[x]);
-            this->listeDePointsDeRecherche.append(QPoint(x, y));
+            listeDePointsFiltres.append(QPoint(x, y));
         }
     }
+    return listeDePointsFiltres;
 }
 
-void Etude::traiterListeDePoints(const QList<QPoint>& listeDePoints)
+const QList<Courbe> Etude::construireCourbes(const QList<QPoint>& listeDePoints)
 {
-    // TODO void Etude::traiterListeDePoints(const QList<QPoint>& listeDePoints)
-    Q_UNUSED(listeDePoints);
+    const Repere& repere = this->getRepere();
+    const Parametres& parametres = this->getParametres();
+    const ParametresRecherche& parametresRecherche = parametres.getParametresRecherche();
+    const bool selectionValeursMoyennes = parametresRecherche.getSelectionValeursMoyennes();
+    const bool selectionValeursMinimales = parametresRecherche.getSelectionValeursMinimales();
+    const bool selectionValeursMaximales = parametresRecherche.getSelectionValeursMaximales();
+    const int nombreDeCourbes = (int) selectionValeursMoyennes + (int) selectionValeursMinimales
+            + (int) selectionValeursMaximales;
+    const int nombreDePoints = listeDePoints.count();
+    const int nombreDePointsCourbe = nombreDePoints / nombreDeCourbes;
+
+    QList<Courbe> listeDeCourbes;
+    for (int itCourbe = 0; itCourbe < nombreDeCourbes; itCourbe++)
+    {
+        Courbe listeDePointsCourbe;
+        const int decalagePointCourbe = itCourbe * nombreDePointsCourbe;
+        for (int itPointCourbe = 0; itPointCourbe < nombreDePointsCourbe; itPointCourbe++)
+        {
+            const QPoint& pointCourbePixel = listeDePoints.at(itPointCourbe + decalagePointCourbe);
+            Point pointCourbe = Point(pointCourbePixel, QPointF(),
+                    (itPointCourbe == 0) ? Point::COURBE_DEBUT :
+                    (itPointCourbe == (nombreDePointsCourbe - 1)) ?
+                            Point::COURBE_FIN : Point::COURBE);
+            repere.pixelVersReel(pointCourbe);
+            listeDePointsCourbe.append(pointCourbe);
+        }
+        listeDeCourbes.append(listeDePointsCourbe);
+    }
+    return listeDeCourbes;
 }

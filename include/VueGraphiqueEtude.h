@@ -46,7 +46,7 @@ public:
     void dessinerImage(const Image& image);
     void dessinerRepere(const Repere& repere, const ParametresTrait& parametresAxes,
             const ParametresPoint& parametresPointsAxes);
-    void dessinerCourbe(const QList<Point>& pointsCourbe, const ParametresTrait& parametresCourbes,
+    void dessinerCourbe(const Courbe& courbe, const ParametresTrait& parametresCourbes,
             const ParametresPoint& parametresPointsCourbes);
     void dessinerPointManuel(const Point& pointManuel,
             const ParametresPoint& parametresPointsManuels);

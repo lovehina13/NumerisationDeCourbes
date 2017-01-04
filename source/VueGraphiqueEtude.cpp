@@ -59,7 +59,7 @@ void VueGraphiqueEtude::dessiner(const Etude& etude)
     const ParametresPoint& parametresPointsManuels =
             etude.getParametres().getParametresAffichage().getParametresPointsManuels();
 
-    const QList<QList<Point>> listeDeCourbes = etude.getListeDeCourbes();
+    const QList<Courbe> listeDeCourbes = etude.getListeDeCourbes();
     const QList<Point> listeDePointsManuels = etude.getListeDePointsManuels();
     const int nombreDeCourbes = listeDeCourbes.count();
     const int nombreDePointsManuels = listeDePointsManuels.count();
@@ -69,8 +69,8 @@ void VueGraphiqueEtude::dessiner(const Etude& etude)
     this->dessinerRepere(repere, parametresAxes, parametresPointsAxes);
     for (int itCourbe = 0; itCourbe < nombreDeCourbes; itCourbe++)
     {
-        const QList<Point>& pointsCourbe = listeDeCourbes.at(itCourbe);
-        this->dessinerCourbe(pointsCourbe, parametresCourbes, parametresPointsCourbes);
+        const Courbe& courbe = listeDeCourbes.at(itCourbe);
+        this->dessinerCourbe(courbe, parametresCourbes, parametresPointsCourbes);
     }
     for (int itPointManuel = 0; itPointManuel < nombreDePointsManuels; itPointManuel++)
     {
@@ -102,18 +102,18 @@ void VueGraphiqueEtude::dessinerRepere(const Repere& repere, const ParametresTra
     this->dessinerPoint(pointY1, parametresPointsAxes);
 }
 
-void VueGraphiqueEtude::dessinerCourbe(const QList<Point>& pointsCourbe,
+void VueGraphiqueEtude::dessinerCourbe(const Courbe& courbe,
         const ParametresTrait& parametresCourbes, const ParametresPoint& parametresPointsCourbes)
 {
-    const int nombreDePointsCourbe = pointsCourbe.count();
+    const int nombreDePointsCourbe = courbe.count();
     for (int itPointCourbe = 0; itPointCourbe < (nombreDePointsCourbe - 1); itPointCourbe++)
     {
-        const Point& pointCourant = pointsCourbe.at(itPointCourbe);
-        const Point& pointSuivant = pointsCourbe.at(itPointCourbe + 1);
+        const Point& pointCourant = courbe.at(itPointCourbe);
+        const Point& pointSuivant = courbe.at(itPointCourbe + 1);
         this->dessinerTrait(pointCourant, pointSuivant, parametresCourbes);
     }
-    const Point& premierPoint = pointsCourbe.at(0);
-    const Point& dernierPoint = pointsCourbe.at(nombreDePointsCourbe - 1);
+    const Point& premierPoint = courbe.at(0);
+    const Point& dernierPoint = courbe.at(nombreDePointsCourbe - 1);
     this->dessinerPoint(premierPoint, parametresPointsCourbes);
     this->dessinerPoint(dernierPoint, parametresPointsCourbes);
 }

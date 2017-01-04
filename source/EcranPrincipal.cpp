@@ -168,6 +168,8 @@ void EcranPrincipal::creerNouvelleEtude()
     if (cheminFichierImageSource.isEmpty())
         return;
 
+    this->effacerElementsGraphiques();
+
     this->etude.clear();
     this->actualiserEtudeReference();
 
@@ -181,7 +183,6 @@ void EcranPrincipal::creerNouvelleEtude()
     parametres.setParametresFichiers(parametresFichiers);
     this->etude.setParametres(parametres);
 
-    this->effacerElementsGraphiques();
     this->dessinerVueGraphiqueEtude();
 }
 
@@ -194,10 +195,11 @@ void EcranPrincipal::chargerEtudeExistante()
     if (cheminFichierEtude.isEmpty())
         return;
 
+    this->effacerElementsGraphiques();
+
     this->etude.chargerEtude(cheminFichierEtude);
     this->actualiserEtudeReference();
 
-    this->effacerElementsGraphiques();
     this->actualiserElementsGraphiques();
 }
 
@@ -894,18 +896,20 @@ void EcranPrincipal::on_pushButtonRechercher_clicked()
             this->ui->lineEditPointDepartYPixel->text().toInt());
     const QPoint pointPixelArrivee = QPoint(this->ui->lineEditPointArriveeXPixel->text().toInt(),
             this->ui->lineEditPointArriveeYPixel->text().toInt());
-    const QList<QPoint> listeDePointsCourbe = this->etude.rechercherCourbe(pointPixelDepart,
+    const QList<Courbe> listeDeCourbes = this->etude.rechercherCourbes(pointPixelDepart,
             pointPixelArrivee);
 
     QList<Point> listeDePoints = this->etude.getListeDePoints();
-    const int nombreDePointsCourbe = listeDePointsCourbe.count();
-    for (int itPointCourbe = 0; itPointCourbe < nombreDePointsCourbe; itPointCourbe++)
+    const int nombreDeCourbes = listeDeCourbes.count();
+    for (int itCourbe = 0; itCourbe < nombreDeCourbes; itCourbe++)
     {
-        Point pointCourbe = Point(listeDePointsCourbe.at(itPointCourbe), QPointF(),
-                (itPointCourbe == 0) ? Point::COURBE_DEBUT :
-                (itPointCourbe == (nombreDePointsCourbe - 1)) ? Point::COURBE_FIN : Point::COURBE);
-        this->etude.getRepere().pixelVersReel(pointCourbe);
-        listeDePoints.append(pointCourbe);
+        const Courbe& courbe = listeDeCourbes.at(itCourbe);
+        const int nombreDePointsCourbe = courbe.count();
+        for (int itPointCourbe = 0; itPointCourbe < nombreDePointsCourbe; itPointCourbe++)
+        {
+            const Point& pointCourbe = courbe.at(itPointCourbe);
+            listeDePoints.append(pointCourbe);
+        }
     }
     this->etude.setListeDePoints(listeDePoints);
 

@@ -8,6 +8,7 @@
 #ifndef POINT_H_
 #define POINT_H_
 
+#include <QList>
 #include <QMap>
 #include <QPoint>
 #include <QPointF>
@@ -72,5 +73,7 @@ private:
     // Attributs de classe inaccessibles
     static const QMap<int, QString> typesPointsTexte;
 };
+
+typedef QList<Point> Courbe;
 
 #endif /* POINT_H_ */

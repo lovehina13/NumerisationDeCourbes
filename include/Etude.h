@@ -49,7 +49,7 @@ public:
     const QString toString(const char& sep) const;
 
     // Méthodes spécifiques
-    const QList<QList<Point>> getListeDeCourbes() const;
+    const QList<Courbe> getListeDeCourbes() const;
     const QList<Point> getListeDePointsManuels() const;
     bool chargerEtude(const QString& cheminFichierEtude);
     bool sauverEtude(const QString& cheminFichierEtude);
@@ -57,7 +57,7 @@ public:
     bool exporterListeDePoints(const QString& cheminFichierExport);
     void restaurerImage();
     void convertirImage();
-    const QList<QPoint> rechercherCourbe(const QPoint& pointPixelDepart,
+    const QList<Courbe> rechercherCourbes(const QPoint& pointPixelDepart,
             const QPoint& pointPixelArrivee);
 
     // Enumération des types de tolérance de niveaux de gris
@@ -75,14 +75,17 @@ public:
 
 protected:
     // Méthodes spécifiques
-    void rechercherPointsProches(const QPoint& pointPixel, const QRgb& couleurReference);
-    const QList<QPoint> rechercherListeDePointsProches(const QPoint& pointPixel) const;
+    const QList<QPoint> rechercherPointsCourbes(const QPoint& pointPixelDepart,
+            const QPoint& pointPixelArrivee);
+    void rechercherPoints(const QPoint& pointPixel, const QRgb& couleurReference);
+    const QList<QPoint> recupererPointsProches(const QPoint& pointPixel) const;
     int verifierToleranceNiveauxDeGris(const QRgb& couleurCourante, const QRgb& couleurReference,
             const int& seuilToleranceNiveauxDeGris) const;
     int verifierToleranceTeintesSaturees(const QRgb& couleurCourante, const QRgb& couleurReference,
             const int& seuilToleranceTeintesSaturees) const;
-    void filtrerListeDePoints(const QList<QPoint>& listeDePoints);
-    void traiterListeDePoints(const QList<QPoint>& listeDePoints);
+    const QList<QPoint> filtrerPointsCourbes(const QList<QPoint>& listeDePoints,
+            const QPoint& pointPixelDepart, const QPoint& pointPixelArrivee);
+    const QList<Courbe> construireCourbes(const QList<QPoint>& listeDePoints);
 
 private:
     // Attributs de classe
