@@ -18,7 +18,7 @@
     <normaloff>:/icones/iconeNumerisationDeCourbes</normaloff>:/icones/iconeNumerisationDeCourbes</iconset>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QGridLayout" name="gridLayoutCentralWidget">
+   <layout class="QGridLayout" name="gridLayoutEcranPrincipal">
     <item row="0" column="0" rowspan="4">
      <widget class="VueGraphiqueEtude" name="vueGraphiqueEtude">
       <property name="minimumSize">
