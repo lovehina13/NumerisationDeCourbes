@@ -307,15 +307,15 @@ void EcranPrincipal::actualiserCoordonneesPointManuel()
 
 void EcranPrincipal::actualiserCoordonneesListeDePoints()
 {
-    // TODO Gestion des accès aux éléments de la liste de points via des méthodes ajouterPoint(), supprimerPoint(), modifierPoint() et effacerPoints()
+    // TODO Déplacement de l'actualisation des éléments de la liste de points
 
-    QList<Point> listeDePoints;
-    const int nombreDePoints = this->etude.getListeDePoints().count();
+    QList<Point> listeDePoints = this->etude.getListeDePoints();
+    const int nombreDePoints = listeDePoints.count();
     for (int itPoint = 0; itPoint < nombreDePoints; itPoint++)
     {
-        Point point = this->etude.getListeDePoints().at(itPoint);
+        Point point = listeDePoints.at(itPoint);
         this->etude.getRepere().pixelVersReel(point);
-        listeDePoints.append(point);
+        listeDePoints.replace(itPoint, point);
     }
     this->etude.setListeDePoints(listeDePoints);
 
@@ -323,7 +323,7 @@ void EcranPrincipal::actualiserCoordonneesListeDePoints()
     this->ui->tableWidgetListePoints->setRowCount(nombreDePoints);
     for (int itPoint = 0; itPoint < nombreDePoints; itPoint++)
     {
-        const Point& point = this->etude.getListeDePoints().at(itPoint);
+        const Point& point = listeDePoints.at(itPoint);
         QTableWidgetItem* itemPointPixelX = new QTableWidgetItem(
                 QString::number(point.getPointPixelX()));
         QTableWidgetItem* itemPointPixelY = new QTableWidgetItem(
@@ -924,10 +924,10 @@ void EcranPrincipal::on_pushButtonSupprimer_clicked()
 
     QList<Point> listeDePoints = this->etude.getListeDePoints();
     const int nombreLignesSelectionnees = listeLignesSelectionnees.count();
-    for (int itLigneSelectionnee = 0; itLigneSelectionnee < nombreLignesSelectionnees;
-            itLigneSelectionnee++)
+    for (int itLigneSelectionnee = (nombreLignesSelectionnees - 1); itLigneSelectionnee >= 0;
+            itLigneSelectionnee--)
     {
-        listeDePoints.removeAt(itLigneSelectionnee);
+        listeDePoints.removeAt(listeLignesSelectionnees.at(itLigneSelectionnee).row());
     }
     if (nombreLignesSelectionnees == 0)
     {
