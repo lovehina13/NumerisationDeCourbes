@@ -21,8 +21,6 @@ VueGraphiqueEtude::VueGraphiqueEtude(QWidget* parent) :
 {
     QGraphicsScene* graphicsScene = new QGraphicsScene(parent);
     this->setScene(graphicsScene);
-    this->setMouseTracking(true);
-    this->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
 }
 
 VueGraphiqueEtude::VueGraphiqueEtude(QGraphicsScene* scene, QWidget* parent) :
