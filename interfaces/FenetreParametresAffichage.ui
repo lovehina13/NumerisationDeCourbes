@@ -345,13 +345,6 @@
     </widget>
    </item>
   </layout>
-  <zorder>buttonBox</zorder>
-  <zorder>groupBoxNombres</zorder>
-  <zorder>groupBoxAxes</zorder>
-  <zorder>groupBoxCourbes</zorder>
-  <zorder>groupBoxPointsAxes</zorder>
-  <zorder>groupBoxPointsCourbes</zorder>
-  <zorder>groupBoxPointsManuels</zorder>
  </widget>
  <resources/>
  <connections>

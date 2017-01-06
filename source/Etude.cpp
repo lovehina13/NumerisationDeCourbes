@@ -594,7 +594,7 @@ const QList<Courbe> Etude::construireCourbes(const QList<QPoint>& listeDePoints)
     const int nombreDeCourbes = (int) selectionValeursMoyennes + (int) selectionValeursMinimales
             + (int) selectionValeursMaximales;
     const int nombreDePoints = listeDePoints.count();
-    const int nombreDePointsCourbe = nombreDePoints / nombreDeCourbes;
+    const int nombreDePointsCourbe = (nombreDeCourbes > 0) ? (nombreDePoints / nombreDeCourbes) : 0;
 
     QList<Courbe> listeDeCourbes;
     for (int itCourbe = 0; itCourbe < nombreDeCourbes; itCourbe++)

@@ -24,7 +24,8 @@ int getValeurMoyenne(const QList<int>& listeValeurs)
         const int& valeur = listeValeurs.at(itValeur);
         sommeValeurs += valeur;
     }
-    const int valeurMoyenne = (int) round((double) sommeValeurs / (double) nombreValeurs);
+    const int valeurMoyenne =
+            (nombreValeurs > 0) ? ((int) round((double) sommeValeurs / (double) nombreValeurs)) : 0;
     return valeurMoyenne;
 }
 
@@ -143,7 +144,7 @@ const QList<Point> interpolationNumerique(const QList<Point>& listeDePoints, con
 {
     QList<Point> listeDePointsInterpoles;
     const int nombreDePoints = listeDePoints.count();
-    if (nombreDePoints > 0)
+    if (nombreDePoints > 0 && pas > 0.0)
     {
         const double borneInferieure = listeDePoints.at(0).getPointReelX();
         const double borneSuperieure = listeDePoints.at(nombreDePoints - 1).getPointReelX();
