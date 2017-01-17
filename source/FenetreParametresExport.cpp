@@ -37,7 +37,7 @@ void FenetreParametresExport::setParametresExport(const ParametresExport& parame
 
 void FenetreParametresExport::initialiserElementsGraphiques()
 {
-    QDoubleValidator* nombreReel = new QDoubleValidator(this);
+    const QDoubleValidator* nombreReel = new QDoubleValidator(this);
     this->ui->lineEditSeuilInterpolationNumerique->setValidator(nombreReel);
     this->ui->lineEditSeuilInterpolationNumerique->setValidator(nombreReel);
     this->ui->spinBoxNombreDecimalesOuChiffresSignificatifs->setMinimum(0);

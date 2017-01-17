@@ -432,7 +432,7 @@ void Etude::rechercherPoints(const QPoint& pointPixel, const QRgb& couleurRefere
         const QPoint& pointCourant = listeDePointsProches.at(itPointProche);
         if (this->listeDePointsDeRecherche.contains(pointCourant))
             continue;
-        const QRgb& couleurCourante = image.recupererCouleurPixel(pointCourant);
+        const QRgb couleurCourante = image.recupererCouleurPixel(pointCourant);
         if (this->verifierToleranceNiveauxDeGris(couleurCourante, couleurReference,
                 seuilToleranceNiveauxDeGris) != NIVEAU_DE_GRIS_COMPATIBLE)
             continue;
@@ -536,13 +536,16 @@ const QList<QPoint> Etude::filtrerPointsCourbes(const QList<QPoint>& listeDePoin
         QList<int> valeursAdjacentesRetenues = listeValeursAdjacentes.at(0);
         if (listeValeursAdjacentes.count() > 1)
         {
-            const double valeurMoyennePrecedente = getValeurMoyenne(mapPointsRecherche[x - 1]);
+            const double valeurMoyennePrecedente = (double) getValeurMoyenne(
+                    mapPointsRecherche[x - 1]);
             for (int itValeursAdjacentes = 0; itValeursAdjacentes < nombreValeursAdjacentes;
                     itValeursAdjacentes++)
             {
-                const QList<int> valeursAdjacentes = listeValeursAdjacentes.at(itValeursAdjacentes);
-                const double valeurMoyenne = getValeurMoyenne(valeursAdjacentes);
-                const double valeurMoyenneRetenue = getValeurMoyenne(valeursAdjacentesRetenues);
+                const QList<int>& valeursAdjacentes = listeValeursAdjacentes.at(
+                        itValeursAdjacentes);
+                const double valeurMoyenne = (double) getValeurMoyenne(valeursAdjacentes);
+                const double valeurMoyenneRetenue = (double) getValeurMoyenne(
+                        valeursAdjacentesRetenues);
                 if (fabs(valeurMoyenne - valeurMoyennePrecedente)
                         < fabs(valeurMoyenneRetenue - valeurMoyennePrecedente))
                 {
@@ -588,9 +591,9 @@ const QList<Courbe> Etude::construireCourbes(const QList<QPoint>& listeDePoints)
     const Repere& repere = this->getRepere();
     const Parametres& parametres = this->getParametres();
     const ParametresRecherche& parametresRecherche = parametres.getParametresRecherche();
-    const bool selectionValeursMoyennes = parametresRecherche.getSelectionValeursMoyennes();
-    const bool selectionValeursMinimales = parametresRecherche.getSelectionValeursMinimales();
-    const bool selectionValeursMaximales = parametresRecherche.getSelectionValeursMaximales();
+    const bool& selectionValeursMoyennes = parametresRecherche.getSelectionValeursMoyennes();
+    const bool& selectionValeursMinimales = parametresRecherche.getSelectionValeursMinimales();
+    const bool& selectionValeursMaximales = parametresRecherche.getSelectionValeursMaximales();
     const int nombreDeCourbes = (int) selectionValeursMoyennes + (int) selectionValeursMinimales
             + (int) selectionValeursMaximales;
     const int nombreDePoints = listeDePoints.count();

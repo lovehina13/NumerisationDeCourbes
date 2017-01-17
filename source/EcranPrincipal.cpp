@@ -45,7 +45,7 @@ void EcranPrincipal::initialiserElementsGraphiques()
 {
     this->ui->radioButtonNoirEtBlanc->setChecked(true);
 
-    QIntValidator* nombreEntier = new QIntValidator(this);
+    const QIntValidator* nombreEntier = new QIntValidator(this);
     this->ui->lineEditPointX0XPixel->setValidator(nombreEntier);
     this->ui->lineEditPointX0YPixel->setValidator(nombreEntier);
     this->ui->lineEditPointX1XPixel->setValidator(nombreEntier);
@@ -61,7 +61,7 @@ void EcranPrincipal::initialiserElementsGraphiques()
     this->ui->lineEditPointManuelXPixel->setValidator(nombreEntier);
     this->ui->lineEditPointManuelYPixel->setValidator(nombreEntier);
 
-    QDoubleValidator* nombreReel = new QDoubleValidator(this);
+    const QDoubleValidator* nombreReel = new QDoubleValidator(this);
     this->ui->lineEditPointX0Valeur->setValidator(nombreReel);
     this->ui->lineEditPointX1Valeur->setValidator(nombreReel);
     this->ui->lineEditPointY0Valeur->setValidator(nombreReel);
@@ -122,7 +122,7 @@ void EcranPrincipal::effacerElementsGraphiques()
 void EcranPrincipal::actualiserElementsGraphiques()
 {
     const Repere& repere = this->etude.getRepere();
-    const int methodeConversion =
+    const int& methodeConversion =
             this->etude.getParametres().getParametresConversion().getMethodeConversion();
 
     if ((methodeConversion == ParametresConversion::BRUTE)
@@ -161,7 +161,7 @@ void EcranPrincipal::actualiserElementsGraphiques()
 
 void EcranPrincipal::creerNouvelleEtude()
 {
-    QString cheminFichierImageSource = QFileDialog::getOpenFileName(this,
+    const QString cheminFichierImageSource = QFileDialog::getOpenFileName(this,
             QString::fromUtf8("Sélection d'un fichier image"),
             this->etude.getParametres().getParametresFichiers().getCheminFichierImageSource(),
             QString::fromUtf8("Fichier image (*.bmp *.jpg *.jpeg *.png)"));
@@ -188,7 +188,7 @@ void EcranPrincipal::creerNouvelleEtude()
 
 void EcranPrincipal::chargerEtudeExistante()
 {
-    QString cheminFichierEtude = QFileDialog::getOpenFileName(this,
+    const QString cheminFichierEtude = QFileDialog::getOpenFileName(this,
             QString::fromUtf8("Sélection d'un fichier étude"),
             this->etude.getParametres().getParametresFichiers().getCheminFichierEtude(),
             QString::fromUtf8("Fichier étude (*.ndc)"));
@@ -205,7 +205,7 @@ void EcranPrincipal::chargerEtudeExistante()
 
 void EcranPrincipal::sauverEtudeCourante()
 {
-    QString cheminFichierEtude = QFileDialog::getSaveFileName(this,
+    const QString cheminFichierEtude = QFileDialog::getSaveFileName(this,
             QString::fromUtf8("Sélection d'un fichier étude"),
             this->etude.getParametres().getParametresFichiers().getCheminFichierEtude(),
             QString::fromUtf8("Fichier étude (*.ndc)"));
@@ -218,7 +218,7 @@ void EcranPrincipal::sauverEtudeCourante()
 
 void EcranPrincipal::exporterListeDePointsCourante()
 {
-    QString cheminFichierExport = QFileDialog::getSaveFileName(this,
+    const QString cheminFichierExport = QFileDialog::getSaveFileName(this,
             QString::fromUtf8("Sélection d'un fichier export"),
             this->etude.getParametres().getParametresFichiers().getCheminFichierExport(),
             QString::fromUtf8("Fichier export (*.csv)"));
@@ -230,7 +230,7 @@ void EcranPrincipal::exporterListeDePointsCourante()
 
 void EcranPrincipal::exporterImageConvertieCourante()
 {
-    QString cheminFichierImageConvertie = QFileDialog::getSaveFileName(this,
+    const QString cheminFichierImageConvertie = QFileDialog::getSaveFileName(this,
             QString::fromUtf8("Sélection d'un fichier image"),
             this->etude.getParametres().getParametresFichiers().getCheminFichierImageConvertie(),
             QString::fromUtf8("Fichier image Windows Bitmap (*.bmp);;"
@@ -405,8 +405,8 @@ void EcranPrincipal::actualiserPointRepere(const QPointF& pointVueGraphique)
     const int ppy = (int) floor(pointVueGraphique.y());
     Repere repere = this->etude.getRepere();
 
-    QString ppxTexte = QString::number(ppx);
-    QString ppyTexte = QString::number(ppy);
+    const QString ppxTexte = QString::number(ppx);
+    const QString ppyTexte = QString::number(ppy);
 
     if (this->pushButtonActif == this->ui->pushButtonPointX0)
     {
@@ -470,10 +470,10 @@ void EcranPrincipal::actualiserPointCourbe(const QPointF& pointVueGraphique)
     double pry = 0.0;
     this->etude.getRepere().pixelVersReel(ppx, ppy, prx, pry);
 
-    QString ppxTexte = QString::number(ppx);
-    QString ppyTexte = QString::number(ppy);
-    QString prxTexte = QString::number(prx);
-    QString pryTexte = QString::number(pry);
+    const QString ppxTexte = QString::number(ppx);
+    const QString ppyTexte = QString::number(ppy);
+    const QString prxTexte = QString::number(prx);
+    const QString pryTexte = QString::number(pry);
 
     if (this->pushButtonActif == this->ui->pushButtonPointDepart)
     {
@@ -506,11 +506,11 @@ void EcranPrincipal::actualiserBarreStatut(const QPointF& pointVueGraphique)
     double pry = 0.0;
     this->etude.getRepere().pixelVersReel(ppx, ppy, prx, pry);
 
-    QString ppxTexte = QString::number(ppx);
-    QString ppyTexte = QString::number(ppy);
-    QString prxTexte = QString::number(prx);
-    QString pryTexte = QString::number(pry);
-    QString statusBarTexte = QString::fromUtf8("Pixel=(%1:%2) - Réel=(%3:%4)").arg(ppxTexte,
+    const QString ppxTexte = QString::number(ppx);
+    const QString ppyTexte = QString::number(ppy);
+    const QString prxTexte = QString::number(prx);
+    const QString pryTexte = QString::number(pry);
+    const QString statusBarTexte = QString::fromUtf8("Pixel=(%1:%2) - Réel=(%3:%4)").arg(ppxTexte,
             ppyTexte, prxTexte, pryTexte);
 
     this->ui->statusBar->showMessage(statusBarTexte);
@@ -556,7 +556,7 @@ void EcranPrincipal::on_actionParametresAffichage_triggered()
     FenetreParametresAffichage* fenetreParametresAffichage = new FenetreParametresAffichage(this);
     fenetreParametresAffichage->setParametresAffichage(parametresAffichage);
     fenetreParametresAffichage->actualiserElementsGraphiques();
-    if (fenetreParametresAffichage->exec() == QMessageBox::Rejected)
+    if (fenetreParametresAffichage->exec() == QDialog::Rejected)
         return;
     parametresAffichage = fenetreParametresAffichage->getParametresAffichage();
     parametres.setParametresAffichage(parametresAffichage);
@@ -573,7 +573,7 @@ void EcranPrincipal::on_actionParametresConversion_triggered()
             this);
     fenetreParametresConversion->setParametresConversion(parametresConversion);
     fenetreParametresConversion->actualiserElementsGraphiques();
-    if (fenetreParametresConversion->exec() == QMessageBox::Rejected)
+    if (fenetreParametresConversion->exec() == QDialog::Rejected)
         return;
     parametresConversion = fenetreParametresConversion->getParametresConversion();
     parametres.setParametresConversion(parametresConversion);
@@ -587,7 +587,7 @@ void EcranPrincipal::on_actionParametresRecherche_triggered()
     FenetreParametresRecherche* fenetreParametresRecherche = new FenetreParametresRecherche(this);
     fenetreParametresRecherche->setParametresRecherche(parametresRecherche);
     fenetreParametresRecherche->actualiserElementsGraphiques();
-    if (fenetreParametresRecherche->exec() == QMessageBox::Rejected)
+    if (fenetreParametresRecherche->exec() == QDialog::Rejected)
         return;
     parametresRecherche = fenetreParametresRecherche->getParametresRecherche();
     parametres.setParametresRecherche(parametresRecherche);
@@ -601,7 +601,7 @@ void EcranPrincipal::on_actionParametresExport_triggered()
     FenetreParametresExport* fenetreParametresExport = new FenetreParametresExport(this);
     fenetreParametresExport->setParametresExport(parametresExport);
     fenetreParametresExport->actualiserElementsGraphiques();
-    if (fenetreParametresExport->exec() == QMessageBox::Rejected)
+    if (fenetreParametresExport->exec() == QDialog::Rejected)
         return;
     parametresExport = fenetreParametresExport->getParametresExport();
     parametres.setParametresExport(parametresExport);
@@ -652,7 +652,7 @@ void EcranPrincipal::on_pushButtonConvertir_clicked()
 
 void EcranPrincipal::on_pushButtonRestaurer_clicked()
 {
-    int methodeConversion = ParametresConversion::BRUTE;
+    const int methodeConversion = ParametresConversion::BRUTE;
     Parametres parametres = this->etude.getParametres();
     ParametresConversion parametresConversion = parametres.getParametresConversion();
     parametresConversion.setMethodeConversion(methodeConversion);

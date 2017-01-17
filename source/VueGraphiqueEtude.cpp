@@ -127,8 +127,8 @@ void VueGraphiqueEtude::dessinerPoint(const Point& point, const ParametresPoint&
     const int& stylePoint = parametresPoint.getStylePoint();
     const int& epaisseurPoint = parametresPoint.getEpaisseurPoint();
     const QRgb& couleurPoint = parametresPoint.getCouleurPoint();
-    QBrush brossePoint = QBrush(QColor(couleurPoint), Qt::SolidPattern);
-    QPen pinceauPoint = QPen(brossePoint, 0, Qt::SolidLine);
+    const QBrush brossePoint = QBrush(QColor(couleurPoint), Qt::SolidPattern);
+    const QPen pinceauPoint = QPen(brossePoint, 0, Qt::SolidLine);
 
     const double ppx = (double) point.getPointPixelX();
     const double ppy = (double) point.getPointPixelY();
@@ -153,8 +153,8 @@ void VueGraphiqueEtude::dessinerTrait(const Point& point1, const Point& point2,
     const int& styleTrait = parametresTrait.getStyleTrait();
     const int& epaisseurTrait = parametresTrait.getEpaisseurTrait();
     const QRgb& couleurTrait = parametresTrait.getCouleurTrait();
-    QBrush brosseTrait = QBrush(QColor(couleurTrait), Qt::SolidPattern);
-    QPen pinceauTrait = QPen(brosseTrait, epaisseurTrait, (Qt::PenStyle) (styleTrait + 1),
+    const QBrush brosseTrait = QBrush(QColor(couleurTrait), Qt::SolidPattern);
+    const QPen pinceauTrait = QPen(brosseTrait, epaisseurTrait, (Qt::PenStyle) (styleTrait + 1),
             Qt::RoundCap, Qt::RoundJoin);
 
     const double p1px = (double) point1.getPointPixelX();
