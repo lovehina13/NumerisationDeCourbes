@@ -6,21 +6,31 @@
 //==============================================================================
 
 #include "EcranPrincipal.h"
+#include "ui_EcranPrincipal.h"
 #include "FenetreDocumentation.h"
 #include "FenetreParametresAffichage.h"
 #include "FenetreParametresConversion.h"
 #include "FenetreParametresExport.h"
 #include "FenetreParametresRecherche.h"
-#include "ui_EcranPrincipal.h"
+#include "Image.h"
+#include "Parametres.h"
+#include "ParametresAffichage.h"
+#include "ParametresConversion.h"
+#include "ParametresExport.h"
+#include "ParametresFichiers.h"
+#include "ParametresRecherche.h"
+#include "Point.h"
+#include "Repere.h"
+#include <QDialog>
 #include <QDoubleValidator>
 #include <QFileDialog>
+#include <QGraphicsView>
 #include <QImage>
 #include <QIntValidator>
 #include <QList>
 #include <QMessageBox>
 #include <QModelIndexList>
 #include <QPoint>
-#include <QPointF>
 #include <QString>
 #include <QTableWidgetItem>
 

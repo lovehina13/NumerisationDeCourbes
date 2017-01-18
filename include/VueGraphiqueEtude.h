@@ -17,7 +17,6 @@
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include <QKeyEvent>
-#include <QList>
 #include <QMouseEvent>
 #include <QPointF>
 #include <QWheelEvent>

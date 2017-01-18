@@ -7,11 +7,14 @@
 
 #include "FenetreParametresAffichage.h"
 #include "ui_FenetreParametresAffichage.h"
+#include "ParametresPoint.h"
+#include "ParametresTrait.h"
 #include <QColor>
 #include <QColorDialog>
 #include <QDialogButtonBox>
-#include <QPalette>
 #include <QPushButton>
+#include <QRgb>
+#include <QString>
 
 FenetreParametresAffichage::FenetreParametresAffichage(QWidget* parent) :
         QDialog(parent), ui(new Ui::FenetreParametresAffichage)

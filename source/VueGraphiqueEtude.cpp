@@ -9,6 +9,7 @@
 #include <QBrush>
 #include <QColor>
 #include <QGraphicsPixmapItem>
+#include <QList>
 #include <QPen>
 #include <QPixmap>
 #include <QRgb>
