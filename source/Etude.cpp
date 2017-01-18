@@ -425,8 +425,8 @@ void Etude::rechercherPoints(const QPoint& pointPixel, const QRgb& couleurRefere
     const Parametres& parametres = this->getParametres();
     const ParametresRecherche& parametresRecherche = parametres.getParametresRecherche();
     const int& seuilToleranceNiveauxDeGris = parametresRecherche.getSeuilToleranceNiveauxDeGris();
-    const int& seuilToleranceTeintesSaturees =
-            parametresRecherche.getSeuilToleranceTeintesSaturees();
+    const int& seuilToleranceTeintesSaturees = (int) round(
+            (double) parametresRecherche.getSeuilToleranceTeintesSaturees() / 2.0);
     for (int itPointProche = 0; itPointProche < nombreDePointsProches; itPointProche++)
     {
         const QPoint& pointCourant = listeDePointsProches.at(itPointProche);
@@ -495,6 +495,8 @@ int Etude::verifierToleranceTeintesSaturees(const QRgb& couleurCourante,
     const int seuilMaximalTeinteSaturee = (teinteCouleurReference + seuilToleranceTeintesSaturees
             + 360) % 360;
     const bool seuilsInverses = (seuilMinimalTeinteSaturee > seuilMaximalTeinteSaturee);
+    if (seuilToleranceTeintesSaturees >= 180)
+        return TEINTE_SATUREE_COMPATIBLE;
     if ((teinteCouleurCourante == -1 && teinteCouleurReference != -1)
             || (teinteCouleurCourante != -1 && teinteCouleurReference == -1))
         return TEINTE_SATUREE_INCOMPATIBLE;
