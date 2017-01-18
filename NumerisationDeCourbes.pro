@@ -63,4 +63,4 @@ FORMS += interfaces/EcranPrincipal.ui \
          interfaces/FenetreParametresRecherche.ui
 RESOURCES += ressources/Ressources.qrc
 
-QMAKE_CXXFLAGS += -std=c++11
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra

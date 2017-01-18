@@ -1,0 +1,238 @@
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'>
+<g transform='translate(-0.000000, -0.000000)'>
+<g transform='matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)' clip-path='url(#cp1)'>
+<clipPath id='cp1'><polygon points='12,2 12,180 299,180 299,2 ' /></clipPath>
+<polygon stroke='none' opacity='0' fill-rule='evenodd' fill='rgb(0%,0%,0%)' points='12.2673,179.606 12.2673,2.45703 298.9,2.45703 298.9,179.606 ' />
+</g>
+<g transform='matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)' clip-path='url(#cp2)'>
+<clipPath id='cp2'><polygon points='12,2 12,180 299,180 299,2 ' /></clipPath>
+<polyline fill='none' stroke-opacity='1' stroke-width='1px' stroke='rgb(24.7196%,23.9994%,60%)' points='18,176.063 18.0844,175.854 18.1688,175.646 18.3376,175.229 18.6752,174.398 19.3503,172.741 20.7006,169.452 23.4012,162.972 29.2566,149.373 34.7241,137.231 40.0843,125.849 45.8988,114.086 51.3253,103.656 57.2061,92.9497 62.9796,83.0434 68.3651,74.3429 74.205,65.4973 79.6568,57.7925 85.0013,50.7577 90.8002,43.7055 96.211,37.67 102.076,31.722 107.834,26.484 113.204,22.1359 119.028,18.0056 119.113,17.9498 119.198,17.8942 119.368,17.7834 119.708,17.5634 120.387,17.1295 121.746,16.2866 124.464,14.7004 124.556,14.649 124.648,14.5978 124.832,14.4957 125.201,14.2935 125.937,13.8964 127.409,13.1315 127.502,13.0849 127.594,13.0386 127.778,12.9463 128.146,12.7636 128.882,12.4054 130.355,11.7184 130.445,11.6775 130.535,11.6368 130.716,11.5557 131.078,11.3954 131.801,11.0818 133.246,10.4827 133.337,10.4465 133.427,10.4104 133.608,10.3388 133.969,10.1972 134.692,9.92118 136.138,9.39723 136.222,9.36784 136.307,9.33857 136.475,9.28043 136.812,9.16567 137.487,8.94229 138.836,8.52005 138.92,8.49475 139.004,8.46957 139.173,8.4196 139.51,8.32119 140.184,8.1305 141.533,7.77363 141.625,7.75063 141.716,7.72778 141.899,7.68253 142.264,7.59383 142.995,7.42364 143.087,7.40305 143.178,7.3826 143.361,7.34215 143.727,7.26306 144.458,7.11209 144.549,7.09389 144.641,7.07584 144.823,7.0402 145.189,6.97072 145.92,6.83895 147.383,6.60425 147.468,6.59174 147.553,6.57936 147.724,6.555 148.065,6.50784 148.748,6.4198 148.833,6.40938 148.919,6.3991 149.089,6.37892 149.431,6.34013 150.113,6.26884 150.199,6.26052 150.284,6.25233 150.455,6.23634 150.796,6.20593 150.881,6.19865 150.967,6.19151 151.137,6.17761 151.479,6.15139 151.564,6.14516 151.649,6.13906 151.82,6.12726 152.161,6.10522 152.247,6.10004 152.332,6.09499 152.503,6.08528 152.844,6.06743 152.928,6.06337 153.011,6.05944 153.179,6.05196 153.262,6.04841 153.346,6.04498 153.513,6.03851 153.597,6.03546 153.681,6.03253 153.848,6.02707 153.932,6.02452 154.015,6.0221 154.183,6.01763 154.266,6.01559 154.35,6.01367 154.434,6.01188 154.517,6.01022 154.601,6.00868 154.685,6.00726 154.768,6.00597 154.852,6.00481 154.936,6.00377 155.019,6.00286 155.103,6.00208 155.187,6.00142 155.27,6.00088 155.354,6.00047 155.438,6.00019 155.521,6.00004 155.605,6 155.689,6.0001 155.772,6.00032 155.856,6.00067 155.939,6.00114 156.023,6.00174 156.107,6.00246 156.19,6.00331 156.274,6.00428 156.358,6.00538 156.441,6.00661 156.525,6.00796 156.609,6.00944 156.692,6.01104 156.86,6.01463 156.943,6.01661 157.027,6.01872 157.194,6.02331 157.278,6.02579 157.362,6.0284 157.529,6.034 157.613,6.03699 157.696,6.0401 157.864,6.0467 158.198,6.06142 158.289,6.06576 158.38,6.07024 158.561,6.07966 158.924,6.10026 159.015,6.10579 159.106,6.11146 159.287,6.12324 159.65,6.14858 159.741,6.15529 159.832,6.16214 160.013,6.1763 160.377,6.20638 161.103,6.27364 161.193,6.28271 161.284,6.29194 161.466,6.31082 161.829,6.35038 162.555,6.43659 162.645,6.44803 162.736,6.45962 162.918,6.48324 163.281,6.53227 164.007,6.63742 164.092,6.6503 164.176,6.66332 164.346,6.68973 164.684,6.74409 165.362,6.85902 165.447,6.87396 165.531,6.88904 165.701,6.91957 166.04,6.98219 166.717,7.11361 166.802,7.13062 166.886,7.14775 167.056,7.18241 167.395,7.25328 168.072,7.4012 169.427,7.72178 169.519,7.74469 169.611,7.76775 169.795,7.81432 170.162,7.90929 170.896,8.10649 172.365,8.52997 172.457,8.55772 172.548,8.58563 172.732,8.64189 173.099,8.75624 173.833,8.9922 175.302,9.49319 175.392,9.5252 175.482,9.55734 175.663,9.62208 176.023,9.7533 176.744,10.0227 178.186,10.5896 181.07,11.8355 181.154,11.8741 181.238,11.9128 181.406,11.9905 181.742,12.1475 182.415,12.4677 183.759,13.1323 186.449,14.559 186.54,14.6097 186.632,14.6604 186.814,14.7624 187.178,14.9682 187.908,15.387 189.366,16.2532 192.283,18.1003 197.729,21.9578 203.068,26.2566 208.86,31.5006 214.265,36.9371 220.124,43.4234 225.596,50.0371 230.959,57.0433 236.778,65.2275 242.208,73.4145 248.092,82.8847 253.87,92.7876 259.259,102.566 265.102,113.758 270.558,124.761 275.906,136.067 281.709,148.915 287.123,161.449 287.218,161.672 287.312,161.896 287.501,162.343 287.879,163.24 288.634,165.041 290.145,168.674 290.24,168.902 290.334,169.131 290.523,169.588 290.901,170.506 291.656,172.348 291.751,172.579 291.845,172.81 292.034,173.273 292.412,174.2 292.506,174.432 292.601,174.665 292.79,175.13 292.884,175.363 292.978,175.596 293.073,175.829 293.167,176.063 ' />
+</g>
+<g transform='matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)' clip-path='url(#cp3)'>
+<clipPath id='cp3'><polygon points='0,0 0,183 300,183 300,0 ' /></clipPath>
+<polyline fill='none' stroke-opacity='1' stroke-width='0.2px' stroke='rgb(0%,0%,0%)' points='18,91.0314 18,87.6411 ' />
+</g>
+<g transform='matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)' clip-path='url(#cp4)'>
+<clipPath id='cp4'><polygon points='0,0 0,183 300,183 300,0 ' /></clipPath>
+<polyline fill='none' stroke-opacity='1' stroke-width='0.2px' stroke='rgb(0%,0%,0%)' points='31.7584,91.0314 31.7584,88.9972 ' />
+</g>
+<g transform='matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)' clip-path='url(#cp5)'>
+<clipPath id='cp5'><polygon points='0,0 0,183 300,183 300,0 ' /></clipPath>
+<polyline fill='none' stroke-opacity='1' stroke-width='0.2px' stroke='rgb(0%,0%,0%)' points='45.5167,91.0314 45.5167,88.9972 ' />
+</g>
+<g transform='matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)' clip-path='url(#cp6)'>
+<clipPath id='cp6'><polygon points='0,0 0,183 300,183 300,0 ' /></clipPath>
+<polyline fill='none' stroke-opacity='1' stroke-width='0.2px' stroke='rgb(0%,0%,0%)' points='59.2751,91.0314 59.2751,88.9972 ' />
+</g>
+<g transform='matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)' clip-path='url(#cp7)'>
+<clipPath id='cp7'><polygon points='0,0 0,183 300,183 300,0 ' /></clipPath>
+<polyline fill='none' stroke-opacity='1' stroke-width='0.2px' stroke='rgb(0%,0%,0%)' points='73.0335,91.0314 73.0335,88.9972 ' />
+</g>
+<g transform='matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)' clip-path='url(#cp8)'>
+<clipPath id='cp8'><polygon points='0,0 0,183 300,183 300,0 ' /></clipPath>
+<polyline fill='none' stroke-opacity='1' stroke-width='0.2px' stroke='rgb(0%,0%,0%)' points='86.7918,91.0314 86.7918,87.6411 ' />
+</g>
+<g transform='matrix(1.000000, 0.000000, 0.000000, 1.000000, 83.791837, 94.031395)' clip-path='url(#cp9)'>
+<clipPath id='cp9'><polygon points='-1.79184,-1.0314 -1.79184,13.9686 7.20816,13.9686 7.20816,-1.0314 ' /></clipPath>
+<text x='0' y='10' font-family='Times' font-size='10px' fill='rgb(0%,0%,0%)'>1</text>
+</g>
+<g transform='matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)' clip-path='url(#cp10)'>
+<clipPath id='cp10'><polygon points='0,0 0,183 300,183 300,0 ' /></clipPath>
+<polyline fill='none' stroke-opacity='1' stroke-width='0.2px' stroke='rgb(0%,0%,0%)' points='100.55,91.0314 100.55,88.9972 ' />
+</g>
+<g transform='matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)' clip-path='url(#cp11)'>
+<clipPath id='cp11'><polygon points='0,0 0,183 300,183 300,0 ' /></clipPath>
+<polyline fill='none' stroke-opacity='1' stroke-width='0.2px' stroke='rgb(0%,0%,0%)' points='114.309,91.0314 114.309,88.9972 ' />
+</g>
+<g transform='matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)' clip-path='url(#cp12)'>
+<clipPath id='cp12'><polygon points='0,0 0,183 300,183 300,0 ' /></clipPath>
+<polyline fill='none' stroke-opacity='1' stroke-width='0.2px' stroke='rgb(0%,0%,0%)' points='128.067,91.0314 128.067,88.9972 ' />
+</g>
+<g transform='matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)' clip-path='url(#cp13)'>
+<clipPath id='cp13'><polygon points='0,0 0,183 300,183 300,0 ' /></clipPath>
+<polyline fill='none' stroke-opacity='1' stroke-width='0.2px' stroke='rgb(0%,0%,0%)' points='141.825,91.0314 141.825,88.9972 ' />
+</g>
+<g transform='matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)' clip-path='url(#cp14)'>
+<clipPath id='cp14'><polygon points='0,0 0,183 300,183 300,0 ' /></clipPath>
+<polyline fill='none' stroke-opacity='1' stroke-width='0.2px' stroke='rgb(0%,0%,0%)' points='155.584,91.0314 155.584,87.6411 ' />
+</g>
+<g transform='matrix(1.000000, 0.000000, 0.000000, 1.000000, 152.583673, 94.031395)' clip-path='url(#cp15)'>
+<clipPath id='cp15'><polygon points='-1.58367,-1.0314 -1.58367,13.9686 7.41633,13.9686 7.41633,-1.0314 ' /></clipPath>
+<text x='0' y='10' font-family='Times' font-size='10px' fill='rgb(0%,0%,0%)'>2</text>
+</g>
+<g transform='matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)' clip-path='url(#cp16)'>
+<clipPath id='cp16'><polygon points='0,0 0,183 300,183 300,0 ' /></clipPath>
+<polyline fill='none' stroke-opacity='1' stroke-width='0.2px' stroke='rgb(0%,0%,0%)' points='169.342,91.0314 169.342,88.9972 ' />
+</g>
+<g transform='matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)' clip-path='url(#cp17)'>
+<clipPath id='cp17'><polygon points='0,0 0,183 300,183 300,0 ' /></clipPath>
+<polyline fill='none' stroke-opacity='1' stroke-width='0.2px' stroke='rgb(0%,0%,0%)' points='183.1,91.0314 183.1,88.9972 ' />
+</g>
+<g transform='matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)' clip-path='url(#cp18)'>
+<clipPath id='cp18'><polygon points='0,0 0,183 300,183 300,0 ' /></clipPath>
+<polyline fill='none' stroke-opacity='1' stroke-width='0.2px' stroke='rgb(0%,0%,0%)' points='196.859,91.0314 196.859,88.9972 ' />
+</g>
+<g transform='matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)' clip-path='url(#cp19)'>
+<clipPath id='cp19'><polygon points='0,0 0,183 300,183 300,0 ' /></clipPath>
+<polyline fill='none' stroke-opacity='1' stroke-width='0.2px' stroke='rgb(0%,0%,0%)' points='210.617,91.0314 210.617,88.9972 ' />
+</g>
+<g transform='matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)' clip-path='url(#cp20)'>
+<clipPath id='cp20'><polygon points='0,0 0,183 300,183 300,0 ' /></clipPath>
+<polyline fill='none' stroke-opacity='1' stroke-width='0.2px' stroke='rgb(0%,0%,0%)' points='224.376,91.0314 224.376,87.6411 ' />
+</g>
+<g transform='matrix(1.000000, 0.000000, 0.000000, 1.000000, 221.375510, 94.031395)' clip-path='url(#cp21)'>
+<clipPath id='cp21'><polygon points='-1.37551,-1.0314 -1.37551,13.9686 7.62449,13.9686 7.62449,-1.0314 ' /></clipPath>
+<text x='0' y='10' font-family='Times' font-size='10px' fill='rgb(0%,0%,0%)'>3</text>
+</g>
+<g transform='matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)' clip-path='url(#cp22)'>
+<clipPath id='cp22'><polygon points='0,0 0,183 300,183 300,0 ' /></clipPath>
+<polyline fill='none' stroke-opacity='1' stroke-width='0.2px' stroke='rgb(0%,0%,0%)' points='238.134,91.0314 238.134,88.9972 ' />
+</g>
+<g transform='matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)' clip-path='url(#cp23)'>
+<clipPath id='cp23'><polygon points='0,0 0,183 300,183 300,0 ' /></clipPath>
+<polyline fill='none' stroke-opacity='1' stroke-width='0.2px' stroke='rgb(0%,0%,0%)' points='251.892,91.0314 251.892,88.9972 ' />
+</g>
+<g transform='matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)' clip-path='url(#cp24)'>
+<clipPath id='cp24'><polygon points='0,0 0,183 300,183 300,0 ' /></clipPath>
+<polyline fill='none' stroke-opacity='1' stroke-width='0.2px' stroke='rgb(0%,0%,0%)' points='265.651,91.0314 265.651,88.9972 ' />
+</g>
+<g transform='matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)' clip-path='url(#cp25)'>
+<clipPath id='cp25'><polygon points='0,0 0,183 300,183 300,0 ' /></clipPath>
+<polyline fill='none' stroke-opacity='1' stroke-width='0.2px' stroke='rgb(0%,0%,0%)' points='279.409,91.0314 279.409,88.9972 ' />
+</g>
+<g transform='matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)' clip-path='url(#cp26)'>
+<clipPath id='cp26'><polygon points='0,0 0,183 300,183 300,0 ' /></clipPath>
+<polyline fill='none' stroke-opacity='1' stroke-width='0.2px' stroke='rgb(0%,0%,0%)' points='293.167,91.0314 293.167,87.6411 ' />
+</g>
+<g transform='matrix(1.000000, 0.000000, 0.000000, 1.000000, 289.667347, 94.031395)' clip-path='url(#cp27)'>
+<clipPath id='cp27'><polygon points='-1.66735,-1.0314 -1.66735,13.9686 8.33265,13.9686 8.33265,-1.0314 ' /></clipPath>
+<text x='1' y='10' font-family='Times' font-size='10px' fill='rgb(0%,0%,0%)'>4</text>
+</g>
+<g transform='matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)' clip-path='url(#cp28)'>
+<clipPath id='cp28'><polygon points='0,0 0,183 300,183 300,0 ' /></clipPath>
+<polyline fill='none' stroke-opacity='1' stroke-width='0.2px' stroke='rgb(0%,0%,0%)' points='12.2673,91.0314 298.9,91.0314 ' />
+</g>
+<g transform='matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)' clip-path='url(#cp29)'>
+<clipPath id='cp29'><polygon points='0,0 0,183 300,183 300,0 ' /></clipPath>
+<polyline fill='none' stroke-opacity='1' stroke-width='0.2px' stroke='rgb(0%,0%,0%)' points='18,176.063 21.3903,176.063 ' />
+</g>
+<g transform='matrix(1.000000, 0.000000, 0.000000, 1.000000, -0.000000, 170.062791)' clip-path='url(#cp30)'>
+<clipPath id='cp30'><polygon points='3.55271e-15,-1.06279 3.55271e-15,12.9372 16,12.9372 16,-1.06279 ' /></clipPath>
+<text x='0' y='10' font-family='SVGTimes' font-size='10px' fill='rgb(0%,0%,0%)'>-</text>
+</g>
+<g transform='matrix(1.000000, 0.000000, 0.000000, 1.000000, -0.000000, 170.062791)' clip-path='url(#cp31)'>
+<clipPath id='cp31'><polygon points='3.55271e-15,-1.06279 3.55271e-15,12.9372 16,12.9372 16,-1.06279 ' /></clipPath>
+<text x='9' y='10' font-family='Times' font-size='10px' fill='rgb(0%,0%,0%)'>2</text>
+</g>
+<g transform='matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)' clip-path='url(#cp32)'>
+<clipPath id='cp32'><polygon points='0,0 0,183 300,183 300,0 ' /></clipPath>
+<polyline fill='none' stroke-opacity='1' stroke-width='0.2px' stroke='rgb(0%,0%,0%)' points='18,167.56 20.0342,167.56 ' />
+</g>
+<g transform='matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)' clip-path='url(#cp33)'>
+<clipPath id='cp33'><polygon points='0,0 0,183 300,183 300,0 ' /></clipPath>
+<polyline fill='none' stroke-opacity='1' stroke-width='0.2px' stroke='rgb(0%,0%,0%)' points='18,159.057 20.0342,159.057 ' />
+</g>
+<g transform='matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)' clip-path='url(#cp34)'>
+<clipPath id='cp34'><polygon points='0,0 0,183 300,183 300,0 ' /></clipPath>
+<polyline fill='none' stroke-opacity='1' stroke-width='0.2px' stroke='rgb(0%,0%,0%)' points='18,150.553 20.0342,150.553 ' />
+</g>
+<g transform='matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)' clip-path='url(#cp35)'>
+<clipPath id='cp35'><polygon points='0,0 0,183 300,183 300,0 ' /></clipPath>
+<polyline fill='none' stroke-opacity='1' stroke-width='0.2px' stroke='rgb(0%,0%,0%)' points='18,142.05 20.0342,142.05 ' />
+</g>
+<g transform='matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)' clip-path='url(#cp36)'>
+<clipPath id='cp36'><polygon points='0,0 0,183 300,183 300,0 ' /></clipPath>
+<polyline fill='none' stroke-opacity='1' stroke-width='0.2px' stroke='rgb(0%,0%,0%)' points='18,133.547 21.3903,133.547 ' />
+</g>
+<g transform='matrix(1.000000, 0.000000, 0.000000, 1.000000, -0.000000, 127.547093)' clip-path='url(#cp37)'>
+<clipPath id='cp37'><polygon points='3.55271e-15,-1.54709 3.55271e-15,13.4529 16,13.4529 16,-1.54709 ' /></clipPath>
+<text x='0' y='10' font-family='SVGTimes' font-size='10px' fill='rgb(0%,0%,0%)'>-</text>
+</g>
+<g transform='matrix(1.000000, 0.000000, 0.000000, 1.000000, -0.000000, 127.547093)' clip-path='url(#cp38)'>
+<clipPath id='cp38'><polygon points='3.55271e-15,-1.54709 3.55271e-15,13.4529 16,13.4529 16,-1.54709 ' /></clipPath>
+<text x='9' y='10' font-family='Times' font-size='10px' fill='rgb(0%,0%,0%)'>1</text>
+</g>
+<g transform='matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)' clip-path='url(#cp39)'>
+<clipPath id='cp39'><polygon points='0,0 0,183 300,183 300,0 ' /></clipPath>
+<polyline fill='none' stroke-opacity='1' stroke-width='0.2px' stroke='rgb(0%,0%,0%)' points='18,125.044 20.0342,125.044 ' />
+</g>
+<g transform='matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)' clip-path='url(#cp40)'>
+<clipPath id='cp40'><polygon points='0,0 0,183 300,183 300,0 ' /></clipPath>
+<polyline fill='none' stroke-opacity='1' stroke-width='0.2px' stroke='rgb(0%,0%,0%)' points='18,116.541 20.0342,116.541 ' />
+</g>
+<g transform='matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)' clip-path='url(#cp41)'>
+<clipPath id='cp41'><polygon points='0,0 0,183 300,183 300,0 ' /></clipPath>
+<polyline fill='none' stroke-opacity='1' stroke-width='0.2px' stroke='rgb(0%,0%,0%)' points='18,108.038 20.0342,108.038 ' />
+</g>
+<g transform='matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)' clip-path='url(#cp42)'>
+<clipPath id='cp42'><polygon points='0,0 0,183 300,183 300,0 ' /></clipPath>
+<polyline fill='none' stroke-opacity='1' stroke-width='0.2px' stroke='rgb(0%,0%,0%)' points='18,99.5345 20.0342,99.5345 ' />
+</g>
+<g transform='matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)' clip-path='url(#cp43)'>
+<clipPath id='cp43'><polygon points='0,0 0,183 300,183 300,0 ' /></clipPath>
+<polyline fill='none' stroke-opacity='1' stroke-width='0.2px' stroke='rgb(0%,0%,0%)' points='18,91.0314 21.3903,91.0314 ' />
+</g>
+<g transform='matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)' clip-path='url(#cp44)'>
+<clipPath id='cp44'><polygon points='0,0 0,183 300,183 300,0 ' /></clipPath>
+<polyline fill='none' stroke-opacity='1' stroke-width='0.2px' stroke='rgb(0%,0%,0%)' points='18,82.5283 20.0342,82.5283 ' />
+</g>
+<g transform='matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)' clip-path='url(#cp45)'>
+<clipPath id='cp45'><polygon points='0,0 0,183 300,183 300,0 ' /></clipPath>
+<polyline fill='none' stroke-opacity='1' stroke-width='0.2px' stroke='rgb(0%,0%,0%)' points='18,74.0251 20.0342,74.0251 ' />
+</g>
+<g transform='matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)' clip-path='url(#cp46)'>
+<clipPath id='cp46'><polygon points='0,0 0,183 300,183 300,0 ' /></clipPath>
+<polyline fill='none' stroke-opacity='1' stroke-width='0.2px' stroke='rgb(0%,0%,0%)' points='18,65.522 20.0342,65.522 ' />
+</g>
+<g transform='matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)' clip-path='url(#cp47)'>
+<clipPath id='cp47'><polygon points='0,0 0,183 300,183 300,0 ' /></clipPath>
+<polyline fill='none' stroke-opacity='1' stroke-width='0.2px' stroke='rgb(0%,0%,0%)' points='18,57.0188 20.0342,57.0188 ' />
+</g>
+<g transform='matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)' clip-path='url(#cp48)'>
+<clipPath id='cp48'><polygon points='0,0 0,183 300,183 300,0 ' /></clipPath>
+<polyline fill='none' stroke-opacity='1' stroke-width='0.2px' stroke='rgb(0%,0%,0%)' points='18,48.5157 21.3903,48.5157 ' />
+</g>
+<g transform='matrix(1.000000, 0.000000, 0.000000, 1.000000, 9.000000, 42.515698)' clip-path='url(#cp49)'>
+<clipPath id='cp49'><polygon points='-2,-1.5157 -2,13.4843 7,13.4843 7,-1.5157 ' /></clipPath>
+<text x='0' y='10' font-family='Times' font-size='10px' fill='rgb(0%,0%,0%)'>1</text>
+</g>
+<g transform='matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)' clip-path='url(#cp50)'>
+<clipPath id='cp50'><polygon points='0,0 0,183 300,183 300,0 ' /></clipPath>
+<polyline fill='none' stroke-opacity='1' stroke-width='0.2px' stroke='rgb(0%,0%,0%)' points='18,40.0126 20.0342,40.0126 ' />
+</g>
+<g transform='matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)' clip-path='url(#cp51)'>
+<clipPath id='cp51'><polygon points='0,0 0,183 300,183 300,0 ' /></clipPath>
+<polyline fill='none' stroke-opacity='1' stroke-width='0.2px' stroke='rgb(0%,0%,0%)' points='18,31.5094 20.0342,31.5094 ' />
+</g>
+<g transform='matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)' clip-path='url(#cp52)'>
+<clipPath id='cp52'><polygon points='0,0 0,183 300,183 300,0 ' /></clipPath>
+<polyline fill='none' stroke-opacity='1' stroke-width='0.2px' stroke='rgb(0%,0%,0%)' points='18,23.0063 20.0342,23.0063 ' />
+</g>
+<g transform='matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)' clip-path='url(#cp53)'>
+<clipPath id='cp53'><polygon points='0,0 0,183 300,183 300,0 ' /></clipPath>
+<polyline fill='none' stroke-opacity='1' stroke-width='0.2px' stroke='rgb(0%,0%,0%)' points='18,14.5031 20.0342,14.5031 ' />
+</g>
+<g transform='matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)' clip-path='url(#cp54)'>
+<clipPath id='cp54'><polygon points='0,0 0,183 300,183 300,0 ' /></clipPath>
+<polyline fill='none' stroke-opacity='1' stroke-width='0.2px' stroke='rgb(0%,0%,0%)' points='18,6 21.3903,6 ' />
+</g>
+<g transform='matrix(1.000000, 0.000000, 0.000000, 1.000000, 9.000000, 0.000000)' clip-path='url(#cp55)'>
+<clipPath id='cp55'><polygon points='-2,-4.26326e-14 -2,14 7,14 7,-4.26326e-14 ' /></clipPath>
+<text x='0' y='10' font-family='Times' font-size='10px' fill='rgb(0%,0%,0%)'>2</text>
+</g>
+<g transform='matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)' clip-path='url(#cp56)'>
+<clipPath id='cp56'><polygon points='0,0 0,183 300,183 300,0 ' /></clipPath>
+<polyline fill='none' stroke-opacity='1' stroke-width='0.2px' stroke='rgb(0%,0%,0%)' points='18,179.606 18,2.45703 ' />
+</g>
+</g>
+<defs>
+<font id="SVGTimesFont" horiz-adv-x="1024">
+	<font-face font-family='SVGTimes' units-per-em='2048' font-weight='normal' />
+	<missing-glyph d='M128 0V1638H896V0H128ZM256 128H768V1510H256V128Z' />
+<glyph unicode='&#45;'
+       horiz-adv-x='1229'
+       d='M1024 414H205V489H1024V414Z'/>
+</font>
+</defs>
+</svg>
