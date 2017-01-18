@@ -12,10 +12,13 @@
 
 const int ParametresPoint::stylePointDefaut = CARRE;
 const int ParametresPoint::epaisseurPointDefaut = 4;
-const QRgb ParametresPoint::couleurPointDefaut = QColor(Qt::black).rgb();
-const QRgb ParametresPoint::couleurPointAxeDefaut = QColor(Qt::red).rgb();
-const QRgb ParametresPoint::couleurPointCourbeDefaut = QColor(Qt::blue).rgb();
-const QRgb ParametresPoint::couleurPointManuelDefaut = QColor(Qt::green).rgb();
+const QRgb ParametresPoint::couleurPointDefaut = 4278190080; // QColor(Qt::black).rgb()
+const QRgb ParametresPoint::couleurPointAxeDefaut = 4294901760; // QColor(Qt::red).rgb()
+const QRgb ParametresPoint::couleurPointCourbeDefaut = 4278190335; // QColor(Qt::blue).rgb()
+const QRgb ParametresPoint::couleurPointManuelDefaut = 4278255360; // QColor(Qt::green).rgb()
+// Note : Initialisations des valeurs par défaut des paramètres d'un point avec les valeurs entières
+//        non signées correspondantes afin d'en disposer pour les initialisations des valeurs par
+//        défaut des paramètres d'affichage.
 
 const QMap<int, QString> ParametresPoint::stylesPointsTexte = QMap<int, QString>(
         std::map<int, QString> { {CARRE, QString::fromUtf8("Carré")}, {CERCLE, QString::fromUtf8(

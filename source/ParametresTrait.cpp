@@ -12,9 +12,12 @@
 
 const int ParametresTrait::styleTraitDefaut = LIGNE;
 const int ParametresTrait::epaisseurTraitDefaut = 2;
-const QRgb ParametresTrait::couleurTraitDefaut = QColor(Qt::black).rgb();
-const QRgb ParametresTrait::couleurTraitAxeDefaut = QColor(Qt::red).rgb();
-const QRgb ParametresTrait::couleurTraitCourbeDefaut = QColor(Qt::blue).rgb();
+const QRgb ParametresTrait::couleurTraitDefaut = 4278190080; // QColor(Qt::black).rgb()
+const QRgb ParametresTrait::couleurTraitAxeDefaut = 4294901760; // QColor(Qt::red).rgb()
+const QRgb ParametresTrait::couleurTraitCourbeDefaut = 4278190335; // QColor(Qt::blue).rgb()
+// Note : Initialisations des valeurs par défaut des paramètres d'un trait avec les valeurs entières
+//        non signées correspondantes afin d'en disposer pour les initialisations des valeurs par
+//        défaut des paramètres d'affichage.
 
 const QMap<int, QString> ParametresTrait::stylesTraitsTexte = QMap<int, QString>(
         std::map<int, QString> { {LIGNE, QString::fromUtf8("Ligne")}, {TIRETS, QString::fromUtf8(
