@@ -495,11 +495,11 @@ int Etude::verifierToleranceTeintesSaturees(const QRgb& couleurCourante,
     const int seuilMaximalTeinteSaturee = (teinteCouleurReference + seuilToleranceTeintesSaturees
             + 360) % 360;
     const bool seuilsInverses = (seuilMinimalTeinteSaturee > seuilMaximalTeinteSaturee);
-    if (seuilToleranceTeintesSaturees >= 180)
-        return TEINTE_SATUREE_COMPATIBLE;
     if ((teinteCouleurCourante == -1 && teinteCouleurReference != -1)
             || (teinteCouleurCourante != -1 && teinteCouleurReference == -1))
         return TEINTE_SATUREE_INCOMPATIBLE;
+    else if (seuilToleranceTeintesSaturees >= 180)
+        return TEINTE_SATUREE_COMPATIBLE;
     else if (teinteCouleurCourante < seuilMinimalTeinteSaturee
             && (!seuilsInverses || (seuilsInverses && teinteCouleurCourante >= 180)))
         return TEINTE_SATUREE_INFERIEURE;
