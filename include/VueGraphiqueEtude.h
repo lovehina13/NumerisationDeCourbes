@@ -1,7 +1,7 @@
 //==============================================================================
 // Name        : VueGraphiqueEtude.h
 // Author      : Alexis Foerster (alexis.foerster@gmail.com)
-// Version     : 1.0 (29/07/2016)
+// Version     : 1.0.0 (20/01/2017)
 // Description : Header file of the VueGraphiqueEtude class
 //==============================================================================
 

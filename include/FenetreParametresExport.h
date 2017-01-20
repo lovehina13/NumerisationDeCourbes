@@ -1,7 +1,7 @@
 //==============================================================================
 // Name        : FenetreParametresExport.h
 // Author      : Alexis Foerster (alexis.foerster@gmail.com)
-// Version     : 1.0 (30/06/2016)
+// Version     : 1.0.0 (20/01/2017)
 // Description : Header file of the FenetreParametresExport class
 //==============================================================================
 

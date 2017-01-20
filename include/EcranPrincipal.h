@@ -1,7 +1,7 @@
 //==============================================================================
 // Name        : EcranPrincipal.h
 // Author      : Alexis Foerster (alexis.foerster@gmail.com)
-// Version     : 1.0 (14/06/2016)
+// Version     : 1.0.0 (20/01/2017)
 // Description : Header file of the EcranPrincipal class
 //==============================================================================
 

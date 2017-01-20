@@ -1,7 +1,7 @@
 //==============================================================================
 // Name        : ParametresFichiers.cpp
 // Author      : Alexis Foerster (alexis.foerster@gmail.com)
-// Version     : 1.0 (28/06/2016)
+// Version     : 1.0.0 (20/01/2017)
 // Description : Source file of the ParametresFichiers class
 //==============================================================================
 
