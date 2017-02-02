@@ -182,7 +182,8 @@ void Image::convertirImage(const int& methodeConversion, const int& seuilNoirEtB
                 else
                 {
                     couleurConvertie = listeTeintesSaturees.at(
-                            (int) round((double) teinteCouleurConvertie / pasTeintesSaturees));
+                            (int) round((double) teinteCouleurConvertie / pasTeintesSaturees)
+                                    % nombreTeintesSaturees);
                 }
             }
             imageConvertie.setPixel(x, y, couleurConvertie);
