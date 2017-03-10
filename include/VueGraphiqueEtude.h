@@ -17,6 +17,7 @@
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include <QKeyEvent>
+#include <QList>
 #include <QMouseEvent>
 #include <QPointF>
 #include <QWheelEvent>
@@ -51,6 +52,8 @@ public:
             const ParametresPoint& parametresPointsManuels);
     void dessinerPoint(const Point& point, const ParametresPoint& parametresPoint);
     void dessinerTrait(const Point& point1, const Point& point2,
+            const ParametresTrait& parametresTrait);
+    void dessinerTraitContinu(const QList<Point>& listeDePoints,
             const ParametresTrait& parametresTrait);
 
 protected:

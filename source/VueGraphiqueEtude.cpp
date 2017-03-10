@@ -9,9 +9,10 @@
 #include <QBrush>
 #include <QColor>
 #include <QGraphicsPixmapItem>
-#include <QList>
+#include <QPainterPath>
 #include <QPen>
 #include <QPixmap>
+#include <QPolygon>
 #include <QRgb>
 
 const double VueGraphiqueEtude::facteurZoomIn = 1.25;
@@ -105,14 +106,9 @@ void VueGraphiqueEtude::dessinerCourbe(const Courbe& courbe,
         const ParametresTrait& parametresCourbes, const ParametresPoint& parametresPointsCourbes)
 {
     const int nombreDePointsCourbe = courbe.count();
-    for (int itPointCourbe = 0; itPointCourbe < (nombreDePointsCourbe - 1); itPointCourbe++)
-    {
-        const Point& pointCourant = courbe.at(itPointCourbe);
-        const Point& pointSuivant = courbe.at(itPointCourbe + 1);
-        this->dessinerTrait(pointCourant, pointSuivant, parametresCourbes);
-    }
     const Point& premierPoint = courbe.at(0);
     const Point& dernierPoint = courbe.at(nombreDePointsCourbe - 1);
+    this->dessinerTraitContinu(courbe, parametresCourbes);
     this->dessinerPoint(premierPoint, parametresPointsCourbes);
     this->dessinerPoint(dernierPoint, parametresPointsCourbes);
 }
@@ -164,6 +160,30 @@ void VueGraphiqueEtude::dessinerTrait(const Point& point1, const Point& point2,
     const double p2py = (double) point2.getPointPixelY();
 
     this->scene()->addLine(p1px, p1py, p2px, p2py, pinceauTrait);
+}
+
+void VueGraphiqueEtude::dessinerTraitContinu(const QList<Point>& listeDePoints,
+        const ParametresTrait& parametresTrait)
+{
+    const int& styleTrait = parametresTrait.getStyleTrait();
+    const int& epaisseurTrait = parametresTrait.getEpaisseurTrait();
+    const QRgb& couleurTrait = parametresTrait.getCouleurTrait();
+    const QBrush brosseTrait = QBrush(QColor(couleurTrait), Qt::SolidPattern);
+    const QPen pinceauTrait = QPen(brosseTrait, epaisseurTrait, (Qt::PenStyle) (styleTrait + 1),
+            Qt::RoundCap, Qt::RoundJoin);
+
+    QPolygon polygone;
+    const int nombreDePoints = listeDePoints.count();
+    for (int itPoint = 0; itPoint < nombreDePoints; itPoint++)
+    {
+        const Point& pointCourant = listeDePoints.at(itPoint);
+        const QPoint& pointPixelCourant = pointCourant.getPointPixel();
+        polygone.append(pointPixelCourant);
+    }
+    QPainterPath chemin;
+    chemin.addPolygon(polygone);
+
+    this->scene()->addPath(chemin, pinceauTrait);
 }
 
 void VueGraphiqueEtude::keyPressEvent(QKeyEvent* event)
