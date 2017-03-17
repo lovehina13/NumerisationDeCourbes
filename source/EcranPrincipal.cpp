@@ -943,6 +943,42 @@ void EcranPrincipal::on_pushButtonSupprimer_clicked()
     {
         listeDePoints.clear();
     }
+
+    const QList<Courbe> listeDeCourbes = this->etude.getListeDeCourbes();
+    const int nombreDeCourbes = listeDeCourbes.count();
+    for (int itCourbe = 0; itCourbe < nombreDeCourbes; itCourbe++)
+    {
+        Courbe listeDePointsCourbe = listeDeCourbes.at(itCourbe);
+        int nombreDePointsCourbe = listeDePointsCourbe.count();
+        for (int itPointCourbe = (nombreDePointsCourbe - 1); itPointCourbe >= 0; itPointCourbe--)
+        {
+            const Point& pointCourbe = listeDePointsCourbe.at(itPointCourbe);
+            if (!listeDePoints.contains(pointCourbe))
+            {
+                listeDePointsCourbe.removeAt(itPointCourbe);
+            }
+        }
+        nombreDePointsCourbe = listeDePointsCourbe.count();
+        if (nombreDePointsCourbe > 1)
+        {
+            Point premierPointCourbe = listeDePointsCourbe.at(0);
+            Point dernierPointCourbe = listeDePointsCourbe.at(nombreDePointsCourbe - 1);
+            const int itPremierPointCourbe = listeDePoints.indexOf(premierPointCourbe);
+            const int itDernierPointCourbe = listeDePoints.indexOf(dernierPointCourbe);
+            premierPointCourbe.setTypePoint(Point::COURBE_DEBUT);
+            dernierPointCourbe.setTypePoint(Point::COURBE_FIN);
+            listeDePoints[itPremierPointCourbe] = premierPointCourbe;
+            listeDePoints[itDernierPointCourbe] = dernierPointCourbe;
+        }
+        else if (nombreDePointsCourbe > 0)
+        {
+            Point pointCourbe = listeDePointsCourbe.at(0);
+            const int itPointCourbe = listeDePoints.indexOf(pointCourbe);
+            pointCourbe.setTypePoint(Point::MANUEL);
+            listeDePoints[itPointCourbe] = pointCourbe;
+        }
+    }
+
     this->etude.setListeDePoints(listeDePoints);
 
     this->actualiserCoordonneesListeDePoints();
