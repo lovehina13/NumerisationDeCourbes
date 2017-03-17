@@ -1,7 +1,7 @@
 #===============================================================================
 # Name        : NumerisationDeCourbes.pro
 # Author      : Alexis Foerster (alexis.foerster@gmail.com)
-# Version     : 1.0.2 (10/03/2017)
+# Version     : 1.0.3 (17/03/2017)
 # Description : Qt project file of the NumerisationDeCourbes project
 #===============================================================================
 
