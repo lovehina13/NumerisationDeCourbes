@@ -21,6 +21,7 @@
 #include "ParametresRecherche.h"
 #include "Point.h"
 #include "Repere.h"
+#include <cmath>
 #include <QDialog>
 #include <QDoubleValidator>
 #include <QFileDialog>

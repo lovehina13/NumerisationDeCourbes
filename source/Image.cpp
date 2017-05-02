@@ -7,6 +7,7 @@
 
 #include "Image.h"
 #include "ParametresConversion.h"
+#include <cmath>
 #include <QByteArray>
 #include <QColor>
 

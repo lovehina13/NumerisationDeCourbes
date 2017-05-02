@@ -9,6 +9,7 @@
 #include "ui_FenetreParametresAffichage.h"
 #include "ParametresPoint.h"
 #include "ParametresTrait.h"
+#include <cmath>
 #include <QColor>
 #include <QColorDialog>
 #include <QDialogButtonBox>

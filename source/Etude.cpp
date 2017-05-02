@@ -11,6 +11,7 @@
 #include "ParametresExport.h"
 #include "ParametresFichiers.h"
 #include "ParametresRecherche.h"
+#include <cmath>
 #include <QColor>
 #include <QFile>
 #include <QImage>

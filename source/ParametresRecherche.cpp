@@ -7,6 +7,7 @@
 
 #include "ParametresRecherche.h"
 #include "Outils.h"
+#include <cmath>
 #include <QStringList>
 
 const int ParametresRecherche::seuilToleranceNiveauxDeGrisDefaut = 32;

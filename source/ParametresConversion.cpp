@@ -7,6 +7,7 @@
 
 #include "ParametresConversion.h"
 #include "Outils.h"
+#include <cmath>
 #include <QStringList>
 
 const int ParametresConversion::methodeConversionDefaut = BRUTE;
