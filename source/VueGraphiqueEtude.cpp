@@ -81,9 +81,12 @@ void VueGraphiqueEtude::dessiner(const Etude& etude)
 
 void VueGraphiqueEtude::dessinerImage(const Image& image)
 {
-    QGraphicsPixmapItem* itemImage = new QGraphicsPixmapItem(
-            QPixmap::fromImage(image.getImageConvertie()));
+    const QImage& imageConvertie = image.getImageConvertie();
+    const int largeurImage = imageConvertie.width();
+    const int hauteurImage = imageConvertie.height();
+    QGraphicsPixmapItem* itemImage = new QGraphicsPixmapItem(QPixmap::fromImage(imageConvertie));
     this->scene()->addItem(itemImage);
+    this->scene()->setSceneRect(0, 0, largeurImage, hauteurImage);
 }
 
 void VueGraphiqueEtude::dessinerRepere(const Repere& repere, const ParametresTrait& parametresAxes,
