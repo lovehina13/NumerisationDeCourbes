@@ -1,7 +1,7 @@
 //==============================================================================
 // Name        : ParametresRecherche.h
 // Author      : Alexis Foerster (alexis.foerster@gmail.com)
-// Version     : 1.0.3 (17/03/2017)
+// Version     : 1.0.4 (02/05/2017)
 // Description : Header file of the ParametresRecherche class
 //==============================================================================
 
