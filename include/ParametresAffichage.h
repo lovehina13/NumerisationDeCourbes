@@ -1,7 +1,7 @@
 //==============================================================================
 // Name        : ParametresAffichage.h
 // Author      : Alexis Foerster (alexis.foerster@gmail.com)
-// Version     : 1.0.4 (02/05/2017)
+// Version     : 1.0.5 (07/06/2017)
 // Description : Header file of the ParametresAffichage class
 //==============================================================================
 
