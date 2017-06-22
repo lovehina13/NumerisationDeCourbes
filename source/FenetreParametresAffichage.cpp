@@ -56,10 +56,6 @@ void FenetreParametresAffichage::initialiserElementsGraphiques()
     this->ui->spinBoxEpaisseurPointsManuels->setMinimum(0);
     this->ui->spinBoxEpaisseurPointsManuels->setMaximum(20);
     this->ui->buttonBox->button(QDialogButtonBox::Cancel)->setText("Annuler");
-
-    this->ui->comboBoxFormatNotationNombres->setEnabled(false);
-    this->ui->spinBoxNombreDecimalesOuChiffresSignificatifs->setEnabled(false);
-    // TODO Gestion de la disponibilité et de l'affichage selon les paramètres sélectionnés
 }
 
 void FenetreParametresAffichage::actualiserElementsGraphiques()

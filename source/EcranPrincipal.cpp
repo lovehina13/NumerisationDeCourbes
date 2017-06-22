@@ -133,8 +133,9 @@ void EcranPrincipal::effacerElementsGraphiques()
 void EcranPrincipal::actualiserElementsGraphiques()
 {
     const Repere& repere = this->etude.getRepere();
-    const int& methodeConversion =
-            this->etude.getParametres().getParametresConversion().getMethodeConversion();
+    const Parametres& parametres = this->etude.getParametres();
+    const ParametresConversion& parametresConversion = parametres.getParametresConversion();
+    const int& methodeConversion = parametresConversion.getMethodeConversion();
 
     if ((methodeConversion == ParametresConversion::BRUTE)
             || (methodeConversion == ParametresConversion::NOIR_ET_BLANC))
@@ -311,40 +312,76 @@ void EcranPrincipal::actualiserCoordonneesPoints()
 
 void EcranPrincipal::actualiserCoordonneesPointDepart()
 {
+    const Parametres& parametres = this->etude.getParametres();
+    const ParametresAffichage& parametresAffichage = parametres.getParametresAffichage();
+    const char formatNotationNombresCaractere =
+            parametresAffichage.getFormatNotationNombresCaractere();
+    const int& nombreChiffresSignificatifs = parametresAffichage.getNombreChiffresSignificatifs();
+
     const int pointPixelX = this->ui->lineEditPointDepartXPixel->text().toInt();
     const int pointPixelY = this->ui->lineEditPointDepartYPixel->text().toInt();
     double pointReelX = 0.0;
     double pointReelY = 0.0;
     this->etude.getRepere().pixelVersReel(pointPixelX, pointPixelY, pointReelX, pointReelY);
-    this->ui->lineEditPointDepartXReel->setText(QString::number(pointReelX));
-    this->ui->lineEditPointDepartYReel->setText(QString::number(pointReelY));
+    this->ui->lineEditPointDepartXReel->setText(
+            QString::number(pointReelX, formatNotationNombresCaractere,
+                    nombreChiffresSignificatifs));
+    this->ui->lineEditPointDepartYReel->setText(
+            QString::number(pointReelY, formatNotationNombresCaractere,
+                    nombreChiffresSignificatifs));
 }
 
 void EcranPrincipal::actualiserCoordonneesPointArrivee()
 {
+    const Parametres& parametres = this->etude.getParametres();
+    const ParametresAffichage& parametresAffichage = parametres.getParametresAffichage();
+    const char formatNotationNombresCaractere =
+            parametresAffichage.getFormatNotationNombresCaractere();
+    const int& nombreChiffresSignificatifs = parametresAffichage.getNombreChiffresSignificatifs();
+
     const int pointPixelX = this->ui->lineEditPointArriveeXPixel->text().toInt();
     const int pointPixelY = this->ui->lineEditPointArriveeYPixel->text().toInt();
     double pointReelX = 0.0;
     double pointReelY = 0.0;
     this->etude.getRepere().pixelVersReel(pointPixelX, pointPixelY, pointReelX, pointReelY);
-    this->ui->lineEditPointArriveeXReel->setText(QString::number(pointReelX));
-    this->ui->lineEditPointArriveeYReel->setText(QString::number(pointReelY));
+    this->ui->lineEditPointArriveeXReel->setText(
+            QString::number(pointReelX, formatNotationNombresCaractere,
+                    nombreChiffresSignificatifs));
+    this->ui->lineEditPointArriveeYReel->setText(
+            QString::number(pointReelY, formatNotationNombresCaractere,
+                    nombreChiffresSignificatifs));
 }
 
 void EcranPrincipal::actualiserCoordonneesPointManuel()
 {
+    const Parametres& parametres = this->etude.getParametres();
+    const ParametresAffichage& parametresAffichage = parametres.getParametresAffichage();
+    const char formatNotationNombresCaractere =
+            parametresAffichage.getFormatNotationNombresCaractere();
+    const int& nombreChiffresSignificatifs = parametresAffichage.getNombreChiffresSignificatifs();
+
     const int pointPixelX = this->ui->lineEditPointManuelXPixel->text().toInt();
     const int pointPixelY = this->ui->lineEditPointManuelYPixel->text().toInt();
     double pointReelX = 0.0;
     double pointReelY = 0.0;
     this->etude.getRepere().pixelVersReel(pointPixelX, pointPixelY, pointReelX, pointReelY);
-    this->ui->lineEditPointManuelXReel->setText(QString::number(pointReelX));
-    this->ui->lineEditPointManuelYReel->setText(QString::number(pointReelY));
+    this->ui->lineEditPointManuelXReel->setText(
+            QString::number(pointReelX, formatNotationNombresCaractere,
+                    nombreChiffresSignificatifs));
+    this->ui->lineEditPointManuelYReel->setText(
+            QString::number(pointReelY, formatNotationNombresCaractere,
+                    nombreChiffresSignificatifs));
 }
 
 void EcranPrincipal::actualiserCoordonneesListeDePoints()
 {
     // TODO Déplacement de l'actualisation des éléments de la liste de points
+
+    const Parametres& parametres = this->etude.getParametres();
+    const ParametresAffichage& parametresAffichage = parametres.getParametresAffichage();
+    const char formatNotationNombresCaractere =
+            parametresAffichage.getFormatNotationNombresCaractere();
+    const int& nombreChiffresSignificatifs = parametresAffichage.getNombreChiffresSignificatifs();
 
     QList<Point> listeDePoints = this->etude.getListeDePoints();
     const int nombreDePoints = listeDePoints.count();
@@ -366,9 +403,11 @@ void EcranPrincipal::actualiserCoordonneesListeDePoints()
         QTableWidgetItem* itemPointPixelY = new QTableWidgetItem(
                 QString::number(point.getPointPixelY()));
         QTableWidgetItem* itemPointReelX = new QTableWidgetItem(
-                QString::number(point.getPointReelX()));
+                QString::number(point.getPointReelX(), formatNotationNombresCaractere,
+                        nombreChiffresSignificatifs));
         QTableWidgetItem* itemPointReelY = new QTableWidgetItem(
-                QString::number(point.getPointReelY()));
+                QString::number(point.getPointReelY(), formatNotationNombresCaractere,
+                        nombreChiffresSignificatifs));
         QTableWidgetItem* itemTypePoint = new QTableWidgetItem(point.getTypePointTexte());
         this->ui->tableWidgetListePoints->setItem(itPoint, 0, itemPointPixelX);
         this->ui->tableWidgetListePoints->setItem(itPoint, 1, itemPointPixelY);
@@ -501,6 +540,12 @@ void EcranPrincipal::actualiserPointRepere(const QPointF& pointVueGraphique)
 
 void EcranPrincipal::actualiserPointCourbe(const QPointF& pointVueGraphique)
 {
+    const Parametres& parametres = this->etude.getParametres();
+    const ParametresAffichage& parametresAffichage = parametres.getParametresAffichage();
+    const char formatNotationNombresCaractere =
+            parametresAffichage.getFormatNotationNombresCaractere();
+    const int& nombreChiffresSignificatifs = parametresAffichage.getNombreChiffresSignificatifs();
+
     const int ppx = (int) floor(pointVueGraphique.x());
     const int ppy = (int) floor(pointVueGraphique.y());
     double prx = 0.0;
@@ -509,8 +554,10 @@ void EcranPrincipal::actualiserPointCourbe(const QPointF& pointVueGraphique)
 
     const QString ppxTexte = QString::number(ppx);
     const QString ppyTexte = QString::number(ppy);
-    const QString prxTexte = QString::number(prx);
-    const QString pryTexte = QString::number(pry);
+    const QString prxTexte = QString::number(prx, formatNotationNombresCaractere,
+            nombreChiffresSignificatifs);
+    const QString pryTexte = QString::number(pry, formatNotationNombresCaractere,
+            nombreChiffresSignificatifs);
 
     if (this->pushButtonActif == this->ui->pushButtonPointDepart)
     {
@@ -537,6 +584,12 @@ void EcranPrincipal::actualiserPointCourbe(const QPointF& pointVueGraphique)
 
 void EcranPrincipal::actualiserBarreStatut(const QPointF& pointVueGraphique)
 {
+    const Parametres& parametres = this->etude.getParametres();
+    const ParametresAffichage& parametresAffichage = parametres.getParametresAffichage();
+    const char formatNotationNombresCaractere =
+            parametresAffichage.getFormatNotationNombresCaractere();
+    const int& nombreChiffresSignificatifs = parametresAffichage.getNombreChiffresSignificatifs();
+
     const int ppx = (int) floor(pointVueGraphique.x());
     const int ppy = (int) floor(pointVueGraphique.y());
     double prx = 0.0;
@@ -545,8 +598,10 @@ void EcranPrincipal::actualiserBarreStatut(const QPointF& pointVueGraphique)
 
     const QString ppxTexte = QString::number(ppx);
     const QString ppyTexte = QString::number(ppy);
-    const QString prxTexte = QString::number(prx);
-    const QString pryTexte = QString::number(pry);
+    const QString prxTexte = QString::number(prx, formatNotationNombresCaractere,
+            nombreChiffresSignificatifs);
+    const QString pryTexte = QString::number(pry, formatNotationNombresCaractere,
+            nombreChiffresSignificatifs);
     const QString statusBarTexte = QString::fromUtf8("Pixel=(%1:%2) - Réel=(%3:%4)").arg(ppxTexte,
             ppyTexte, prxTexte, pryTexte);
 
@@ -599,6 +654,7 @@ void EcranPrincipal::on_actionParametresAffichage_triggered()
     parametres.setParametresAffichage(parametresAffichage);
     this->etude.setParametres(parametres);
 
+    this->actualiserCoordonneesPoints();
     this->dessinerVueGraphiqueEtude();
 }
 
