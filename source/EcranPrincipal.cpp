@@ -253,6 +253,32 @@ void EcranPrincipal::exporterImageConvertieCourante()
     this->etude.exporterImageConvertie(cheminFichierImageConvertie);
 }
 
+void EcranPrincipal::chargerParametresExistants()
+{
+    const QString cheminFichierParametres = QFileDialog::getOpenFileName(this,
+            QString::fromUtf8("Sélection d'un fichier paramètres"),
+            this->etude.getParametres().getParametresFichiers().getCheminFichierParametres(),
+            QString::fromUtf8("Fichier paramètres (*.prm)"));
+    if (cheminFichierParametres.isEmpty())
+        return;
+
+    this->etude.chargerParametres(cheminFichierParametres);
+
+    this->dessinerVueGraphiqueEtude();
+}
+
+void EcranPrincipal::sauverParametresCourants()
+{
+    const QString cheminFichierParametres = QFileDialog::getSaveFileName(this,
+            QString::fromUtf8("Sélection d'un fichier paramètres"),
+            this->etude.getParametres().getParametresFichiers().getCheminFichierParametres(),
+            QString::fromUtf8("Fichier paramètres (*.prm)"));
+    if (cheminFichierParametres.isEmpty())
+        return;
+
+    this->etude.sauverParametres(cheminFichierParametres);
+}
+
 void EcranPrincipal::verifierEtatSauvegardeEtude()
 {
     if (this->etude.equals(this->etudeReference))
@@ -617,6 +643,16 @@ void EcranPrincipal::on_actionParametresExport_triggered()
     parametresExport = fenetreParametresExport->getParametresExport();
     parametres.setParametresExport(parametresExport);
     this->etude.setParametres(parametres);
+}
+
+void EcranPrincipal::on_actionChargerParametres_triggered()
+{
+    this->chargerParametresExistants();
+}
+
+void EcranPrincipal::on_actionSauverParametres_triggered()
+{
+    this->sauverParametresCourants();
 }
 
 void EcranPrincipal::on_actionDocumentation_triggered()

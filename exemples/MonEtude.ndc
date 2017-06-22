@@ -1,5 +1,5 @@
 [PARAMETRES]
-("./exemples/MonEtude.ndc";"./exemples/MonGraphique.png";"./exemples/MonGraphiqueConverti.png";"./exemples/MonExport.csv");(0;6;(0;2;#ff0000);(0;2;#ffff00);(0;4;#ff0000);(0;4;#ffff00);(0;4;#00ff00));(3;223;5;6;32);(32;60;1;0;0);(0;6;'	';'.';0)
+("./exemples/MonEtude.ndc";"./exemples/MonGraphique.png";"./exemples/MonGraphiqueConverti.png";"./exemples/MonExport.csv";"./exemples/MesParametres.prm");(0;6;(0;2;#ff0000);(0;2;#ffff00);(0;4;#ff0000);(0;4;#ffff00);(0;4;#00ff00));(3;223;5;6;32);(32;60;1;0;0);(0;6;'	';'.';0)
 [REPERE]
 (69;364;0;0;1);(1121;364;4;0;1);(69;704;0;-2;1);(69;24;0;2;1)
 [POINTS]

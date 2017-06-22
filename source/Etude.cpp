@@ -7,6 +7,7 @@
 
 #include "Etude.h"
 #include "Outils.h"
+#include "ParametresAffichage.h"
 #include "ParametresConversion.h"
 #include "ParametresExport.h"
 #include "ParametresFichiers.h"
@@ -261,6 +262,84 @@ bool Etude::sauverEtude(const QString& cheminFichierEtude)
         const Point& pointCourant = listeDePoints.at(itPoint);
         fluxSortie << pointCourant.toString(separateur) << endl;
     }
+    return true;
+}
+
+bool Etude::chargerParametres(const QString& cheminFichierParametres)
+{
+    QFile fichierParametres(cheminFichierParametres);
+    if (!fichierParametres.open(QIODevice::ReadOnly | QIODevice::Text))
+        return false;
+
+    const char separateur = ';';
+    QTextStream fluxEntree(&fichierParametres);
+    while (!fluxEntree.atEnd())
+    {
+        QString ligneEntree = fluxEntree.readLine();
+        if (ligneEntree == "[PARAMETRES_AFFICHAGE]")
+        {
+            ligneEntree = fluxEntree.readLine();
+            Parametres parametres = this->getParametres();
+            ParametresAffichage parametresAffichage = parametres.getParametresAffichage();
+            parametresAffichage.fromString(ligneEntree, separateur);
+            parametres.setParametresAffichage(parametresAffichage);
+            this->setParametres(parametres);
+        }
+        else if (ligneEntree == "[PARAMETRES_CONVERSION]")
+        {
+            ligneEntree = fluxEntree.readLine();
+            Parametres parametres = this->getParametres();
+            ParametresConversion parametresConversion = parametres.getParametresConversion();
+            parametresConversion.fromString(ligneEntree, separateur);
+            parametres.setParametresConversion(parametresConversion);
+            this->setParametres(parametres);
+            this->restaurerImage();
+            this->convertirImage();
+        }
+        else if (ligneEntree == "[PARAMETRES_RECHERCHE]")
+        {
+            ligneEntree = fluxEntree.readLine();
+            Parametres parametres = this->getParametres();
+            ParametresRecherche parametresRecherche = parametres.getParametresRecherche();
+            parametresRecherche.fromString(ligneEntree, separateur);
+            parametres.setParametresRecherche(parametresRecherche);
+            this->setParametres(parametres);
+        }
+        else if (ligneEntree == "[PARAMETRES_EXPORT]")
+        {
+            ligneEntree = fluxEntree.readLine();
+            Parametres parametres = this->getParametres();
+            ParametresExport parametresExport = parametres.getParametresExport();
+            parametresExport.fromString(ligneEntree, separateur);
+            parametres.setParametresExport(parametresExport);
+            this->setParametres(parametres);
+        }
+    }
+    return true;
+}
+
+bool Etude::sauverParametres(const QString& cheminFichierParametres)
+{
+    Parametres parametres = this->getParametres();
+    ParametresFichiers parametresFichiers = parametres.getParametresFichiers();
+    parametresFichiers.setCheminFichierParametres(cheminFichierParametres);
+    parametres.setParametresFichiers(parametresFichiers);
+    this->setParametres(parametres);
+
+    QFile fichierParametres(cheminFichierParametres);
+    if (!fichierParametres.open(QIODevice::WriteOnly | QIODevice::Text))
+        return false;
+
+    const char separateur = ';';
+    QTextStream fluxSortie(&fichierParametres);
+    fluxSortie << "[PARAMETRES_AFFICHAGE]" << endl;
+    fluxSortie << this->getParametres().getParametresAffichage().toString(separateur) << endl;
+    fluxSortie << "[PARAMETRES_CONVERSION]" << endl;
+    fluxSortie << this->getParametres().getParametresConversion().toString(separateur) << endl;
+    fluxSortie << "[PARAMETRES_RECHERCHE]" << endl;
+    fluxSortie << this->getParametres().getParametresRecherche().toString(separateur) << endl;
+    fluxSortie << "[PARAMETRES_EXPORT]" << endl;
+    fluxSortie << this->getParametres().getParametresExport().toString(separateur) << endl;
     return true;
 }
 

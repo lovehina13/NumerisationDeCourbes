@@ -53,6 +53,8 @@ public:
     const QList<Point> getListeDePointsManuels() const;
     bool chargerEtude(const QString& cheminFichierEtude);
     bool sauverEtude(const QString& cheminFichierEtude);
+    bool chargerParametres(const QString& cheminFichierParametres);
+    bool sauverParametres(const QString& cheminFichierParametres);
     bool exporterImageConvertie(const QString& cheminFichierImageConvertie);
     bool exporterListeDePoints(const QString& cheminFichierExport);
     void restaurerImage();

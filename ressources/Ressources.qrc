@@ -7,6 +7,8 @@
         <file alias="iconeActionExporterListePoints">X-office-spreadsheet.svg</file>
         <file alias="iconeActionExporterImage">Image-x-generic.svg</file>
         <file alias="iconeActionQuitter">System-log-out.svg</file>
+        <file alias="iconeActionChargerParametres">Document-open.svg</file>
+        <file alias="iconeActionSauverParametres">Document-save.svg</file>
         <file alias="iconeActionDocumentation">X-office-address-book.svg</file>
         <file alias="iconeActionAbout">Help-browser.svg</file>
     </qresource>

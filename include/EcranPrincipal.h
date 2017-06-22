@@ -46,6 +46,8 @@ protected:
     void sauverEtudeCourante();
     void exporterListeDePointsCourante();
     void exporterImageConvertieCourante();
+    void chargerParametresExistants();
+    void sauverParametresCourants();
     void verifierEtatSauvegardeEtude();
     void actualiserEtudeReference();
     void actualiserCoordonneesPoints();
@@ -74,6 +76,8 @@ protected slots:
     void on_actionParametresConversion_triggered();
     void on_actionParametresRecherche_triggered();
     void on_actionParametresExport_triggered();
+    void on_actionChargerParametres_triggered();
+    void on_actionSauverParametres_triggered();
     void on_actionDocumentation_triggered();
     void on_actionAbout_triggered();
     void on_pushButtonConvertir_clicked();
