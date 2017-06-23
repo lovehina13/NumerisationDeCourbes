@@ -17,6 +17,7 @@ UI_DIR = objects
 HEADERS += include/EcranPrincipal.h \
            include/Etude.h \
            include/FenetreDocumentation.h \
+           include/FenetreGraphique.h \
            include/FenetreParametresAffichage.h \
            include/FenetreParametresConversion.h \
            include/FenetreParametresExport.h \
@@ -38,6 +39,7 @@ SOURCES += source/NumerisationDeCourbes.cpp \
            source/EcranPrincipal.cpp \
            source/Etude.cpp \
            source/FenetreDocumentation.cpp \
+           source/FenetreGraphique.cpp \
            source/FenetreParametresAffichage.cpp \
            source/FenetreParametresConversion.cpp \
            source/FenetreParametresExport.cpp \
@@ -57,6 +59,7 @@ SOURCES += source/NumerisationDeCourbes.cpp \
            source/VueGraphiqueEtude.cpp
 FORMS += interfaces/EcranPrincipal.ui \
          interfaces/FenetreDocumentation.ui \
+         interfaces/FenetreGraphique.ui \
          interfaces/FenetreParametresAffichage.ui \
          interfaces/FenetreParametresConversion.ui \
          interfaces/FenetreParametresExport.ui \
@@ -64,3 +67,16 @@ FORMS += interfaces/EcranPrincipal.ui \
 RESOURCES += ressources/Ressources.qrc
 
 QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
+
+QWT_ROOT = $$(QWT_ROOT)
+isEmpty(QWT_ROOT) {
+  message("La variable d'environnement QWT_ROOT n'est pas définie.")
+  message("L'application n'intègrera pas les fonctionnalités associées.")
+} else {
+  message("La variable d'environnement QWT_ROOT est définie ($$(QWT_ROOT)).")
+  message("L'application intègrera les fonctionnalités associées.")
+  CONFIG += qwt
+  INCLUDEPATH += $$(QWT_ROOT)/include
+  LIBS += -L$$(QWT_ROOT)/lib -lqwt
+  QMAKE_CXXFLAGS += -DENABLE_QWT
+}

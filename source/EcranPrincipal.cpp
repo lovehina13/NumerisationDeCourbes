@@ -8,6 +8,7 @@
 #include "EcranPrincipal.h"
 #include "ui_EcranPrincipal.h"
 #include "FenetreDocumentation.h"
+#include "FenetreGraphique.h"
 #include "FenetreParametresAffichage.h"
 #include "FenetreParametresConversion.h"
 #include "FenetreParametresExport.h"
@@ -84,8 +85,9 @@ void EcranPrincipal::initialiserElementsGraphiques()
     this->ui->lineEditPointManuelXReel->setValidator(nombreReel);
     this->ui->lineEditPointManuelYReel->setValidator(nombreReel);
 
+#if not ENABLE_QWT
     this->ui->pushButtonGraphique->setEnabled(false);
-    // TODO Gestion de la disponibilité selon la présence de Qwt
+#endif
 }
 
 void EcranPrincipal::effacerElementsGraphiques()
@@ -1080,7 +1082,9 @@ void EcranPrincipal::on_pushButtonSupprimer_clicked()
 
 void EcranPrincipal::on_pushButtonGraphique_clicked()
 {
-    // TODO void EcranPrincipal::on_pushButtonGraphique_clicked()
+    FenetreGraphique* fenetreGraphique = new FenetreGraphique(this);
+    fenetreGraphique->actualiserElementsGraphiques();
+    fenetreGraphique->exec();
 }
 
 void EcranPrincipal::mousePressEventSlot(const QPointF pointVueGraphique)
