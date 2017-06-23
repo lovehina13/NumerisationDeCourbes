@@ -30,12 +30,14 @@ public:
     ~FenetreGraphique();
 
     // Getters
-    const QList<Point>& getListeDePoints() const;
+    const QList<Courbe>& getListeDeCourbes() const;
+    const QList<Point>& getListeDePointsManuels() const;
     const ParametresGraphique& getParametresGraphique() const;
     const ParametresAffichage& getParametresAffichage() const;
 
     // Setters
-    void setListeDePoints(const QList<Point>& listeDePoints);
+    void setListeDeCourbes(const QList<Courbe>& listeDeCourbes);
+    void setListeDePointsManuels(const QList<Point>& listeDePointsManuels);
     void setParametresGraphique(const ParametresGraphique& parametresGraphique);
     void setParametresAffichage(const ParametresAffichage& parametresAffichage);
 
@@ -47,6 +49,11 @@ public:
 protected:
     // Méthodes spécifiques
     void initialiserElementsGraphiques();
+    void effacerGraphique();
+    void dessinerGraphique();
+    void dessinerRepereGraphique();
+    void dessinerCourbeGraphique(const Courbe& courbe);
+    void dessinerPointManuelGraphique(const Point& pointManuel);
 
 protected slots:
     // Connecteurs spécifiques
@@ -62,7 +69,8 @@ protected slots:
 private:
     // Attributs de classe
     Ui::FenetreGraphique* ui;
-    QList<Point> listeDePoints;
+    QList<Courbe> listeDeCourbes;
+    QList<Point> listeDePointsManuels;
     ParametresGraphique parametresGraphique;
     ParametresAffichage parametresAffichage;
 };
