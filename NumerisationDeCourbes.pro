@@ -25,10 +25,12 @@ HEADERS += include/EcranPrincipal.h \
            include/Image.h \
            include/Outils.h \
            include/Parametres.h \
+           include/ParametresAxe.h \
            include/ParametresAffichage.h \
            include/ParametresConversion.h \
            include/ParametresExport.h \
            include/ParametresFichiers.h \
+           include/ParametresGraphique.h \
            include/ParametresPoint.h \
            include/ParametresRecherche.h \
            include/ParametresTrait.h \
@@ -47,10 +49,12 @@ SOURCES += source/NumerisationDeCourbes.cpp \
            source/Image.cpp \
            source/Outils.cpp \
            source/Parametres.cpp \
+           source/ParametresAxe.cpp \
            source/ParametresAffichage.cpp \
            source/ParametresConversion.cpp \
            source/ParametresExport.cpp \
            source/ParametresFichiers.cpp \
+           source/ParametresGraphique.cpp \
            source/ParametresPoint.cpp \
            source/ParametresRecherche.cpp \
            source/ParametresTrait.cpp \

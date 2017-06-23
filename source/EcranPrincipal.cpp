@@ -1082,7 +1082,12 @@ void EcranPrincipal::on_pushButtonSupprimer_clicked()
 
 void EcranPrincipal::on_pushButtonGraphique_clicked()
 {
+    const QList<Point>& listeDePoints = this->etude.getListeDePoints();
+    const Parametres& parametres = this->etude.getParametres();
+    const ParametresAffichage& parametresAffichage = parametres.getParametresAffichage();
     FenetreGraphique* fenetreGraphique = new FenetreGraphique(this);
+    fenetreGraphique->setListeDePoints(listeDePoints);
+    fenetreGraphique->setParametresAffichage(parametresAffichage);
     fenetreGraphique->actualiserElementsGraphiques();
     fenetreGraphique->exec();
 }

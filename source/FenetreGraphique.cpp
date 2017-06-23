@@ -7,6 +7,7 @@
 
 #include "FenetreGraphique.h"
 #include "ui_FenetreGraphique.h"
+#include "ParametresAxe.h"
 #include <QDialogButtonBox>
 #include <QDoubleValidator>
 #include <QPushButton>
@@ -22,6 +23,36 @@ FenetreGraphique::FenetreGraphique(QWidget* parent) :
 FenetreGraphique::~FenetreGraphique()
 {
     delete this->ui;
+}
+
+const QList<Point>& FenetreGraphique::getListeDePoints() const
+{
+    return this->listeDePoints;
+}
+
+const ParametresGraphique& FenetreGraphique::getParametresGraphique() const
+{
+    return this->parametresGraphique;
+}
+
+const ParametresAffichage& FenetreGraphique::getParametresAffichage() const
+{
+    return this->parametresAffichage;
+}
+
+void FenetreGraphique::setListeDePoints(const QList<Point>& listeDePoints)
+{
+    this->listeDePoints = listeDePoints;
+}
+
+void FenetreGraphique::setParametresGraphique(const ParametresGraphique& parametresGraphique)
+{
+    this->parametresGraphique = parametresGraphique;
+}
+
+void FenetreGraphique::setParametresAffichage(const ParametresAffichage& parametresAffichage)
+{
+    this->parametresAffichage = parametresAffichage;
 }
 
 void FenetreGraphique::initialiserElementsGraphiques()
@@ -41,4 +72,68 @@ void FenetreGraphique::initialiserElementsGraphiques()
 void FenetreGraphique::actualiserElementsGraphiques()
 {
     // TODO void FenetreGraphique::actualiserElementsGraphiques()
+}
+
+void FenetreGraphique::on_lineEditAxeHorizontalBorneInferieure_textChanged()
+{
+    ParametresAxe parametresAxeHorizontal = this->parametresGraphique.getParametresAxeHorizontal();
+    parametresAxeHorizontal.setBorneInferieure(
+            this->ui->lineEditAxeHorizontalBorneInferieure->text().toDouble());
+    this->parametresGraphique.setParametresAxeHorizontal(parametresAxeHorizontal);
+}
+
+void FenetreGraphique::on_lineEditAxeHorizontalBorneSuperieure_textChanged()
+{
+    ParametresAxe parametresAxeHorizontal = this->parametresGraphique.getParametresAxeHorizontal();
+    parametresAxeHorizontal.setBorneSuperieure(
+            this->ui->lineEditAxeHorizontalBorneSuperieure->text().toDouble());
+    this->parametresGraphique.setParametresAxeHorizontal(parametresAxeHorizontal);
+}
+
+void FenetreGraphique::on_lineEditAxeHorizontalPasPrincipal_textChanged()
+{
+    ParametresAxe parametresAxeHorizontal = this->parametresGraphique.getParametresAxeHorizontal();
+    parametresAxeHorizontal.setPasPrincipal(
+            this->ui->lineEditAxeHorizontalPasPrincipal->text().toDouble());
+    this->parametresGraphique.setParametresAxeHorizontal(parametresAxeHorizontal);
+}
+
+void FenetreGraphique::on_lineEditAxeHorizontalPasSecondaire_textChanged()
+{
+    ParametresAxe parametresAxeHorizontal = this->parametresGraphique.getParametresAxeHorizontal();
+    parametresAxeHorizontal.setPasSecondaire(
+            this->ui->lineEditAxeHorizontalPasSecondaire->text().toDouble());
+    this->parametresGraphique.setParametresAxeHorizontal(parametresAxeHorizontal);
+}
+
+void FenetreGraphique::on_lineEditAxeVerticalBorneInferieure_textChanged()
+{
+    ParametresAxe parametresAxeVertical = this->parametresGraphique.getParametresAxeVertical();
+    parametresAxeVertical.setBorneInferieure(
+            this->ui->lineEditAxeVerticalBorneInferieure->text().toDouble());
+    this->parametresGraphique.setParametresAxeVertical(parametresAxeVertical);
+}
+
+void FenetreGraphique::on_lineEditAxeVerticalBorneSuperieure_textChanged()
+{
+    ParametresAxe parametresAxeVertical = this->parametresGraphique.getParametresAxeVertical();
+    parametresAxeVertical.setBorneSuperieure(
+            this->ui->lineEditAxeVerticalBorneSuperieure->text().toDouble());
+    this->parametresGraphique.setParametresAxeVertical(parametresAxeVertical);
+}
+
+void FenetreGraphique::on_lineEditAxeVerticalPasPrincipal_textChanged()
+{
+    ParametresAxe parametresAxeVertical = this->parametresGraphique.getParametresAxeVertical();
+    parametresAxeVertical.setPasPrincipal(
+            this->ui->lineEditAxeVerticalPasPrincipal->text().toDouble());
+    this->parametresGraphique.setParametresAxeVertical(parametresAxeVertical);
+}
+
+void FenetreGraphique::on_lineEditAxeVerticalPasSecondaire_textChanged()
+{
+    ParametresAxe parametresAxeVertical = this->parametresGraphique.getParametresAxeVertical();
+    parametresAxeVertical.setPasSecondaire(
+            this->ui->lineEditAxeVerticalPasSecondaire->text().toDouble());
+    this->parametresGraphique.setParametresAxeVertical(parametresAxeVertical);
 }
