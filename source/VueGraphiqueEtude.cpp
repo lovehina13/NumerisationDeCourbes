@@ -10,9 +10,11 @@
 #include <QBrush>
 #include <QColor>
 #include <QGraphicsPixmapItem>
+#include <QImage>
 #include <QPainterPath>
 #include <QPen>
 #include <QPixmap>
+#include <QPoint>
 #include <QPolygon>
 #include <QRgb>
 
