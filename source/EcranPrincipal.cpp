@@ -19,6 +19,7 @@
 #include "ParametresConversion.h"
 #include "ParametresExport.h"
 #include "ParametresFichiers.h"
+#include "ParametresGraphique.h"
 #include "ParametresRecherche.h"
 #include "Point.h"
 #include "Repere.h"
@@ -1084,11 +1085,13 @@ void EcranPrincipal::on_pushButtonGraphique_clicked()
 {
     const QList<Courbe> listeDeCourbes = this->etude.getListeDeCourbes();
     const QList<Point> listeDePointsManuels = this->etude.getListeDePointsManuels();
+    const ParametresGraphique parametresGraphiques = this->etude.getParametresGraphiques();
     const Parametres& parametres = this->etude.getParametres();
     const ParametresAffichage& parametresAffichage = parametres.getParametresAffichage();
     FenetreGraphique* fenetreGraphique = new FenetreGraphique(this);
     fenetreGraphique->setListeDeCourbes(listeDeCourbes);
     fenetreGraphique->setListeDePointsManuels(listeDePointsManuels);
+    fenetreGraphique->setParametresGraphique(parametresGraphiques);
     fenetreGraphique->setParametresAffichage(parametresAffichage);
     fenetreGraphique->actualiserElementsGraphiques();
     fenetreGraphique->exec();

@@ -10,6 +10,7 @@
 
 #include "Image.h"
 #include "Parametres.h"
+#include "ParametresGraphique.h"
 #include "Point.h"
 #include "Repere.h"
 #include <QList>
@@ -51,6 +52,7 @@ public:
     // Méthodes spécifiques
     const QList<Courbe> getListeDeCourbes() const;
     const QList<Point> getListeDePointsManuels() const;
+    const ParametresGraphique getParametresGraphiques() const;
     bool chargerEtude(const QString& cheminFichierEtude);
     bool sauverEtude(const QString& cheminFichierEtude);
     bool chargerParametres(const QString& cheminFichierParametres);

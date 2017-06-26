@@ -52,6 +52,7 @@ protected:
     void effacerGraphique();
     void dessinerGraphique();
     void dessinerRepereGraphique();
+    void dessinerGrilleGraphique();
     void dessinerCourbeGraphique(const Courbe& courbe);
     void dessinerPointManuelGraphique(const Point& pointManuel);
 
@@ -61,10 +62,14 @@ protected slots:
     void on_lineEditAxeHorizontalBorneSuperieure_textChanged();
     void on_lineEditAxeHorizontalPasPrincipal_textChanged();
     void on_lineEditAxeHorizontalPasSecondaire_textChanged();
+    void on_checkBoxAxeHorizontalGrillePrincipale_stateChanged();
+    void on_checkBoxAxeHorizontalGrilleSecondaire_stateChanged();
     void on_lineEditAxeVerticalBorneInferieure_textChanged();
     void on_lineEditAxeVerticalBorneSuperieure_textChanged();
     void on_lineEditAxeVerticalPasPrincipal_textChanged();
     void on_lineEditAxeVerticalPasSecondaire_textChanged();
+    void on_checkBoxAxeVerticalGrillePrincipale_stateChanged();
+    void on_checkBoxAxeVerticalGrilleSecondaire_stateChanged();
 
 private:
     // Attributs de classe

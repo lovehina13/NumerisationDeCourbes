@@ -39,7 +39,6 @@ public:
     const QString toString(const char& sep) const;
 
     // Méthodes spécifiques
-    // TODO Méthodes spécifiques "ParametresGraphique"
 
 private:
     // Attributs de classe

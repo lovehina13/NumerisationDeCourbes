@@ -189,6 +189,42 @@ const QList<Point> Etude::getListeDePointsManuels() const
     return listeDePointsManuels;
 }
 
+const ParametresGraphique Etude::getParametresGraphiques() const
+{
+    ParametresGraphique parametresGraphiques;
+    ParametresAxe parametresAxeHorizontal = parametresGraphiques.getParametresAxeHorizontal();
+    ParametresAxe parametresAxeVertical = parametresGraphiques.getParametresAxeVertical();
+    const QList<Point>& listeDePoints = this->getListeDePoints();
+    const int nombreDePoints = listeDePoints.count();
+    for (int itPoint = 0; itPoint < nombreDePoints; itPoint++)
+    {
+        const Point& pointCourant = listeDePoints.at(itPoint);
+        const double& pointReelXCourant = pointCourant.getPointReelX();
+        const double& pointReelYCourant = pointCourant.getPointReelY();
+        if (pointReelXCourant < parametresAxeHorizontal.getBorneInferieure() || itPoint == 0)
+        {
+            parametresAxeHorizontal.setBorneInferieure(pointReelXCourant);
+        }
+        if (pointReelXCourant > parametresAxeHorizontal.getBorneSuperieure() || itPoint == 0)
+        {
+            parametresAxeHorizontal.setBorneSuperieure(pointReelXCourant);
+        }
+        if (pointReelYCourant < parametresAxeVertical.getBorneInferieure() || itPoint == 0)
+        {
+            parametresAxeVertical.setBorneInferieure(pointReelYCourant);
+        }
+        if (pointReelYCourant > parametresAxeVertical.getBorneSuperieure() || itPoint == 0)
+        {
+            parametresAxeVertical.setBorneSuperieure(pointReelYCourant);
+        }
+    }
+    parametresAxeHorizontal.ajuster();
+    parametresAxeVertical.ajuster();
+    parametresGraphiques.setParametresAxeHorizontal(parametresAxeHorizontal);
+    parametresGraphiques.setParametresAxeVertical(parametresAxeVertical);
+    return parametresGraphiques;
+}
+
 bool Etude::chargerEtude(const QString& cheminFichierEtude)
 {
     QFile fichierEtude(cheminFichierEtude);

@@ -13,19 +13,24 @@ const double ParametresAxe::borneInferieureDefaut = 0.0;
 const double ParametresAxe::borneSuperieureDefaut = 0.0;
 const double ParametresAxe::pasPrincipalDefaut = 0.0;
 const double ParametresAxe::pasSecondaireDefaut = 0.0;
+const bool ParametresAxe::grillePrincipaleDefaut = true;
+const bool ParametresAxe::grilleSecondaireDefaut = false;
 
 ParametresAxe::ParametresAxe() :
         borneInferieure(borneInferieureDefaut), borneSuperieure(borneSuperieureDefaut),
-                pasPrincipal(pasPrincipalDefaut), pasSecondaire(pasSecondaireDefaut)
+                pasPrincipal(pasPrincipalDefaut), pasSecondaire(pasSecondaireDefaut),
+                grillePrincipale(grillePrincipaleDefaut), grilleSecondaire(grilleSecondaireDefaut)
 {
     this->clear();
 }
 
 ParametresAxe::ParametresAxe(const double& borneInferieure, const double& borneSuperieure,
-        const double& pasPrincipal, const double& pasSecondaire) :
+        const double& pasPrincipal, const double& pasSecondaire, const bool& grillePrincipale,
+        const bool& grilleSecondaire) :
         ParametresAxe()
 {
-    this->set(borneInferieure, borneSuperieure, pasPrincipal, pasSecondaire);
+    this->set(borneInferieure, borneSuperieure, pasPrincipal, pasSecondaire, grillePrincipale,
+            grilleSecondaire);
 }
 
 ParametresAxe::ParametresAxe(const ParametresAxe& parametresAxe) :
@@ -58,6 +63,16 @@ const double& ParametresAxe::getPasSecondaire() const
     return this->pasSecondaire;
 }
 
+const bool& ParametresAxe::getGrillePrincipale() const
+{
+    return this->grillePrincipale;
+}
+
+const bool& ParametresAxe::getGrilleSecondaire() const
+{
+    return this->grilleSecondaire;
+}
+
 void ParametresAxe::setBorneInferieure(const double& borneInferieure)
 {
     this->borneInferieure = borneInferieure;
@@ -78,25 +93,39 @@ void ParametresAxe::setPasSecondaire(const double& pasSecondaire)
     this->pasSecondaire = pasSecondaire;
 }
 
+void ParametresAxe::setGrillePrincipale(const bool& grillePrincipale)
+{
+    this->grillePrincipale = grillePrincipale;
+}
+
+void ParametresAxe::setGrilleSecondaire(const bool& grilleSecondaire)
+{
+    this->grilleSecondaire = grilleSecondaire;
+}
+
 void ParametresAxe::clear()
 {
-    this->set(borneInferieureDefaut, borneSuperieureDefaut, pasPrincipalDefaut,
-            pasSecondaireDefaut);
+    this->set(borneInferieureDefaut, borneSuperieureDefaut, pasPrincipalDefaut, pasSecondaireDefaut,
+            grillePrincipaleDefaut, grilleSecondaireDefaut);
 }
 
 void ParametresAxe::set(const double& borneInferieure, const double& borneSuperieure,
-        const double& pasPrincipal, const double& pasSecondaire)
+        const double& pasPrincipal, const double& pasSecondaire, const bool& grillePrincipale,
+        const bool& grilleSecondaire)
 {
     this->setBorneInferieure(borneInferieure);
     this->setBorneSuperieure(borneSuperieure);
     this->setPasPrincipal(pasPrincipal);
     this->setPasSecondaire(pasSecondaire);
+    this->setGrillePrincipale(grillePrincipale);
+    this->setGrilleSecondaire(grilleSecondaire);
 }
 
 void ParametresAxe::copy(const ParametresAxe& parametresAxe)
 {
     this->set(parametresAxe.getBorneInferieure(), parametresAxe.getBorneSuperieure(),
-            parametresAxe.getPasPrincipal(), parametresAxe.getPasSecondaire());
+            parametresAxe.getPasPrincipal(), parametresAxe.getPasSecondaire(),
+            parametresAxe.getGrillePrincipale(), parametresAxe.getGrilleSecondaire());
 }
 
 bool ParametresAxe::equals(const ParametresAxe& parametresAxe) const
@@ -109,6 +138,10 @@ bool ParametresAxe::equals(const ParametresAxe& parametresAxe) const
         return false;
     if (this->getPasSecondaire() != parametresAxe.getPasSecondaire())
         return false;
+    if (this->getGrillePrincipale() != parametresAxe.getGrillePrincipale())
+        return false;
+    if (this->getGrilleSecondaire() != parametresAxe.getGrilleSecondaire())
+        return false;
     return true;
 }
 
@@ -119,6 +152,8 @@ void ParametresAxe::fromString(const QString& fromString, const char& sep)
     this->setBorneSuperieure(fromStringList.at(1).toDouble());
     this->setPasPrincipal(fromStringList.at(2).toDouble());
     this->setPasSecondaire(fromStringList.at(3).toDouble());
+    this->setPasSecondaire((bool) fromStringList.at(4).toInt());
+    this->setPasSecondaire((bool) fromStringList.at(5).toInt());
 }
 
 const QString ParametresAxe::toString(const char& sep) const
@@ -127,6 +162,30 @@ const QString ParametresAxe::toString(const char& sep) const
     toString += QString::number(this->getBorneInferieure()) + sep;
     toString += QString::number(this->getBorneSuperieure()) + sep;
     toString += QString::number(this->getPasPrincipal()) + sep;
-    toString += QString::number(this->getPasSecondaire());
+    toString += QString::number(this->getPasSecondaire()) + sep;
+    toString += QString::number((int) this->getGrillePrincipale()) + sep;
+    toString += QString::number((int) this->getGrilleSecondaire());
     return toString;
+}
+
+void ParametresAxe::ajuster()
+{
+    this->ajusterBornes();
+    this->ajusterPasPrincipal();
+    this->ajusterPasSecondaire();
+}
+
+void ParametresAxe::ajusterBornes()
+{
+    // TODO void ParametresAxe::ajusterBornes()
+}
+
+void ParametresAxe::ajusterPasPrincipal()
+{
+    // TODO void ParametresAxe::ajusterPasPrincipal()
+}
+
+void ParametresAxe::ajusterPasSecondaire()
+{
+    // TODO void ParametresAxe::ajusterPasSecondaire()
 }

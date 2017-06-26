@@ -15,10 +15,12 @@
 #if ENABLE_QWT
 #include <QBrush>
 #include <QColor>
+#include <QPen>
 #include <QPointF>
 #include <QVector>
 #include <qwt_plot.h>
 #include <qwt_plot_curve.h>
+#include <qwt_plot_grid.h>
 #include <qwt_plot_marker.h>
 #include <qwt_series_data.h>
 #include <qwt_symbol.h>
@@ -112,6 +114,10 @@ void FenetreGraphique::actualiserElementsGraphiques()
             QString::number(parametresAxeHorizontal.getPasPrincipal()));
     this->ui->lineEditAxeHorizontalPasSecondaire->setText(
             QString::number(parametresAxeHorizontal.getPasSecondaire()));
+    this->ui->checkBoxAxeHorizontalGrillePrincipale->setChecked(
+            parametresAxeHorizontal.getGrillePrincipale());
+    this->ui->checkBoxAxeHorizontalGrilleSecondaire->setChecked(
+            parametresAxeHorizontal.getGrilleSecondaire());
     this->ui->lineEditAxeVerticalBorneInferieure->setText(
             QString::number(parametresAxeVertical.getBorneInferieure()));
     this->ui->lineEditAxeVerticalBorneSuperieure->setText(
@@ -120,6 +126,10 @@ void FenetreGraphique::actualiserElementsGraphiques()
             QString::number(parametresAxeVertical.getPasPrincipal()));
     this->ui->lineEditAxeVerticalPasSecondaire->setText(
             QString::number(parametresAxeVertical.getPasSecondaire()));
+    this->ui->checkBoxAxeVerticalGrillePrincipale->setChecked(
+            parametresAxeVertical.getGrillePrincipale());
+    this->ui->checkBoxAxeVerticalGrilleSecondaire->setChecked(
+            parametresAxeVertical.getGrilleSecondaire());
 
     this->dessinerGraphique();
 }
@@ -130,7 +140,7 @@ void FenetreGraphique::effacerGraphique()
     QwtPlot* graphique = (QwtPlot*) this->ui->widgetGraphique;
 
     const QColor couleurArrierePlan = QColor(Qt::white);
-    const QBrush brosseArrierePlan = QBrush(QColor(couleurArrierePlan), Qt::SolidPattern);
+    const QBrush brosseArrierePlan = QBrush(couleurArrierePlan, Qt::SolidPattern);
     graphique->detachItems();
     graphique->setCanvasBackground(brosseArrierePlan);
 
@@ -147,6 +157,7 @@ void FenetreGraphique::dessinerGraphique()
 
     this->effacerGraphique();
     this->dessinerRepereGraphique();
+    this->dessinerGrilleGraphique();
     for (int itCourbe = 0; itCourbe < nombreDeCourbes; itCourbe++)
     {
         const Courbe& courbe = listeDeCourbes.at(itCourbe);
@@ -168,6 +179,7 @@ void FenetreGraphique::dessinerRepereGraphique()
             this->parametresGraphique.getParametresAxeHorizontal();
     const ParametresAxe& parametresAxeVertical =
             this->parametresGraphique.getParametresAxeVertical();
+
     graphique->setAxisScale(QwtPlot::xBottom, parametresAxeHorizontal.getBorneInferieure(),
             parametresAxeHorizontal.getBorneSuperieure(), 0);
     graphique->setAxisScale(QwtPlot::yLeft, parametresAxeVertical.getBorneInferieure(),
@@ -180,14 +192,43 @@ void FenetreGraphique::dessinerRepereGraphique()
 #endif
 }
 
+void FenetreGraphique::dessinerGrilleGraphique()
+{
+#if ENABLE_QWT
+    QwtPlot* graphique = (QwtPlot*) this->ui->widgetGraphique;
+
+    const ParametresAxe& parametresAxeHorizontal =
+            this->parametresGraphique.getParametresAxeHorizontal();
+    const ParametresAxe& parametresAxeVertical =
+            this->parametresGraphique.getParametresAxeVertical();
+
+    QwtPlotGrid* grille = new QwtPlotGrid();
+    const QColor couleurGrillePrincipale = QColor(Qt::black);
+    const QColor couleurGrilleSecondaire = QColor(Qt::gray);
+    const QBrush brosseGrillePrincipale = QBrush(couleurGrillePrincipale, Qt::SolidPattern);
+    const QBrush brosseGrilleSecondaire = QBrush(couleurGrilleSecondaire, Qt::SolidPattern);
+    const QPen pinceauGrillePrincipale = QPen(brosseGrillePrincipale, 1, Qt::DotLine);
+    const QPen pinceauGrilleSecondaire = QPen(brosseGrilleSecondaire, 1, Qt::DotLine);
+    grille->enableX(parametresAxeHorizontal.getGrillePrincipale());
+    grille->enableXMin(parametresAxeHorizontal.getGrilleSecondaire());
+    grille->enableY(parametresAxeVertical.getGrillePrincipale());
+    grille->enableYMin(parametresAxeVertical.getGrilleSecondaire());
+    grille->setMajorPen(pinceauGrillePrincipale);
+    grille->setMinorPen(pinceauGrilleSecondaire);
+    grille->attach(graphique);
+
+    graphique->replot();
+#endif
+}
+
 void FenetreGraphique::dessinerCourbeGraphique(const Courbe& courbe)
 {
 #if ENABLE_QWT
     QwtPlot* graphique = (QwtPlot*) this->ui->widgetGraphique;
 
     QwtPlotCurve* courbeGraphique = new QwtPlotCurve();
-    QwtPointSeriesData* donneesCourbe = new QwtPointSeriesData;
-    QVector<QPointF>* donneesPointsCourbe = new QVector<QPointF>;
+    QwtPointSeriesData* donneesCourbe = new QwtPointSeriesData();
+    QVector<QPointF>* donneesPointsCourbe = new QVector<QPointF>();
     const int nombreDePointsCourbe = courbe.count();
     for (int itPointCourbe = 0; itPointCourbe < nombreDePointsCourbe; itPointCourbe++)
     {
@@ -271,6 +312,24 @@ void FenetreGraphique::on_lineEditAxeHorizontalPasSecondaire_textChanged()
     this->dessinerGraphique();
 }
 
+void FenetreGraphique::on_checkBoxAxeHorizontalGrillePrincipale_stateChanged()
+{
+    ParametresAxe parametresAxeHorizontal = this->parametresGraphique.getParametresAxeHorizontal();
+    parametresAxeHorizontal.setGrillePrincipale(
+            this->ui->checkBoxAxeHorizontalGrillePrincipale->isChecked());
+    this->parametresGraphique.setParametresAxeHorizontal(parametresAxeHorizontal);
+    this->dessinerGraphique();
+}
+
+void FenetreGraphique::on_checkBoxAxeHorizontalGrilleSecondaire_stateChanged()
+{
+    ParametresAxe parametresAxeHorizontal = this->parametresGraphique.getParametresAxeHorizontal();
+    parametresAxeHorizontal.setGrilleSecondaire(
+            this->ui->checkBoxAxeHorizontalGrilleSecondaire->isChecked());
+    this->parametresGraphique.setParametresAxeHorizontal(parametresAxeHorizontal);
+    this->dessinerGraphique();
+}
+
 void FenetreGraphique::on_lineEditAxeVerticalBorneInferieure_textChanged()
 {
     ParametresAxe parametresAxeVertical = this->parametresGraphique.getParametresAxeVertical();
@@ -303,6 +362,24 @@ void FenetreGraphique::on_lineEditAxeVerticalPasSecondaire_textChanged()
     ParametresAxe parametresAxeVertical = this->parametresGraphique.getParametresAxeVertical();
     parametresAxeVertical.setPasSecondaire(
             this->ui->lineEditAxeVerticalPasSecondaire->text().toDouble());
+    this->parametresGraphique.setParametresAxeVertical(parametresAxeVertical);
+    this->dessinerGraphique();
+}
+
+void FenetreGraphique::on_checkBoxAxeVerticalGrillePrincipale_stateChanged()
+{
+    ParametresAxe parametresAxeVertical = this->parametresGraphique.getParametresAxeVertical();
+    parametresAxeVertical.setGrillePrincipale(
+            this->ui->checkBoxAxeVerticalGrillePrincipale->isChecked());
+    this->parametresGraphique.setParametresAxeVertical(parametresAxeVertical);
+    this->dessinerGraphique();
+}
+
+void FenetreGraphique::on_checkBoxAxeVerticalGrilleSecondaire_stateChanged()
+{
+    ParametresAxe parametresAxeVertical = this->parametresGraphique.getParametresAxeVertical();
+    parametresAxeVertical.setGrilleSecondaire(
+            this->ui->checkBoxAxeVerticalGrilleSecondaire->isChecked());
     this->parametresGraphique.setParametresAxeVertical(parametresAxeVertical);
     this->dessinerGraphique();
 }
