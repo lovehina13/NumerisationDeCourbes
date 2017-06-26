@@ -1,7 +1,7 @@
 //==============================================================================
 // Name        : EcranPrincipal.cpp
 // Author      : Alexis Foerster (alexis.foerster@gmail.com)
-// Version     : 1.0.5 (07/06/2017)
+// Version     : 1.0.6 (26/06/2017)
 // Description : Source file of the EcranPrincipal class
 //==============================================================================
 
@@ -629,7 +629,7 @@ void EcranPrincipal::on_actionAbout_triggered()
 {
     QMessageBox* fenetreMessage = new QMessageBox(QMessageBox::Information,
             QString::fromUtf8("NumerisationDeCourbes"),
-            QString::fromUtf8("NumerisationDeCourbes - Version 1.0.5 (07/06/2017).\n"
+            QString::fromUtf8("NumerisationDeCourbes - Version 1.0.6 (26/06/2017).\n"
                     "Réalisée par Alexis Foerster (alexis.foerster@gmail.com)."), QMessageBox::Ok,
             this);
     fenetreMessage->exec();
