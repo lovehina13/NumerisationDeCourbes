@@ -10,6 +10,8 @@
 
 #include "ParametresAffichage.h"
 #include "ParametresGraphique.h"
+#include "ParametresPoint.h"
+#include "ParametresTrait.h"
 #include "Point.h"
 #include <QDialog>
 #include <QList>
@@ -53,8 +55,10 @@ protected:
     void dessinerGraphique();
     void dessinerRepereGraphique();
     void dessinerGrilleGraphique();
-    void dessinerCourbeGraphique(const Courbe& courbe);
-    void dessinerPointManuelGraphique(const Point& pointManuel);
+    void dessinerCourbe(const Courbe& courbe);
+    void dessinerPointManuel(const Point& pointManuel);
+    void dessinerCourbeGraphique(const Courbe& courbe, const ParametresTrait& parametresCourbe);
+    void dessinerPointGraphique(const Point& point, const ParametresPoint& parametresPoint);
 
 protected slots:
     // Connecteurs spécifiques

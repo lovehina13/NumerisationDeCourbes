@@ -13,8 +13,6 @@
 #include <QPushButton>
 #include <QString>
 #if ENABLE_QWT
-#include "ParametresPoint.h"
-#include "ParametresTrait.h"
 #include <QBrush>
 #include <QColor>
 #include <QPen>
@@ -164,12 +162,12 @@ void FenetreGraphique::dessinerGraphique()
     for (int itCourbe = 0; itCourbe < nombreDeCourbes; itCourbe++)
     {
         const Courbe& courbe = listeDeCourbes.at(itCourbe);
-        this->dessinerCourbeGraphique(courbe);
+        this->dessinerCourbe(courbe);
     }
     for (int itPointManuel = 0; itPointManuel < nombreDePointsManuels; itPointManuel++)
     {
         const Point& pointManuel = listeDePointsManuels.at(itPointManuel);
-        this->dessinerPointManuelGraphique(pointManuel);
+        this->dessinerPointManuel(pointManuel);
     }
 }
 
@@ -235,30 +233,40 @@ void FenetreGraphique::dessinerGrilleGraphique()
 #endif
 }
 
-void FenetreGraphique::dessinerCourbeGraphique(const Courbe& courbe)
+void FenetreGraphique::dessinerCourbe(const Courbe& courbe)
 {
-#if ENABLE_QWT
-    QwtPlot* graphique = (QwtPlot*) this->ui->widgetGraphique;
-
+    const int nombreDePointsCourbe = courbe.count();
+    const Point& premierPoint = courbe.at(0);
+    const Point& dernierPoint = courbe.at(nombreDePointsCourbe - 1);
     const ParametresTrait& parametresCourbes = this->parametresAffichage.getParametresCourbes();
     const ParametresPoint& parametresPointsCourbes =
             this->parametresAffichage.getParametresPointsCourbes();
 
-    const int& styleTrait = parametresCourbes.getStyleTrait();
-    const int& epaisseurTrait = parametresCourbes.getEpaisseurTrait();
-    const QRgb& couleurTrait = parametresCourbes.getCouleurTrait();
-    const QBrush brosseTrait = QBrush(QColor(couleurTrait), Qt::SolidPattern);
-    const QPen pinceauTrait = QPen(brosseTrait, epaisseurTrait, (Qt::PenStyle) (styleTrait + 1),
-            Qt::RoundCap, Qt::RoundJoin);
+    this->dessinerCourbeGraphique(courbe, parametresCourbes);
+    this->dessinerPointGraphique(premierPoint, parametresPointsCourbes);
+    this->dessinerPointGraphique(dernierPoint, parametresPointsCourbes);
+}
 
-    const int& stylePoint = parametresPointsCourbes.getStylePoint();
-    const int& epaisseurPoint = parametresPointsCourbes.getEpaisseurPoint();
-    const QRgb& couleurPoint = parametresPointsCourbes.getCouleurPoint();
-    const QBrush brossePoint = QBrush(QColor(couleurPoint), Qt::SolidPattern);
-    const QPen pinceauPoint = QPen(brossePoint, epaisseurPoint / 2, Qt::SolidLine);
-    const QwtSymbol::Style symbolePoint =
-            (stylePoint == ParametresPoint::CARRE) ? QwtSymbol::Rect :
-            (stylePoint == ParametresPoint::CERCLE) ? QwtSymbol::Ellipse : QwtSymbol::NoSymbol;
+void FenetreGraphique::dessinerPointManuel(const Point& pointManuel)
+{
+    const ParametresPoint& parametresPointManuels =
+            this->parametresAffichage.getParametresPointsManuels();
+
+    this->dessinerPointGraphique(pointManuel, parametresPointManuels);
+}
+
+void FenetreGraphique::dessinerCourbeGraphique(const Courbe& courbe,
+        const ParametresTrait& parametresCourbe)
+{
+#if ENABLE_QWT
+    QwtPlot* graphique = (QwtPlot*) this->ui->widgetGraphique;
+
+    const int& styleCourbe = parametresCourbe.getStyleTrait();
+    const int& epaisseurCourbe = parametresCourbe.getEpaisseurTrait();
+    const QRgb& couleurCourbe = parametresCourbe.getCouleurTrait();
+    const QBrush brosseCourbe = QBrush(QColor(couleurCourbe), Qt::SolidPattern);
+    const QPen pinceauCourbe = QPen(brosseCourbe, epaisseurCourbe, (Qt::PenStyle) (styleCourbe + 1),
+            Qt::RoundCap, Qt::RoundJoin);
 
     QwtPlotCurve* courbeGraphique = new QwtPlotCurve();
     QwtPointSeriesData* donneesCourbe = new QwtPointSeriesData();
@@ -271,58 +279,36 @@ void FenetreGraphique::dessinerCourbeGraphique(const Courbe& courbe)
     }
     donneesCourbe->setSamples(*donneesPointsCourbe);
     courbeGraphique->setData(donneesCourbe);
-    courbeGraphique->setPen(pinceauTrait);
+    courbeGraphique->setPen(pinceauCourbe);
     courbeGraphique->attach(graphique);
-
-    QwtPlotMarker* premierPointGraphique = new QwtPlotMarker();
-    QwtSymbol* symbolePremierPointGraphique = new QwtSymbol();
-    const Point& premierPoint = courbe.at(0);
-    symbolePremierPointGraphique->setStyle(symbolePoint);
-    symbolePremierPointGraphique->setSize(epaisseurPoint);
-    symbolePremierPointGraphique->setPen(pinceauPoint);
-    premierPointGraphique->setSymbol(symbolePremierPointGraphique);
-    premierPointGraphique->setValue(premierPoint.getPointReelX(), premierPoint.getPointReelY());
-    premierPointGraphique->attach(graphique);
-
-    QwtPlotMarker* dernierPointGraphique = new QwtPlotMarker();
-    QwtSymbol* symboleDernierPointGraphique = new QwtSymbol();
-    const Point& dernierPoint = courbe.at(nombreDePointsCourbe - 1);
-    symboleDernierPointGraphique->setStyle(symbolePoint);
-    symboleDernierPointGraphique->setSize(epaisseurPoint);
-    symboleDernierPointGraphique->setPen(pinceauPoint);
-    dernierPointGraphique->setSymbol(symboleDernierPointGraphique);
-    dernierPointGraphique->setValue(dernierPoint.getPointReelX(), dernierPoint.getPointReelY());
-    dernierPointGraphique->attach(graphique);
 
     graphique->replot();
 #endif
 }
 
-void FenetreGraphique::dessinerPointManuelGraphique(const Point& pointManuel)
+void FenetreGraphique::dessinerPointGraphique(const Point& point,
+        const ParametresPoint& parametresPoint)
 {
 #if ENABLE_QWT
     QwtPlot* graphique = (QwtPlot*) this->ui->widgetGraphique;
 
-    const ParametresPoint& parametresPointManuels =
-            this->parametresAffichage.getParametresPointsManuels();
-
-    const int& stylePoint = parametresPointManuels.getStylePoint();
-    const int& epaisseurPoint = parametresPointManuels.getEpaisseurPoint();
-    const QRgb& couleurPoint = parametresPointManuels.getCouleurPoint();
+    const int& stylePoint = parametresPoint.getStylePoint();
+    const int& epaisseurPoint = parametresPoint.getEpaisseurPoint();
+    const QRgb& couleurPoint = parametresPoint.getCouleurPoint();
     const QBrush brossePoint = QBrush(QColor(couleurPoint), Qt::SolidPattern);
     const QPen pinceauPoint = QPen(brossePoint, epaisseurPoint / 2, Qt::SolidLine);
     const QwtSymbol::Style symbolePoint =
             (stylePoint == ParametresPoint::CARRE) ? QwtSymbol::Rect :
             (stylePoint == ParametresPoint::CERCLE) ? QwtSymbol::Ellipse : QwtSymbol::NoSymbol;
 
-    QwtPlotMarker* pointManuelGraphique = new QwtPlotMarker();
-    QwtSymbol* symbolePointManuelGraphique = new QwtSymbol();
-    symbolePointManuelGraphique->setStyle(symbolePoint);
-    symbolePointManuelGraphique->setSize(epaisseurPoint);
-    symbolePointManuelGraphique->setPen(pinceauPoint);
-    pointManuelGraphique->setSymbol(symbolePointManuelGraphique);
-    pointManuelGraphique->setValue(pointManuel.getPointReelX(), pointManuel.getPointReelY());
-    pointManuelGraphique->attach(graphique);
+    QwtPlotMarker* pointGraphique = new QwtPlotMarker();
+    QwtSymbol* symbolePointGraphique = new QwtSymbol();
+    symbolePointGraphique->setStyle(symbolePoint);
+    symbolePointGraphique->setSize(epaisseurPoint);
+    symbolePointGraphique->setPen(pinceauPoint);
+    pointGraphique->setSymbol(symbolePointGraphique);
+    pointGraphique->setValue(point.getPointReelX(), point.getPointReelY());
+    pointGraphique->attach(graphique);
 
     graphique->replot();
 #endif
