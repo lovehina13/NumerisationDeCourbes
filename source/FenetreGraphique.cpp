@@ -13,6 +13,8 @@
 #include <QPushButton>
 #include <QString>
 #if ENABLE_QWT
+#include "ParametresPoint.h"
+#include "ParametresTrait.h"
 #include <QBrush>
 #include <QColor>
 #include <QPen>
@@ -22,6 +24,7 @@
 #include <qwt_plot_curve.h>
 #include <qwt_plot_grid.h>
 #include <qwt_plot_marker.h>
+#include <qwt_scale_draw.h>
 #include <qwt_series_data.h>
 #include <qwt_symbol.h>
 #endif
@@ -179,11 +182,22 @@ void FenetreGraphique::dessinerRepereGraphique()
             this->parametresGraphique.getParametresAxeHorizontal();
     const ParametresAxe& parametresAxeVertical =
             this->parametresGraphique.getParametresAxeVertical();
+    const ParametresTrait& parametresAxes = this->parametresAffichage.getParametresAxes();
 
+    const int& styleTrait = parametresAxes.getStyleTrait();
+    const int& epaisseurTrait = parametresAxes.getEpaisseurTrait();
+    const QRgb& couleurTrait = parametresAxes.getCouleurTrait();
+    const QBrush brosseTrait = QBrush(QColor(couleurTrait), Qt::SolidPattern);
+    const QPen pinceauTrait = QPen(brosseTrait, epaisseurTrait, (Qt::PenStyle) (styleTrait + 1),
+            Qt::RoundCap, Qt::RoundJoin);
+
+    // QwtScaleDraw* axeGraphique = new QwtScaleDraw();
     graphique->setAxisScale(QwtPlot::xBottom, parametresAxeHorizontal.getBorneInferieure(),
             parametresAxeHorizontal.getBorneSuperieure(), 0);
     graphique->setAxisScale(QwtPlot::yLeft, parametresAxeVertical.getBorneInferieure(),
             parametresAxeVertical.getBorneSuperieure(), 0);
+    // graphique->setAxisScaleDraw(QwtPlot::xBottom, axeGraphique);
+    // graphique->setAxisScaleDraw(QwtPlot::yLeft, axeGraphique);
     // TODO Affectation du pas principal
     // TODO Affectation du pas secondaire
     // TODO Paramètres d'affichage des axes
@@ -226,6 +240,26 @@ void FenetreGraphique::dessinerCourbeGraphique(const Courbe& courbe)
 #if ENABLE_QWT
     QwtPlot* graphique = (QwtPlot*) this->ui->widgetGraphique;
 
+    const ParametresTrait& parametresCourbes = this->parametresAffichage.getParametresCourbes();
+    const ParametresPoint& parametresPointsCourbes =
+            this->parametresAffichage.getParametresPointsCourbes();
+
+    const int& styleTrait = parametresCourbes.getStyleTrait();
+    const int& epaisseurTrait = parametresCourbes.getEpaisseurTrait();
+    const QRgb& couleurTrait = parametresCourbes.getCouleurTrait();
+    const QBrush brosseTrait = QBrush(QColor(couleurTrait), Qt::SolidPattern);
+    const QPen pinceauTrait = QPen(brosseTrait, epaisseurTrait, (Qt::PenStyle) (styleTrait + 1),
+            Qt::RoundCap, Qt::RoundJoin);
+
+    const int& stylePoint = parametresPointsCourbes.getStylePoint();
+    const int& epaisseurPoint = parametresPointsCourbes.getEpaisseurPoint();
+    const QRgb& couleurPoint = parametresPointsCourbes.getCouleurPoint();
+    const QBrush brossePoint = QBrush(QColor(couleurPoint), Qt::SolidPattern);
+    const QPen pinceauPoint = QPen(brossePoint, epaisseurPoint / 2, Qt::SolidLine);
+    const QwtSymbol::Style symbolePoint =
+            (stylePoint == ParametresPoint::CARRE) ? QwtSymbol::Rect :
+            (stylePoint == ParametresPoint::CERCLE) ? QwtSymbol::Ellipse : QwtSymbol::NoSymbol;
+
     QwtPlotCurve* courbeGraphique = new QwtPlotCurve();
     QwtPointSeriesData* donneesCourbe = new QwtPointSeriesData();
     QVector<QPointF>* donneesPointsCourbe = new QVector<QPointF>();
@@ -237,24 +271,28 @@ void FenetreGraphique::dessinerCourbeGraphique(const Courbe& courbe)
     }
     donneesCourbe->setSamples(*donneesPointsCourbe);
     courbeGraphique->setData(donneesCourbe);
+    courbeGraphique->setPen(pinceauTrait);
     courbeGraphique->attach(graphique);
-    // TODO Paramètres d'affichage des courbes
 
     QwtPlotMarker* premierPointGraphique = new QwtPlotMarker();
     QwtSymbol* symbolePremierPointGraphique = new QwtSymbol();
     const Point& premierPoint = courbe.at(0);
+    symbolePremierPointGraphique->setStyle(symbolePoint);
+    symbolePremierPointGraphique->setSize(epaisseurPoint);
+    symbolePremierPointGraphique->setPen(pinceauPoint);
     premierPointGraphique->setSymbol(symbolePremierPointGraphique);
     premierPointGraphique->setValue(premierPoint.getPointReelX(), premierPoint.getPointReelY());
     premierPointGraphique->attach(graphique);
-    // TODO Paramètres d'affichage des points
 
     QwtPlotMarker* dernierPointGraphique = new QwtPlotMarker();
     QwtSymbol* symboleDernierPointGraphique = new QwtSymbol();
     const Point& dernierPoint = courbe.at(nombreDePointsCourbe - 1);
+    symboleDernierPointGraphique->setStyle(symbolePoint);
+    symboleDernierPointGraphique->setSize(epaisseurPoint);
+    symboleDernierPointGraphique->setPen(pinceauPoint);
     dernierPointGraphique->setSymbol(symboleDernierPointGraphique);
     dernierPointGraphique->setValue(dernierPoint.getPointReelX(), dernierPoint.getPointReelY());
     dernierPointGraphique->attach(graphique);
-    // TODO Paramètres d'affichage des points
 
     graphique->replot();
 #endif
@@ -265,12 +303,26 @@ void FenetreGraphique::dessinerPointManuelGraphique(const Point& pointManuel)
 #if ENABLE_QWT
     QwtPlot* graphique = (QwtPlot*) this->ui->widgetGraphique;
 
+    const ParametresPoint& parametresPointManuels =
+            this->parametresAffichage.getParametresPointsManuels();
+
+    const int& stylePoint = parametresPointManuels.getStylePoint();
+    const int& epaisseurPoint = parametresPointManuels.getEpaisseurPoint();
+    const QRgb& couleurPoint = parametresPointManuels.getCouleurPoint();
+    const QBrush brossePoint = QBrush(QColor(couleurPoint), Qt::SolidPattern);
+    const QPen pinceauPoint = QPen(brossePoint, epaisseurPoint / 2, Qt::SolidLine);
+    const QwtSymbol::Style symbolePoint =
+            (stylePoint == ParametresPoint::CARRE) ? QwtSymbol::Rect :
+            (stylePoint == ParametresPoint::CERCLE) ? QwtSymbol::Ellipse : QwtSymbol::NoSymbol;
+
     QwtPlotMarker* pointManuelGraphique = new QwtPlotMarker();
     QwtSymbol* symbolePointManuelGraphique = new QwtSymbol();
+    symbolePointManuelGraphique->setStyle(symbolePoint);
+    symbolePointManuelGraphique->setSize(epaisseurPoint);
+    symbolePointManuelGraphique->setPen(pinceauPoint);
     pointManuelGraphique->setSymbol(symbolePointManuelGraphique);
     pointManuelGraphique->setValue(pointManuel.getPointReelX(), pointManuel.getPointReelY());
     pointManuelGraphique->attach(graphique);
-    // TODO Paramètres d'affichage des points
 
     graphique->replot();
 #endif
