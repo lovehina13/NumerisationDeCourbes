@@ -15,14 +15,18 @@
 #if ENABLE_QWT
 #include <QBrush>
 #include <QColor>
+#include <QFont>
+#include <QPalette>
 #include <QPen>
 #include <QPointF>
+#include <QRgb>
 #include <QVector>
 #include <qwt_plot.h>
 #include <qwt_plot_curve.h>
 #include <qwt_plot_grid.h>
 #include <qwt_plot_marker.h>
 #include <qwt_scale_draw.h>
+#include <qwt_scale_widget.h>
 #include <qwt_series_data.h>
 #include <qwt_symbol.h>
 #endif
@@ -142,6 +146,7 @@ void FenetreGraphique::effacerGraphique()
 
     const QColor couleurArrierePlan = QColor(Qt::white);
     const QBrush brosseArrierePlan = QBrush(couleurArrierePlan, Qt::SolidPattern);
+
     graphique->detachItems();
     graphique->setCanvasBackground(brosseArrierePlan);
 
@@ -182,23 +187,34 @@ void FenetreGraphique::dessinerRepereGraphique()
             this->parametresGraphique.getParametresAxeVertical();
     const ParametresTrait& parametresAxes = this->parametresAffichage.getParametresAxes();
 
-    const int& styleTrait = parametresAxes.getStyleTrait();
-    const int& epaisseurTrait = parametresAxes.getEpaisseurTrait();
-    const QRgb& couleurTrait = parametresAxes.getCouleurTrait();
-    const QBrush brosseTrait = QBrush(QColor(couleurTrait), Qt::SolidPattern);
-    const QPen pinceauTrait = QPen(brosseTrait, epaisseurTrait, (Qt::PenStyle) (styleTrait + 1),
-            Qt::RoundCap, Qt::RoundJoin);
+    const int& epaisseurRepere = parametresAxes.getEpaisseurTrait();
+    const QRgb& couleurRepere = parametresAxes.getCouleurTrait();
+    const QBrush brosseRepere = QBrush(QColor(couleurRepere), Qt::SolidPattern);
+    const QwtScaleWidget* axeRepere = new QwtScaleWidget();
+    QFont policeRepere = axeRepere->font();
+    QPalette paletteRepere = axeRepere->palette();
+    policeRepere.setBold(epaisseurRepere > 1);
+    paletteRepere.setBrush(QPalette::Text, brosseRepere);
+    paletteRepere.setBrush(QPalette::WindowText, brosseRepere);
 
-    // QwtScaleDraw* axeGraphique = new QwtScaleDraw();
     graphique->setAxisScale(QwtPlot::xBottom, parametresAxeHorizontal.getBorneInferieure(),
             parametresAxeHorizontal.getBorneSuperieure(), 0);
     graphique->setAxisScale(QwtPlot::yLeft, parametresAxeVertical.getBorneInferieure(),
             parametresAxeVertical.getBorneSuperieure(), 0);
-    // graphique->setAxisScaleDraw(QwtPlot::xBottom, axeGraphique);
-    // graphique->setAxisScaleDraw(QwtPlot::yLeft, axeGraphique);
     // TODO Affectation du pas principal
     // TODO Affectation du pas secondaire
-    // TODO Paramètres d'affichage des axes
+
+    QwtScaleWidget* axeHorizontalGraphique = graphique->axisWidget(QwtPlot::xBottom);
+    QwtScaleDraw* dessinAxeHorizontalGraphique = graphique->axisScaleDraw(QwtPlot::xBottom);
+    axeHorizontalGraphique->setFont(policeRepere);
+    axeHorizontalGraphique->setPalette(paletteRepere);
+    dessinAxeHorizontalGraphique->setPenWidth(epaisseurRepere);
+
+    QwtScaleWidget* axeVerticalGraphique = graphique->axisWidget(QwtPlot::yLeft);
+    QwtScaleDraw* dessinAxeVerticalGraphique = graphique->axisScaleDraw(QwtPlot::yLeft);
+    axeVerticalGraphique->setFont(policeRepere);
+    axeVerticalGraphique->setPalette(paletteRepere);
+    dessinAxeVerticalGraphique->setPenWidth(epaisseurRepere);
 
     graphique->replot();
 #endif
@@ -214,20 +230,21 @@ void FenetreGraphique::dessinerGrilleGraphique()
     const ParametresAxe& parametresAxeVertical =
             this->parametresGraphique.getParametresAxeVertical();
 
-    QwtPlotGrid* grille = new QwtPlotGrid();
     const QColor couleurGrillePrincipale = QColor(Qt::black);
     const QColor couleurGrilleSecondaire = QColor(Qt::gray);
     const QBrush brosseGrillePrincipale = QBrush(couleurGrillePrincipale, Qt::SolidPattern);
     const QBrush brosseGrilleSecondaire = QBrush(couleurGrilleSecondaire, Qt::SolidPattern);
     const QPen pinceauGrillePrincipale = QPen(brosseGrillePrincipale, 1, Qt::DotLine);
     const QPen pinceauGrilleSecondaire = QPen(brosseGrilleSecondaire, 1, Qt::DotLine);
-    grille->enableX(parametresAxeHorizontal.getGrillePrincipale());
-    grille->enableXMin(parametresAxeHorizontal.getGrilleSecondaire());
-    grille->enableY(parametresAxeVertical.getGrillePrincipale());
-    grille->enableYMin(parametresAxeVertical.getGrilleSecondaire());
-    grille->setMajorPen(pinceauGrillePrincipale);
-    grille->setMinorPen(pinceauGrilleSecondaire);
-    grille->attach(graphique);
+
+    QwtPlotGrid* grilleGraphique = new QwtPlotGrid();
+    grilleGraphique->enableX(parametresAxeHorizontal.getGrillePrincipale());
+    grilleGraphique->enableXMin(parametresAxeHorizontal.getGrilleSecondaire());
+    grilleGraphique->enableY(parametresAxeVertical.getGrillePrincipale());
+    grilleGraphique->enableYMin(parametresAxeVertical.getGrilleSecondaire());
+    grilleGraphique->setMajorPen(pinceauGrillePrincipale);
+    grilleGraphique->setMinorPen(pinceauGrilleSecondaire);
+    grilleGraphique->attach(graphique);
 
     graphique->replot();
 #endif
@@ -283,6 +300,9 @@ void FenetreGraphique::dessinerCourbeGraphique(const Courbe& courbe,
     courbeGraphique->attach(graphique);
 
     graphique->replot();
+#else
+    Q_UNUSED(courbe);
+    Q_UNUSED(parametresCourbe);
 #endif
 }
 
@@ -311,6 +331,9 @@ void FenetreGraphique::dessinerPointGraphique(const Point& point,
     pointGraphique->attach(graphique);
 
     graphique->replot();
+#else
+    Q_UNUSED(point);
+    Q_UNUSED(parametresPoint);
 #endif
 }
 
