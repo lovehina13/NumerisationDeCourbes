@@ -91,7 +91,11 @@
        <widget class="QLineEdit" name="lineEditAxeHorizontalPasPrincipal"/>
       </item>
       <item row="1" column="4">
-       <widget class="QLineEdit" name="lineEditAxeHorizontalPasSecondaire"/>
+       <widget class="QLineEdit" name="lineEditAxeHorizontalPasSecondaire">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+       </widget>
       </item>
       <item row="1" column="5">
        <widget class="QCheckBox" name="checkBoxAxeHorizontalGrillePrincipale">
@@ -130,7 +134,11 @@
        <widget class="QLineEdit" name="lineEditAxeVerticalPasPrincipal"/>
       </item>
       <item row="2" column="4">
-       <widget class="QLineEdit" name="lineEditAxeVerticalPasSecondaire"/>
+       <widget class="QLineEdit" name="lineEditAxeVerticalPasSecondaire">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+       </widget>
       </item>
       <item row="2" column="5">
        <widget class="QCheckBox" name="checkBoxAxeVerticalGrillePrincipale">

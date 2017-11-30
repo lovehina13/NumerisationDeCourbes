@@ -60,6 +60,8 @@ public:
     static const double pasSecondaireDefaut;
     static const bool grillePrincipaleDefaut;
     static const bool grilleSecondaireDefaut;
+    static const int nombreElementsPasPrincipalDefaut;
+    static const int nombreElementsPasSecondaireDefaut;
 
 private:
     // Attributs de classe

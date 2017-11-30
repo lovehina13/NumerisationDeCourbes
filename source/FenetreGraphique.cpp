@@ -117,8 +117,9 @@ void FenetreGraphique::actualiserElementsGraphiques()
             QString::number(parametresAxeHorizontal.getBorneSuperieure()));
     this->ui->lineEditAxeHorizontalPasPrincipal->setText(
             QString::number(parametresAxeHorizontal.getPasPrincipal()));
-    this->ui->lineEditAxeHorizontalPasSecondaire->setText(
-            QString::number(parametresAxeHorizontal.getPasSecondaire()));
+//    this->ui->lineEditAxeHorizontalPasSecondaire->setText(
+//            QString::number(parametresAxeHorizontal.getPasSecondaire()));
+    this->ui->lineEditAxeHorizontalPasSecondaire->setText(QString::number(0.0));
     this->ui->checkBoxAxeHorizontalGrillePrincipale->setChecked(
             parametresAxeHorizontal.getGrillePrincipale());
     this->ui->checkBoxAxeHorizontalGrilleSecondaire->setChecked(
@@ -129,8 +130,9 @@ void FenetreGraphique::actualiserElementsGraphiques()
             QString::number(parametresAxeVertical.getBorneSuperieure()));
     this->ui->lineEditAxeVerticalPasPrincipal->setText(
             QString::number(parametresAxeVertical.getPasPrincipal()));
-    this->ui->lineEditAxeVerticalPasSecondaire->setText(
-            QString::number(parametresAxeVertical.getPasSecondaire()));
+//    this->ui->lineEditAxeVerticalPasSecondaire->setText(
+//            QString::number(parametresAxeVertical.getPasSecondaire()));
+    this->ui->lineEditAxeVerticalPasSecondaire->setText(QString::number(0.0));
     this->ui->checkBoxAxeVerticalGrillePrincipale->setChecked(
             parametresAxeVertical.getGrillePrincipale());
     this->ui->checkBoxAxeVerticalGrilleSecondaire->setChecked(
@@ -198,11 +200,10 @@ void FenetreGraphique::dessinerRepereGraphique()
     paletteRepere.setBrush(QPalette::WindowText, brosseRepere);
 
     graphique->setAxisScale(QwtPlot::xBottom, parametresAxeHorizontal.getBorneInferieure(),
-            parametresAxeHorizontal.getBorneSuperieure(), 0);
+            parametresAxeHorizontal.getBorneSuperieure(),
+            parametresAxeHorizontal.getPasPrincipal());
     graphique->setAxisScale(QwtPlot::yLeft, parametresAxeVertical.getBorneInferieure(),
-            parametresAxeVertical.getBorneSuperieure(), 0);
-    // TODO Affectation du pas principal
-    // TODO Affectation du pas secondaire
+            parametresAxeVertical.getBorneSuperieure(), parametresAxeVertical.getPasPrincipal());
 
     QwtScaleWidget* axeHorizontalGraphique = graphique->axisWidget(QwtPlot::xBottom);
     QwtScaleDraw* dessinAxeHorizontalGraphique = graphique->axisScaleDraw(QwtPlot::xBottom);

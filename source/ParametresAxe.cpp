@@ -8,6 +8,9 @@
 #include "ParametresAxe.h"
 #include "Outils.h"
 #include <QStringList>
+#if ENABLE_QWT
+#include <qwt_scale_engine.h>
+#endif
 
 const double ParametresAxe::borneInferieureDefaut = 0.0;
 const double ParametresAxe::borneSuperieureDefaut = 0.0;
@@ -15,6 +18,8 @@ const double ParametresAxe::pasPrincipalDefaut = 0.0;
 const double ParametresAxe::pasSecondaireDefaut = 0.0;
 const bool ParametresAxe::grillePrincipaleDefaut = true;
 const bool ParametresAxe::grilleSecondaireDefaut = false;
+const int ParametresAxe::nombreElementsPasPrincipalDefaut = 5;
+const int ParametresAxe::nombreElementsPasSecondaireDefaut = 5;
 
 ParametresAxe::ParametresAxe() :
         borneInferieure(borneInferieureDefaut), borneSuperieure(borneSuperieureDefaut),
@@ -177,15 +182,41 @@ void ParametresAxe::ajuster()
 
 void ParametresAxe::ajusterBornes()
 {
-    // TODO void ParametresAxe::ajusterBornes()
+#if ENABLE_QWT
+    double borneInferieure = this->getBorneInferieure();
+    double borneSuperieure = this->getBorneSuperieure();
+    double pasPrincipal = this->getPasPrincipal();
+    QwtLinearScaleEngine echelle;
+    echelle.autoScale(nombreElementsPasPrincipalDefaut, borneInferieure, borneSuperieure,
+            pasPrincipal);
+    this->setBorneInferieure(borneInferieure);
+    this->setBorneSuperieure(borneSuperieure);
+#endif
 }
 
 void ParametresAxe::ajusterPasPrincipal()
 {
-    // TODO void ParametresAxe::ajusterPasPrincipal()
+#if ENABLE_QWT
+    double borneInferieure = this->getBorneInferieure();
+    double borneSuperieure = this->getBorneSuperieure();
+    double pasPrincipal = this->getPasPrincipal();
+    QwtLinearScaleEngine echelle;
+    echelle.autoScale(nombreElementsPasPrincipalDefaut, borneInferieure, borneSuperieure,
+            pasPrincipal);
+    this->setPasPrincipal(pasPrincipal);
+#endif
 }
 
 void ParametresAxe::ajusterPasSecondaire()
 {
-    // TODO void ParametresAxe::ajusterPasSecondaire()
+#if ENABLE_QWT
+    double borneInferieure = this->getBorneInferieure();
+    double pasPrincipal = this->getPasPrincipal();
+    double pasSecondaire = this->getPasSecondaire();
+    double elementIntermediaire = borneInferieure + pasPrincipal;
+    QwtLinearScaleEngine echelle;
+    echelle.autoScale(nombreElementsPasSecondaireDefaut, borneInferieure, elementIntermediaire,
+            pasSecondaire);
+    this->setPasSecondaire(pasSecondaire);
+#endif
 }
