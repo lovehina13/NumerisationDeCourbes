@@ -38,7 +38,7 @@
 #include <QTableWidgetItem>
 
 EcranPrincipal::EcranPrincipal(QWidget* parent) :
-        QMainWindow(parent), ui(new Ui::EcranPrincipal), pushButtonActif(0)
+        QMainWindow(parent), ui(new Ui::EcranPrincipal), pushButtonActif(NULL)
 {
     this->ui->setupUi(this);
     this->connect(this->ui->vueGraphiqueEtude, SIGNAL(mousePressEventSignal(const QPointF)), this,
@@ -127,7 +127,7 @@ void EcranPrincipal::effacerElementsGraphiques()
 
     this->ui->statusBar->clearMessage();
 
-    this->activerBouton(0);
+    this->activerBouton(NULL);
 
     this->repositionnerVueGraphiqueEtude();
     this->effacerVueGraphiqueEtude();
@@ -438,7 +438,7 @@ void EcranPrincipal::dessinerVueGraphiqueEtude()
 
 void EcranPrincipal::activerBouton(const QPushButton* pushButton)
 {
-    if (pushButton == 0 || !pushButton->isChecked())
+    if (pushButton == NULL || !pushButton->isChecked())
     {
         this->ui->vueGraphiqueEtude->setDragMode(QGraphicsView::ScrollHandDrag);
         this->ui->pushButtonPointX0->setChecked(false);
@@ -448,12 +448,12 @@ void EcranPrincipal::activerBouton(const QPushButton* pushButton)
         this->ui->pushButtonPointDepart->setChecked(false);
         this->ui->pushButtonPointArrivee->setChecked(false);
         this->ui->pushButtonPointManuel->setChecked(false);
-        this->pushButtonActif = 0;
+        this->pushButtonActif = NULL;
     }
     else
     {
         this->ui->vueGraphiqueEtude->setDragMode(QGraphicsView::NoDrag);
-        if (this->pushButtonActif != 0 && this->pushButtonActif != pushButton)
+        if (this->pushButtonActif != NULL && this->pushButtonActif != pushButton)
         {
             this->pushButtonActif->setChecked(false);
         }
@@ -1101,7 +1101,7 @@ void EcranPrincipal::mousePressEventSlot(const QPointF pointVueGraphique)
 {
     this->actualiserPoint(pointVueGraphique);
 
-    this->activerBouton(0);
+    this->activerBouton(NULL);
 }
 
 void EcranPrincipal::mouseMoveEventSlot(const QPointF pointVueGraphique)

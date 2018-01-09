@@ -28,7 +28,7 @@ class FenetreGraphique : public QDialog
 
 public:
     // Constructeurs et destructeurs
-    explicit FenetreGraphique(QWidget* parent = 0);
+    explicit FenetreGraphique(QWidget* parent = NULL);
     ~FenetreGraphique();
 
     // Getters

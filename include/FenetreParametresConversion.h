@@ -23,7 +23,7 @@ class FenetreParametresConversion : public QDialog
 
 public:
     // Constructeurs et destructeurs
-    explicit FenetreParametresConversion(QWidget* parent = 0);
+    explicit FenetreParametresConversion(QWidget* parent = NULL);
     ~FenetreParametresConversion();
 
     // Getters
