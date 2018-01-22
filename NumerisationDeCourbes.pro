@@ -25,8 +25,8 @@ HEADERS += include/EcranPrincipal.h \
            include/Image.h \
            include/Outils.h \
            include/Parametres.h \
-           include/ParametresAxe.h \
            include/ParametresAffichage.h \
+           include/ParametresAxe.h \
            include/ParametresConversion.h \
            include/ParametresExport.h \
            include/ParametresFichiers.h \
@@ -49,8 +49,8 @@ SOURCES += source/NumerisationDeCourbes.cpp \
            source/Image.cpp \
            source/Outils.cpp \
            source/Parametres.cpp \
-           source/ParametresAxe.cpp \
            source/ParametresAffichage.cpp \
+           source/ParametresAxe.cpp \
            source/ParametresConversion.cpp \
            source/ParametresExport.cpp \
            source/ParametresFichiers.cpp \
@@ -70,7 +70,8 @@ FORMS += interfaces/EcranPrincipal.ui \
          interfaces/FenetreParametresRecherche.ui
 RESOURCES += ressources/Ressources.qrc
 
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
+QMAKE_CXXFLAGS += -std=c++11 -pedantic -Wall -Wextra
+# QMAKE_CXXFLAGS += -std=c++11 -pedantic -pedantic-errors -Wall -Wextra -Wconversion -Wsign-conversion -Wunused-parameter -Werror
 
 QWT_ROOT = $$(QWT_ROOT)
 isEmpty(QWT_ROOT) {
