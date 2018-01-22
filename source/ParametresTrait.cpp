@@ -1,7 +1,7 @@
 //==============================================================================
 // Name        : ParametresTrait.cpp
 // Author      : Alexis Foerster (alexis.foerster@gmail.com)
-// Version     : 1.0.5 (07/06/2017)
+// Version     : 1.0.6 (26/06/2017)
 // Description : Source file of the ParametresTrait class
 //==============================================================================
 
