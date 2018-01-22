@@ -10,11 +10,11 @@
 #include "ParametresAxe.h"
 #include <QDialogButtonBox>
 #include <QDoubleValidator>
+#include <QFile>
+#include <QFileDialog>
+#include <QIODevice>
 #include <QPushButton>
 #include <QString>
-#include <QFileDialog>
-#include <QFile>
-#include <QIODevice>
 #if ENABLE_QWT
 #include <QBrush>
 #include <QColor>

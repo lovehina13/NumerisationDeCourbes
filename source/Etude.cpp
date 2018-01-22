@@ -8,6 +8,7 @@
 #include "Etude.h"
 #include "Outils.h"
 #include "ParametresAffichage.h"
+#include "ParametresAxe.h"
 #include "ParametresConversion.h"
 #include "ParametresExport.h"
 #include "ParametresFichiers.h"
