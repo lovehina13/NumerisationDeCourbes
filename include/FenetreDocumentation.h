@@ -1,12 +1,12 @@
 //==============================================================================
 // Name        : FenetreDocumentation.h
 // Author      : Alexis Foerster (alexis.foerster@gmail.com)
-// Version     : 1.0.6 (26/06/2017)
+// Version     : 1.1.0 (22/01/2018)
 // Description : Header file of the FenetreDocumentation class
 //==============================================================================
 
-#ifndef FENETREDOCUMENTATION_H_
-#define FENETREDOCUMENTATION_H_
+#ifndef FENETREDOCUMENTATION_H
+#define FENETREDOCUMENTATION_H
 
 #include <QDialog>
 #include <QWidget>
@@ -38,4 +38,4 @@ private:
     Ui::FenetreDocumentation* ui;
 };
 
-#endif /* FENETREDOCUMENTATION_H_ */
+#endif /* FENETREDOCUMENTATION_H */

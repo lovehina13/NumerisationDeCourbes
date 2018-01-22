@@ -1,12 +1,12 @@
 //==============================================================================
 // Name        : ParametresExport.h
 // Author      : Alexis Foerster (alexis.foerster@gmail.com)
-// Version     : 1.0.6 (26/06/2017)
+// Version     : 1.1.0 (22/01/2018)
 // Description : Header file of the ParametresExport class
 //==============================================================================
 
-#ifndef PARAMETRESEXPORT_H_
-#define PARAMETRESEXPORT_H_
+#ifndef PARAMETRESEXPORT_H
+#define PARAMETRESEXPORT_H
 
 #include <QMap>
 #include <QString>
@@ -102,4 +102,4 @@ private:
     static const QMap<char, QString> caracteresSeparateurDecimalTexte;
 };
 
-#endif /* PARAMETRESEXPORT_H_ */
+#endif /* PARAMETRESEXPORT_H */

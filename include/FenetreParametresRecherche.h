@@ -1,12 +1,12 @@
 //==============================================================================
 // Name        : FenetreParametresRecherche.h
 // Author      : Alexis Foerster (alexis.foerster@gmail.com)
-// Version     : 1.0.6 (26/06/2017)
+// Version     : 1.1.0 (22/01/2018)
 // Description : Header file of the FenetreParametresRecherche class
 //==============================================================================
 
-#ifndef FENETREPARAMETRESRECHERCHE_H_
-#define FENETREPARAMETRESRECHERCHE_H_
+#ifndef FENETREPARAMETRESRECHERCHE_H
+#define FENETREPARAMETRESRECHERCHE_H
 
 #include "ParametresRecherche.h"
 #include <QDialog>
@@ -57,4 +57,4 @@ private:
     ParametresRecherche parametresRecherche;
 };
 
-#endif /* FENETREPARAMETRESRECHERCHE_H_ */
+#endif /* FENETREPARAMETRESRECHERCHE_H */

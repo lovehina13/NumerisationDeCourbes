@@ -1,12 +1,12 @@
 //==============================================================================
 // Name        : FenetreGraphique.h
 // Author      : Alexis Foerster (alexis.foerster@gmail.com)
-// Version     : 1.0.5 (07/06/2017)
+// Version     : 1.1.0 (22/01/2018)
 // Description : Header file of the FenetreGraphique class
 //==============================================================================
 
-#ifndef FENETREGRAPHIQUE_H_
-#define FENETREGRAPHIQUE_H_
+#ifndef FENETREGRAPHIQUE_H
+#define FENETREGRAPHIQUE_H
 
 #include "ParametresAffichage.h"
 #include "ParametresFichiers.h"
@@ -91,4 +91,4 @@ private:
     ParametresFichiers parametresFichiers;
 };
 
-#endif /* FENETREGRAPHIQUE_H_ */
+#endif /* FENETREGRAPHIQUE_H */

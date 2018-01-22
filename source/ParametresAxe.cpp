@@ -1,7 +1,7 @@
 //==============================================================================
 // Name        : ParametresAxe.cpp
 // Author      : Alexis Foerster (alexis.foerster@gmail.com)
-// Version     : 1.0.5 (07/06/2017)
+// Version     : 1.1.0 (22/01/2018)
 // Description : Source file of the ParametresAxe class
 //==============================================================================
 

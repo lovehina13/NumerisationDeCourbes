@@ -1,12 +1,12 @@
 //==============================================================================
 // Name        : Image.h
 // Author      : Alexis Foerster (alexis.foerster@gmail.com)
-// Version     : 1.0.6 (26/06/2017)
+// Version     : 1.1.0 (22/01/2018)
 // Description : Header file of the Image class
 //==============================================================================
 
-#ifndef IMAGE_H_
-#define IMAGE_H_
+#ifndef IMAGE_H
+#define IMAGE_H
 
 #include <QImage>
 #include <QList>
@@ -64,4 +64,4 @@ private:
     QImage imageConvertie;
 };
 
-#endif /* IMAGE_H_ */
+#endif /* IMAGE_H */

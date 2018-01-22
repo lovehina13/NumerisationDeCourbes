@@ -1,12 +1,12 @@
 //==============================================================================
 // Name        : Repere.h
 // Author      : Alexis Foerster (alexis.foerster@gmail.com)
-// Version     : 1.0.6 (26/06/2017)
+// Version     : 1.1.0 (22/01/2018)
 // Description : Header file of the Repere class
 //==============================================================================
 
-#ifndef REPERE_H_
-#define REPERE_H_
+#ifndef REPERE_H
+#define REPERE_H
 
 #include "Point.h"
 #include <QString>
@@ -54,4 +54,4 @@ private:
     Point pointY1;
 };
 
-#endif /* REPERE_H_ */
+#endif /* REPERE_H */

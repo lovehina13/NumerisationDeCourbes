@@ -1,12 +1,12 @@
 //==============================================================================
 // Name        : ParametresFichiers.h
 // Author      : Alexis Foerster (alexis.foerster@gmail.com)
-// Version     : 1.0.6 (26/06/2017)
+// Version     : 1.1.0 (22/01/2018)
 // Description : Header file of the ParametresFichiers class
 //==============================================================================
 
-#ifndef PARAMETRESFICHIERS_H_
-#define PARAMETRESFICHIERS_H_
+#ifndef PARAMETRESFICHIERS_H
+#define PARAMETRESFICHIERS_H
 
 #include <QString>
 
@@ -59,4 +59,4 @@ private:
     QString cheminFichierGraphique;
 };
 
-#endif /* PARAMETRESFICHIERS_H_ */
+#endif /* PARAMETRESFICHIERS_H */

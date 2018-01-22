@@ -1,12 +1,12 @@
 //==============================================================================
 // Name        : ParametresRecherche.h
 // Author      : Alexis Foerster (alexis.foerster@gmail.com)
-// Version     : 1.0.6 (26/06/2017)
+// Version     : 1.1.0 (22/01/2018)
 // Description : Header file of the ParametresRecherche class
 //==============================================================================
 
-#ifndef PARAMETRESRECHERCHE_H_
-#define PARAMETRESRECHERCHE_H_
+#ifndef PARAMETRESRECHERCHE_H
+#define PARAMETRESRECHERCHE_H
 
 #include <QString>
 
@@ -68,4 +68,4 @@ private:
     bool selectionValeursMaximales;
 };
 
-#endif /* PARAMETRESRECHERCHE_H_ */
+#endif /* PARAMETRESRECHERCHE_H */

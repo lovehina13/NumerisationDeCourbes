@@ -1,12 +1,12 @@
 //==============================================================================
 // Name        : VueGraphiqueEtude.h
 // Author      : Alexis Foerster (alexis.foerster@gmail.com)
-// Version     : 1.0.6 (26/06/2017)
+// Version     : 1.1.0 (22/01/2018)
 // Description : Header file of the VueGraphiqueEtude class
 //==============================================================================
 
-#ifndef VUEGRAPHIQUEETUDE_H_
-#define VUEGRAPHIQUEETUDE_H_
+#ifndef VUEGRAPHIQUEETUDE_H
+#define VUEGRAPHIQUEETUDE_H
 
 #include "Etude.h"
 #include "Image.h"
@@ -76,4 +76,4 @@ signals:
     void mouseMoveEventSignal(const QPointF pointVueGraphique);
 };
 
-#endif /* VUEGRAPHIQUEETUDE_H_ */
+#endif /* VUEGRAPHIQUEETUDE_H */

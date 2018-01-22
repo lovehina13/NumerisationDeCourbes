@@ -1,12 +1,12 @@
 //==============================================================================
 // Name        : ParametresConversion.h
 // Author      : Alexis Foerster (alexis.foerster@gmail.com)
-// Version     : 1.0.6 (26/06/2017)
+// Version     : 1.1.0 (22/01/2018)
 // Description : Header file of the ParametresConversion class
 //==============================================================================
 
-#ifndef PARAMETRESCONVERSION_H_
-#define PARAMETRESCONVERSION_H_
+#ifndef PARAMETRESCONVERSION_H
+#define PARAMETRESCONVERSION_H
 
 #include <QMap>
 #include <QString>
@@ -79,4 +79,4 @@ private:
     static const QMap<int, QString> methodesConversionTexte;
 };
 
-#endif /* PARAMETRESCONVERSION_H_ */
+#endif /* PARAMETRESCONVERSION_H */

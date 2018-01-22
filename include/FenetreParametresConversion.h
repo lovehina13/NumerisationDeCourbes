@@ -1,12 +1,12 @@
 //==============================================================================
 // Name        : FenetreParametresConversion.h
 // Author      : Alexis Foerster (alexis.foerster@gmail.com)
-// Version     : 1.0.6 (26/06/2017)
+// Version     : 1.1.0 (22/01/2018)
 // Description : Header file of the FenetreParametresConversion class
 //==============================================================================
 
-#ifndef FENETREPARAMETRESCONVERSION_H_
-#define FENETREPARAMETRESCONVERSION_H_
+#ifndef FENETREPARAMETRESCONVERSION_H
+#define FENETREPARAMETRESCONVERSION_H
 
 #include "ParametresConversion.h"
 #include <QDialog>
@@ -56,4 +56,4 @@ private:
     ParametresConversion parametresConversion;
 };
 
-#endif /* FENETREPARAMETRESCONVERSION_H_ */
+#endif /* FENETREPARAMETRESCONVERSION_H */

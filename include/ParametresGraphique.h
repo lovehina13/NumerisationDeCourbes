@@ -1,12 +1,12 @@
 //==============================================================================
 // Name        : ParametresGraphique.h
 // Author      : Alexis Foerster (alexis.foerster@gmail.com)
-// Version     : 1.0.5 (07/06/2017)
+// Version     : 1.1.0 (22/01/2018)
 // Description : Header file of the ParametresGraphique class
 //==============================================================================
 
-#ifndef PARAMETRESGRAPHIQUE_H_
-#define PARAMETRESGRAPHIQUE_H_
+#ifndef PARAMETRESGRAPHIQUE_H
+#define PARAMETRESGRAPHIQUE_H
 
 #include "ParametresAxe.h"
 #include <QString>
@@ -46,4 +46,4 @@ private:
     ParametresAxe parametresAxeVertical;
 };
 
-#endif /* PARAMETRESGRAPHIQUE_H_ */
+#endif /* PARAMETRESGRAPHIQUE_H */

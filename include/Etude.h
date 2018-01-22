@@ -1,12 +1,12 @@
 //==============================================================================
 // Name        : Etude.h
 // Author      : Alexis Foerster (alexis.foerster@gmail.com)
-// Version     : 1.0.6 (26/06/2017)
+// Version     : 1.1.0 (22/01/2018)
 // Description : Header file of the Etude class
 //==============================================================================
 
-#ifndef ETUDE_H_
-#define ETUDE_H_
+#ifndef ETUDE_H
+#define ETUDE_H
 
 #include "Image.h"
 #include "Parametres.h"
@@ -104,4 +104,4 @@ private:
     QPoint pointPixelArrivee;
 };
 
-#endif /* ETUDE_H_ */
+#endif /* ETUDE_H */

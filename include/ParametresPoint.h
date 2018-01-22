@@ -1,12 +1,12 @@
 //==============================================================================
 // Name        : ParametresPoint.h
 // Author      : Alexis Foerster (alexis.foerster@gmail.com)
-// Version     : 1.0.6 (26/06/2017)
+// Version     : 1.1.0 (22/01/2018)
 // Description : Header file of the ParametresPoint class
 //==============================================================================
 
-#ifndef PARAMETRESPOINT_H_
-#define PARAMETRESPOINT_H_
+#ifndef PARAMETRESPOINT_H
+#define PARAMETRESPOINT_H
 
 #include <QMap>
 #include <QRgb>
@@ -67,4 +67,4 @@ private:
     static const QMap<int, QString> stylesPointsTexte;
 };
 
-#endif /* PARAMETRESPOINT_H_ */
+#endif /* PARAMETRESPOINT_H */

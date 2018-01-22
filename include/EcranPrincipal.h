@@ -1,12 +1,12 @@
 //==============================================================================
 // Name        : EcranPrincipal.h
 // Author      : Alexis Foerster (alexis.foerster@gmail.com)
-// Version     : 1.0.6 (26/06/2017)
+// Version     : 1.1.0 (22/01/2018)
 // Description : Header file of the EcranPrincipal class
 //==============================================================================
 
-#ifndef ECRANPRINCIPAL_H_
-#define ECRANPRINCIPAL_H_
+#ifndef ECRANPRINCIPAL_H
+#define ECRANPRINCIPAL_H
 
 #include "Etude.h"
 #include <QMainWindow>
@@ -122,4 +122,4 @@ private:
     QPushButton* pushButtonActif;
 };
 
-#endif /* ECRANPRINCIPAL_H_ */
+#endif /* ECRANPRINCIPAL_H */

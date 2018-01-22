@@ -1,12 +1,12 @@
 //==============================================================================
 // Name        : FenetreParametresExport.h
 // Author      : Alexis Foerster (alexis.foerster@gmail.com)
-// Version     : 1.0.6 (26/06/2017)
+// Version     : 1.1.0 (22/01/2018)
 // Description : Header file of the FenetreParametresExport class
 //==============================================================================
 
-#ifndef FENETREPARAMETRESEXPORT_H_
-#define FENETREPARAMETRESEXPORT_H_
+#ifndef FENETREPARAMETRESEXPORT_H
+#define FENETREPARAMETRESEXPORT_H
 
 #include "ParametresExport.h"
 #include <QDialog>
@@ -55,4 +55,4 @@ private:
     ParametresExport parametresExport;
 };
 
-#endif /* FENETREPARAMETRESEXPORT_H_ */
+#endif /* FENETREPARAMETRESEXPORT_H */

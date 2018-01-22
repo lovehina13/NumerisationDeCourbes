@@ -1,12 +1,12 @@
 //==============================================================================
 // Name        : Parametres.h
 // Author      : Alexis Foerster (alexis.foerster@gmail.com)
-// Version     : 1.0.6 (26/06/2017)
+// Version     : 1.1.0 (22/01/2018)
 // Description : Header file of the Parametres class
 //==============================================================================
 
-#ifndef PARAMETRES_H_
-#define PARAMETRES_H_
+#ifndef PARAMETRES_H
+#define PARAMETRES_H
 
 #include "ParametresAffichage.h"
 #include "ParametresConversion.h"
@@ -65,4 +65,4 @@ private:
     ParametresExport parametresExport;
 };
 
-#endif /* PARAMETRES_H_ */
+#endif /* PARAMETRES_H */

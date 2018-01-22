@@ -1,12 +1,12 @@
 //==============================================================================
 // Name        : FenetreParametresAffichage.h
 // Author      : Alexis Foerster (alexis.foerster@gmail.com)
-// Version     : 1.0.6 (26/06/2017)
+// Version     : 1.1.0 (22/01/2018)
 // Description : Header file of the FenetreParametresAffichage class
 //==============================================================================
 
-#ifndef FENETREPARAMETRESAFFICHAGE_H_
-#define FENETREPARAMETRESAFFICHAGE_H_
+#ifndef FENETREPARAMETRESAFFICHAGE_H
+#define FENETREPARAMETRESAFFICHAGE_H
 
 #include "ParametresAffichage.h"
 #include <QDialog>
@@ -67,4 +67,4 @@ private:
     ParametresAffichage parametresAffichage;
 };
 
-#endif /* FENETREPARAMETRESAFFICHAGE_H_ */
+#endif /* FENETREPARAMETRESAFFICHAGE_H */

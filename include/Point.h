@@ -1,12 +1,12 @@
 //==============================================================================
 // Name        : Point.h
 // Author      : Alexis Foerster (alexis.foerster@gmail.com)
-// Version     : 1.0.6 (26/06/2017)
+// Version     : 1.1.0 (22/01/2018)
 // Description : Header file of the Point class
 //==============================================================================
 
-#ifndef POINT_H_
-#define POINT_H_
+#ifndef POINT_H
+#define POINT_H
 
 #include <QList>
 #include <QMap>
@@ -76,4 +76,4 @@ private:
 
 typedef QList<Point> Courbe;
 
-#endif /* POINT_H_ */
+#endif /* POINT_H */

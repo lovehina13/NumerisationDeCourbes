@@ -1,12 +1,12 @@
 //==============================================================================
 // Name        : Outils.h
 // Author      : Alexis Foerster (alexis.foerster@gmail.com)
-// Version     : 1.0.6 (26/06/2017)
+// Version     : 1.1.0 (22/01/2018)
 // Description : Header file of the Outils elements
 //==============================================================================
 
-#ifndef OUTILS_H_
-#define OUTILS_H_
+#ifndef OUTILS_H
+#define OUTILS_H
 
 #include "Point.h"
 #include <QList>
@@ -30,4 +30,4 @@ void testerConversionNiveauxDeGris(const int& nombreNiveauxDeGris);
 void testerConversionTeintesSaturees(const int& nombreNiveauxDeGris,
         const int& nombreTeintesSaturees, const int& seuilSaturation);
 
-#endif /* OUTILS_H_ */
+#endif /* OUTILS_H */

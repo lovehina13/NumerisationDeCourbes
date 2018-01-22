@@ -1,12 +1,12 @@
 //==============================================================================
 // Name        : ParametresTrait.h
 // Author      : Alexis Foerster (alexis.foerster@gmail.com)
-// Version     : 1.0.6 (26/06/2017)
+// Version     : 1.1.0 (22/01/2018)
 // Description : Header file of the ParametresTrait class
 //==============================================================================
 
-#ifndef PARAMETRESTRAIT_H_
-#define PARAMETRESTRAIT_H_
+#ifndef PARAMETRESTRAIT_H
+#define PARAMETRESTRAIT_H
 
 #include <QMap>
 #include <QRgb>
@@ -66,4 +66,4 @@ private:
     static const QMap<int, QString> stylesTraitsTexte;
 };
 
-#endif /* PARAMETRESTRAIT_H_ */
+#endif /* PARAMETRESTRAIT_H */

@@ -1,12 +1,12 @@
 //==============================================================================
 // Name        : ParametresAxe.h
 // Author      : Alexis Foerster (alexis.foerster@gmail.com)
-// Version     : 1.0.5 (07/06/2017)
+// Version     : 1.1.0 (22/01/2018)
 // Description : Header file of the ParametresAxe class
 //==============================================================================
 
-#ifndef PARAMETRESAXE_H_
-#define PARAMETRESAXE_H_
+#ifndef PARAMETRESAXE_H
+#define PARAMETRESAXE_H
 
 #include <QString>
 
@@ -73,4 +73,4 @@ private:
     bool grilleSecondaire;
 };
 
-#endif /* PARAMETRESAXE_H_ */
+#endif /* PARAMETRESAXE_H */
