@@ -9,10 +9,12 @@
 #define FENETREGRAPHIQUE_H_
 
 #include "ParametresAffichage.h"
+#include "ParametresFichiers.h"
 #include "ParametresGraphique.h"
 #include "ParametresPoint.h"
 #include "ParametresTrait.h"
 #include "Point.h"
+#include <QAbstractButton>
 #include <QDialog>
 #include <QList>
 #include <QWidget>
@@ -36,12 +38,14 @@ public:
     const QList<Point>& getListeDePointsManuels() const;
     const ParametresGraphique& getParametresGraphique() const;
     const ParametresAffichage& getParametresAffichage() const;
+    const ParametresFichiers& getParametresFichiers() const;
 
     // Setters
     void setListeDeCourbes(const QList<Courbe>& listeDeCourbes);
     void setListeDePointsManuels(const QList<Point>& listeDePointsManuels);
     void setParametresGraphique(const ParametresGraphique& parametresGraphique);
     void setParametresAffichage(const ParametresAffichage& parametresAffichage);
+    void setParametresFichiers(const ParametresFichiers& parametresFichiers);
 
     // Méthodes génériques
 
@@ -59,6 +63,7 @@ protected:
     void dessinerPointManuel(const Point& pointManuel);
     void dessinerCourbeGraphique(const Courbe& courbe, const ParametresTrait& parametresCourbe);
     void dessinerPointGraphique(const Point& point, const ParametresPoint& parametresPoint);
+    void exporterGraphique();
 
 protected slots:
     // Connecteurs spécifiques
@@ -74,6 +79,7 @@ protected slots:
     void on_lineEditAxeVerticalPasSecondaire_textChanged();
     void on_checkBoxAxeVerticalGrillePrincipale_stateChanged();
     void on_checkBoxAxeVerticalGrilleSecondaire_stateChanged();
+    void on_buttonBox_clicked(QAbstractButton* button);
 
 private:
     // Attributs de classe
@@ -82,6 +88,7 @@ private:
     QList<Point> listeDePointsManuels;
     ParametresGraphique parametresGraphique;
     ParametresAffichage parametresAffichage;
+    ParametresFichiers parametresFichiers;
 };
 
 #endif /* FENETREGRAPHIQUE_H_ */

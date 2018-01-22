@@ -12,12 +12,16 @@
 #include <QDoubleValidator>
 #include <QPushButton>
 #include <QString>
+#include <QFileDialog>
+#include <QFile>
+#include <QIODevice>
 #if ENABLE_QWT
 #include <QBrush>
 #include <QColor>
 #include <QFont>
 #include <QPalette>
 #include <QPen>
+#include <QPixmap>
 #include <QPointF>
 #include <QRgb>
 #include <QVector>
@@ -70,6 +74,11 @@ const ParametresAffichage& FenetreGraphique::getParametresAffichage() const
     return this->parametresAffichage;
 }
 
+const ParametresFichiers& FenetreGraphique::getParametresFichiers() const
+{
+    return this->parametresFichiers;
+}
+
 void FenetreGraphique::setListeDeCourbes(const QList<Courbe>& listeDeCourbes)
 {
     this->listeDeCourbes = listeDeCourbes;
@@ -88,6 +97,11 @@ void FenetreGraphique::setParametresGraphique(const ParametresGraphique& paramet
 void FenetreGraphique::setParametresAffichage(const ParametresAffichage& parametresAffichage)
 {
     this->parametresAffichage = parametresAffichage;
+}
+
+void FenetreGraphique::setParametresFichiers(const ParametresFichiers& parametresFichiers)
+{
+    this->parametresFichiers = parametresFichiers;
 }
 
 void FenetreGraphique::initialiserElementsGraphiques()
@@ -338,6 +352,29 @@ void FenetreGraphique::dessinerPointGraphique(const Point& point,
 #endif
 }
 
+void FenetreGraphique::exporterGraphique()
+{
+    const QString cheminFichierGraphique = QFileDialog::getSaveFileName(this,
+            QString::fromUtf8("Sélection d'un fichier image"),
+            this->parametresFichiers.getCheminFichierGraphique(),
+            QString::fromUtf8("Fichier image Windows Bitmap (*.bmp);;"
+                    "Fichier image JPEG (*.jpg *.jpeg);;"
+                    "Fichier image PNG (*.png)"));
+    if (cheminFichierGraphique.isEmpty())
+        return;
+
+    QFile fichierGraphique(cheminFichierGraphique);
+    if (!fichierGraphique.open(QIODevice::WriteOnly | QIODevice::Text))
+        return;
+
+#if ENABLE_QWT
+    QwtPlot* graphique = (QwtPlot*) this->ui->widgetGraphique;
+
+    QPixmap pixmap = QPixmap::grabWidget(graphique);
+    pixmap.save(cheminFichierGraphique);
+#endif
+}
+
 void FenetreGraphique::on_lineEditAxeHorizontalBorneInferieure_textChanged()
 {
     ParametresAxe parametresAxeHorizontal = this->parametresGraphique.getParametresAxeHorizontal();
@@ -444,4 +481,12 @@ void FenetreGraphique::on_checkBoxAxeVerticalGrilleSecondaire_stateChanged()
             this->ui->checkBoxAxeVerticalGrilleSecondaire->isChecked());
     this->parametresGraphique.setParametresAxeVertical(parametresAxeVertical);
     this->dessinerGraphique();
+}
+
+void FenetreGraphique::on_buttonBox_clicked(QAbstractButton* button)
+{
+    if (button == this->ui->buttonBox->button(QDialogButtonBox::Save))
+    {
+        this->exporterGraphique();
+    }
 }

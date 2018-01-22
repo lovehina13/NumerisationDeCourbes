@@ -1086,15 +1086,21 @@ void EcranPrincipal::on_pushButtonGraphique_clicked()
     const QList<Courbe> listeDeCourbes = this->etude.getListeDeCourbes();
     const QList<Point> listeDePointsManuels = this->etude.getListeDePointsManuels();
     const ParametresGraphique parametresGraphiques = this->etude.getParametresGraphiques();
-    const Parametres& parametres = this->etude.getParametres();
-    const ParametresAffichage& parametresAffichage = parametres.getParametresAffichage();
+    Parametres parametres = this->etude.getParametres();
+    ParametresAffichage parametresAffichage = parametres.getParametresAffichage();
+    ParametresFichiers parametresFichiers = parametres.getParametresFichiers();
     FenetreGraphique* fenetreGraphique = new FenetreGraphique(this);
     fenetreGraphique->setListeDeCourbes(listeDeCourbes);
     fenetreGraphique->setListeDePointsManuels(listeDePointsManuels);
     fenetreGraphique->setParametresGraphique(parametresGraphiques);
     fenetreGraphique->setParametresAffichage(parametresAffichage);
+    fenetreGraphique->setParametresFichiers(parametresFichiers);
     fenetreGraphique->actualiserElementsGraphiques();
-    fenetreGraphique->exec();
+    if (fenetreGraphique->exec() == QDialog::Rejected)
+        return;
+    parametresFichiers = fenetreGraphique->getParametresFichiers();
+    parametres.setParametresFichiers(parametresFichiers);
+    this->etude.setParametres(parametres);
 }
 
 void EcranPrincipal::mousePressEventSlot(const QPointF pointVueGraphique)

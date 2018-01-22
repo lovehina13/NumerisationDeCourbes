@@ -16,11 +16,12 @@ ParametresFichiers::ParametresFichiers()
 
 ParametresFichiers::ParametresFichiers(const QString& cheminFichierEtude,
         const QString& cheminFichierImageSource, const QString& cheminFichierImageConvertie,
-        const QString& cheminFichierExport, const QString& cheminFichierParametres) :
+        const QString& cheminFichierExport, const QString& cheminFichierParametres,
+        const QString& cheminFichierGraphique) :
         ParametresFichiers()
 {
     this->set(cheminFichierEtude, cheminFichierImageSource, cheminFichierImageConvertie,
-            cheminFichierExport, cheminFichierParametres);
+            cheminFichierExport, cheminFichierParametres, cheminFichierGraphique);
 }
 
 ParametresFichiers::ParametresFichiers(const ParametresFichiers& parametresFichiers) :
@@ -58,6 +59,11 @@ const QString& ParametresFichiers::getCheminFichierParametres() const
     return this->cheminFichierParametres;
 }
 
+const QString& ParametresFichiers::getCheminFichierGraphique() const
+{
+    return this->cheminFichierGraphique;
+}
+
 void ParametresFichiers::setCheminFichierEtude(const QString& cheminFichierEtude)
 {
     this->cheminFichierEtude = cheminFichierEtude;
@@ -83,20 +89,27 @@ void ParametresFichiers::setCheminFichierParametres(const QString& cheminFichier
     this->cheminFichierParametres = cheminFichierParametres;
 }
 
+void ParametresFichiers::setCheminFichierGraphique(const QString& cheminFichierGraphique)
+{
+    this->cheminFichierGraphique = cheminFichierGraphique;
+}
+
 void ParametresFichiers::clear()
 {
-    this->set(QString(), QString(), QString(), QString(), QString());
+    this->set(QString(), QString(), QString(), QString(), QString(), QString());
 }
 
 void ParametresFichiers::set(const QString& cheminFichierEtude,
         const QString& cheminFichierImageSource, const QString& cheminFichierImageConvertie,
-        const QString& cheminFichierExport, const QString& cheminFichierParametres)
+        const QString& cheminFichierExport, const QString& cheminFichierParametres,
+        const QString& cheminFichierGraphique)
 {
     this->setCheminFichierEtude(cheminFichierEtude);
     this->setCheminFichierImageSource(cheminFichierImageSource);
     this->setCheminFichierImageConvertie(cheminFichierImageConvertie);
     this->setCheminFichierExport(cheminFichierExport);
     this->setCheminFichierParametres(cheminFichierParametres);
+    this->setCheminFichierGraphique(cheminFichierGraphique);
 }
 
 void ParametresFichiers::copy(const ParametresFichiers& parametresFichiers)
@@ -105,7 +118,8 @@ void ParametresFichiers::copy(const ParametresFichiers& parametresFichiers)
             parametresFichiers.getCheminFichierImageSource(),
             parametresFichiers.getCheminFichierImageConvertie(),
             parametresFichiers.getCheminFichierExport(),
-            parametresFichiers.getCheminFichierParametres());
+            parametresFichiers.getCheminFichierParametres(),
+            parametresFichiers.getCheminFichierGraphique());
 }
 
 bool ParametresFichiers::equals(const ParametresFichiers& parametresFichiers) const
@@ -121,6 +135,8 @@ bool ParametresFichiers::equals(const ParametresFichiers& parametresFichiers) co
         return false;
     if (this->getCheminFichierParametres() != parametresFichiers.getCheminFichierParametres())
         return false;
+    if (this->getCheminFichierGraphique() != parametresFichiers.getCheminFichierGraphique())
+        return false;
     return true;
 }
 
@@ -135,6 +151,8 @@ void ParametresFichiers::fromString(const QString& fromString, const char& sep)
     this->setCheminFichierExport(fromStringList.at(3).mid(1, (fromStringList.at(3).count() - 2)));
     this->setCheminFichierParametres(
             fromStringList.at(4).mid(1, (fromStringList.at(4).count() - 2)));
+    this->setCheminFichierGraphique(
+            fromStringList.at(5).mid(1, (fromStringList.at(5).count() - 2)));
 }
 
 const QString ParametresFichiers::toString(const char& sep) const
@@ -144,6 +162,7 @@ const QString ParametresFichiers::toString(const char& sep) const
     toString += "\"" + this->getCheminFichierImageSource() + "\"" + sep;
     toString += "\"" + this->getCheminFichierImageConvertie() + "\"" + sep;
     toString += "\"" + this->getCheminFichierExport() + "\"" + sep;
-    toString += "\"" + this->getCheminFichierParametres() + "\"";
+    toString += "\"" + this->getCheminFichierParametres() + "\"" + sep;
+    toString += "\"" + this->getCheminFichierGraphique() + "\"";
     return toString;
 }

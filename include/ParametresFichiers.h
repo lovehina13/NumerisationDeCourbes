@@ -17,7 +17,7 @@ public:
     ParametresFichiers();
     ParametresFichiers(const QString& cheminFichierEtude, const QString& cheminFichierImageSource,
             const QString& cheminFichierImageConvertie, const QString& cheminFichierExport,
-            const QString& cheminFichierParametres);
+            const QString& cheminFichierParametres, const QString& cheminFichierGraphique);
     ParametresFichiers(const ParametresFichiers& parametresFichiers);
     virtual ~ParametresFichiers();
 
@@ -27,6 +27,7 @@ public:
     const QString& getCheminFichierImageConvertie() const;
     const QString& getCheminFichierExport() const;
     const QString& getCheminFichierParametres() const;
+    const QString& getCheminFichierGraphique() const;
 
     // Setters
     void setCheminFichierEtude(const QString& cheminFichierEtude);
@@ -34,12 +35,13 @@ public:
     void setCheminFichierImageConvertie(const QString& cheminFichierImageConvertie);
     void setCheminFichierExport(const QString& cheminFichierExport);
     void setCheminFichierParametres(const QString& cheminFichierParametres);
+    void setCheminFichierGraphique(const QString& cheminFichierGraphique);
 
     // Méthodes génériques
     void clear();
     void set(const QString& cheminFichierEtude, const QString& cheminFichierImageSource,
             const QString& cheminFichierImageConvertie, const QString& cheminFichierExport,
-            const QString& cheminFichierParametres);
+            const QString& cheminFichierParametres, const QString& cheminFichierGraphique);
     void copy(const ParametresFichiers& parametresFichiers);
     bool equals(const ParametresFichiers& parametresFichiers) const;
     void fromString(const QString& fromString, const char& sep);
@@ -54,6 +56,7 @@ private:
     QString cheminFichierImageConvertie;
     QString cheminFichierExport;
     QString cheminFichierParametres;
+    QString cheminFichierGraphique;
 };
 
 #endif /* PARAMETRESFICHIERS_H_ */
