@@ -21,7 +21,8 @@ ParametresGraphique::ParametresGraphique(const ParametresAxe& parametresAxeHoriz
     this->set(parametresAxeHorizontal, parametresAxeVertical);
 }
 
-ParametresGraphique::ParametresGraphique(const ParametresGraphique& parametresGraphique)
+ParametresGraphique::ParametresGraphique(const ParametresGraphique& parametresGraphique) :
+        ParametresGraphique()
 {
     this->copy(parametresGraphique);
 }
