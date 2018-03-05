@@ -1,7 +1,7 @@
 //==============================================================================
 // Name        : Repere.h
 // Author      : Alexis Foerster (alexis.foerster@gmail.com)
-// Version     : 1.1.0 (22/01/2018)
+// Version     : 1.1.1 (05/03/2018)
 // Description : Header file of the Repere class
 //==============================================================================
 
