@@ -315,6 +315,14 @@ void EcranPrincipal::actualiserCoordonneesPoints()
 
 void EcranPrincipal::actualiserCoordonneesPointDepart()
 {
+    if (this->ui->lineEditPointDepartXPixel->text().isEmpty()
+            || this->ui->lineEditPointDepartYPixel->text().isEmpty())
+    {
+        this->ui->lineEditPointDepartXReel->clear();
+        this->ui->lineEditPointDepartYReel->clear();
+        return;
+    }
+
     const Parametres& parametres = this->etude.getParametres();
     const ParametresAffichage& parametresAffichage = parametres.getParametresAffichage();
     const char formatNotationNombresCaractere =
@@ -336,6 +344,14 @@ void EcranPrincipal::actualiserCoordonneesPointDepart()
 
 void EcranPrincipal::actualiserCoordonneesPointArrivee()
 {
+    if (this->ui->lineEditPointArriveeXPixel->text().isEmpty()
+            || this->ui->lineEditPointArriveeYPixel->text().isEmpty())
+    {
+        this->ui->lineEditPointArriveeXReel->clear();
+        this->ui->lineEditPointArriveeYReel->clear();
+        return;
+    }
+
     const Parametres& parametres = this->etude.getParametres();
     const ParametresAffichage& parametresAffichage = parametres.getParametresAffichage();
     const char formatNotationNombresCaractere =
@@ -357,6 +373,14 @@ void EcranPrincipal::actualiserCoordonneesPointArrivee()
 
 void EcranPrincipal::actualiserCoordonneesPointManuel()
 {
+    if (this->ui->lineEditPointManuelXPixel->text().isEmpty()
+            || this->ui->lineEditPointManuelYPixel->text().isEmpty())
+    {
+        this->ui->lineEditPointManuelXReel->clear();
+        this->ui->lineEditPointManuelYReel->clear();
+        return;
+    }
+
     const Parametres& parametres = this->etude.getParametres();
     const ParametresAffichage& parametresAffichage = parametres.getParametresAffichage();
     const char formatNotationNombresCaractere =
