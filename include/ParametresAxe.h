@@ -1,7 +1,7 @@
 //==============================================================================
 // Name        : ParametresAxe.h
 // Author      : Alexis Foerster (alexis.foerster@gmail.com)
-// Version     : 1.1.2 (12/04/2018)
+// Version     : 1.1.3 (28/05/2018)
 // Description : Header file of the ParametresAxe class
 //==============================================================================
 
