@@ -1,15 +1,15 @@
 <RCC>
     <qresource prefix="/icones">
-        <file alias="iconeNumerisationDeCourbes">Icon_Mathematical_Plot.svg</file>
-        <file alias="iconeActionCreerEtude">Document-new.svg</file>
-        <file alias="iconeActionChargerEtude">Document-open.svg</file>
-        <file alias="iconeActionSauverEtude">Document-save.svg</file>
-        <file alias="iconeActionExporterListePoints">X-office-spreadsheet.svg</file>
-        <file alias="iconeActionExporterImage">Image-x-generic.svg</file>
-        <file alias="iconeActionQuitter">System-log-out.svg</file>
-        <file alias="iconeActionChargerParametres">Document-open.svg</file>
-        <file alias="iconeActionSauverParametres">Document-save.svg</file>
-        <file alias="iconeActionDocumentation">X-office-address-book.svg</file>
-        <file alias="iconeActionAbout">Help-browser.svg</file>
+        <file alias="iconeNumerisationDeCourbes">icon-mathematical-plot.svg</file>
+        <file alias="iconeActionCreerEtude">document-new.svg</file>
+        <file alias="iconeActionChargerEtude">document-open.svg</file>
+        <file alias="iconeActionSauverEtude">document-save.svg</file>
+        <file alias="iconeActionExporterListePoints">x-office-spreadsheet.svg</file>
+        <file alias="iconeActionExporterImage">image-x-generic.svg</file>
+        <file alias="iconeActionQuitter">system-log-out.svg</file>
+        <file alias="iconeActionChargerParametres">document-open.svg</file>
+        <file alias="iconeActionSauverParametres">document-save.svg</file>
+        <file alias="iconeActionDocumentation">x-office-address-book.svg</file>
+        <file alias="iconeActionAbout">help-browser.svg</file>
     </qresource>
 </RCC>
