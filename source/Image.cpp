@@ -89,9 +89,9 @@ const QString Image::toString(const char& sep) const
     QString toString;
     const QImage& imageSource = this->getImageSource();
     const QImage& imageConvertie = this->getImageConvertie();
-    toString += "(" + QByteArray((char*) imageSource.bits(), imageSource.numBytes()).toHex() + ")"
+    toString += "(" + QByteArray((char*) imageSource.bits(), imageSource.byteCount()).toHex() + ")"
             + sep;
-    toString += "(" + QByteArray((char*) imageConvertie.bits(), imageConvertie.numBytes()).toHex()
+    toString += "(" + QByteArray((char*) imageConvertie.bits(), imageConvertie.byteCount()).toHex()
             + ")";
     return toString;
 }

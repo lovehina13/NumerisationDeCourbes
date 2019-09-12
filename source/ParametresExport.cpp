@@ -157,8 +157,8 @@ void ParametresExport::fromString(const QString& fromString, const char& sep)
     const QStringList fromStringList = listeSousElements(fromString, sep);
     this->setFormatNotationNombres(fromStringList.at(0).toInt());
     this->setNombreChiffresSignificatifs(fromStringList.at(1).toInt());
-    this->setCaractereSeparation(fromStringList.at(2).at(1).toAscii());
-    this->setCaractereSeparateurDecimal(fromStringList.at(3).at(1).toAscii());
+    this->setCaractereSeparation(fromStringList.at(2).at(1).toLatin1());
+    this->setCaractereSeparateurDecimal(fromStringList.at(3).at(1).toLatin1());
     this->setSeuilInterpolationNumerique(fromStringList.at(4).toDouble());
 }
 
