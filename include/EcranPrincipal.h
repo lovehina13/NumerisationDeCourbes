@@ -25,7 +25,7 @@ class EcranPrincipal : public QMainWindow
 
 public:
     // Constructeurs et destructeurs
-    explicit EcranPrincipal(QWidget* parent = NULL);
+    explicit EcranPrincipal(QWidget* parent = nullptr);
     ~EcranPrincipal();
 
     // Getters
