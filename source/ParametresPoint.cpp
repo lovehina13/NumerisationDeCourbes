@@ -21,8 +21,8 @@ const QRgb ParametresPoint::couleurPointManuelDefaut = 0xFF00FF00; // QColor(Qt:
 //        défaut des paramètres d'affichage.
 
 const QMap<int, QString> ParametresPoint::stylesPointsTexte = QMap<int, QString>(
-        std::map<int, QString> { {CARRE, QString::fromUtf8("Carré")}, {CERCLE, QString::fromUtf8(
-                "Cercle")}});
+        std::map<int, QString> { { CARRE, QString::fromUtf8("Carré") }, { CERCLE, QString::fromUtf8(
+                "Cercle") } });
 
 ParametresPoint::ParametresPoint() :
         stylePoint(stylePointDefaut), epaisseurPoint(epaisseurPointDefaut),

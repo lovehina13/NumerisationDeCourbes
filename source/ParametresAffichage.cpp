@@ -28,10 +28,10 @@ const ParametresPoint ParametresAffichage::parametresPointsManuelsDefaut = Param
         ParametresPoint::couleurPointManuelDefaut);
 
 const QMap<int, char> ParametresAffichage::formatsNotationNombresCaractere = QMap<int, char>(
-        std::map<int, char> { {STANDARD, 'f'}, {SCIENTIFIQUE, 'e'}});
+        std::map<int, char> { { STANDARD, 'f' }, { SCIENTIFIQUE, 'e' } });
 const QMap<int, QString> ParametresAffichage::formatsNotationNombresTexte = QMap<int, QString>(
-        std::map<int, QString> { {STANDARD, QString::fromUtf8("Standard")}, {SCIENTIFIQUE,
-                QString::fromUtf8("Scientifique")}});
+        std::map<int, QString> { { STANDARD, QString::fromUtf8("Standard") }, { SCIENTIFIQUE,
+                QString::fromUtf8("Scientifique") } });
 
 ParametresAffichage::ParametresAffichage() :
         formatNotationNombres(formatNotationNombresDefaut),
