@@ -140,10 +140,10 @@ void Repere::fromString(const QString& fromString, const QChar& sep)
 const QString Repere::toString(const QChar& sep) const
 {
     QString toString;
-    toString += "(" + this->getPointX0().toString(sep) + ")" + sep;
-    toString += "(" + this->getPointX1().toString(sep) + ")" + sep;
-    toString += "(" + this->getPointY0().toString(sep) + ")" + sep;
-    toString += "(" + this->getPointY1().toString(sep) + ")";
+    toString += QString("(%1)").arg(this->getPointX0().toString(sep)) + sep;
+    toString += QString("(%1)").arg(this->getPointX1().toString(sep)) + sep;
+    toString += QString("(%1)").arg(this->getPointY0().toString(sep)) + sep;
+    toString += QString("(%1)").arg(this->getPointY1().toString(sep));
     return toString;
 }
 

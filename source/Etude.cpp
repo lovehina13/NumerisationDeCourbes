@@ -144,20 +144,20 @@ const QString Etude::toString(const QChar& sep) const
     QString toString;
     const QList<Point>& listeDePoints = this->getListeDePoints();
     const int nombreDePoints = listeDePoints.count();
-    toString += "(" + this->getImage().toString(sep) + ")" + sep;
-    toString += "(" + this->getRepere().toString(sep) + ")" + sep;
-    toString += "[";
+    toString += QString("(%1)").arg(this->getImage().toString(sep)) + sep;
+    toString += QString("(%1)").arg(this->getRepere().toString(sep)) + sep;
+    toString += QString("[");
     for (int itPoint = 0; itPoint < nombreDePoints; itPoint++)
     {
         const Point& pointCourant = listeDePoints.at(itPoint);
-        toString += "(" + pointCourant.toString(sep) + ")";
+        toString += QString("(%1)").arg(pointCourant.toString(sep));
         if (itPoint < (nombreDePoints - 1))
         {
             toString += sep;
         }
     }
-    toString += "]" + sep;
-    toString += "(" + this->getParametres().toString(sep) + ")";
+    toString += QString("]") + sep;
+    toString += QString("(%1)").arg(this->getParametres().toString(sep));
     return toString;
 }
 

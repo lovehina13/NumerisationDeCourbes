@@ -109,7 +109,7 @@ void ParametresGraphique::fromString(const QString& fromString, const QChar& sep
 const QString ParametresGraphique::toString(const QChar& sep) const
 {
     QString toString;
-    toString += "(" + this->getParametresAxeHorizontal().toString(sep) + ")" + sep;
-    toString += "(" + this->getParametresAxeVertical().toString(sep) + ")";
+    toString += QString("(%1)").arg(this->getParametresAxeHorizontal().toString(sep)) + sep;
+    toString += QString("(%1)").arg(this->getParametresAxeVertical().toString(sep));
     return toString;
 }

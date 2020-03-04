@@ -105,10 +105,12 @@ const QString Image::toString(const QChar& sep) const
     QString toString;
     const QImage& imageSource = this->getImageSource();
     const QImage& imageConvertie = this->getImageConvertie();
-    toString += "(" + QByteArray((char*) imageSource.bits(), imageSource.byteCount()).toHex() + ")"
-            + sep;
-    toString += "(" + QByteArray((char*) imageConvertie.bits(), imageConvertie.byteCount()).toHex()
-            + ")";
+    const QByteArray donneesImageSource = QByteArray((char*) imageSource.bits(),
+            imageSource.byteCount());
+    const QByteArray donneesImageConvertie = QByteArray((char*) imageConvertie.bits(),
+            imageConvertie.byteCount());
+    toString += QString("(%1)").arg(QString(donneesImageSource)) + sep;
+    toString += QString("(%1)").arg(QString(donneesImageConvertie));
     return toString;
 }
 
