@@ -15,7 +15,7 @@
 #include <QIODevice>
 #include <QPushButton>
 #include <QString>
-#if ENABLE_QWT
+#ifdef ENABLE_QWT
 #include <QBrush>
 #include <QColor>
 #include <QFont>
@@ -40,7 +40,7 @@ FenetreGraphique::FenetreGraphique(QWidget* parent) :
 {
     this->ui->setupUi(this);
 
-#if ENABLE_QWT
+#ifdef ENABLE_QWT
     this->ui->widgetGraphique = new QwtPlot(this);
     this->ui->gridLayoutFenetreGraphique->addWidget(this->ui->widgetGraphique, 1, 0, 1, 1);
 #endif
@@ -157,7 +157,7 @@ void FenetreGraphique::actualiserElementsGraphiques()
 
 void FenetreGraphique::effacerGraphique()
 {
-#if ENABLE_QWT
+#ifdef ENABLE_QWT
     QwtPlot* graphique = (QwtPlot*) this->ui->widgetGraphique;
 
     const QColor couleurArrierePlan = QColor(Qt::white);
@@ -194,7 +194,7 @@ void FenetreGraphique::dessinerGraphique()
 
 void FenetreGraphique::dessinerRepereGraphique()
 {
-#if ENABLE_QWT
+#ifdef ENABLE_QWT
     QwtPlot* graphique = (QwtPlot*) this->ui->widgetGraphique;
 
     const ParametresAxe& parametresAxeHorizontal =
@@ -237,7 +237,7 @@ void FenetreGraphique::dessinerRepereGraphique()
 
 void FenetreGraphique::dessinerGrilleGraphique()
 {
-#if ENABLE_QWT
+#ifdef ENABLE_QWT
     QwtPlot* graphique = (QwtPlot*) this->ui->widgetGraphique;
 
     const ParametresAxe& parametresAxeHorizontal =
@@ -290,7 +290,7 @@ void FenetreGraphique::dessinerPointManuel(const Point& pointManuel)
 void FenetreGraphique::dessinerCourbeGraphique(const Courbe& courbe,
         const ParametresTrait& parametresCourbe)
 {
-#if ENABLE_QWT
+#ifdef ENABLE_QWT
     QwtPlot* graphique = (QwtPlot*) this->ui->widgetGraphique;
 
     const int& styleCourbe = parametresCourbe.getStyleTrait();
@@ -324,7 +324,7 @@ void FenetreGraphique::dessinerCourbeGraphique(const Courbe& courbe,
 void FenetreGraphique::dessinerPointGraphique(const Point& point,
         const ParametresPoint& parametresPoint)
 {
-#if ENABLE_QWT
+#ifdef ENABLE_QWT
     QwtPlot* graphique = (QwtPlot*) this->ui->widgetGraphique;
 
     const int& stylePoint = parametresPoint.getStylePoint();
@@ -367,7 +367,7 @@ void FenetreGraphique::exporterGraphique()
     if (!fichierGraphique.open(QIODevice::WriteOnly | QIODevice::Text))
         return;
 
-#if ENABLE_QWT
+#ifdef ENABLE_QWT
     QwtPlot* graphique = (QwtPlot*) this->ui->widgetGraphique;
 
     QPixmap pixmap = QPixmap::grabWidget(graphique);

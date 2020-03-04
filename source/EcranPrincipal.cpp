@@ -86,7 +86,7 @@ void EcranPrincipal::initialiserElementsGraphiques()
     this->ui->lineEditPointManuelXReel->setValidator(nombreReel);
     this->ui->lineEditPointManuelYReel->setValidator(nombreReel);
 
-#if !ENABLE_QWT
+#ifndef ENABLE_QWT
     this->ui->pushButtonGraphique->setEnabled(false);
 #endif
 }

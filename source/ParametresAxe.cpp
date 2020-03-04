@@ -8,7 +8,7 @@
 #include "ParametresAxe.h"
 #include "Outils.h"
 #include <QStringList>
-#if ENABLE_QWT
+#ifdef ENABLE_QWT
 #include <qwt_scale_engine.h>
 #endif
 
@@ -198,7 +198,7 @@ void ParametresAxe::ajuster()
 
 void ParametresAxe::ajusterBornes()
 {
-#if ENABLE_QWT
+#ifdef ENABLE_QWT
     double borneInferieure = this->getBorneInferieure();
     double borneSuperieure = this->getBorneSuperieure();
     double pasPrincipal = this->getPasPrincipal();
@@ -212,7 +212,7 @@ void ParametresAxe::ajusterBornes()
 
 void ParametresAxe::ajusterPasPrincipal()
 {
-#if ENABLE_QWT
+#ifdef ENABLE_QWT
     double borneInferieure = this->getBorneInferieure();
     double borneSuperieure = this->getBorneSuperieure();
     double pasPrincipal = this->getPasPrincipal();
@@ -225,7 +225,7 @@ void ParametresAxe::ajusterPasPrincipal()
 
 void ParametresAxe::ajusterPasSecondaire()
 {
-#if ENABLE_QWT
+#ifdef ENABLE_QWT
     double borneInferieure = this->getBorneInferieure();
     double pasPrincipal = this->getPasPrincipal();
     double pasSecondaire = this->getPasSecondaire();
