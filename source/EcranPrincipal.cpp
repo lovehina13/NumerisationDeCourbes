@@ -481,7 +481,7 @@ void EcranPrincipal::activerBouton(const QPushButton* pushButton)
         {
             this->pushButtonActif->setChecked(false);
         }
-        this->pushButtonActif = (QPushButton*) pushButton;
+        this->pushButtonActif = const_cast<QPushButton*>(pushButton);
     }
 }
 
