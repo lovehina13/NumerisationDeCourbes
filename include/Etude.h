@@ -28,6 +28,11 @@ public:
     Etude(const Etude& etude);
     virtual ~Etude();
 
+    // Opérateurs
+    Etude& operator=(const Etude& etude);
+    bool operator==(const Etude& etude) const;
+    bool operator!=(const Etude& etude) const;
+
     // Getters
     const Image& getImage() const;
     const Repere& getRepere() const;

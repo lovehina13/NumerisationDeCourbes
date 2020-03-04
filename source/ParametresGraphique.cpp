@@ -31,6 +31,22 @@ ParametresGraphique::~ParametresGraphique()
 {
 }
 
+ParametresGraphique& ParametresGraphique::operator=(const ParametresGraphique& parametresGraphique)
+{
+    this->copy(parametresGraphique);
+    return *this;
+}
+
+bool ParametresGraphique::operator==(const ParametresGraphique& parametresGraphique) const
+{
+    return this->equals(parametresGraphique);
+}
+
+bool ParametresGraphique::operator!=(const ParametresGraphique& parametresGraphique) const
+{
+    return !this->equals(parametresGraphique);
+}
+
 const ParametresAxe& ParametresGraphique::getParametresAxeHorizontal() const
 {
     return this->parametresAxeHorizontal;

@@ -21,6 +21,11 @@ public:
     ParametresGraphique(const ParametresGraphique& parametresGraphique);
     virtual ~ParametresGraphique();
 
+    // Opérateurs
+    ParametresGraphique& operator=(const ParametresGraphique& parametresGraphique);
+    bool operator==(const ParametresGraphique& parametresGraphique) const;
+    bool operator!=(const ParametresGraphique& parametresGraphique) const;
+
     // Getters
     const ParametresAxe& getParametresAxeHorizontal() const;
     const ParametresAxe& getParametresAxeVertical() const;

@@ -44,6 +44,22 @@ Etude::~Etude()
 {
 }
 
+Etude& Etude::operator=(const Etude& etude)
+{
+    this->copy(etude);
+    return *this;
+}
+
+bool Etude::operator==(const Etude& etude) const
+{
+    return this->equals(etude);
+}
+
+bool Etude::operator!=(const Etude& etude) const
+{
+    return !this->equals(etude);
+}
+
 const Image& Etude::getImage() const
 {
     return this->image;

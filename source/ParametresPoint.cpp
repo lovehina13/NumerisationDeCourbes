@@ -48,6 +48,22 @@ ParametresPoint::~ParametresPoint()
 {
 }
 
+ParametresPoint& ParametresPoint::operator=(const ParametresPoint& parametresPoint)
+{
+    this->copy(parametresPoint);
+    return *this;
+}
+
+bool ParametresPoint::operator==(const ParametresPoint& parametresPoint) const
+{
+    return this->equals(parametresPoint);
+}
+
+bool ParametresPoint::operator!=(const ParametresPoint& parametresPoint) const
+{
+    return !this->equals(parametresPoint);
+}
+
 const int& ParametresPoint::getStylePoint() const
 {
     return this->stylePoint;

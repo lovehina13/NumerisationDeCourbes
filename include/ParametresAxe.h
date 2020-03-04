@@ -21,6 +21,11 @@ public:
     ParametresAxe(const ParametresAxe& parametresAxe);
     virtual ~ParametresAxe();
 
+    // Opérateurs
+    ParametresAxe& operator=(const ParametresAxe& parametresAxe);
+    bool operator==(const ParametresAxe& parametresAxe) const;
+    bool operator!=(const ParametresAxe& parametresAxe) const;
+
     // Getters
     const double& getBorneInferieure() const;
     const double& getBorneSuperieure() const;

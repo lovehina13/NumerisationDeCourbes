@@ -25,6 +25,11 @@ public:
     Point(const Point& point);
     virtual ~Point();
 
+    // Opérateurs
+    Point& operator=(const Point& point);
+    bool operator==(const Point& point) const;
+    bool operator!=(const Point& point) const;
+
     // Getters
     const QPoint& getPointPixel() const;
     const QPointF& getPointReel() const;
@@ -56,7 +61,6 @@ public:
     // Méthodes spécifiques
     const QString getTypePointTexte() const;
     void setTypePointTexte(const QString& typePointTexte);
-    bool operator==(const Point& point) const;
 
     // Enumération des types de points
     enum typesPoints

@@ -22,6 +22,11 @@ public:
     ParametresExport(const ParametresExport& parametresExport);
     virtual ~ParametresExport();
 
+    // Opérateurs
+    ParametresExport& operator=(const ParametresExport& parametresExport);
+    bool operator==(const ParametresExport& parametresExport) const;
+    bool operator!=(const ParametresExport& parametresExport) const;
+
     // Getters
     const int& getFormatNotationNombres() const;
     const int& getNombreChiffresSignificatifs() const;

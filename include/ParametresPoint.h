@@ -21,6 +21,11 @@ public:
     ParametresPoint(const ParametresPoint& parametresPoint);
     virtual ~ParametresPoint();
 
+    // Opérateurs
+    ParametresPoint& operator=(const ParametresPoint& parametresPoint);
+    bool operator==(const ParametresPoint& parametresPoint) const;
+    bool operator!=(const ParametresPoint& parametresPoint) const;
+
     // Getters
     const int& getStylePoint() const;
     const int& getEpaisseurPoint() const;

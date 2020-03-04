@@ -23,6 +23,11 @@ public:
     Image(const Image& image);
     virtual ~Image();
 
+    // Opérateurs
+    Image& operator=(const Image& image);
+    bool operator==(const Image& image) const;
+    bool operator!=(const Image& image) const;
+
     // Getters
     const QImage& getImageSource() const;
     const QImage& getImageConvertie() const;

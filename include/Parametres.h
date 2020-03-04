@@ -28,6 +28,11 @@ public:
     Parametres(const Parametres& parametres);
     virtual ~Parametres();
 
+    // Opérateurs
+    Parametres& operator=(const Parametres& parametres);
+    bool operator==(const Parametres& parametres) const;
+    bool operator!=(const Parametres& parametres) const;
+
     // Getters
     const ParametresFichiers& getParametresFichiers() const;
     const ParametresAffichage& getParametresAffichage() const;

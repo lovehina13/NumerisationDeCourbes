@@ -34,6 +34,22 @@ ParametresFichiers::~ParametresFichiers()
 {
 }
 
+ParametresFichiers& ParametresFichiers::operator=(const ParametresFichiers& parametresFichiers)
+{
+    this->copy(parametresFichiers);
+    return *this;
+}
+
+bool ParametresFichiers::operator==(const ParametresFichiers& parametresFichiers) const
+{
+    return this->equals(parametresFichiers);
+}
+
+bool ParametresFichiers::operator!=(const ParametresFichiers& parametresFichiers) const
+{
+    return !this->equals(parametresFichiers);
+}
+
 const QString& ParametresFichiers::getCheminFichierEtude() const
 {
     return this->cheminFichierEtude;

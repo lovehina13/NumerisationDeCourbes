@@ -32,6 +32,22 @@ Image::~Image()
 {
 }
 
+Image& Image::operator=(const Image& image)
+{
+    this->copy(image);
+    return *this;
+}
+
+bool Image::operator==(const Image& image) const
+{
+    return this->equals(image);
+}
+
+bool Image::operator!=(const Image& image) const
+{
+    return !this->equals(image);
+}
+
 const QImage& Image::getImageSource() const
 {
     return this->imageSource;

@@ -60,6 +60,22 @@ ParametresExport::~ParametresExport()
 {
 }
 
+ParametresExport& ParametresExport::operator=(const ParametresExport& parametresExport)
+{
+    this->copy(parametresExport);
+    return *this;
+}
+
+bool ParametresExport::operator==(const ParametresExport& parametresExport) const
+{
+    return this->equals(parametresExport);
+}
+
+bool ParametresExport::operator!=(const ParametresExport& parametresExport) const
+{
+    return !this->equals(parametresExport);
+}
+
 const int& ParametresExport::getFormatNotationNombres() const
 {
     return this->formatNotationNombres;

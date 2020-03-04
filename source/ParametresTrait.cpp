@@ -47,6 +47,22 @@ ParametresTrait::~ParametresTrait()
 {
 }
 
+ParametresTrait& ParametresTrait::operator=(const ParametresTrait& parametresTrait)
+{
+    this->copy(parametresTrait);
+    return *this;
+}
+
+bool ParametresTrait::operator==(const ParametresTrait& parametresTrait) const
+{
+    return this->equals(parametresTrait);
+}
+
+bool ParametresTrait::operator!=(const ParametresTrait& parametresTrait) const
+{
+    return !this->equals(parametresTrait);
+}
+
 const int& ParametresTrait::getStyleTrait() const
 {
     return this->styleTrait;

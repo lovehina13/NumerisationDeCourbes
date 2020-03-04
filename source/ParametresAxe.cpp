@@ -48,6 +48,22 @@ ParametresAxe::~ParametresAxe()
 {
 }
 
+ParametresAxe& ParametresAxe::operator=(const ParametresAxe& parametresAxe)
+{
+    this->copy(parametresAxe);
+    return *this;
+}
+
+bool ParametresAxe::operator==(const ParametresAxe& parametresAxe) const
+{
+    return this->equals(parametresAxe);
+}
+
+bool ParametresAxe::operator!=(const ParametresAxe& parametresAxe) const
+{
+    return !this->equals(parametresAxe);
+}
+
 const double& ParametresAxe::getBorneInferieure() const
 {
     return this->borneInferieure;

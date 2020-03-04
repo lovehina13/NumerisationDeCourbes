@@ -61,6 +61,22 @@ ParametresAffichage::~ParametresAffichage()
 {
 }
 
+ParametresAffichage& ParametresAffichage::operator=(const ParametresAffichage& parametresAffichage)
+{
+    this->copy(parametresAffichage);
+    return *this;
+}
+
+bool ParametresAffichage::operator==(const ParametresAffichage& parametresAffichage) const
+{
+    return this->equals(parametresAffichage);
+}
+
+bool ParametresAffichage::operator!=(const ParametresAffichage& parametresAffichage) const
+{
+    return !this->equals(parametresAffichage);
+}
+
 const int& ParametresAffichage::getFormatNotationNombres() const
 {
     return this->formatNotationNombres;

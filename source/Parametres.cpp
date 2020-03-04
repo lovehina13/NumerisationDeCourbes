@@ -34,6 +34,22 @@ Parametres::~Parametres()
 {
 }
 
+Parametres& Parametres::operator=(const Parametres& parametres)
+{
+    this->copy(parametres);
+    return *this;
+}
+
+bool Parametres::operator==(const Parametres& parametres) const
+{
+    return this->equals(parametres);
+}
+
+bool Parametres::operator!=(const Parametres& parametres) const
+{
+    return !this->equals(parametres);
+}
+
 const ParametresFichiers& Parametres::getParametresFichiers() const
 {
     return this->parametresFichiers;

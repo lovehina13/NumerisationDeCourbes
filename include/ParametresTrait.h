@@ -21,6 +21,11 @@ public:
     ParametresTrait(const ParametresTrait& parametresTrait);
     virtual ~ParametresTrait();
 
+    // Opérateurs
+    ParametresTrait& operator=(const ParametresTrait& parametresTrait);
+    bool operator==(const ParametresTrait& parametresTrait) const;
+    bool operator!=(const ParametresTrait& parametresTrait) const;
+
     // Getters
     const int& getStyleTrait() const;
     const int& getEpaisseurTrait() const;

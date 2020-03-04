@@ -21,6 +21,11 @@ public:
     ParametresFichiers(const ParametresFichiers& parametresFichiers);
     virtual ~ParametresFichiers();
 
+    // Opérateurs
+    ParametresFichiers& operator=(const ParametresFichiers& parametresFichiers);
+    bool operator==(const ParametresFichiers& parametresFichiers) const;
+    bool operator!=(const ParametresFichiers& parametresFichiers) const;
+
     // Getters
     const QString& getCheminFichierEtude() const;
     const QString& getCheminFichierImageSource() const;

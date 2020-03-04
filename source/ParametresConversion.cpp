@@ -51,6 +51,23 @@ ParametresConversion::~ParametresConversion()
 {
 }
 
+ParametresConversion& ParametresConversion::operator=(
+        const ParametresConversion& parametresConversion)
+{
+    this->copy(parametresConversion);
+    return *this;
+}
+
+bool ParametresConversion::operator==(const ParametresConversion& parametresConversion) const
+{
+    return this->equals(parametresConversion);
+}
+
+bool ParametresConversion::operator!=(const ParametresConversion& parametresConversion) const
+{
+    return !this->equals(parametresConversion);
+}
+
 const int& ParametresConversion::getMethodeConversion() const
 {
     return this->methodeConversion;

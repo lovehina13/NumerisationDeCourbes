@@ -22,6 +22,11 @@ public:
     ParametresConversion(const ParametresConversion& parametresConversion);
     virtual ~ParametresConversion();
 
+    // Opérateurs
+    ParametresConversion& operator=(const ParametresConversion& parametresConversion);
+    bool operator==(const ParametresConversion& parametresConversion) const;
+    bool operator!=(const ParametresConversion& parametresConversion) const;
+
     // Getters
     const int& getMethodeConversion() const;
     const int& getSeuilNoirEtBlanc() const;

@@ -45,6 +45,22 @@ Point::~Point()
 {
 }
 
+Point& Point::operator=(const Point& point)
+{
+    this->copy(point);
+    return *this;
+}
+
+bool Point::operator==(const Point& point) const
+{
+    return this->equals(point);
+}
+
+bool Point::operator!=(const Point& point) const
+{
+    return !this->equals(point);
+}
+
 const QPoint& Point::getPointPixel() const
 {
     return this->pointPixel;
@@ -182,9 +198,4 @@ const QString Point::getTypePointTexte() const
 void Point::setTypePointTexte(const QString& typePointTexte)
 {
     this->setTypePoint(typesPointsTexte.key(typePointTexte));
-}
-
-bool Point::operator==(const Point& point) const
-{
-    return this->equals(point);
 }

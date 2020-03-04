@@ -45,6 +45,22 @@ ParametresRecherche::~ParametresRecherche()
 {
 }
 
+ParametresRecherche& ParametresRecherche::operator=(const ParametresRecherche& parametresRecherche)
+{
+    this->copy(parametresRecherche);
+    return *this;
+}
+
+bool ParametresRecherche::operator==(const ParametresRecherche& parametresRecherche) const
+{
+    return this->equals(parametresRecherche);
+}
+
+bool ParametresRecherche::operator!=(const ParametresRecherche& parametresRecherche) const
+{
+    return !this->equals(parametresRecherche);
+}
+
 const int& ParametresRecherche::getSeuilToleranceNiveauxDeGris() const
 {
     return this->seuilToleranceNiveauxDeGris;

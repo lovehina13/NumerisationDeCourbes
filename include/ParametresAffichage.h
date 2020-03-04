@@ -26,6 +26,11 @@ public:
     ParametresAffichage(const ParametresAffichage& parametresAffichage);
     virtual ~ParametresAffichage();
 
+    // Opérateurs
+    ParametresAffichage& operator=(const ParametresAffichage& parametresAffichage);
+    bool operator==(const ParametresAffichage& parametresAffichage) const;
+    bool operator!=(const ParametresAffichage& parametresAffichage) const;
+
     // Getters
     const int& getFormatNotationNombres() const;
     const int& getNombreChiffresSignificatifs() const;

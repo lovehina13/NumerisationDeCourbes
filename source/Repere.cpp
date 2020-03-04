@@ -31,6 +31,22 @@ Repere::~Repere()
 {
 }
 
+Repere& Repere::operator=(const Repere& repere)
+{
+    this->copy(repere);
+    return *this;
+}
+
+bool Repere::operator==(const Repere& repere) const
+{
+    return this->equals(repere);
+}
+
+bool Repere::operator!=(const Repere& repere) const
+{
+    return !this->equals(repere);
+}
+
 const Point& Repere::getPointX0() const
 {
     return this->pointX0;

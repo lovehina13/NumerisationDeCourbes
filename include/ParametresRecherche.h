@@ -21,6 +21,11 @@ public:
     ParametresRecherche(const ParametresRecherche& parametresRecherche);
     virtual ~ParametresRecherche();
 
+    // Opérateurs
+    ParametresRecherche& operator=(const ParametresRecherche& parametresRecherche);
+    bool operator==(const ParametresRecherche& parametresRecherche) const;
+    bool operator!=(const ParametresRecherche& parametresRecherche) const;
+
     // Getters
     const int& getSeuilToleranceNiveauxDeGris() const;
     const int& getSeuilToleranceTeintesSaturees() const;

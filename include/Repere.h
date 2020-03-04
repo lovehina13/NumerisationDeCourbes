@@ -20,6 +20,11 @@ public:
     Repere(const Repere& repere);
     virtual ~Repere();
 
+    // Opérateurs
+    Repere& operator=(const Repere& repere);
+    bool operator==(const Repere& repere) const;
+    bool operator!=(const Repere& repere) const;
+
     // Getters
     const Point& getPointX0() const;
     const Point& getPointX1() const;
