@@ -123,7 +123,7 @@ bool ParametresTrait::equals(const ParametresTrait& parametresTrait) const
     return true;
 }
 
-void ParametresTrait::fromString(const QString& fromString, const char& sep)
+void ParametresTrait::fromString(const QString& fromString, const QChar& sep)
 {
     const QStringList fromStringList = listeSousElements(fromString, sep);
     this->setStyleTrait(fromStringList.at(0).toInt());
@@ -131,7 +131,7 @@ void ParametresTrait::fromString(const QString& fromString, const char& sep)
     this->setCouleurTrait(QColor(fromStringList.at(2)).rgb());
 }
 
-const QString ParametresTrait::toString(const char& sep) const
+const QString ParametresTrait::toString(const QChar& sep) const
 {
     QString toString;
     toString += QString::number(this->getStyleTrait()) + sep;

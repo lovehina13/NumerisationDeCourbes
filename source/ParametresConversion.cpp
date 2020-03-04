@@ -159,7 +159,7 @@ bool ParametresConversion::equals(const ParametresConversion& parametresConversi
     return true;
 }
 
-void ParametresConversion::fromString(const QString& fromString, const char& sep)
+void ParametresConversion::fromString(const QString& fromString, const QChar& sep)
 {
     const QStringList fromStringList = listeSousElements(fromString, sep);
     this->setMethodeConversion(fromStringList.at(0).toInt());
@@ -169,7 +169,7 @@ void ParametresConversion::fromString(const QString& fromString, const char& sep
     this->setSeuilSaturation(fromStringList.at(4).toInt());
 }
 
-const QString ParametresConversion::toString(const char& sep) const
+const QString ParametresConversion::toString(const QChar& sep) const
 {
     QString toString;
     toString += QString::number(this->getMethodeConversion()) + sep;

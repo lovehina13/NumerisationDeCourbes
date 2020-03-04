@@ -8,6 +8,7 @@
 #ifndef POINT_H
 #define POINT_H
 
+#include <QChar>
 #include <QList>
 #include <QMap>
 #include <QPoint>
@@ -55,8 +56,8 @@ public:
             const double& pointReelY, const int& typePoint);
     void copy(const Point& point);
     bool equals(const Point& point) const;
-    void fromString(const QString& fromString, const char& sep);
-    const QString toString(const char& sep) const;
+    void fromString(const QString& fromString, const QChar& sep);
+    const QString toString(const QChar& sep) const;
 
     // Méthodes spécifiques
     const QString getTypePointTexte() const;

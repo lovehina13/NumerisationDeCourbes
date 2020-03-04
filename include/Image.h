@@ -8,6 +8,7 @@
 #ifndef IMAGE_H
 #define IMAGE_H
 
+#include <QChar>
 #include <QImage>
 #include <QList>
 #include <QPoint>
@@ -41,8 +42,8 @@ public:
     void set(const QImage& imageSource, const QImage& imageConvertie);
     void copy(const Image& image);
     bool equals(const Image& image) const;
-    void fromString(const QString& fromString, const char& sep);
-    const QString toString(const char& sep) const;
+    void fromString(const QString& fromString, const QChar& sep);
+    const QString toString(const QChar& sep) const;
 
     // Méthodes spécifiques
     void restaurerImage();

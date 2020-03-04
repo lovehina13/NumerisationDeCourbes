@@ -166,7 +166,7 @@ bool ParametresAxe::equals(const ParametresAxe& parametresAxe) const
     return true;
 }
 
-void ParametresAxe::fromString(const QString& fromString, const char& sep)
+void ParametresAxe::fromString(const QString& fromString, const QChar& sep)
 {
     const QStringList fromStringList = listeSousElements(fromString, sep);
     this->setBorneInferieure(fromStringList.at(0).toDouble());
@@ -177,7 +177,7 @@ void ParametresAxe::fromString(const QString& fromString, const char& sep)
     this->setPasSecondaire((bool) fromStringList.at(5).toInt());
 }
 
-const QString ParametresAxe::toString(const char& sep) const
+const QString ParametresAxe::toString(const QChar& sep) const
 {
     QString toString;
     toString += QString::number(this->getBorneInferieure()) + sep;

@@ -8,6 +8,7 @@
 #ifndef PARAMETRESPOINT_H
 #define PARAMETRESPOINT_H
 
+#include <QChar>
 #include <QMap>
 #include <QRgb>
 #include <QString>
@@ -41,8 +42,8 @@ public:
     void set(const int& stylePoint, const int& epaisseurPoint, const QRgb& couleurPoint);
     void copy(const ParametresPoint& parametresPoint);
     bool equals(const ParametresPoint& parametresPoint) const;
-    void fromString(const QString& fromString, const char& sep);
-    const QString toString(const char& sep) const;
+    void fromString(const QString& fromString, const QChar& sep);
+    const QString toString(const QChar& sep) const;
 
     // Méthodes spécifiques
     const QString getStylePointTexte() const;

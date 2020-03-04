@@ -82,7 +82,7 @@ const QList<QList<int>> listesValeursAdjacentes(const QList<int>& listeValeurs)
     return listesValeursAdjacentes;
 }
 
-const QStringList listeSousElements(const QString& chaineElements, const char& sep)
+const QStringList listeSousElements(const QString& chaineElements, const QChar& sep)
 {
     QStringList listeSousElements;
     QString elementCourant;

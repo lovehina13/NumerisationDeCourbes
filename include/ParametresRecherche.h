@@ -8,6 +8,7 @@
 #ifndef PARAMETRESRECHERCHE_H
 #define PARAMETRESRECHERCHE_H
 
+#include <QChar>
 #include <QString>
 
 class ParametresRecherche
@@ -47,8 +48,8 @@ public:
             const bool& selectionValeursMaximales);
     void copy(const ParametresRecherche& parametresRecherche);
     bool equals(const ParametresRecherche& parametresRecherche) const;
-    void fromString(const QString& fromString, const char& sep);
-    const QString toString(const char& sep) const;
+    void fromString(const QString& fromString, const QChar& sep);
+    const QString toString(const QChar& sep) const;
 
     // Méthodes spécifiques
     double getSeuilToleranceNiveauxDeGrisFacteur() const;

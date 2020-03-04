@@ -13,6 +13,7 @@
 #include "ParametresExport.h"
 #include "ParametresFichiers.h"
 #include "ParametresRecherche.h"
+#include <QChar>
 #include <QString>
 
 class Parametres
@@ -56,8 +57,8 @@ public:
             const ParametresExport& parametresExport);
     void copy(const Parametres& parametres);
     bool equals(const Parametres& parametres) const;
-    void fromString(const QString& fromString, const char& sep);
-    const QString toString(const char& sep) const;
+    void fromString(const QString& fromString, const QChar& sep);
+    const QString toString(const QChar& sep) const;
 
     // Méthodes spécifiques
 

@@ -8,6 +8,7 @@
 #ifndef PARAMETRESEXPORT_H
 #define PARAMETRESEXPORT_H
 
+#include <QChar>
 #include <QMap>
 #include <QString>
 
@@ -48,8 +49,8 @@ public:
             const double& seuilInterpolationNumerique);
     void copy(const ParametresExport& parametresExport);
     bool equals(const ParametresExport& parametresExport) const;
-    void fromString(const QString& fromString, const char& sep);
-    const QString toString(const char& sep) const;
+    void fromString(const QString& fromString, const QChar& sep);
+    const QString toString(const QChar& sep) const;
 
     // Méthodes spécifiques
     char getFormatNotationNombresCaractere() const;

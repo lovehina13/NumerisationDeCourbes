@@ -9,6 +9,7 @@
 #define PARAMETRESGRAPHIQUE_H
 
 #include "ParametresAxe.h"
+#include <QChar>
 #include <QString>
 
 class ParametresGraphique
@@ -40,8 +41,8 @@ public:
             const ParametresAxe& parametresAxeVertical);
     void copy(const ParametresGraphique& parametresGraphique);
     bool equals(const ParametresGraphique& parametresGraphique) const;
-    void fromString(const QString& fromString, const char& sep);
-    const QString toString(const char& sep) const;
+    void fromString(const QString& fromString, const QChar& sep);
+    const QString toString(const QChar& sep) const;
 
     // Méthodes spécifiques
 

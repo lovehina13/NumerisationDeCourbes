@@ -9,6 +9,7 @@
 #define OUTILS_H
 
 #include "Point.h"
+#include <QChar>
 #include <QList>
 #include <QPoint>
 #include <QString>
@@ -19,7 +20,7 @@ int getValeurMoyenne(const QList<int>& listeValeurs);
 int getValeurMinimale(const QList<int>& listeValeurs);
 int getValeurMaximale(const QList<int>& listeValeurs);
 const QList<QList<int>> listesValeursAdjacentes(const QList<int>& listeValeurs);
-const QStringList listeSousElements(const QString& chaineElements, const char& sep);
+const QStringList listeSousElements(const QString& chaineElements, const QChar& sep);
 void interpolationNumerique(const double& x1, const double& y1, const double& x2, const double& y2,
         const double& x, double& y);
 void interpolationNumerique(const Point& point1, const Point& point2, Point& point);

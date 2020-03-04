@@ -168,7 +168,7 @@ bool ParametresExport::equals(const ParametresExport& parametresExport) const
     return true;
 }
 
-void ParametresExport::fromString(const QString& fromString, const char& sep)
+void ParametresExport::fromString(const QString& fromString, const QChar& sep)
 {
     const QStringList fromStringList = listeSousElements(fromString, sep);
     this->setFormatNotationNombres(fromStringList.at(0).toInt());
@@ -178,7 +178,7 @@ void ParametresExport::fromString(const QString& fromString, const char& sep)
     this->setSeuilInterpolationNumerique(fromStringList.at(4).toDouble());
 }
 
-const QString ParametresExport::toString(const char& sep) const
+const QString ParametresExport::toString(const QChar& sep) const
 {
     QString toString;
     toString += QString::number(this->getFormatNotationNombres()) + sep;

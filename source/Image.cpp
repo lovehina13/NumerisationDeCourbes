@@ -93,14 +93,14 @@ bool Image::equals(const Image& image) const
     return true;
 }
 
-void Image::fromString(const QString& fromString, const char& sep)
+void Image::fromString(const QString& fromString, const QChar& sep)
 {
-    // TODO void Image::fromString(const QString& fromString, const char& sep)
+    // TODO void Image::fromString(const QString& fromString, const QChar& sep)
     Q_UNUSED(fromString);
     Q_UNUSED(sep);
 }
 
-const QString Image::toString(const char& sep) const
+const QString Image::toString(const QChar& sep) const
 {
     QString toString;
     const QImage& imageSource = this->getImageSource();

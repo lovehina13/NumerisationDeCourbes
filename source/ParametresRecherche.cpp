@@ -155,7 +155,7 @@ bool ParametresRecherche::equals(const ParametresRecherche& parametresRecherche)
     return true;
 }
 
-void ParametresRecherche::fromString(const QString& fromString, const char& sep)
+void ParametresRecherche::fromString(const QString& fromString, const QChar& sep)
 {
     const QStringList fromStringList = listeSousElements(fromString, sep);
     this->setSeuilToleranceNiveauxDeGris(fromStringList.at(0).toInt());
@@ -165,7 +165,7 @@ void ParametresRecherche::fromString(const QString& fromString, const char& sep)
     this->setSelectionValeursMaximales((bool) fromStringList.at(4).toInt());
 }
 
-const QString ParametresRecherche::toString(const char& sep) const
+const QString ParametresRecherche::toString(const QChar& sep) const
 {
     QString toString;
     toString += QString::number(this->getSeuilToleranceNiveauxDeGris()) + sep;

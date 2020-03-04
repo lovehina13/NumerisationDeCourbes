@@ -8,6 +8,7 @@
 #ifndef PARAMETRESAXE_H
 #define PARAMETRESAXE_H
 
+#include <QChar>
 #include <QString>
 
 class ParametresAxe
@@ -49,8 +50,8 @@ public:
             const bool& grilleSecondaire);
     void copy(const ParametresAxe& parametresAxe);
     bool equals(const ParametresAxe& parametresAxe) const;
-    void fromString(const QString& fromString, const char& sep);
-    const QString toString(const char& sep) const;
+    void fromString(const QString& fromString, const QChar& sep);
+    const QString toString(const QChar& sep) const;
 
     // Méthodes spécifiques
     void ajuster();

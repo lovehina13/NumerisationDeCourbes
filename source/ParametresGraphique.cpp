@@ -95,7 +95,7 @@ bool ParametresGraphique::equals(const ParametresGraphique& parametresGraphique)
     return true;
 }
 
-void ParametresGraphique::fromString(const QString& fromString, const char& sep)
+void ParametresGraphique::fromString(const QString& fromString, const QChar& sep)
 {
     const QStringList fromStringList = listeSousElements(fromString, sep);
     ParametresAxe parametresAxeHorizontal = this->getParametresAxeHorizontal();
@@ -106,7 +106,7 @@ void ParametresGraphique::fromString(const QString& fromString, const char& sep)
     this->setParametresAxeVertical(parametresAxeVertical);
 }
 
-const QString ParametresGraphique::toString(const char& sep) const
+const QString ParametresGraphique::toString(const QChar& sep) const
 {
     QString toString;
     toString += "(" + this->getParametresAxeHorizontal().toString(sep) + ")" + sep;

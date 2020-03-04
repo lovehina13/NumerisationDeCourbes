@@ -13,6 +13,7 @@
 #include "ParametresGraphique.h"
 #include "Point.h"
 #include "Repere.h"
+#include <QChar>
 #include <QList>
 #include <QPoint>
 #include <QRgb>
@@ -51,8 +52,8 @@ public:
             const Parametres& parametres);
     void copy(const Etude& etude);
     bool equals(const Etude& etude) const;
-    void fromString(const QString& fromString, const char& sep);
-    const QString toString(const char& sep) const;
+    void fromString(const QString& fromString, const QChar& sep);
+    const QString toString(const QChar& sep) const;
 
     // Méthodes spécifiques
     const QList<Courbe> getListeDeCourbes() const;

@@ -8,6 +8,7 @@
 #ifndef PARAMETRESCONVERSION_H
 #define PARAMETRESCONVERSION_H
 
+#include <QChar>
 #include <QMap>
 #include <QString>
 
@@ -48,8 +49,8 @@ public:
             const int& seuilSaturation);
     void copy(const ParametresConversion& parametresConversion);
     bool equals(const ParametresConversion& parametresConversion) const;
-    void fromString(const QString& fromString, const char& sep);
-    const QString toString(const char& sep) const;
+    void fromString(const QString& fromString, const QChar& sep);
+    const QString toString(const QChar& sep) const;
 
     // Méthodes spécifiques
     const QString getMethodeConversionTexte() const;

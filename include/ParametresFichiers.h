@@ -8,6 +8,7 @@
 #ifndef PARAMETRESFICHIERS_H
 #define PARAMETRESFICHIERS_H
 
+#include <QChar>
 #include <QString>
 
 class ParametresFichiers
@@ -49,8 +50,8 @@ public:
             const QString& cheminFichierParametres, const QString& cheminFichierGraphique);
     void copy(const ParametresFichiers& parametresFichiers);
     bool equals(const ParametresFichiers& parametresFichiers) const;
-    void fromString(const QString& fromString, const char& sep);
-    const QString toString(const char& sep) const;
+    void fromString(const QString& fromString, const QChar& sep);
+    const QString toString(const QChar& sep) const;
 
     // Méthodes spécifiques
 

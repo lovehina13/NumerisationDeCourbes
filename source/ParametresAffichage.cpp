@@ -201,7 +201,7 @@ bool ParametresAffichage::equals(const ParametresAffichage& parametresAffichage)
     return true;
 }
 
-void ParametresAffichage::fromString(const QString& fromString, const char& sep)
+void ParametresAffichage::fromString(const QString& fromString, const QChar& sep)
 {
     const QStringList fromStringList = listeSousElements(fromString, sep);
     ParametresTrait parametresAxes = this->getParametresAxes();
@@ -223,7 +223,7 @@ void ParametresAffichage::fromString(const QString& fromString, const char& sep)
     this->setParametresPointsManuels(parametresPointsManuels);
 }
 
-const QString ParametresAffichage::toString(const char& sep) const
+const QString ParametresAffichage::toString(const QChar& sep) const
 {
     QString toString;
     toString += QString::number(this->getFormatNotationNombres()) + sep;

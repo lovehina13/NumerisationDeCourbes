@@ -10,6 +10,7 @@
 
 #include "ParametresPoint.h"
 #include "ParametresTrait.h"
+#include <QChar>
 #include <QMap>
 #include <QString>
 
@@ -58,8 +59,8 @@ public:
             const ParametresPoint& parametresPointsManuels);
     void copy(const ParametresAffichage& parametresAffichage);
     bool equals(const ParametresAffichage& parametresAffichage) const;
-    void fromString(const QString& fromString, const char& sep);
-    const QString toString(const char& sep) const;
+    void fromString(const QString& fromString, const QChar& sep);
+    const QString toString(const QChar& sep) const;
 
     // Méthodes spécifiques
     char getFormatNotationNombresCaractere() const;

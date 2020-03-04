@@ -8,6 +8,7 @@
 #ifndef PARAMETRESTRAIT_H
 #define PARAMETRESTRAIT_H
 
+#include <QChar>
 #include <QMap>
 #include <QRgb>
 #include <QString>
@@ -41,8 +42,8 @@ public:
     void set(const int& styleTrait, const int& epaisseurTrait, const QRgb& couleurTrait);
     void copy(const ParametresTrait& parametresTrait);
     bool equals(const ParametresTrait& parametresTrait) const;
-    void fromString(const QString& fromString, const char& sep);
-    const QString toString(const char& sep) const;
+    void fromString(const QString& fromString, const QChar& sep);
+    const QString toString(const QChar& sep) const;
 
     // Méthodes spécifiques
     const QString getStyleTraitTexte() const;

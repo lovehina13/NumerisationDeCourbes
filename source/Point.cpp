@@ -169,7 +169,7 @@ bool Point::equals(const Point& point) const
     return true;
 }
 
-void Point::fromString(const QString& fromString, const char& sep)
+void Point::fromString(const QString& fromString, const QChar& sep)
 {
     const QStringList fromStringList = listeSousElements(fromString, sep);
     this->setPointPixelX(fromStringList.at(0).toInt());
@@ -179,7 +179,7 @@ void Point::fromString(const QString& fromString, const char& sep)
     this->setTypePoint(fromStringList.at(4).toInt());
 }
 
-const QString Point::toString(const char& sep) const
+const QString Point::toString(const QChar& sep) const
 {
     QString toString;
     toString += QString::number(this->getPointPixelX()) + sep;

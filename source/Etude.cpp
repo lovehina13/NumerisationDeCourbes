@@ -132,14 +132,14 @@ bool Etude::equals(const Etude& etude) const
     return true;
 }
 
-void Etude::fromString(const QString& fromString, const char& sep)
+void Etude::fromString(const QString& fromString, const QChar& sep)
 {
-    // TODO void Etude::fromString(const QString& fromString, const char& sep)
+    // TODO void Etude::fromString(const QString& fromString, const QChar& sep)
     Q_UNUSED(fromString);
     Q_UNUSED(sep);
 }
 
-const QString Etude::toString(const char& sep) const
+const QString Etude::toString(const QChar& sep) const
 {
     QString toString;
     const QList<Point>& listeDePoints = this->getListeDePoints();
@@ -248,7 +248,7 @@ bool Etude::chargerEtude(const QString& cheminFichierEtude)
     if (!fichierEtude.open(QIODevice::ReadOnly | QIODevice::Text))
         return false;
 
-    const char separateur = ';';
+    const QChar separateur = ';';
     QTextStream fluxEntree(&fichierEtude);
     while (!fluxEntree.atEnd())
     {
@@ -301,7 +301,7 @@ bool Etude::sauverEtude(const QString& cheminFichierEtude)
     if (!fichierEtude.open(QIODevice::WriteOnly | QIODevice::Text))
         return false;
 
-    const char separateur = ';';
+    const QChar separateur = ';';
     QTextStream fluxSortie(&fichierEtude);
     const QList<Point>& listeDePoints = this->getListeDePoints();
     const int nombreDePoints = listeDePoints.count();
@@ -324,7 +324,7 @@ bool Etude::chargerParametres(const QString& cheminFichierParametres)
     if (!fichierParametres.open(QIODevice::ReadOnly | QIODevice::Text))
         return false;
 
-    const char separateur = ';';
+    const QChar separateur = ';';
     QTextStream fluxEntree(&fichierParametres);
     while (!fluxEntree.atEnd())
     {
@@ -383,7 +383,7 @@ bool Etude::sauverParametres(const QString& cheminFichierParametres)
     if (!fichierParametres.open(QIODevice::WriteOnly | QIODevice::Text))
         return false;
 
-    const char separateur = ';';
+    const QChar separateur = ';';
     QTextStream fluxSortie(&fichierParametres);
     fluxSortie << "[PARAMETRES_AFFICHAGE]" << endl;
     fluxSortie << this->getParametres().getParametresAffichage().toString(separateur) << endl;

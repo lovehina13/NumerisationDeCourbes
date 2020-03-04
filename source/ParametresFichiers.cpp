@@ -156,7 +156,7 @@ bool ParametresFichiers::equals(const ParametresFichiers& parametresFichiers) co
     return true;
 }
 
-void ParametresFichiers::fromString(const QString& fromString, const char& sep)
+void ParametresFichiers::fromString(const QString& fromString, const QChar& sep)
 {
     const QStringList fromStringList = listeSousElements(fromString, sep);
     this->setCheminFichierEtude(fromStringList.at(0).mid(1, (fromStringList.at(0).count() - 2)));
@@ -171,7 +171,7 @@ void ParametresFichiers::fromString(const QString& fromString, const char& sep)
             fromStringList.at(5).mid(1, (fromStringList.at(5).count() - 2)));
 }
 
-const QString ParametresFichiers::toString(const char& sep) const
+const QString ParametresFichiers::toString(const QChar& sep) const
 {
     QString toString;
     toString += "\"" + this->getCheminFichierEtude() + "\"" + sep;

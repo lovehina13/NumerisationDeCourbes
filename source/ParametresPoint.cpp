@@ -124,7 +124,7 @@ bool ParametresPoint::equals(const ParametresPoint& parametresPoint) const
     return true;
 }
 
-void ParametresPoint::fromString(const QString& fromString, const char& sep)
+void ParametresPoint::fromString(const QString& fromString, const QChar& sep)
 {
     const QStringList fromStringList = listeSousElements(fromString, sep);
     this->setStylePoint(fromStringList.at(0).toInt());
@@ -132,7 +132,7 @@ void ParametresPoint::fromString(const QString& fromString, const char& sep)
     this->setCouleurPoint(QColor(fromStringList.at(2)).rgb());
 }
 
-const QString ParametresPoint::toString(const char& sep) const
+const QString ParametresPoint::toString(const QChar& sep) const
 {
     QString toString;
     toString += QString::number(this->getStylePoint()) + sep;

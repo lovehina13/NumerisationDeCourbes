@@ -140,7 +140,7 @@ bool Parametres::equals(const Parametres& parametres) const
     return true;
 }
 
-void Parametres::fromString(const QString& fromString, const char& sep)
+void Parametres::fromString(const QString& fromString, const QChar& sep)
 {
     const QStringList fromStringList = listeSousElements(fromString, sep);
     ParametresFichiers parametresFichiers = this->getParametresFichiers();
@@ -160,7 +160,7 @@ void Parametres::fromString(const QString& fromString, const char& sep)
     this->setParametresExport(parametresExport);
 }
 
-const QString Parametres::toString(const char& sep) const
+const QString Parametres::toString(const QChar& sep) const
 {
     QString toString;
     toString += "(" + this->getParametresFichiers().toString(sep) + ")" + sep;

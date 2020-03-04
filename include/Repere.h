@@ -9,6 +9,7 @@
 #define REPERE_H
 
 #include "Point.h"
+#include <QChar>
 #include <QString>
 
 class Repere
@@ -43,8 +44,8 @@ public:
             const Point& pointY1);
     void copy(const Repere& repere);
     bool equals(const Repere& repere) const;
-    void fromString(const QString& fromString, const char& sep);
-    const QString toString(const char& sep) const;
+    void fromString(const QString& fromString, const QChar& sep);
+    const QString toString(const QChar& sep) const;
 
     // Méthodes spécifiques
     void pixelVersReel(Point& point) const;
