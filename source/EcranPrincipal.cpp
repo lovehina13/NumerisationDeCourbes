@@ -504,8 +504,8 @@ void EcranPrincipal::actualiserPoint(const QPointF& pointVueGraphique)
 
 void EcranPrincipal::actualiserPointRepere(const QPointF& pointVueGraphique)
 {
-    const int ppx = (int) floor(pointVueGraphique.x());
-    const int ppy = (int) floor(pointVueGraphique.y());
+    const int ppx = static_cast<int>(floor(pointVueGraphique.x()));
+    const int ppy = static_cast<int>(floor(pointVueGraphique.y()));
     Repere repere = this->etude.getRepere();
 
     const QString ppxTexte = QString::number(ppx);
@@ -573,8 +573,8 @@ void EcranPrincipal::actualiserPointCourbe(const QPointF& pointVueGraphique)
             parametresAffichage.getFormatNotationNombresCaractere();
     const int& nombreChiffresSignificatifs = parametresAffichage.getNombreChiffresSignificatifs();
 
-    const int ppx = (int) floor(pointVueGraphique.x());
-    const int ppy = (int) floor(pointVueGraphique.y());
+    const int ppx = static_cast<int>(floor(pointVueGraphique.x()));
+    const int ppy = static_cast<int>(floor(pointVueGraphique.y()));
     double prx = 0.0;
     double pry = 0.0;
     this->etude.getRepere().pixelVersReel(ppx, ppy, prx, pry);
@@ -617,8 +617,8 @@ void EcranPrincipal::actualiserBarreStatut(const QPointF& pointVueGraphique)
             parametresAffichage.getFormatNotationNombresCaractere();
     const int& nombreChiffresSignificatifs = parametresAffichage.getNombreChiffresSignificatifs();
 
-    const int ppx = (int) floor(pointVueGraphique.x());
-    const int ppy = (int) floor(pointVueGraphique.y());
+    const int ppx = static_cast<int>(floor(pointVueGraphique.x()));
+    const int ppy = static_cast<int>(floor(pointVueGraphique.y()));
     double prx = 0.0;
     double pry = 0.0;
     this->etude.getRepere().pixelVersReel(ppx, ppy, prx, pry);

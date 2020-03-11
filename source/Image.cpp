@@ -105,10 +105,10 @@ const QString Image::toString(const QChar& sep) const
     QString toString;
     const QImage& imageSource = this->getImageSource();
     const QImage& imageConvertie = this->getImageConvertie();
-    const QByteArray donneesImageSource = QByteArray((const char*) imageSource.bits(),
-            imageSource.byteCount());
-    const QByteArray donneesImageConvertie = QByteArray((const char*) imageConvertie.bits(),
-            imageConvertie.byteCount());
+    const QByteArray donneesImageSource = QByteArray(
+            reinterpret_cast<const char*>(imageSource.bits()), imageSource.byteCount());
+    const QByteArray donneesImageConvertie = QByteArray(
+            reinterpret_cast<const char*>(imageConvertie.bits()), imageConvertie.byteCount());
     toString += QString("(%1)").arg(QString(donneesImageSource)) + sep;
     toString += QString("(%1)").arg(QString(donneesImageConvertie));
     return toString;
@@ -187,7 +187,7 @@ void Image::convertirImage(const int& methodeConversion, const int& seuilNoirEtB
             else if (methodeConversion == ParametresConversion::NIVEAUX_DE_GRIS)
             {
                 couleurConvertie = listeNiveauxDeGris.at(
-                        (int) round((double) qGray(couleurConvertie) / pasNiveauxDeGris));
+                        static_cast<int>(round(qGray(couleurConvertie) / pasNiveauxDeGris)));
             }
             else if (methodeConversion == ParametresConversion::TEINTES_SATUREES)
             {
@@ -196,12 +196,12 @@ void Image::convertirImage(const int& methodeConversion, const int& seuilNoirEtB
                 if (teinteCouleurConvertie == -1 || saturationCouleurConvertie <= seuilSaturation)
                 {
                     couleurConvertie = listeNiveauxDeGris.at(
-                            (int) round((double) qGray(couleurConvertie) / pasNiveauxDeGris));
+                            static_cast<int>(round(qGray(couleurConvertie) / pasNiveauxDeGris)));
                 }
                 else
                 {
                     couleurConvertie = listeTeintesSaturees.at(
-                            (int) round((double) teinteCouleurConvertie / pasTeintesSaturees)
+                            static_cast<int>(round(teinteCouleurConvertie / pasTeintesSaturees))
                                     % nombreTeintesSaturees);
                 }
             }
@@ -213,12 +213,12 @@ void Image::convertirImage(const int& methodeConversion, const int& seuilNoirEtB
 
 double Image::getPasNiveauxDeGris(const int& nombreNiveauxDeGris) const
 {
-    return 255.0 / (double) (nombreNiveauxDeGris - 1);
+    return 255.0 / (nombreNiveauxDeGris - 1);
 }
 
 double Image::getPasTeintesSaturees(const int& nombreTeintesSaturees) const
 {
-    return 360.0 / (double) nombreTeintesSaturees;
+    return 360.0 / nombreTeintesSaturees;
 }
 
 const QList<QRgb> Image::getListeNiveauxDeGris(const int& nombreNiveauxDeGris) const
@@ -227,7 +227,7 @@ const QList<QRgb> Image::getListeNiveauxDeGris(const int& nombreNiveauxDeGris) c
     const double pasNiveauxDeGris = this->getPasNiveauxDeGris(nombreNiveauxDeGris);
     for (int itNiveauDeGris = 0; itNiveauDeGris < nombreNiveauxDeGris; itNiveauDeGris++)
     {
-        const int valeurGris = (int) round((double) itNiveauDeGris * pasNiveauxDeGris);
+        const int valeurGris = static_cast<int>(round(itNiveauDeGris * pasNiveauxDeGris));
         const QRgb niveauDeGris = QColor::fromRgb(valeurGris, valeurGris, valeurGris).rgb();
         listeNiveauxDeGris.append(niveauDeGris);
     }
@@ -240,7 +240,7 @@ const QList<QRgb> Image::getListeTeintesSaturees(const int& nombreTeintesSaturee
     const double pasTeintesSaturees = this->getPasTeintesSaturees(nombreTeintesSaturees);
     for (int itTeinteSaturee = 0; itTeinteSaturee < nombreTeintesSaturees; itTeinteSaturee++)
     {
-        const int valeurTeinte = (int) round((double) itTeinteSaturee * pasTeintesSaturees);
+        const int valeurTeinte = static_cast<int>(round(itTeinteSaturee * pasTeintesSaturees));
         const QRgb teinteSaturee = QColor::fromHsv(valeurTeinte, 255, 255).rgb();
         listeTeintesSaturees.append(teinteSaturee);
     }

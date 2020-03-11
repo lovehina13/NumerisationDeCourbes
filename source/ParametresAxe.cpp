@@ -173,8 +173,8 @@ void ParametresAxe::fromString(const QString& fromString, const QChar& sep)
     this->setBorneSuperieure(fromStringList.at(1).toDouble());
     this->setPasPrincipal(fromStringList.at(2).toDouble());
     this->setPasSecondaire(fromStringList.at(3).toDouble());
-    this->setPasSecondaire((bool) fromStringList.at(4).toInt());
-    this->setPasSecondaire((bool) fromStringList.at(5).toInt());
+    this->setPasSecondaire(static_cast<bool>(fromStringList.at(4).toInt()));
+    this->setPasSecondaire(static_cast<bool>(fromStringList.at(5).toInt()));
 }
 
 const QString ParametresAxe::toString(const QChar& sep) const
@@ -184,8 +184,8 @@ const QString ParametresAxe::toString(const QChar& sep) const
     toString += QString::number(this->getBorneSuperieure()) + sep;
     toString += QString::number(this->getPasPrincipal()) + sep;
     toString += QString::number(this->getPasSecondaire()) + sep;
-    toString += QString::number((int) this->getGrillePrincipale()) + sep;
-    toString += QString::number((int) this->getGrilleSecondaire());
+    toString += QString::number(this->getGrillePrincipale()) + sep;
+    toString += QString::number(this->getGrilleSecondaire());
     return toString;
 }
 

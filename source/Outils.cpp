@@ -27,7 +27,10 @@ int getValeurMoyenne(const QList<int>& listeValeurs)
         sommeValeurs += valeur;
     }
     const int valeurMoyenne =
-            (nombreValeurs > 0) ? ((int) round((double) sommeValeurs / (double) nombreValeurs)) : 0;
+            (nombreValeurs > 0) ?
+                    static_cast<int>(round(
+                            static_cast<double>(sommeValeurs) / static_cast<double>(nombreValeurs))) :
+                    0;
     return valeurMoyenne;
 }
 
@@ -123,22 +126,22 @@ void interpolationNumerique(const double& x1, const double& y1, const double& x2
 
 void interpolationNumerique(const Point& point1, const Point& point2, Point& point)
 {
-    const double p1px = (double) point1.getPointPixelX();
-    const double p1py = (double) point1.getPointPixelY();
-    const double p2px = (double) point2.getPointPixelX();
-    const double p2py = (double) point2.getPointPixelY();
+    const double p1px = point1.getPointPixelX();
+    const double p1py = point1.getPointPixelY();
+    const double p2px = point2.getPointPixelX();
+    const double p2py = point2.getPointPixelY();
     const double p1rx = point1.getPointReelX();
     const double p1ry = point1.getPointReelY();
     const double p2rx = point2.getPointReelX();
     const double p2ry = point2.getPointReelY();
 
-    const double ppx = (double) point.getPointPixelX();
+    const double ppx = point.getPointPixelX();
     const double prx = point.getPointReelX();
     double ppy = 0.0;
     double pry = 0.0;
     interpolationNumerique(p1px, p1py, p2px, p2py, ppx, ppy);
     interpolationNumerique(p1rx, p1ry, p2rx, p2ry, prx, pry);
-    point.setPointPixelY((int) round(ppy));
+    point.setPointPixelY(static_cast<int>(round(ppy)));
     point.setPointReelY(pry);
 }
 
@@ -152,10 +155,11 @@ const QList<Point> interpolationNumerique(const QList<Point>& listeDePoints, con
         const double borneSuperieure = listeDePoints.at(nombreDePoints - 1).getPointReelX();
         const double xMinimal = floor(borneInferieure / pas) * pas;
         const double xMaximal = ceil(borneSuperieure / pas) * pas;
-        const int nombreDePointsInterpoles = (int) round((xMaximal - xMinimal) / pas) + 1;
+        const int nombreDePointsInterpoles = static_cast<int>(round((xMaximal - xMinimal) / pas))
+                + 1;
         for (int itPas = 0; itPas < nombreDePointsInterpoles; itPas++)
         {
-            const double xInterpole = xMinimal + ((double) itPas * pas);
+            const double xInterpole = xMinimal + (itPas * pas);
             Point pointInterpole;
             Point pointPrecedent;
             Point pointSuivant;
@@ -220,7 +224,7 @@ void genererImageTest()
     {
         for (int y = 0; y < hauteurSpectre; y++)
         {
-            const int valeurGris = (int) round(x * (255.0 / largeurSpectre));
+            const int valeurGris = static_cast<int>(round(x * (255.0 / largeurSpectre)));
             couleurGris.setRgb(valeurGris, valeurGris, valeurGris);
             imageTest.setPixel((x + 20), (y + 20), couleurGris.rgb());
         }
@@ -232,7 +236,7 @@ void genererImageTest()
     {
         for (int y = 0; y < hauteurSpectre; y++)
         {
-            const int valeurSaturation = (int) round(x * (255.0 / largeurSpectre));
+            const int valeurSaturation = static_cast<int>(round(x * (255.0 / largeurSpectre)));
             couleurSaturation = QColor::fromHsv(couleurSaturation.hue(), valeurSaturation, 255);
             imageTest.setPixel((x + 20), (y + 90), couleurSaturation.rgb());
         }
@@ -244,7 +248,7 @@ void genererImageTest()
     {
         for (int y = 0; y < hauteurSpectre; y++)
         {
-            const int valeurBrillance = (int) round(x * (255.0 / largeurSpectre));
+            const int valeurBrillance = static_cast<int>(round(x * (255.0 / largeurSpectre)));
             couleurBrillance = QColor::fromHsv(couleurBrillance.hue(), 255, valeurBrillance);
             imageTest.setPixel((x + 20), (y + 160), couleurBrillance.rgb());
         }
@@ -256,7 +260,7 @@ void genererImageTest()
     {
         for (int y = 0; y < hauteurSpectreTeinte; y++)
         {
-            const int valeurTeinte = (int) round(x * (360.0 / largeurSpectre));
+            const int valeurTeinte = static_cast<int>(round(x * (360.0 / largeurSpectre)));
             couleurTeinte = QColor::fromHsv(valeurTeinte, 255, 255);
             imageTest.setPixel((x + 20), (y + 230), couleurTeinte.rgb());
         }

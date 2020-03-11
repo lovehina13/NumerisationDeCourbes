@@ -187,12 +187,12 @@ const QString ParametresConversion::getMethodeConversionTexte() const
 
 double ParametresConversion::getSeuilNoirEtBlancFacteur() const
 {
-    return ((double) this->getSeuilNoirEtBlanc() / 255.0);
+    return (this->getSeuilNoirEtBlanc() / 255.0);
 }
 
 double ParametresConversion::getSeuilSaturationFacteur() const
 {
-    return ((double) this->getSeuilSaturation() / 255.0);
+    return (this->getSeuilSaturation() / 255.0);
 }
 
 void ParametresConversion::setMethodeConversionTexte(const QString& methodeConversionTexte)
@@ -202,10 +202,10 @@ void ParametresConversion::setMethodeConversionTexte(const QString& methodeConve
 
 void ParametresConversion::setSeuilNoirEtBlancFacteur(const double& seuilNoirEtBlancFacteur)
 {
-    this->setSeuilNoirEtBlanc((int) round(seuilNoirEtBlancFacteur * 255.0));
+    this->setSeuilNoirEtBlanc(static_cast<int>(round(seuilNoirEtBlancFacteur * 255.0)));
 }
 
 void ParametresConversion::setSeuilSaturationFacteur(const double& seuilSaturationFacteur)
 {
-    this->setSeuilSaturation((int) round(seuilSaturationFacteur * 255.0));
+    this->setSeuilSaturation(static_cast<int>(round(seuilSaturationFacteur * 255.0)));
 }
