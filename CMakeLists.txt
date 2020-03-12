@@ -63,3 +63,12 @@ target_link_libraries(NumerisationDeCourbes PUBLIC Qt4::QtCore Qt4::QtGui)
 target_include_directories(NumerisationDeCourbes PUBLIC include)
 
 install(TARGETS NumerisationDeCourbes DESTINATION bin)
+
+# Qwt (optional)
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
+include(FindQwt)
+if(QWT_FOUND)
+    add_compile_definitions(ENABLE_QWT)
+    target_link_libraries(NumerisationDeCourbes PUBLIC ${QWT_LIBRARIES})
+    target_include_directories(NumerisationDeCourbes PUBLIC ${QWT_INCLUDE_DIRS})
+endif(QWT_FOUND)
