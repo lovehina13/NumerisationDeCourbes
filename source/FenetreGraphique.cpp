@@ -158,7 +158,7 @@ void FenetreGraphique::actualiserElementsGraphiques()
 void FenetreGraphique::effacerGraphique()
 {
 #ifdef ENABLE_QWT
-    QwtPlot* graphique = (QwtPlot*) this->ui->widgetGraphique;
+    QwtPlot* graphique = dynamic_cast<QwtPlot*>(this->ui->widgetGraphique);
 
     const QColor couleurArrierePlan = QColor(Qt::white);
     const QBrush brosseArrierePlan = QBrush(couleurArrierePlan, Qt::SolidPattern);
@@ -195,7 +195,7 @@ void FenetreGraphique::dessinerGraphique()
 void FenetreGraphique::dessinerRepereGraphique()
 {
 #ifdef ENABLE_QWT
-    QwtPlot* graphique = (QwtPlot*) this->ui->widgetGraphique;
+    QwtPlot* graphique = dynamic_cast<QwtPlot*>(this->ui->widgetGraphique);
 
     const ParametresAxe& parametresAxeHorizontal =
             this->parametresGraphique.getParametresAxeHorizontal();
@@ -238,7 +238,7 @@ void FenetreGraphique::dessinerRepereGraphique()
 void FenetreGraphique::dessinerGrilleGraphique()
 {
 #ifdef ENABLE_QWT
-    QwtPlot* graphique = (QwtPlot*) this->ui->widgetGraphique;
+    QwtPlot* graphique = dynamic_cast<QwtPlot*>(this->ui->widgetGraphique);
 
     const ParametresAxe& parametresAxeHorizontal =
             this->parametresGraphique.getParametresAxeHorizontal();
@@ -291,14 +291,14 @@ void FenetreGraphique::dessinerCourbeGraphique(const Courbe& courbe,
         const ParametresTrait& parametresCourbe)
 {
 #ifdef ENABLE_QWT
-    QwtPlot* graphique = (QwtPlot*) this->ui->widgetGraphique;
+    QwtPlot* graphique = dynamic_cast<QwtPlot*>(this->ui->widgetGraphique);
 
     const int& styleCourbe = parametresCourbe.getStyleTrait();
     const int& epaisseurCourbe = parametresCourbe.getEpaisseurTrait();
     const QRgb& couleurCourbe = parametresCourbe.getCouleurTrait();
     const QBrush brosseCourbe = QBrush(QColor(couleurCourbe), Qt::SolidPattern);
-    const QPen pinceauCourbe = QPen(brosseCourbe, epaisseurCourbe, (Qt::PenStyle) (styleCourbe + 1),
-            Qt::RoundCap, Qt::RoundJoin);
+    const QPen pinceauCourbe = QPen(brosseCourbe, epaisseurCourbe,
+            static_cast<Qt::PenStyle>(styleCourbe + 1), Qt::RoundCap, Qt::RoundJoin);
 
     QwtPlotCurve* courbeGraphique = new QwtPlotCurve();
     QwtPointSeriesData* donneesCourbe = new QwtPointSeriesData();
@@ -325,7 +325,7 @@ void FenetreGraphique::dessinerPointGraphique(const Point& point,
         const ParametresPoint& parametresPoint)
 {
 #ifdef ENABLE_QWT
-    QwtPlot* graphique = (QwtPlot*) this->ui->widgetGraphique;
+    QwtPlot* graphique = dynamic_cast<QwtPlot*>(this->ui->widgetGraphique);
 
     const int& stylePoint = parametresPoint.getStylePoint();
     const int& epaisseurPoint = parametresPoint.getEpaisseurPoint();
@@ -368,7 +368,7 @@ void FenetreGraphique::exporterGraphique()
         return;
 
 #ifdef ENABLE_QWT
-    QwtPlot* graphique = (QwtPlot*) this->ui->widgetGraphique;
+    QwtPlot* graphique = dynamic_cast<QwtPlot*>(this->ui->widgetGraphique);
 
     QPixmap pixmap = QPixmap::grabWidget(graphique);
     pixmap.save(cheminFichierGraphique);
