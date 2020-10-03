@@ -1,7 +1,7 @@
 //==============================================================================
 // Name        : Etude.cpp
 // Author      : Alexis Foerster (alexis.foerster@gmail.com)
-// Version     : 1.1.4 (12/09/2019)
+// Version     : 1.2.0 (03/10/2020)
 // Description : Source file of the Etude class
 //==============================================================================
 
