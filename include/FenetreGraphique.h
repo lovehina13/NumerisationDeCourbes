@@ -83,7 +83,7 @@ protected slots:
 
 private:
     // Attributs de classe
-    Ui::FenetreGraphique* _ui;
+    Ui::FenetreGraphique* _ui { nullptr };
     QList<Courbe> _listeDeCourbes;
     QList<Point> _listeDePointsManuels;
     ParametresGraphique _parametresGraphique;

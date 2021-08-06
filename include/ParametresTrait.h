@@ -16,32 +16,34 @@
 class ParametresTrait
 {
 public:
+    // Enumération des styles de traits
+    enum StyleTrait
+    {
+        LIGNE, TIRETS, POINTILLES
+    };
+
     // Constructeurs et destructeurs
-    ParametresTrait();
-    ParametresTrait(const int& styleTrait, const int& epaisseurTrait, const QRgb& couleurTrait);
-    ParametresTrait(const ParametresTrait& parametresTrait);
-    virtual ~ParametresTrait();
+    ParametresTrait() = default;
+    ParametresTrait(const StyleTrait& styleTrait, const int& epaisseurTrait,
+            const QRgb& couleurTrait);
 
     // Opérateurs
-    ParametresTrait& operator=(const ParametresTrait& parametresTrait);
-    bool operator==(const ParametresTrait& parametresTrait) const;
-    bool operator!=(const ParametresTrait& parametresTrait) const;
+    bool operator==(const ParametresTrait& parametresTrait) const = default;
+    bool operator!=(const ParametresTrait& parametresTrait) const = default;
 
     // Getters
-    const int& getStyleTrait() const;
+    const StyleTrait& getStyleTrait() const;
     const int& getEpaisseurTrait() const;
     const QRgb& getCouleurTrait() const;
 
     // Setters
-    void setStyleTrait(const int& styleTrait);
+    void setStyleTrait(const StyleTrait& styleTrait);
     void setEpaisseurTrait(const int& epaisseurTrait);
     void setCouleurTrait(const QRgb& couleurTrait);
 
     // Méthodes génériques
     void clear();
-    void set(const int& styleTrait, const int& epaisseurTrait, const QRgb& couleurTrait);
-    void copy(const ParametresTrait& parametresTrait);
-    bool equals(const ParametresTrait& parametresTrait) const;
+    void set(const StyleTrait& styleTrait, const int& epaisseurTrait, const QRgb& couleurTrait);
     void fromString(const QString& fromString, const QChar& sep);
     const QString toString(const QChar& sep) const;
 
@@ -49,27 +51,21 @@ public:
     const QString getStyleTraitTexte() const;
     void setStyleTraitTexte(const QString& styleTraitTexte);
 
-    // Enumération des styles de traits
-    enum stylesTraits
-    {
-        LIGNE, TIRETS, POINTILLES
-    };
-
     // Définition des valeurs par défaut des paramètres d'un trait
-    static const int styleTraitDefaut;
-    static const int epaisseurTraitDefaut;
-    static const QRgb couleurTraitDefaut;
-    static const QRgb couleurTraitAxeDefaut;
-    static const QRgb couleurTraitCourbeDefaut;
+    static const StyleTrait styleTraitDefaut { LIGNE };
+    static const int epaisseurTraitDefaut { 2 };
+    static const QRgb couleurTraitDefaut { 0xFF000000 };
+    static const QRgb couleurTraitAxeDefaut { 0xFFFF0000 };
+    static const QRgb couleurTraitCourbeDefaut { 0xFF0000FF };
 
 private:
     // Attributs de classe
-    int _styleTrait;
-    int _epaisseurTrait;
-    QRgb _couleurTrait;
+    StyleTrait _styleTrait { styleTraitDefaut };
+    int _epaisseurTrait { epaisseurTraitDefaut };
+    QRgb _couleurTrait { couleurTraitDefaut };
 
-    // Attributs de classe inaccessibles
-    static const QMap<int, QString> _stylesTraitsTexte;
+    // Définition des correspondances
+    static const QMap<StyleTrait, QString> _styleTraitTexte;
 };
 
 #endif /* PARAMETRESTRAIT_H */

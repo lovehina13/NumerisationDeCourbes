@@ -17,23 +17,26 @@
 class ParametresAffichage
 {
 public:
+    // Enumération des formats de notation des nombres
+    enum FormatNotationNombres
+    {
+        STANDARD, SCIENTIFIQUE
+    };
+
     // Constructeurs et destructeurs
-    ParametresAffichage();
-    ParametresAffichage(const int& formatNotationNombres, const int& nombreChiffresSignificatifs,
-            const ParametresTrait& parametresAxes, const ParametresTrait& parametresCourbes,
-            const ParametresPoint& parametresPointsAxes,
+    ParametresAffichage() = default;
+    ParametresAffichage(const FormatNotationNombres& formatNotationNombres,
+            const int& nombreChiffresSignificatifs, const ParametresTrait& parametresAxes,
+            const ParametresTrait& parametresCourbes, const ParametresPoint& parametresPointsAxes,
             const ParametresPoint& parametresPointsCourbes,
             const ParametresPoint& parametresPointsManuels);
-    ParametresAffichage(const ParametresAffichage& parametresAffichage);
-    virtual ~ParametresAffichage();
 
     // Opérateurs
-    ParametresAffichage& operator=(const ParametresAffichage& parametresAffichage);
-    bool operator==(const ParametresAffichage& parametresAffichage) const;
-    bool operator!=(const ParametresAffichage& parametresAffichage) const;
+    bool operator==(const ParametresAffichage& parametresAffichage) const = default;
+    bool operator!=(const ParametresAffichage& parametresAffichage) const = default;
 
     // Getters
-    const int& getFormatNotationNombres() const;
+    const FormatNotationNombres& getFormatNotationNombres() const;
     const int& getNombreChiffresSignificatifs() const;
     const ParametresTrait& getParametresAxes() const;
     const ParametresTrait& getParametresCourbes() const;
@@ -42,7 +45,7 @@ public:
     const ParametresPoint& getParametresPointsManuels() const;
 
     // Setters
-    void setFormatNotationNombres(const int& formatNotationNombres);
+    void setFormatNotationNombres(const FormatNotationNombres& formatNotationNombres);
     void setNombreChiffresSignificatifs(const int& nombreChiffresSignificatifs);
     void setParametresAxes(const ParametresTrait& parametresAxes);
     void setParametresCourbes(const ParametresTrait& parametresCourbes);
@@ -52,31 +55,23 @@ public:
 
     // Méthodes génériques
     void clear();
-    void set(const int& formatNotationNombres, const int& nombreChiffresSignificatifs,
-            const ParametresTrait& parametresAxes, const ParametresTrait& parametresCourbes,
-            const ParametresPoint& parametresPointsAxes,
+    void set(const FormatNotationNombres& formatNotationNombres,
+            const int& nombreChiffresSignificatifs, const ParametresTrait& parametresAxes,
+            const ParametresTrait& parametresCourbes, const ParametresPoint& parametresPointsAxes,
             const ParametresPoint& parametresPointsCourbes,
             const ParametresPoint& parametresPointsManuels);
-    void copy(const ParametresAffichage& parametresAffichage);
-    bool equals(const ParametresAffichage& parametresAffichage) const;
     void fromString(const QString& fromString, const QChar& sep);
     const QString toString(const QChar& sep) const;
 
     // Méthodes spécifiques
-    char getFormatNotationNombresCaractere() const;
+    const QChar getFormatNotationNombresCaractere() const;
     const QString getFormatNotationNombresTexte() const;
-    void setFormatNotationNombresCaractere(const char& formatNotationNombresCaractere);
+    void setFormatNotationNombresCaractere(const QChar& formatNotationNombresCaractere);
     void setFormatNotationNombresTexte(const QString& formatNotationNombresTexte);
 
-    // Enumération des formats de notation des nombres
-    enum formatsNotationNombres
-    {
-        STANDARD, SCIENTIFIQUE
-    };
-
     // Définition des valeurs par défaut des paramètres d'affichage
-    static const int formatNotationNombresDefaut;
-    static const int nombreChiffresSignificatifsDefaut;
+    static const FormatNotationNombres formatNotationNombresDefaut { STANDARD };
+    static const int nombreChiffresSignificatifsDefaut { 6 };
     static const ParametresTrait parametresAxesDefaut;
     static const ParametresTrait parametresCourbesDefaut;
     static const ParametresPoint parametresPointsAxesDefaut;
@@ -85,17 +80,17 @@ public:
 
 private:
     // Attributs de classe
-    int _formatNotationNombres;
-    int _nombreChiffresSignificatifs;
-    ParametresTrait _parametresAxes;
-    ParametresTrait _parametresCourbes;
-    ParametresPoint _parametresPointsAxes;
-    ParametresPoint _parametresPointsCourbes;
-    ParametresPoint _parametresPointsManuels;
+    FormatNotationNombres _formatNotationNombres { formatNotationNombresDefaut };
+    int _nombreChiffresSignificatifs { nombreChiffresSignificatifsDefaut };
+    ParametresTrait _parametresAxes { parametresAxesDefaut };
+    ParametresTrait _parametresCourbes { parametresCourbesDefaut };
+    ParametresPoint _parametresPointsAxes { parametresPointsAxesDefaut };
+    ParametresPoint _parametresPointsCourbes { parametresPointsCourbesDefaut };
+    ParametresPoint _parametresPointsManuels { parametresPointsManuelsDefaut };
 
-    // Attributs de classe inaccessibles
-    static const QMap<int, char> _formatsNotationNombresCaractere;
-    static const QMap<int, QString> _formatsNotationNombresTexte;
+    // Définition des correspondances
+    static const QMap<FormatNotationNombres, QChar> _formatNotationNombresCaractere;
+    static const QMap<FormatNotationNombres, QString> _formatNotationNombresTexte;
 };
 
 #endif /* PARAMETRESAFFICHAGE_H */

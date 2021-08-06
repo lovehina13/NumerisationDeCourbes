@@ -9,45 +9,14 @@
 #include "Outils.h"
 #include <QStringList>
 
-Parametres::Parametres()
-{
-    clear();
-}
-
 Parametres::Parametres(const ParametresFichiers& parametresFichiers,
         const ParametresAffichage& parametresAffichage,
         const ParametresConversion& parametresConversion,
         const ParametresRecherche& parametresRecherche, const ParametresExport& parametresExport) :
-        Parametres()
+        _parametresFichiers(parametresFichiers), _parametresAffichage(parametresAffichage),
+                _parametresConversion(parametresConversion),
+                _parametresRecherche(parametresRecherche), _parametresExport(parametresExport)
 {
-    set(parametresFichiers, parametresAffichage, parametresConversion, parametresRecherche,
-            parametresExport);
-}
-
-Parametres::Parametres(const Parametres& parametres) :
-        Parametres()
-{
-    copy(parametres);
-}
-
-Parametres::~Parametres()
-{
-}
-
-Parametres& Parametres::operator=(const Parametres& parametres)
-{
-    copy(parametres);
-    return *this;
-}
-
-bool Parametres::operator==(const Parametres& parametres) const
-{
-    return equals(parametres);
-}
-
-bool Parametres::operator!=(const Parametres& parametres) const
-{
-    return !equals(parametres);
 }
 
 const ParametresFichiers& Parametres::getParametresFichiers() const
@@ -102,8 +71,7 @@ void Parametres::setParametresExport(const ParametresExport& parametresExport)
 
 void Parametres::clear()
 {
-    set(ParametresFichiers(), ParametresAffichage(), ParametresConversion(), ParametresRecherche(),
-            ParametresExport());
+    *this = Parametres();
 }
 
 void Parametres::set(const ParametresFichiers& parametresFichiers,
@@ -116,28 +84,6 @@ void Parametres::set(const ParametresFichiers& parametresFichiers,
     setParametresConversion(parametresConversion);
     setParametresRecherche(parametresRecherche);
     setParametresExport(parametresExport);
-}
-
-void Parametres::copy(const Parametres& parametres)
-{
-    set(parametres.getParametresFichiers(), parametres.getParametresAffichage(),
-            parametres.getParametresConversion(), parametres.getParametresRecherche(),
-            parametres.getParametresExport());
-}
-
-bool Parametres::equals(const Parametres& parametres) const
-{
-    if (!getParametresFichiers().equals(parametres.getParametresFichiers()))
-        return false;
-    if (!getParametresAffichage().equals(parametres.getParametresAffichage()))
-        return false;
-    if (!getParametresConversion().equals(parametres.getParametresConversion()))
-        return false;
-    if (!getParametresRecherche().equals(parametres.getParametresRecherche()))
-        return false;
-    if (!getParametresExport().equals(parametres.getParametresExport()))
-        return false;
-    return true;
 }
 
 void Parametres::fromString(const QString& fromString, const QChar& sep)

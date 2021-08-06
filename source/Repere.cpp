@@ -9,42 +9,10 @@
 #include "Outils.h"
 #include <QStringList>
 
-Repere::Repere()
-{
-    clear();
-}
-
 Repere::Repere(const Point& pointX0, const Point& pointX1, const Point& pointY0,
         const Point& pointY1) :
-        Repere()
+        _pointX0(pointX0), _pointX1(pointX1), _pointY0(pointY0), _pointY1(pointY1)
 {
-    set(pointX0, pointX1, pointY0, pointY1);
-}
-
-Repere::Repere(const Repere& repere) :
-        Repere()
-{
-    copy(repere);
-}
-
-Repere::~Repere()
-{
-}
-
-Repere& Repere::operator=(const Repere& repere)
-{
-    copy(repere);
-    return *this;
-}
-
-bool Repere::operator==(const Repere& repere) const
-{
-    return equals(repere);
-}
-
-bool Repere::operator!=(const Repere& repere) const
-{
-    return !equals(repere);
 }
 
 const Point& Repere::getPointX0() const
@@ -89,8 +57,7 @@ void Repere::setPointY1(const Point& pointY1)
 
 void Repere::clear()
 {
-    set(Point(0, 0, 0.0, 0.0, Point::REPERE), Point(0, 0, 0.0, 0.0, Point::REPERE),
-            Point(0, 0, 0.0, 0.0, Point::REPERE), Point(0, 0, 0.0, 0.0, Point::REPERE));
+    *this = Repere();
 }
 
 void Repere::set(const Point& pointX0, const Point& pointX1, const Point& pointY0,
@@ -100,24 +67,6 @@ void Repere::set(const Point& pointX0, const Point& pointX1, const Point& pointY
     setPointX1(pointX1);
     setPointY0(pointY0);
     setPointY1(pointY1);
-}
-
-void Repere::copy(const Repere& repere)
-{
-    set(repere.getPointX0(), repere.getPointX1(), repere.getPointY0(), repere.getPointY1());
-}
-
-bool Repere::equals(const Repere& repere) const
-{
-    if (!getPointX0().equals(repere.getPointX0()))
-        return false;
-    if (!getPointX1().equals(repere.getPointX1()))
-        return false;
-    if (!getPointY0().equals(repere.getPointY0()))
-        return false;
-    if (!getPointY1().equals(repere.getPointY1()))
-        return false;
-    return true;
 }
 
 void Repere::fromString(const QString& fromString, const QChar& sep)

@@ -10,55 +10,21 @@
 #include <cmath>
 #include <QStringList>
 
-const int ParametresRecherche::seuilToleranceNiveauxDeGrisDefaut = 32;
-const int ParametresRecherche::seuilToleranceTeintesSatureesDefaut = 60;
-const bool ParametresRecherche::selectionValeursMoyennesDefaut = true;
-const bool ParametresRecherche::selectionValeursMinimalesDefaut = false;
-const bool ParametresRecherche::selectionValeursMaximalesDefaut = false;
-
-ParametresRecherche::ParametresRecherche() :
-        _seuilToleranceNiveauxDeGris(seuilToleranceNiveauxDeGrisDefaut),
-                _seuilToleranceTeintesSaturees(seuilToleranceTeintesSatureesDefaut),
-                _selectionValeursMoyennes(selectionValeursMoyennesDefaut),
-                _selectionValeursMinimales(selectionValeursMinimalesDefaut),
-                _selectionValeursMaximales(selectionValeursMaximalesDefaut)
-{
-    clear();
-}
+const int ParametresRecherche::seuilToleranceNiveauxDeGrisDefaut;
+const int ParametresRecherche::seuilToleranceTeintesSatureesDefaut;
+const bool ParametresRecherche::selectionValeursMoyennesDefaut;
+const bool ParametresRecherche::selectionValeursMinimalesDefaut;
+const bool ParametresRecherche::selectionValeursMaximalesDefaut;
 
 ParametresRecherche::ParametresRecherche(const int& seuilToleranceNiveauxDeGris,
         const int& seuilToleranceTeintesSaturees, const bool& selectionValeursMoyennes,
         const bool& selectionValeursMinimales, const bool& selectionValeursMaximales) :
-        ParametresRecherche()
+        _seuilToleranceNiveauxDeGris(seuilToleranceNiveauxDeGris),
+                _seuilToleranceTeintesSaturees(seuilToleranceTeintesSaturees),
+                _selectionValeursMoyennes(selectionValeursMoyennes),
+                _selectionValeursMinimales(selectionValeursMinimales),
+                _selectionValeursMaximales(selectionValeursMaximales)
 {
-    set(seuilToleranceNiveauxDeGris, seuilToleranceTeintesSaturees, selectionValeursMoyennes,
-            selectionValeursMinimales, selectionValeursMaximales);
-}
-
-ParametresRecherche::ParametresRecherche(const ParametresRecherche& parametresRecherche) :
-        ParametresRecherche()
-{
-    copy(parametresRecherche);
-}
-
-ParametresRecherche::~ParametresRecherche()
-{
-}
-
-ParametresRecherche& ParametresRecherche::operator=(const ParametresRecherche& parametresRecherche)
-{
-    copy(parametresRecherche);
-    return *this;
-}
-
-bool ParametresRecherche::operator==(const ParametresRecherche& parametresRecherche) const
-{
-    return equals(parametresRecherche);
-}
-
-bool ParametresRecherche::operator!=(const ParametresRecherche& parametresRecherche) const
-{
-    return !equals(parametresRecherche);
 }
 
 const int& ParametresRecherche::getSeuilToleranceNiveauxDeGris() const
@@ -113,9 +79,7 @@ void ParametresRecherche::setSelectionValeursMaximales(const bool& selectionVale
 
 void ParametresRecherche::clear()
 {
-    set(seuilToleranceNiveauxDeGrisDefaut, seuilToleranceTeintesSatureesDefaut,
-            selectionValeursMoyennesDefaut, selectionValeursMinimalesDefaut,
-            selectionValeursMaximalesDefaut);
+    *this = ParametresRecherche();
 }
 
 void ParametresRecherche::set(const int& seuilToleranceNiveauxDeGris,
@@ -127,31 +91,6 @@ void ParametresRecherche::set(const int& seuilToleranceNiveauxDeGris,
     setSelectionValeursMoyennes(selectionValeursMoyennes);
     setSelectionValeursMinimales(selectionValeursMinimales);
     setSelectionValeursMaximales(selectionValeursMaximales);
-}
-
-void ParametresRecherche::copy(const ParametresRecherche& parametresRecherche)
-{
-    set(parametresRecherche.getSeuilToleranceNiveauxDeGris(),
-            parametresRecherche.getSeuilToleranceTeintesSaturees(),
-            parametresRecherche.getSelectionValeursMoyennes(),
-            parametresRecherche.getSelectionValeursMinimales(),
-            parametresRecherche.getSelectionValeursMaximales());
-}
-
-bool ParametresRecherche::equals(const ParametresRecherche& parametresRecherche) const
-{
-    if (getSeuilToleranceNiveauxDeGris() != parametresRecherche.getSeuilToleranceNiveauxDeGris())
-        return false;
-    if (getSeuilToleranceTeintesSaturees()
-            != parametresRecherche.getSeuilToleranceTeintesSaturees())
-        return false;
-    if (getSelectionValeursMoyennes() != parametresRecherche.getSelectionValeursMoyennes())
-        return false;
-    if (getSelectionValeursMinimales() != parametresRecherche.getSelectionValeursMinimales())
-        return false;
-    if (getSelectionValeursMaximales() != parametresRecherche.getSelectionValeursMaximales())
-        return false;
-    return true;
 }
 
 void ParametresRecherche::fromString(const QString& fromString, const QChar& sep)

@@ -15,28 +15,31 @@
 class ParametresConversion
 {
 public:
+    // Enumération des méthodes de conversion
+    enum MethodeConversion
+    {
+        BRUTE, NOIR_ET_BLANC, NIVEAUX_DE_GRIS, TEINTES_SATUREES
+    };
+
     // Constructeurs et destructeurs
-    ParametresConversion();
-    ParametresConversion(const int& methodeConversion, const int& seuilNoirEtBlanc,
+    ParametresConversion() = default;
+    ParametresConversion(const MethodeConversion& methodeConversion, const int& seuilNoirEtBlanc,
             const int& nombreNiveauxDeGris, const int& nombreTeintesSaturees,
             const int& seuilSaturation);
-    ParametresConversion(const ParametresConversion& parametresConversion);
-    virtual ~ParametresConversion();
 
     // Opérateurs
-    ParametresConversion& operator=(const ParametresConversion& parametresConversion);
-    bool operator==(const ParametresConversion& parametresConversion) const;
-    bool operator!=(const ParametresConversion& parametresConversion) const;
+    bool operator==(const ParametresConversion& parametresConversion) const = default;
+    bool operator!=(const ParametresConversion& parametresConversion) const = default;
 
     // Getters
-    const int& getMethodeConversion() const;
+    const MethodeConversion& getMethodeConversion() const;
     const int& getSeuilNoirEtBlanc() const;
     const int& getNombreNiveauxDeGris() const;
     const int& getNombreTeintesSaturees() const;
     const int& getSeuilSaturation() const;
 
     // Setters
-    void setMethodeConversion(const int& methodeConversion);
+    void setMethodeConversion(const MethodeConversion& methodeConversion);
     void setSeuilNoirEtBlanc(const int& seuilNoirEtBlanc);
     void setNombreNiveauxDeGris(const int& nombreNiveauxDeGris);
     void setNombreTeintesSaturees(const int& nombreTeintesSaturees);
@@ -44,11 +47,9 @@ public:
 
     // Méthodes génériques
     void clear();
-    void set(const int& methodeConversion, const int& seuilNoirEtBlanc,
+    void set(const MethodeConversion& methodeConversion, const int& seuilNoirEtBlanc,
             const int& nombreNiveauxDeGris, const int& nombreTeintesSaturees,
             const int& seuilSaturation);
-    void copy(const ParametresConversion& parametresConversion);
-    bool equals(const ParametresConversion& parametresConversion) const;
     void fromString(const QString& fromString, const QChar& sep);
     const QString toString(const QChar& sep) const;
 
@@ -60,29 +61,23 @@ public:
     void setSeuilNoirEtBlancFacteur(const double& seuilNoirEtBlancFacteur);
     void setSeuilSaturationFacteur(const double& seuilSaturationFacteur);
 
-    // Enumération des méthodes de conversion
-    enum methodesConversion
-    {
-        BRUTE, NOIR_ET_BLANC, NIVEAUX_DE_GRIS, TEINTES_SATUREES
-    };
-
     // Définition des valeurs par défaut des paramètres de conversion
-    static const int methodeConversionDefaut;
-    static const int seuilNoirEtBlancDefaut;
-    static const int nombreNiveauxDeGrisDefaut;
-    static const int nombreTeintesSatureesDefaut;
-    static const int seuilSaturationDefaut;
+    static const MethodeConversion methodeConversionDefaut { BRUTE };
+    static const int seuilNoirEtBlancDefaut { 223 };
+    static const int nombreNiveauxDeGrisDefaut { 5 };
+    static const int nombreTeintesSatureesDefaut { 6 };
+    static const int seuilSaturationDefaut { 32 };
 
 private:
     // Attributs de classe
-    int _methodeConversion;
-    int _seuilNoirEtBlanc;
-    int _nombreNiveauxDeGris;
-    int _nombreTeintesSaturees;
-    int _seuilSaturation;
+    MethodeConversion _methodeConversion { methodeConversionDefaut };
+    int _seuilNoirEtBlanc { seuilNoirEtBlancDefaut };
+    int _nombreNiveauxDeGris { nombreNiveauxDeGrisDefaut };
+    int _nombreTeintesSaturees { nombreTeintesSatureesDefaut };
+    int _seuilSaturation { seuilSaturationDefaut };
 
-    // Attributs de classe inaccessibles
-    static const QMap<int, QString> _methodesConversionTexte;
+    // Définition des correspondances
+    static const QMap<MethodeConversion, QString> _methodeConversionTexte;
 };
 
 #endif /* PARAMETRESCONVERSION_H */

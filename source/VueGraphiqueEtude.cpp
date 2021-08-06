@@ -18,8 +18,8 @@
 #include <QPolygon>
 #include <QRgb>
 
-const double VueGraphiqueEtude::_facteurZoomIn = 1.25;
-const double VueGraphiqueEtude::_facteurZoomOut = 0.8;
+constexpr double VueGraphiqueEtude::_facteurZoomIn;
+constexpr double VueGraphiqueEtude::_facteurZoomOut;
 
 VueGraphiqueEtude::VueGraphiqueEtude(QWidget* parent) :
         QGraphicsView(parent)

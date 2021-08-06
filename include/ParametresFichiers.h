@@ -15,17 +15,14 @@ class ParametresFichiers
 {
 public:
     // Constructeurs et destructeurs
-    ParametresFichiers();
+    ParametresFichiers() = default;
     ParametresFichiers(const QString& cheminFichierEtude, const QString& cheminFichierImageSource,
             const QString& cheminFichierImageConvertie, const QString& cheminFichierExport,
             const QString& cheminFichierParametres, const QString& cheminFichierGraphique);
-    ParametresFichiers(const ParametresFichiers& parametresFichiers);
-    virtual ~ParametresFichiers();
 
     // Opérateurs
-    ParametresFichiers& operator=(const ParametresFichiers& parametresFichiers);
-    bool operator==(const ParametresFichiers& parametresFichiers) const;
-    bool operator!=(const ParametresFichiers& parametresFichiers) const;
+    bool operator==(const ParametresFichiers& parametresFichiers) const = default;
+    bool operator!=(const ParametresFichiers& parametresFichiers) const = default;
 
     // Getters
     const QString& getCheminFichierEtude() const;
@@ -48,8 +45,6 @@ public:
     void set(const QString& cheminFichierEtude, const QString& cheminFichierImageSource,
             const QString& cheminFichierImageConvertie, const QString& cheminFichierExport,
             const QString& cheminFichierParametres, const QString& cheminFichierGraphique);
-    void copy(const ParametresFichiers& parametresFichiers);
-    bool equals(const ParametresFichiers& parametresFichiers) const;
     void fromString(const QString& fromString, const QChar& sep);
     const QString toString(const QChar& sep) const;
 

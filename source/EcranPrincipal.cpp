@@ -285,7 +285,7 @@ void EcranPrincipal::sauverParametresCourants()
 
 void EcranPrincipal::verifierEtatSauvegardeEtude()
 {
-    if (_etude.equals(_etudeReference))
+    if (_etude == _etudeReference)
         return;
 
     QMessageBox* fenetreMessage = new QMessageBox(QMessageBox::Warning,
@@ -326,7 +326,7 @@ void EcranPrincipal::actualiserCoordonneesPointDepart()
     const Parametres& parametres = _etude.getParametres();
     const ParametresAffichage& parametresAffichage = parametres.getParametresAffichage();
     const char formatNotationNombresCaractere =
-            parametresAffichage.getFormatNotationNombresCaractere();
+            parametresAffichage.getFormatNotationNombresCaractere().toLatin1();
     const int& nombreChiffresSignificatifs = parametresAffichage.getNombreChiffresSignificatifs();
 
     const int pointPixelX = _ui->lineEditPointDepartXPixel->text().toInt();
@@ -355,7 +355,7 @@ void EcranPrincipal::actualiserCoordonneesPointArrivee()
     const Parametres& parametres = _etude.getParametres();
     const ParametresAffichage& parametresAffichage = parametres.getParametresAffichage();
     const char formatNotationNombresCaractere =
-            parametresAffichage.getFormatNotationNombresCaractere();
+            parametresAffichage.getFormatNotationNombresCaractere().toLatin1();
     const int& nombreChiffresSignificatifs = parametresAffichage.getNombreChiffresSignificatifs();
 
     const int pointPixelX = _ui->lineEditPointArriveeXPixel->text().toInt();
@@ -384,7 +384,7 @@ void EcranPrincipal::actualiserCoordonneesPointManuel()
     const Parametres& parametres = _etude.getParametres();
     const ParametresAffichage& parametresAffichage = parametres.getParametresAffichage();
     const char formatNotationNombresCaractere =
-            parametresAffichage.getFormatNotationNombresCaractere();
+            parametresAffichage.getFormatNotationNombresCaractere().toLatin1();
     const int& nombreChiffresSignificatifs = parametresAffichage.getNombreChiffresSignificatifs();
 
     const int pointPixelX = _ui->lineEditPointManuelXPixel->text().toInt();
@@ -407,7 +407,7 @@ void EcranPrincipal::actualiserCoordonneesListeDePoints()
     const Parametres& parametres = _etude.getParametres();
     const ParametresAffichage& parametresAffichage = parametres.getParametresAffichage();
     const char formatNotationNombresCaractere =
-            parametresAffichage.getFormatNotationNombresCaractere();
+            parametresAffichage.getFormatNotationNombresCaractere().toLatin1();
     const int& nombreChiffresSignificatifs = parametresAffichage.getNombreChiffresSignificatifs();
 
     QList<Point> listeDePoints = _etude.getListeDePoints();
@@ -569,7 +569,7 @@ void EcranPrincipal::actualiserPointCourbe(const QPointF& pointVueGraphique)
     const Parametres& parametres = _etude.getParametres();
     const ParametresAffichage& parametresAffichage = parametres.getParametresAffichage();
     const char formatNotationNombresCaractere =
-            parametresAffichage.getFormatNotationNombresCaractere();
+            parametresAffichage.getFormatNotationNombresCaractere().toLatin1();
     const int& nombreChiffresSignificatifs = parametresAffichage.getNombreChiffresSignificatifs();
 
     const int ppx = static_cast<int>(floor(pointVueGraphique.x()));
@@ -613,7 +613,7 @@ void EcranPrincipal::actualiserBarreStatut(const QPointF& pointVueGraphique)
     const Parametres& parametres = _etude.getParametres();
     const ParametresAffichage& parametresAffichage = parametres.getParametresAffichage();
     const char formatNotationNombresCaractere =
-            parametresAffichage.getFormatNotationNombresCaractere();
+            parametresAffichage.getFormatNotationNombresCaractere().toLatin1();
     const int& nombreChiffresSignificatifs = parametresAffichage.getNombreChiffresSignificatifs();
 
     const int ppx = static_cast<int>(floor(pointVueGraphique.x()));
@@ -755,7 +755,7 @@ void EcranPrincipal::on_actionAbout_triggered()
 
 void EcranPrincipal::on_pushButtonConvertir_clicked()
 {
-    int methodeConversion = ParametresConversion::BRUTE;
+    ParametresConversion::MethodeConversion methodeConversion = ParametresConversion::BRUTE;
     if (_ui->radioButtonNoirEtBlanc->isChecked())
     {
         methodeConversion = ParametresConversion::NOIR_ET_BLANC;
@@ -781,7 +781,7 @@ void EcranPrincipal::on_pushButtonConvertir_clicked()
 
 void EcranPrincipal::on_pushButtonRestaurer_clicked()
 {
-    const int methodeConversion = ParametresConversion::BRUTE;
+    const ParametresConversion::MethodeConversion methodeConversion = ParametresConversion::BRUTE;
     Parametres parametres = _etude.getParametres();
     ParametresConversion parametresConversion = parametres.getParametresConversion();
     parametresConversion.setMethodeConversion(methodeConversion);

@@ -20,19 +20,16 @@ class Parametres
 {
 public:
     // Constructeurs et destructeurs
-    Parametres();
+    Parametres() = default;
     Parametres(const ParametresFichiers& parametresFichiers,
             const ParametresAffichage& parametresAffichage,
             const ParametresConversion& parametresConversion,
             const ParametresRecherche& parametresRecherche,
             const ParametresExport& parametresExport);
-    Parametres(const Parametres& parametres);
-    virtual ~Parametres();
 
     // Opérateurs
-    Parametres& operator=(const Parametres& parametres);
-    bool operator==(const Parametres& parametres) const;
-    bool operator!=(const Parametres& parametres) const;
+    bool operator==(const Parametres& parametres) const = default;
+    bool operator!=(const Parametres& parametres) const = default;
 
     // Getters
     const ParametresFichiers& getParametresFichiers() const;
@@ -55,8 +52,6 @@ public:
             const ParametresConversion& parametresConversion,
             const ParametresRecherche& parametresRecherche,
             const ParametresExport& parametresExport);
-    void copy(const Parametres& parametres);
-    bool equals(const Parametres& parametres) const;
     void fromString(const QString& fromString, const QChar& sep);
     const QString toString(const QChar& sep) const;
 

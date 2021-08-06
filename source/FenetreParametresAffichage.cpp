@@ -118,7 +118,7 @@ void FenetreParametresAffichage::actualiserElementsGraphiques()
 void FenetreParametresAffichage::on_comboBoxFormatNotationNombres_currentIndexChanged()
 {
     _parametresAffichage.setFormatNotationNombres(
-            _ui->comboBoxFormatNotationNombres->currentIndex());
+            static_cast<ParametresAffichage::FormatNotationNombres>(_ui->comboBoxFormatNotationNombres->currentIndex()));
 }
 
 void FenetreParametresAffichage::on_spinBoxNombreDecimalesOuChiffresSignificatifs_valueChanged()
@@ -142,7 +142,8 @@ void FenetreParametresAffichage::on_pushButtonCouleurAxes_clicked()
 void FenetreParametresAffichage::on_comboBoxStyleAxes_currentIndexChanged()
 {
     ParametresTrait parametresAxes = _parametresAffichage.getParametresAxes();
-    parametresAxes.setStyleTrait(_ui->comboBoxStyleAxes->currentIndex());
+    parametresAxes.setStyleTrait(
+            static_cast<ParametresTrait::StyleTrait>(_ui->comboBoxStyleAxes->currentIndex()));
     _parametresAffichage.setParametresAxes(parametresAxes);
 }
 
@@ -168,7 +169,8 @@ void FenetreParametresAffichage::on_pushButtonCouleurCourbes_clicked()
 void FenetreParametresAffichage::on_comboBoxStyleCourbes_currentIndexChanged()
 {
     ParametresTrait parametresCourbes = _parametresAffichage.getParametresCourbes();
-    parametresCourbes.setStyleTrait(_ui->comboBoxStyleCourbes->currentIndex());
+    parametresCourbes.setStyleTrait(
+            static_cast<ParametresTrait::StyleTrait>(_ui->comboBoxStyleCourbes->currentIndex()));
     _parametresAffichage.setParametresCourbes(parametresCourbes);
 }
 
@@ -194,7 +196,8 @@ void FenetreParametresAffichage::on_pushButtonCouleurPointsAxes_clicked()
 void FenetreParametresAffichage::on_comboBoxStylePointsAxes_currentIndexChanged()
 {
     ParametresPoint parametresPointsAxes = _parametresAffichage.getParametresPointsAxes();
-    parametresPointsAxes.setStylePoint(_ui->comboBoxStylePointsAxes->currentIndex());
+    parametresPointsAxes.setStylePoint(
+            static_cast<ParametresPoint::StylePoint>(_ui->comboBoxStylePointsAxes->currentIndex()));
     _parametresAffichage.setParametresPointsAxes(parametresPointsAxes);
 }
 
@@ -220,7 +223,8 @@ void FenetreParametresAffichage::on_pushButtonCouleurPointsCourbes_clicked()
 void FenetreParametresAffichage::on_comboBoxStylePointsCourbes_currentIndexChanged()
 {
     ParametresPoint parametresPointsCourbes = _parametresAffichage.getParametresPointsCourbes();
-    parametresPointsCourbes.setStylePoint(_ui->comboBoxStylePointsCourbes->currentIndex());
+    parametresPointsCourbes.setStylePoint(
+            static_cast<ParametresPoint::StylePoint>(_ui->comboBoxStylePointsCourbes->currentIndex()));
     _parametresAffichage.setParametresPointsCourbes(parametresPointsCourbes);
 }
 
@@ -246,7 +250,8 @@ void FenetreParametresAffichage::on_pushButtonCouleurPointsManuels_clicked()
 void FenetreParametresAffichage::on_comboBoxStylePointsManuels_currentIndexChanged()
 {
     ParametresPoint parametresPointsManuels = _parametresAffichage.getParametresPointsManuels();
-    parametresPointsManuels.setStylePoint(_ui->comboBoxStylePointsManuels->currentIndex());
+    parametresPointsManuels.setStylePoint(
+            static_cast<ParametresPoint::StylePoint>(_ui->comboBoxStylePointsManuels->currentIndex()));
     _parametresAffichage.setParametresPointsManuels(parametresPointsManuels);
 }
 

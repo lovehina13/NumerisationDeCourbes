@@ -22,42 +22,10 @@
 #include <QPointF>
 #include <QTextStream>
 
-Etude::Etude()
-{
-    clear();
-}
-
 Etude::Etude(const Image& image, const Repere& repere, const QList<Point>& listeDePoints,
         const Parametres& parametres) :
-        Etude()
+        _image(image), _repere(repere), _listeDePoints(listeDePoints), _parametres(parametres)
 {
-    set(image, repere, listeDePoints, parametres);
-}
-
-Etude::Etude(const Etude& etude) :
-        Etude()
-{
-    copy(etude);
-}
-
-Etude::~Etude()
-{
-}
-
-Etude& Etude::operator=(const Etude& etude)
-{
-    copy(etude);
-    return *this;
-}
-
-bool Etude::operator==(const Etude& etude) const
-{
-    return equals(etude);
-}
-
-bool Etude::operator!=(const Etude& etude) const
-{
-    return !equals(etude);
 }
 
 const Image& Etude::getImage() const
@@ -102,7 +70,7 @@ void Etude::setParametres(const Parametres& parametres)
 
 void Etude::clear()
 {
-    set(Image(), Repere(), QList<Point>(), Parametres());
+    *this = Etude();
 }
 
 void Etude::set(const Image& image, const Repere& repere, const QList<Point>& listeDePoints,
@@ -112,24 +80,6 @@ void Etude::set(const Image& image, const Repere& repere, const QList<Point>& li
     setRepere(repere);
     setListeDePoints(listeDePoints);
     setParametres(parametres);
-}
-
-void Etude::copy(const Etude& etude)
-{
-    set(etude.getImage(), etude.getRepere(), etude.getListeDePoints(), etude.getParametres());
-}
-
-bool Etude::equals(const Etude& etude) const
-{
-    if (!getImage().equals(etude.getImage()))
-        return false;
-    if (!getRepere().equals(etude.getRepere()))
-        return false;
-    if (getListeDePoints() != etude.getListeDePoints())
-        return false;
-    if (!getParametres().equals(etude.getParametres()))
-        return false;
-    return true;
 }
 
 void Etude::fromString(const QString& fromString, const QChar& sep)
@@ -426,10 +376,11 @@ bool Etude::exporterListeDePoints(const QString& cheminFichierExport)
 
     const ParametresExport& parametresExport = parametres.getParametresExport();
     const char formatNotationNombresCaractere =
-            parametresExport.getFormatNotationNombresCaractere();
+            parametresExport.getFormatNotationNombresCaractere().toLatin1();
     const int& nombreChiffresSignificatifs = parametresExport.getNombreChiffresSignificatifs();
-    const char& caractereSeparation = parametresExport.getCaractereSeparation();
-    const char& caractereSeparateurDecimal = parametresExport.getCaractereSeparateurDecimal();
+    const char caractereSeparation = parametresExport.getCaractereSeparationCaractere().toLatin1();
+    const char caractereSeparateurDecimal =
+            parametresExport.getCaractereSeparateurDecimalCaractere().toLatin1();
     const double& seuilInterpolationNumerique = parametresExport.getSeuilInterpolationNumerique();
 
     QTextStream fluxSortie(&fichierExport);

@@ -15,17 +15,14 @@ class ParametresRecherche
 {
 public:
     // Constructeurs et destructeurs
-    ParametresRecherche();
+    ParametresRecherche() = default;
     ParametresRecherche(const int& seuilToleranceNiveauxDeGris,
             const int& seuilToleranceTeintesSaturees, const bool& selectionValeursMoyennes,
             const bool& selectionValeursMinimales, const bool& selectionValeursMaximales);
-    ParametresRecherche(const ParametresRecherche& parametresRecherche);
-    virtual ~ParametresRecherche();
 
     // Opérateurs
-    ParametresRecherche& operator=(const ParametresRecherche& parametresRecherche);
-    bool operator==(const ParametresRecherche& parametresRecherche) const;
-    bool operator!=(const ParametresRecherche& parametresRecherche) const;
+    bool operator==(const ParametresRecherche& parametresRecherche) const = default;
+    bool operator!=(const ParametresRecherche& parametresRecherche) const = default;
 
     // Getters
     const int& getSeuilToleranceNiveauxDeGris() const;
@@ -46,8 +43,6 @@ public:
     void set(const int& seuilToleranceNiveauxDeGris, const int& seuilToleranceTeintesSaturees,
             const bool& selectionValeursMoyennes, const bool& selectionValeursMinimales,
             const bool& selectionValeursMaximales);
-    void copy(const ParametresRecherche& parametresRecherche);
-    bool equals(const ParametresRecherche& parametresRecherche) const;
     void fromString(const QString& fromString, const QChar& sep);
     const QString toString(const QChar& sep) const;
 
@@ -59,19 +54,19 @@ public:
             const double& seuilToleranceTeintesSatureesFacteur);
 
     // Définition des valeurs par défaut des paramètres de recherche
-    static const int seuilToleranceNiveauxDeGrisDefaut;
-    static const int seuilToleranceTeintesSatureesDefaut;
-    static const bool selectionValeursMoyennesDefaut;
-    static const bool selectionValeursMinimalesDefaut;
-    static const bool selectionValeursMaximalesDefaut;
+    static const int seuilToleranceNiveauxDeGrisDefaut { 32 };
+    static const int seuilToleranceTeintesSatureesDefaut { 60 };
+    static const bool selectionValeursMoyennesDefaut { true };
+    static const bool selectionValeursMinimalesDefaut { false };
+    static const bool selectionValeursMaximalesDefaut { false };
 
 private:
     // Attributs de classe
-    int _seuilToleranceNiveauxDeGris;
-    int _seuilToleranceTeintesSaturees;
-    bool _selectionValeursMoyennes;
-    bool _selectionValeursMinimales;
-    bool _selectionValeursMaximales;
+    int _seuilToleranceNiveauxDeGris { seuilToleranceNiveauxDeGrisDefaut };
+    int _seuilToleranceTeintesSaturees { seuilToleranceTeintesSatureesDefaut };
+    bool _selectionValeursMoyennes { selectionValeursMoyennesDefaut };
+    bool _selectionValeursMinimales { selectionValeursMinimalesDefaut };
+    bool _selectionValeursMaximales { selectionValeursMaximalesDefaut };
 };
 
 #endif /* PARAMETRESRECHERCHE_H */

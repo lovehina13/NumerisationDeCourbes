@@ -52,7 +52,7 @@ protected slots:
 
 private:
     // Attributs de classe
-    Ui::FenetreParametresConversion* _ui;
+    Ui::FenetreParametresConversion* _ui { nullptr };
     ParametresConversion _parametresConversion;
 };
 

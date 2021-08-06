@@ -16,16 +16,13 @@ class ParametresGraphique
 {
 public:
     // Constructeurs et destructeurs
-    ParametresGraphique();
+    ParametresGraphique() = default;
     ParametresGraphique(const ParametresAxe& parametresAxeHorizontal,
             const ParametresAxe& parametresAxeVertical);
-    ParametresGraphique(const ParametresGraphique& parametresGraphique);
-    virtual ~ParametresGraphique();
 
     // Opérateurs
-    ParametresGraphique& operator=(const ParametresGraphique& parametresGraphique);
-    bool operator==(const ParametresGraphique& parametresGraphique) const;
-    bool operator!=(const ParametresGraphique& parametresGraphique) const;
+    bool operator==(const ParametresGraphique& parametresGraphique) const = default;
+    bool operator!=(const ParametresGraphique& parametresGraphique) const = default;
 
     // Getters
     const ParametresAxe& getParametresAxeHorizontal() const;
@@ -39,8 +36,6 @@ public:
     void clear();
     void set(const ParametresAxe& parametresAxeHorizontal,
             const ParametresAxe& parametresAxeVertical);
-    void copy(const ParametresGraphique& parametresGraphique);
-    bool equals(const ParametresGraphique& parametresGraphique) const;
     void fromString(const QString& fromString, const QChar& sep);
     const QString toString(const QChar& sep) const;
 

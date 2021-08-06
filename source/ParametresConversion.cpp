@@ -10,65 +10,31 @@
 #include <cmath>
 #include <QStringList>
 
-const int ParametresConversion::methodeConversionDefaut = BRUTE;
-const int ParametresConversion::seuilNoirEtBlancDefaut = 223;
-const int ParametresConversion::nombreNiveauxDeGrisDefaut = 5;
-const int ParametresConversion::nombreTeintesSatureesDefaut = 6;
-const int ParametresConversion::seuilSaturationDefaut = 32;
+using MethodeConversion = ParametresConversion::MethodeConversion;
 
-const QMap<int, QString> ParametresConversion::_methodesConversionTexte =
-        QMap<int, QString>(
-                std::map<int, QString> { { BRUTE, QString::fromUtf8("Brute") }, { NOIR_ET_BLANC,
-                        QString::fromUtf8("Noir et blanc") }, { NIVEAUX_DE_GRIS, QString::fromUtf8(
-                        "Niveaux de gris") }, { TEINTES_SATUREES, QString::fromUtf8(
-                        "Teintes saturées") } });
+const MethodeConversion ParametresConversion::methodeConversionDefaut;
+const int ParametresConversion::seuilNoirEtBlancDefaut;
+const int ParametresConversion::nombreNiveauxDeGrisDefaut;
+const int ParametresConversion::nombreTeintesSatureesDefaut;
+const int ParametresConversion::seuilSaturationDefaut;
 
-ParametresConversion::ParametresConversion() :
-        _methodeConversion(methodeConversionDefaut), _seuilNoirEtBlanc(seuilNoirEtBlancDefaut),
-                _nombreNiveauxDeGris(nombreNiveauxDeGrisDefaut),
-                _nombreTeintesSaturees(nombreTeintesSatureesDefaut),
-                _seuilSaturation(seuilSaturationDefaut)
-{
-    clear();
-}
+const QMap<MethodeConversion, QString> ParametresConversion::_methodeConversionTexte = QMap<
+        MethodeConversion, QString>(
+        { { BRUTE, QString::fromUtf8("Brute") },
+                { NOIR_ET_BLANC, QString::fromUtf8("Noir et blanc") }, { NIVEAUX_DE_GRIS,
+                        QString::fromUtf8("Niveaux de gris") }, { TEINTES_SATUREES,
+                        QString::fromUtf8("Teintes saturées") } });
 
-ParametresConversion::ParametresConversion(const int& methodeConversion,
+ParametresConversion::ParametresConversion(const MethodeConversion& methodeConversion,
         const int& seuilNoirEtBlanc, const int& nombreNiveauxDeGris,
         const int& nombreTeintesSaturees, const int& seuilSaturation) :
-        ParametresConversion()
-{
-    set(methodeConversion, seuilNoirEtBlanc, nombreNiveauxDeGris, nombreTeintesSaturees,
-            seuilSaturation);
-}
-
-ParametresConversion::ParametresConversion(const ParametresConversion& parametresConversion) :
-        ParametresConversion()
-{
-    copy(parametresConversion);
-}
-
-ParametresConversion::~ParametresConversion()
+        _methodeConversion(methodeConversion), _seuilNoirEtBlanc(seuilNoirEtBlanc),
+                _nombreNiveauxDeGris(nombreNiveauxDeGris),
+                _nombreTeintesSaturees(nombreTeintesSaturees), _seuilSaturation(seuilSaturation)
 {
 }
 
-ParametresConversion& ParametresConversion::operator=(
-        const ParametresConversion& parametresConversion)
-{
-    copy(parametresConversion);
-    return *this;
-}
-
-bool ParametresConversion::operator==(const ParametresConversion& parametresConversion) const
-{
-    return equals(parametresConversion);
-}
-
-bool ParametresConversion::operator!=(const ParametresConversion& parametresConversion) const
-{
-    return !equals(parametresConversion);
-}
-
-const int& ParametresConversion::getMethodeConversion() const
+const MethodeConversion& ParametresConversion::getMethodeConversion() const
 {
     return _methodeConversion;
 }
@@ -93,7 +59,7 @@ const int& ParametresConversion::getSeuilSaturation() const
     return _seuilSaturation;
 }
 
-void ParametresConversion::setMethodeConversion(const int& methodeConversion)
+void ParametresConversion::setMethodeConversion(const MethodeConversion& methodeConversion)
 {
     _methodeConversion = methodeConversion;
 }
@@ -120,13 +86,12 @@ void ParametresConversion::setSeuilSaturation(const int& seuilSaturation)
 
 void ParametresConversion::clear()
 {
-    set(methodeConversionDefaut, seuilNoirEtBlancDefaut, nombreNiveauxDeGrisDefaut,
-            nombreTeintesSatureesDefaut, seuilSaturationDefaut);
+    *this = ParametresConversion();
 }
 
-void ParametresConversion::set(const int& methodeConversion, const int& seuilNoirEtBlanc,
-        const int& nombreNiveauxDeGris, const int& nombreTeintesSaturees,
-        const int& seuilSaturation)
+void ParametresConversion::set(const MethodeConversion& methodeConversion,
+        const int& seuilNoirEtBlanc, const int& nombreNiveauxDeGris,
+        const int& nombreTeintesSaturees, const int& seuilSaturation)
 {
     setMethodeConversion(methodeConversion);
     setSeuilNoirEtBlanc(seuilNoirEtBlanc);
@@ -135,33 +100,10 @@ void ParametresConversion::set(const int& methodeConversion, const int& seuilNoi
     setSeuilSaturation(seuilSaturation);
 }
 
-void ParametresConversion::copy(const ParametresConversion& parametresConversion)
-{
-    set(parametresConversion.getMethodeConversion(), parametresConversion.getSeuilNoirEtBlanc(),
-            parametresConversion.getNombreNiveauxDeGris(),
-            parametresConversion.getNombreTeintesSaturees(),
-            parametresConversion.getSeuilSaturation());
-}
-
-bool ParametresConversion::equals(const ParametresConversion& parametresConversion) const
-{
-    if (getMethodeConversion() != parametresConversion.getMethodeConversion())
-        return false;
-    if (getSeuilNoirEtBlanc() != parametresConversion.getSeuilNoirEtBlanc())
-        return false;
-    if (getNombreNiveauxDeGris() != parametresConversion.getNombreNiveauxDeGris())
-        return false;
-    if (getNombreTeintesSaturees() != parametresConversion.getNombreTeintesSaturees())
-        return false;
-    if (getSeuilSaturation() != parametresConversion.getSeuilSaturation())
-        return false;
-    return true;
-}
-
 void ParametresConversion::fromString(const QString& fromString, const QChar& sep)
 {
     const QStringList fromStringList = listeSousElements(fromString, sep);
-    setMethodeConversion(fromStringList.at(0).toInt());
+    setMethodeConversion(static_cast<MethodeConversion>(fromStringList.at(0).toInt()));
     setSeuilNoirEtBlanc(fromStringList.at(1).toInt());
     setNombreNiveauxDeGris(fromStringList.at(2).toInt());
     setNombreTeintesSaturees(fromStringList.at(3).toInt());
@@ -181,7 +123,7 @@ const QString ParametresConversion::toString(const QChar& sep) const
 
 const QString ParametresConversion::getMethodeConversionTexte() const
 {
-    return _methodesConversionTexte.value(getMethodeConversion());
+    return _methodeConversionTexte.value(getMethodeConversion());
 }
 
 double ParametresConversion::getSeuilNoirEtBlancFacteur() const
@@ -196,7 +138,7 @@ double ParametresConversion::getSeuilSaturationFacteur() const
 
 void ParametresConversion::setMethodeConversionTexte(const QString& methodeConversionTexte)
 {
-    setMethodeConversion(_methodesConversionTexte.key(methodeConversionTexte));
+    setMethodeConversion(_methodeConversionTexte.key(methodeConversionTexte));
 }
 
 void ParametresConversion::setSeuilNoirEtBlancFacteur(const double& seuilNoirEtBlancFacteur)

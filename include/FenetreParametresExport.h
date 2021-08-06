@@ -51,7 +51,7 @@ protected slots:
 
 private:
     // Attributs de classe
-    Ui::FenetreParametresExport* _ui;
+    Ui::FenetreParametresExport* _ui { nullptr };
     ParametresExport _parametresExport;
 };
 

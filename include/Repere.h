@@ -16,15 +16,12 @@ class Repere
 {
 public:
     // Constructeurs et destructeurs
-    Repere();
+    Repere() = default;
     Repere(const Point& pointX0, const Point& pointX1, const Point& pointY0, const Point& pointY1);
-    Repere(const Repere& repere);
-    virtual ~Repere();
 
     // Opérateurs
-    Repere& operator=(const Repere& repere);
-    bool operator==(const Repere& repere) const;
-    bool operator!=(const Repere& repere) const;
+    bool operator==(const Repere& repere) const = default;
+    bool operator!=(const Repere& repere) const = default;
 
     // Getters
     const Point& getPointX0() const;
@@ -42,8 +39,6 @@ public:
     void clear();
     void set(const Point& pointX0, const Point& pointX1, const Point& pointY0,
             const Point& pointY1);
-    void copy(const Repere& repere);
-    bool equals(const Repere& repere) const;
     void fromString(const QString& fromString, const QChar& sep);
     const QString toString(const QChar& sep) const;
 
@@ -54,10 +49,10 @@ public:
 
 private:
     // Attributs de classe
-    Point _pointX0;
-    Point _pointX1;
-    Point _pointY0;
-    Point _pointY1;
+    Point _pointX0 { Point::REPERE };
+    Point _pointX1 { Point::REPERE };
+    Point _pointY0 { Point::REPERE };
+    Point _pointY1 { Point::REPERE };
 };
 
 #endif /* REPERE_H */

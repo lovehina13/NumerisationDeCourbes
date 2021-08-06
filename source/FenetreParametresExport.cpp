@@ -47,33 +47,33 @@ void FenetreParametresExport::initialiserElementsGraphiques()
 
 void FenetreParametresExport::actualiserElementsGraphiques()
 {
-    _ui->comboBoxCaractereSeparation->setCurrentIndex(
-            _parametresExport.getCaractereSeparationIndice());
+    _ui->comboBoxCaractereSeparation->setCurrentIndex(_parametresExport.getCaractereSeparation());
     _ui->lineEditSeuilInterpolationNumerique->setText(
             QString::number(_parametresExport.getSeuilInterpolationNumerique()));
     _ui->comboBoxFormatNotationNombres->setCurrentIndex(
             _parametresExport.getFormatNotationNombres());
     _ui->comboBoxCaractereSeparateurDecimal->setCurrentIndex(
-            _parametresExport.getCaractereSeparateurDecimalIndice());
+            _parametresExport.getCaractereSeparateurDecimal());
     _ui->spinBoxNombreDecimalesOuChiffresSignificatifs->setValue(
             _parametresExport.getNombreChiffresSignificatifs());
 }
 
 void FenetreParametresExport::on_comboBoxCaractereSeparation_currentIndexChanged()
 {
-    _parametresExport.setCaractereSeparationIndice(
-            _ui->comboBoxCaractereSeparation->currentIndex());
+    _parametresExport.setCaractereSeparation(
+            static_cast<ParametresExport::CaractereSeparation>(_ui->comboBoxCaractereSeparation->currentIndex()));
 }
 
 void FenetreParametresExport::on_comboBoxFormatNotationNombres_currentIndexChanged()
 {
-    _parametresExport.setFormatNotationNombres(_ui->comboBoxFormatNotationNombres->currentIndex());
+    _parametresExport.setFormatNotationNombres(
+            static_cast<ParametresExport::FormatNotationNombres>(_ui->comboBoxFormatNotationNombres->currentIndex()));
 }
 
 void FenetreParametresExport::on_comboBoxCaractereSeparateurDecimal_currentIndexChanged()
 {
-    _parametresExport.setCaractereSeparateurDecimalIndice(
-            _ui->comboBoxCaractereSeparateurDecimal->currentIndex());
+    _parametresExport.setCaractereSeparateurDecimal(
+            static_cast<ParametresExport::CaractereSeparateurDecimal>(_ui->comboBoxCaractereSeparateurDecimal->currentIndex()));
 }
 
 void FenetreParametresExport::on_spinBoxNombreDecimalesOuChiffresSignificatifs_valueChanged()

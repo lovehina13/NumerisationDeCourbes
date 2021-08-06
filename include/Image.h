@@ -19,15 +19,12 @@ class Image
 {
 public:
     // Constructeurs et destructeurs
-    Image();
+    Image() = default;
     Image(const QImage& imageSource, const QImage& imageConvertie);
-    Image(const Image& image);
-    virtual ~Image();
 
     // Opérateurs
-    Image& operator=(const Image& image);
-    bool operator==(const Image& image) const;
-    bool operator!=(const Image& image) const;
+    bool operator==(const Image& image) const = default;
+    bool operator!=(const Image& image) const = default;
 
     // Getters
     const QImage& getImageSource() const;
@@ -40,8 +37,6 @@ public:
     // Méthodes génériques
     void clear();
     void set(const QImage& imageSource, const QImage& imageConvertie);
-    void copy(const Image& image);
-    bool equals(const Image& image) const;
     void fromString(const QString& fromString, const QChar& sep);
     const QString toString(const QChar& sep) const;
 

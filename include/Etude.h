@@ -22,17 +22,27 @@
 class Etude
 {
 public:
+    // Enumération des tolérances de niveaux de gris
+    enum ToleranceNiveauDeGris
+    {
+        NIVEAU_DE_GRIS_COMPATIBLE, NIVEAU_DE_GRIS_INFERIEUR, NIVEAU_DE_GRIS_SUPERIEUR
+    };
+
+    // Enumération des tolérances de teintes saturées
+    enum ToleranceTeinteSaturee
+    {
+        TEINTE_SATUREE_COMPATIBLE, TEINTE_SATUREE_INCOMPATIBLE, TEINTE_SATUREE_INFERIEURE,
+        TEINTE_SATUREE_SUPERIEURE
+    };
+
     // Constructeurs et destructeurs
-    Etude();
+    Etude() = default;
     Etude(const Image& image, const Repere& repere, const QList<Point>& listeDePoints,
             const Parametres& parametres);
-    Etude(const Etude& etude);
-    virtual ~Etude();
 
     // Opérateurs
-    Etude& operator=(const Etude& etude);
-    bool operator==(const Etude& etude) const;
-    bool operator!=(const Etude& etude) const;
+    bool operator==(const Etude& etude) const = default;
+    bool operator!=(const Etude& etude) const = default;
 
     // Getters
     const Image& getImage() const;
@@ -50,8 +60,6 @@ public:
     void clear();
     void set(const Image& image, const Repere& repere, const QList<Point>& listeDePoints,
             const Parametres& parametres);
-    void copy(const Etude& etude);
-    bool equals(const Etude& etude) const;
     void fromString(const QString& fromString, const QChar& sep);
     const QString toString(const QChar& sep) const;
 
@@ -69,19 +77,6 @@ public:
     void convertirImage();
     const QList<Courbe> rechercherCourbes(const QPoint& pointPixelDepart,
             const QPoint& pointPixelArrivee);
-
-    // Enumération des types de tolérance de niveaux de gris
-    enum typesToleranceNiveauxDeGris
-    {
-        NIVEAU_DE_GRIS_COMPATIBLE, NIVEAU_DE_GRIS_INFERIEUR, NIVEAU_DE_GRIS_SUPERIEUR
-    };
-
-    // Enumération des types de tolérance de teintes saturées
-    enum typesToleranceTeintesSaturees
-    {
-        TEINTE_SATUREE_COMPATIBLE, TEINTE_SATUREE_INCOMPATIBLE, TEINTE_SATUREE_INFERIEURE,
-        TEINTE_SATUREE_SUPERIEURE
-    };
 
 protected:
     // Méthodes spécifiques

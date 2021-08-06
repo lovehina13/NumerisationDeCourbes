@@ -53,7 +53,7 @@ protected slots:
 
 private:
     // Attributs de classe
-    Ui::FenetreParametresRecherche* _ui;
+    Ui::FenetreParametresRecherche* _ui { nullptr };
     ParametresRecherche _parametresRecherche;
 };
 

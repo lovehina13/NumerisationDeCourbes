@@ -15,17 +15,14 @@ class ParametresAxe
 {
 public:
     // Constructeurs et destructeurs
-    ParametresAxe();
+    ParametresAxe() = default;
     ParametresAxe(const double& borneInferieure, const double& borneSuperieure,
             const double& pasPrincipal, const double& pasSecondaire, const bool& grillePrincipale,
             const bool& grilleSecondaire);
-    ParametresAxe(const ParametresAxe& parametresAxe);
-    virtual ~ParametresAxe();
 
     // Opérateurs
-    ParametresAxe& operator=(const ParametresAxe& parametresAxe);
-    bool operator==(const ParametresAxe& parametresAxe) const;
-    bool operator!=(const ParametresAxe& parametresAxe) const;
+    bool operator==(const ParametresAxe& parametresAxe) const = default;
+    bool operator!=(const ParametresAxe& parametresAxe) const = default;
 
     // Getters
     const double& getBorneInferieure() const;
@@ -48,8 +45,6 @@ public:
     void set(const double& borneInferieure, const double& borneSuperieure,
             const double& pasPrincipal, const double& pasSecondaire, const bool& grillePrincipale,
             const bool& grilleSecondaire);
-    void copy(const ParametresAxe& parametresAxe);
-    bool equals(const ParametresAxe& parametresAxe) const;
     void fromString(const QString& fromString, const QChar& sep);
     const QString toString(const QChar& sep) const;
 
@@ -60,23 +55,23 @@ public:
     void ajusterPasSecondaire();
 
     // Définition des valeurs par défaut des paramètres d'axe
-    static const double borneInferieureDefaut;
-    static const double borneSuperieureDefaut;
-    static const double pasPrincipalDefaut;
-    static const double pasSecondaireDefaut;
-    static const bool grillePrincipaleDefaut;
-    static const bool grilleSecondaireDefaut;
-    static const int nombreElementsPasPrincipalDefaut;
-    static const int nombreElementsPasSecondaireDefaut;
+    static constexpr double borneInferieureDefaut { 0.0 };
+    static constexpr double borneSuperieureDefaut { 0.0 };
+    static constexpr double pasPrincipalDefaut { 0.0 };
+    static constexpr double pasSecondaireDefaut { 0.0 };
+    static const bool grillePrincipaleDefaut { true };
+    static const bool grilleSecondaireDefaut { false };
+    static const int nombreElementsPasPrincipalDefaut { 5 };
+    static const int nombreElementsPasSecondaireDefaut { 5 };
 
 private:
     // Attributs de classe
-    double _borneInferieure;
-    double _borneSuperieure;
-    double _pasPrincipal;
-    double _pasSecondaire;
-    bool _grillePrincipale;
-    bool _grilleSecondaire;
+    double _borneInferieure { borneInferieureDefaut };
+    double _borneSuperieure { borneSuperieureDefaut };
+    double _pasPrincipal { pasPrincipalDefaut };
+    double _pasSecondaire { pasSecondaireDefaut };
+    bool _grillePrincipale { grillePrincipaleDefaut };
+    bool _grilleSecondaire { grilleSecondaireDefaut };
 };
 
 #endif /* PARAMETRESAXE_H */

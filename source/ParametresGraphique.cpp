@@ -9,42 +9,11 @@
 #include "Outils.h"
 #include <QStringList>
 
-ParametresGraphique::ParametresGraphique()
-{
-    clear();
-}
-
 ParametresGraphique::ParametresGraphique(const ParametresAxe& parametresAxeHorizontal,
         const ParametresAxe& parametresAxeVertical) :
-        ParametresGraphique()
+        _parametresAxeHorizontal(parametresAxeHorizontal),
+                _parametresAxeVertical(parametresAxeVertical)
 {
-    set(parametresAxeHorizontal, parametresAxeVertical);
-}
-
-ParametresGraphique::ParametresGraphique(const ParametresGraphique& parametresGraphique) :
-        ParametresGraphique()
-{
-    copy(parametresGraphique);
-}
-
-ParametresGraphique::~ParametresGraphique()
-{
-}
-
-ParametresGraphique& ParametresGraphique::operator=(const ParametresGraphique& parametresGraphique)
-{
-    copy(parametresGraphique);
-    return *this;
-}
-
-bool ParametresGraphique::operator==(const ParametresGraphique& parametresGraphique) const
-{
-    return equals(parametresGraphique);
-}
-
-bool ParametresGraphique::operator!=(const ParametresGraphique& parametresGraphique) const
-{
-    return !equals(parametresGraphique);
 }
 
 const ParametresAxe& ParametresGraphique::getParametresAxeHorizontal() const
@@ -69,7 +38,7 @@ void ParametresGraphique::setParametresAxeVertical(const ParametresAxe& parametr
 
 void ParametresGraphique::clear()
 {
-    set(ParametresAxe(), ParametresAxe());
+    *this = ParametresGraphique();
 }
 
 void ParametresGraphique::set(const ParametresAxe& parametresAxeHorizontal,
@@ -77,21 +46,6 @@ void ParametresGraphique::set(const ParametresAxe& parametresAxeHorizontal,
 {
     setParametresAxeHorizontal(parametresAxeHorizontal);
     setParametresAxeVertical(parametresAxeVertical);
-}
-
-void ParametresGraphique::copy(const ParametresGraphique& parametresGraphique)
-{
-    set(parametresGraphique.getParametresAxeHorizontal(),
-            parametresGraphique.getParametresAxeVertical());
-}
-
-bool ParametresGraphique::equals(const ParametresGraphique& parametresGraphique) const
-{
-    if (!getParametresAxeHorizontal().equals(parametresGraphique.getParametresAxeHorizontal()))
-        return false;
-    if (!getParametresAxeVertical().equals(parametresGraphique.getParametresAxeVertical()))
-        return false;
-    return true;
 }
 
 void ParametresGraphique::fromString(const QString& fromString, const QChar& sep)

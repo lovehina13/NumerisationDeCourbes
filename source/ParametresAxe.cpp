@@ -12,56 +12,22 @@
 #include <qwt_scale_engine.h>
 #endif
 
-const double ParametresAxe::borneInferieureDefaut = 0.0;
-const double ParametresAxe::borneSuperieureDefaut = 0.0;
-const double ParametresAxe::pasPrincipalDefaut = 0.0;
-const double ParametresAxe::pasSecondaireDefaut = 0.0;
-const bool ParametresAxe::grillePrincipaleDefaut = true;
-const bool ParametresAxe::grilleSecondaireDefaut = false;
-const int ParametresAxe::nombreElementsPasPrincipalDefaut = 5;
-const int ParametresAxe::nombreElementsPasSecondaireDefaut = 5;
-
-ParametresAxe::ParametresAxe() :
-        _borneInferieure(borneInferieureDefaut), _borneSuperieure(borneSuperieureDefaut),
-                _pasPrincipal(pasPrincipalDefaut), _pasSecondaire(pasSecondaireDefaut),
-                _grillePrincipale(grillePrincipaleDefaut), _grilleSecondaire(grilleSecondaireDefaut)
-{
-    clear();
-}
+constexpr double ParametresAxe::borneInferieureDefaut;
+constexpr double ParametresAxe::borneSuperieureDefaut;
+constexpr double ParametresAxe::pasPrincipalDefaut;
+constexpr double ParametresAxe::pasSecondaireDefaut;
+const bool ParametresAxe::grillePrincipaleDefaut;
+const bool ParametresAxe::grilleSecondaireDefaut;
+const int ParametresAxe::nombreElementsPasPrincipalDefaut;
+const int ParametresAxe::nombreElementsPasSecondaireDefaut;
 
 ParametresAxe::ParametresAxe(const double& borneInferieure, const double& borneSuperieure,
         const double& pasPrincipal, const double& pasSecondaire, const bool& grillePrincipale,
         const bool& grilleSecondaire) :
-        ParametresAxe()
+        _borneInferieure(borneInferieure), _borneSuperieure(borneSuperieure),
+                _pasPrincipal(pasPrincipal), _pasSecondaire(pasSecondaire),
+                _grillePrincipale(grillePrincipale), _grilleSecondaire(grilleSecondaire)
 {
-    set(borneInferieure, borneSuperieure, pasPrincipal, pasSecondaire, grillePrincipale,
-            grilleSecondaire);
-}
-
-ParametresAxe::ParametresAxe(const ParametresAxe& parametresAxe) :
-        ParametresAxe()
-{
-    copy(parametresAxe);
-}
-
-ParametresAxe::~ParametresAxe()
-{
-}
-
-ParametresAxe& ParametresAxe::operator=(const ParametresAxe& parametresAxe)
-{
-    copy(parametresAxe);
-    return *this;
-}
-
-bool ParametresAxe::operator==(const ParametresAxe& parametresAxe) const
-{
-    return equals(parametresAxe);
-}
-
-bool ParametresAxe::operator!=(const ParametresAxe& parametresAxe) const
-{
-    return !equals(parametresAxe);
 }
 
 const double& ParametresAxe::getBorneInferieure() const
@@ -126,8 +92,7 @@ void ParametresAxe::setGrilleSecondaire(const bool& grilleSecondaire)
 
 void ParametresAxe::clear()
 {
-    set(borneInferieureDefaut, borneSuperieureDefaut, pasPrincipalDefaut, pasSecondaireDefaut,
-            grillePrincipaleDefaut, grilleSecondaireDefaut);
+    *this = ParametresAxe();
 }
 
 void ParametresAxe::set(const double& borneInferieure, const double& borneSuperieure,
@@ -140,30 +105,6 @@ void ParametresAxe::set(const double& borneInferieure, const double& borneSuperi
     setPasSecondaire(pasSecondaire);
     setGrillePrincipale(grillePrincipale);
     setGrilleSecondaire(grilleSecondaire);
-}
-
-void ParametresAxe::copy(const ParametresAxe& parametresAxe)
-{
-    set(parametresAxe.getBorneInferieure(), parametresAxe.getBorneSuperieure(),
-            parametresAxe.getPasPrincipal(), parametresAxe.getPasSecondaire(),
-            parametresAxe.getGrillePrincipale(), parametresAxe.getGrilleSecondaire());
-}
-
-bool ParametresAxe::equals(const ParametresAxe& parametresAxe) const
-{
-    if (getBorneInferieure() != parametresAxe.getBorneInferieure())
-        return false;
-    if (getBorneSuperieure() != parametresAxe.getBorneSuperieure())
-        return false;
-    if (getPasPrincipal() != parametresAxe.getPasPrincipal())
-        return false;
-    if (getPasSecondaire() != parametresAxe.getPasSecondaire())
-        return false;
-    if (getGrillePrincipale() != parametresAxe.getGrillePrincipale())
-        return false;
-    if (getGrilleSecondaire() != parametresAxe.getGrilleSecondaire())
-        return false;
-    return true;
 }
 
 void ParametresAxe::fromString(const QString& fromString, const QChar& sep)

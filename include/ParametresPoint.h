@@ -16,32 +16,34 @@
 class ParametresPoint
 {
 public:
+    // Enumération des styles de points
+    enum StylePoint
+    {
+        CARRE, CERCLE
+    };
+
     // Constructeurs et destructeurs
-    ParametresPoint();
-    ParametresPoint(const int& stylePoint, const int& epaisseurPoint, const QRgb& couleurPoint);
-    ParametresPoint(const ParametresPoint& parametresPoint);
-    virtual ~ParametresPoint();
+    ParametresPoint() = default;
+    ParametresPoint(const StylePoint& stylePoint, const int& epaisseurPoint,
+            const QRgb& couleurPoint);
 
     // Opérateurs
-    ParametresPoint& operator=(const ParametresPoint& parametresPoint);
-    bool operator==(const ParametresPoint& parametresPoint) const;
-    bool operator!=(const ParametresPoint& parametresPoint) const;
+    bool operator==(const ParametresPoint& parametresPoint) const = default;
+    bool operator!=(const ParametresPoint& parametresPoint) const = default;
 
     // Getters
-    const int& getStylePoint() const;
+    const StylePoint& getStylePoint() const;
     const int& getEpaisseurPoint() const;
     const QRgb& getCouleurPoint() const;
 
     // Setters
-    void setStylePoint(const int& stylePoint);
+    void setStylePoint(const StylePoint& stylePoint);
     void setEpaisseurPoint(const int& epaisseurPoint);
     void setCouleurPoint(const QRgb& couleurPoint);
 
     // Méthodes génériques
     void clear();
-    void set(const int& stylePoint, const int& epaisseurPoint, const QRgb& couleurPoint);
-    void copy(const ParametresPoint& parametresPoint);
-    bool equals(const ParametresPoint& parametresPoint) const;
+    void set(const StylePoint& stylePoint, const int& epaisseurPoint, const QRgb& couleurPoint);
     void fromString(const QString& fromString, const QChar& sep);
     const QString toString(const QChar& sep) const;
 
@@ -49,28 +51,22 @@ public:
     const QString getStylePointTexte() const;
     void setStylePointTexte(const QString& stylePointTexte);
 
-    // Enumération des styles de points
-    enum stylesPoints
-    {
-        CARRE, CERCLE
-    };
-
     // Définition des valeurs par défaut des paramètres d'un point
-    static const int stylePointDefaut;
-    static const int epaisseurPointDefaut;
-    static const QRgb couleurPointDefaut;
-    static const QRgb couleurPointAxeDefaut;
-    static const QRgb couleurPointCourbeDefaut;
-    static const QRgb couleurPointManuelDefaut;
+    static const StylePoint stylePointDefaut { CARRE };
+    static const int epaisseurPointDefaut { 4 };
+    static const QRgb couleurPointDefaut { 0xFF000000 };
+    static const QRgb couleurPointAxeDefaut { 0xFFFF0000 };
+    static const QRgb couleurPointCourbeDefaut { 0xFF0000FF };
+    static const QRgb couleurPointManuelDefaut { 0xFF00FF00 };
 
 private:
     // Attributs de classe
-    int _stylePoint;
-    int _epaisseurPoint;
-    QRgb _couleurPoint;
+    StylePoint _stylePoint { stylePointDefaut };
+    int _epaisseurPoint { epaisseurPointDefaut };
+    QRgb _couleurPoint { couleurPointDefaut };
 
-    // Attributs de classe inaccessibles
-    static const QMap<int, QString> _stylesPointsTexte;
+    // Définition des correspondances
+    static const QMap<StylePoint, QString> _stylePointTexte;
 };
 
 #endif /* PARAMETRESPOINT_H */

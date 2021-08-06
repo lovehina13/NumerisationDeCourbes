@@ -18,23 +18,27 @@
 class Point
 {
 public:
+    // Enumération des types de points
+    enum TypePoint
+    {
+        INDEFINI, REPERE, MANUEL, COURBE, COURBE_DEBUT, COURBE_FIN
+    };
+
     // Constructeurs et destructeurs
-    Point();
-    Point(const QPoint& pointPixel, const QPointF& pointReel, const int& typePoint);
+    Point() = default;
+    Point(const QPoint& pointPixel, const QPointF& pointReel, const TypePoint& typePoint);
     Point(const int& pointPixelX, const int& pointPixelY, const double& pointReelX,
-            const double& pointReelY, const int& typePoint);
-    Point(const Point& point);
-    virtual ~Point();
+            const double& pointReelY, const TypePoint& typePoint);
+    explicit Point(const TypePoint& typePoint);
 
     // Opérateurs
-    Point& operator=(const Point& point);
-    bool operator==(const Point& point) const;
-    bool operator!=(const Point& point) const;
+    bool operator==(const Point& point) const = default;
+    bool operator!=(const Point& point) const = default;
 
     // Getters
     const QPoint& getPointPixel() const;
     const QPointF& getPointReel() const;
-    const int& getTypePoint() const;
+    const TypePoint& getTypePoint() const;
     int getPointPixelX() const;
     int getPointPixelY() const;
     double getPointReelX() const;
@@ -43,7 +47,7 @@ public:
     // Setters
     void setPointPixel(const QPoint& pointPixel);
     void setPointReel(const QPointF& pointReel);
-    void setTypePoint(const int& typePoint);
+    void setTypePoint(const TypePoint& typePoint);
     void setPointPixelX(const int& pointPixelX);
     void setPointPixelY(const int& pointPixelY);
     void setPointReelX(const double& pointReelX);
@@ -51,11 +55,9 @@ public:
 
     // Méthodes génériques
     void clear();
-    void set(const QPoint& pointPixel, const QPointF& pointReel, const int& typePoint);
+    void set(const QPoint& pointPixel, const QPointF& pointReel, const TypePoint& typePoint);
     void set(const int& pointPixelX, const int& pointPixelY, const double& pointReelX,
-            const double& pointReelY, const int& typePoint);
-    void copy(const Point& point);
-    bool equals(const Point& point) const;
+            const double& pointReelY, const TypePoint& typePoint);
     void fromString(const QString& fromString, const QChar& sep);
     const QString toString(const QChar& sep) const;
 
@@ -63,20 +65,14 @@ public:
     const QString getTypePointTexte() const;
     void setTypePointTexte(const QString& typePointTexte);
 
-    // Enumération des types de points
-    enum typesPoints
-    {
-        INDEFINI, REPERE, MANUEL, COURBE, COURBE_DEBUT, COURBE_FIN
-    };
-
 private:
     // Attributs de classe
     QPoint _pointPixel;
     QPointF _pointReel;
-    int _typePoint;
+    TypePoint _typePoint { INDEFINI };
 
-    // Attributs de classe inaccessibles
-    static const QMap<int, QString> _typesPointsTexte;
+    // Définition des correspondances
+    static const QMap<TypePoint, QString> _typePointTexte;
 };
 
 typedef QList<Point> Courbe;

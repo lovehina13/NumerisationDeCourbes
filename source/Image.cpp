@@ -11,41 +11,9 @@
 #include <QByteArray>
 #include <QColor>
 
-Image::Image()
-{
-    clear();
-}
-
 Image::Image(const QImage& imageSource, const QImage& imageConvertie) :
-        Image()
+        _imageSource(imageSource), _imageConvertie(imageConvertie)
 {
-    set(imageSource, imageConvertie);
-}
-
-Image::Image(const Image& image) :
-        Image()
-{
-    copy(image);
-}
-
-Image::~Image()
-{
-}
-
-Image& Image::operator=(const Image& image)
-{
-    copy(image);
-    return *this;
-}
-
-bool Image::operator==(const Image& image) const
-{
-    return equals(image);
-}
-
-bool Image::operator!=(const Image& image) const
-{
-    return !equals(image);
 }
 
 const QImage& Image::getImageSource() const
@@ -70,27 +38,13 @@ void Image::setImageConvertie(const QImage& imageConvertie)
 
 void Image::clear()
 {
-    set(QImage(), QImage());
+    *this = Image();
 }
 
 void Image::set(const QImage& imageSource, const QImage& imageConvertie)
 {
     setImageSource(imageSource);
     setImageConvertie(imageConvertie);
-}
-
-void Image::copy(const Image& image)
-{
-    set(image.getImageSource(), image.getImageConvertie());
-}
-
-bool Image::equals(const Image& image) const
-{
-    if (getImageSource() != image.getImageSource())
-        return false;
-    if (getImageConvertie() != image.getImageConvertie())
-        return false;
-    return true;
 }
 
 void Image::fromString(const QString& fromString, const QChar& sep)

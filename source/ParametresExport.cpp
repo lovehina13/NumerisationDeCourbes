@@ -9,74 +9,46 @@
 #include "Outils.h"
 #include <QStringList>
 
-const int ParametresExport::formatNotationNombresDefaut = STANDARD;
-const int ParametresExport::nombreChiffresSignificatifsDefaut = 6;
-const char ParametresExport::caractereSeparationDefaut = '\t';
-const char ParametresExport::caractereSeparateurDecimalDefaut = '.';
-const double ParametresExport::seuilInterpolationNumeriqueDefaut = 0.0;
+using FormatNotationNombres = ParametresExport::FormatNotationNombres;
+using CaractereSeparation = ParametresExport::CaractereSeparation;
+using CaractereSeparateurDecimal = ParametresExport::CaractereSeparateurDecimal;
 
-const QMap<int, char> ParametresExport::_formatsNotationNombresCaractere = QMap<int, char>(
-        std::map<int, char> { { STANDARD, 'f' }, { SCIENTIFIQUE, 'e' } });
-const QMap<int, QString> ParametresExport::_formatsNotationNombresTexte = QMap<int, QString>(
-        std::map<int, QString> { { STANDARD, QString::fromUtf8("Standard") }, { SCIENTIFIQUE,
-                QString::fromUtf8("Scientifique") } });
-const QMap<char, int> ParametresExport::_caracteresSeparationIndice = QMap<char, int>(
-        std::map<char, int> { { ' ', ESPACE }, { '\t', TABULATION }, { ';', POINT_VIRGULE } });
-const QMap<char, QString> ParametresExport::_caracteresSeparationTexte = QMap<char, QString>(
-        std::map<char, QString> { { ' ', QString::fromUtf8("Espace") }, { '\t', QString::fromUtf8(
-                "Tabulation") }, { ';', QString::fromUtf8("Point-virgule") } });
-const QMap<char, int> ParametresExport::_caracteresSeparateurDecimalIndice = QMap<char, int>(
-        std::map<char, int> { { '.', POINT }, { ',', VIRGULE } });
-const QMap<char, QString> ParametresExport::_caracteresSeparateurDecimalTexte = QMap<char, QString>(
-        std::map<char, QString> { { '.', QString::fromUtf8("Point") }, { ',', QString::fromUtf8(
-                "Virgule") } });
+const FormatNotationNombres ParametresExport::formatNotationNombresDefaut;
+const int ParametresExport::nombreChiffresSignificatifsDefaut;
+const CaractereSeparation ParametresExport::caractereSeparationDefaut;
+const CaractereSeparateurDecimal ParametresExport::caractereSeparateurDecimalDefaut;
+constexpr double ParametresExport::seuilInterpolationNumeriqueDefaut;
 
-ParametresExport::ParametresExport() :
-        _formatNotationNombres(formatNotationNombresDefaut),
-                _nombreChiffresSignificatifs(nombreChiffresSignificatifsDefaut),
-                _caractereSeparation(caractereSeparationDefaut),
-                _caractereSeparateurDecimal(caractereSeparateurDecimalDefaut),
-                _seuilInterpolationNumerique(seuilInterpolationNumeriqueDefaut)
-{
-    clear();
-}
+const QMap<FormatNotationNombres, QChar> ParametresExport::_formatNotationNombresCaractere = QMap<
+        FormatNotationNombres, QChar>( { { STANDARD, 'f' }, { SCIENTIFIQUE, 'e' } });
+const QMap<FormatNotationNombres, QString> ParametresExport::_formatNotationNombresTexte = QMap<
+        FormatNotationNombres, QString>( { { STANDARD, QString::fromUtf8("Standard") }, {
+        SCIENTIFIQUE, QString::fromUtf8("Scientifique") } });
+const QMap<CaractereSeparation, QChar> ParametresExport::_caractereSeparationCaractere = QMap<
+        CaractereSeparation, QChar>(
+        { { ESPACE, ' ' }, { TABULATION, '\t' }, { POINT_VIRGULE, ';' } });
+const QMap<CaractereSeparation, QString> ParametresExport::_caractereSeparationTexte = QMap<
+        CaractereSeparation, QString>( { { ESPACE, QString::fromUtf8("Espace") }, { TABULATION,
+        QString::fromUtf8("Tabulation") }, { POINT_VIRGULE, QString::fromUtf8("Point-virgule") } });
+const QMap<CaractereSeparateurDecimal, QChar> ParametresExport::_caractereSeparateurDecimalCaractere =
+        QMap<CaractereSeparateurDecimal, QChar>( { { POINT, '.' }, { VIRGULE, ',' } });
+const QMap<CaractereSeparateurDecimal, QString> ParametresExport::_caractereSeparateurDecimalTexte =
+        QMap<CaractereSeparateurDecimal, QString>( { { POINT, QString::fromUtf8("Point") }, {
+                VIRGULE, QString::fromUtf8("Virgule") } });
 
-ParametresExport::ParametresExport(const int& formatNotationNombres,
-        const int& nombreChiffresSignificatifs, const char& caractereSeparation,
-        const char& caractereSeparateurDecimal, const double& seuilInterpolationNumerique) :
-        ParametresExport()
-{
-    set(formatNotationNombres, nombreChiffresSignificatifs, caractereSeparation,
-            caractereSeparateurDecimal, seuilInterpolationNumerique);
-}
-
-ParametresExport::ParametresExport(const ParametresExport& parametresExport) :
-        ParametresExport()
-{
-    copy(parametresExport);
-}
-
-ParametresExport::~ParametresExport()
+ParametresExport::ParametresExport(const FormatNotationNombres& formatNotationNombres,
+        const int& nombreChiffresSignificatifs, const CaractereSeparation& caractereSeparation,
+        const CaractereSeparateurDecimal& caractereSeparateurDecimal,
+        const double& seuilInterpolationNumerique) :
+        _formatNotationNombres(formatNotationNombres),
+                _nombreChiffresSignificatifs(nombreChiffresSignificatifs),
+                _caractereSeparation(caractereSeparation),
+                _caractereSeparateurDecimal(caractereSeparateurDecimal),
+                _seuilInterpolationNumerique(seuilInterpolationNumerique)
 {
 }
 
-ParametresExport& ParametresExport::operator=(const ParametresExport& parametresExport)
-{
-    copy(parametresExport);
-    return *this;
-}
-
-bool ParametresExport::operator==(const ParametresExport& parametresExport) const
-{
-    return equals(parametresExport);
-}
-
-bool ParametresExport::operator!=(const ParametresExport& parametresExport) const
-{
-    return !equals(parametresExport);
-}
-
-const int& ParametresExport::getFormatNotationNombres() const
+const FormatNotationNombres& ParametresExport::getFormatNotationNombres() const
 {
     return _formatNotationNombres;
 }
@@ -86,12 +58,12 @@ const int& ParametresExport::getNombreChiffresSignificatifs() const
     return _nombreChiffresSignificatifs;
 }
 
-const char& ParametresExport::getCaractereSeparation() const
+const CaractereSeparation& ParametresExport::getCaractereSeparation() const
 {
     return _caractereSeparation;
 }
 
-const char& ParametresExport::getCaractereSeparateurDecimal() const
+const CaractereSeparateurDecimal& ParametresExport::getCaractereSeparateurDecimal() const
 {
     return _caractereSeparateurDecimal;
 }
@@ -101,7 +73,7 @@ const double& ParametresExport::getSeuilInterpolationNumerique() const
     return _seuilInterpolationNumerique;
 }
 
-void ParametresExport::setFormatNotationNombres(const int& formatNotationNombres)
+void ParametresExport::setFormatNotationNombres(const FormatNotationNombres& formatNotationNombres)
 {
     _formatNotationNombres = formatNotationNombres;
 }
@@ -111,12 +83,13 @@ void ParametresExport::setNombreChiffresSignificatifs(const int& nombreChiffresS
     _nombreChiffresSignificatifs = nombreChiffresSignificatifs;
 }
 
-void ParametresExport::setCaractereSeparation(const char& caractereSeparation)
+void ParametresExport::setCaractereSeparation(const CaractereSeparation& caractereSeparation)
 {
     _caractereSeparation = caractereSeparation;
 }
 
-void ParametresExport::setCaractereSeparateurDecimal(const char& caractereSeparateurDecimal)
+void ParametresExport::setCaractereSeparateurDecimal(
+        const CaractereSeparateurDecimal& caractereSeparateurDecimal)
 {
     _caractereSeparateurDecimal = caractereSeparateurDecimal;
 }
@@ -128,12 +101,12 @@ void ParametresExport::setSeuilInterpolationNumerique(const double& seuilInterpo
 
 void ParametresExport::clear()
 {
-    set(formatNotationNombresDefaut, nombreChiffresSignificatifsDefaut, caractereSeparationDefaut,
-            caractereSeparateurDecimalDefaut, seuilInterpolationNumeriqueDefaut);
+    *this = ParametresExport();
 }
 
-void ParametresExport::set(const int& formatNotationNombres, const int& nombreChiffresSignificatifs,
-        const char& caractereSeparation, const char& caractereSeparateurDecimal,
+void ParametresExport::set(const FormatNotationNombres& formatNotationNombres,
+        const int& nombreChiffresSignificatifs, const CaractereSeparation& caractereSeparation,
+        const CaractereSeparateurDecimal& caractereSeparateurDecimal,
         const double& seuilInterpolationNumerique)
 {
     setFormatNotationNombres(formatNotationNombres);
@@ -143,37 +116,14 @@ void ParametresExport::set(const int& formatNotationNombres, const int& nombreCh
     setSeuilInterpolationNumerique(seuilInterpolationNumerique);
 }
 
-void ParametresExport::copy(const ParametresExport& parametresExport)
-{
-    set(parametresExport.getFormatNotationNombres(),
-            parametresExport.getNombreChiffresSignificatifs(),
-            parametresExport.getCaractereSeparation(),
-            parametresExport.getCaractereSeparateurDecimal(),
-            parametresExport.getSeuilInterpolationNumerique());
-}
-
-bool ParametresExport::equals(const ParametresExport& parametresExport) const
-{
-    if (getFormatNotationNombres() != parametresExport.getFormatNotationNombres())
-        return false;
-    if (getNombreChiffresSignificatifs() != parametresExport.getNombreChiffresSignificatifs())
-        return false;
-    if (getCaractereSeparation() != parametresExport.getCaractereSeparation())
-        return false;
-    if (getCaractereSeparateurDecimal() != parametresExport.getCaractereSeparateurDecimal())
-        return false;
-    if (getSeuilInterpolationNumerique() != parametresExport.getSeuilInterpolationNumerique())
-        return false;
-    return true;
-}
-
 void ParametresExport::fromString(const QString& fromString, const QChar& sep)
 {
     const QStringList fromStringList = listeSousElements(fromString, sep);
-    setFormatNotationNombres(fromStringList.at(0).toInt());
+    setFormatNotationNombres(static_cast<FormatNotationNombres>(fromStringList.at(0).toInt()));
     setNombreChiffresSignificatifs(fromStringList.at(1).toInt());
-    setCaractereSeparation(fromStringList.at(2).at(1).toLatin1());
-    setCaractereSeparateurDecimal(fromStringList.at(3).at(1).toLatin1());
+    setCaractereSeparation(static_cast<CaractereSeparation>(fromStringList.at(2).toInt()));
+    setCaractereSeparateurDecimal(
+            static_cast<CaractereSeparateurDecimal>(fromStringList.at(3).toInt()));
     setSeuilInterpolationNumerique(fromStringList.at(4).toDouble());
 }
 
@@ -182,72 +132,73 @@ const QString ParametresExport::toString(const QChar& sep) const
     QString toString;
     toString += QString::number(getFormatNotationNombres()) + sep;
     toString += QString::number(getNombreChiffresSignificatifs()) + sep;
-    toString += "'" + QString(getCaractereSeparation()) + "'" + sep;
-    toString += "'" + QString(getCaractereSeparateurDecimal()) + "'" + sep;
+    toString += QString::number(getCaractereSeparation()) + sep;
+    toString += QString::number(getCaractereSeparateurDecimal()) + sep;
     toString += QString::number(getSeuilInterpolationNumerique());
     return toString;
 }
 
-char ParametresExport::getFormatNotationNombresCaractere() const
+const QChar ParametresExport::getFormatNotationNombresCaractere() const
 {
-    return _formatsNotationNombresCaractere.value(getFormatNotationNombres());
+    return _formatNotationNombresCaractere.value(getFormatNotationNombres());
 }
 
 const QString ParametresExport::getFormatNotationNombresTexte() const
 {
-    return _formatsNotationNombresTexte.value(getFormatNotationNombres());
+    return _formatNotationNombresTexte.value(getFormatNotationNombres());
 }
 
-int ParametresExport::getCaractereSeparationIndice() const
+const QChar ParametresExport::getCaractereSeparationCaractere() const
 {
-    return _caracteresSeparationIndice.value(getCaractereSeparation());
+    return _caractereSeparationCaractere.value(getCaractereSeparation());
 }
 
 const QString ParametresExport::getCaractereSeparationTexte() const
 {
-    return _caracteresSeparationTexte.value(getCaractereSeparation());
+    return _caractereSeparationTexte.value(getCaractereSeparation());
 }
 
-int ParametresExport::getCaractereSeparateurDecimalIndice() const
+const QChar ParametresExport::getCaractereSeparateurDecimalCaractere() const
 {
-    return _caracteresSeparateurDecimalIndice.value(getCaractereSeparateurDecimal());
+    return _caractereSeparateurDecimalCaractere.value(getCaractereSeparateurDecimal());
 }
 
 const QString ParametresExport::getCaractereSeparateurDecimalTexte() const
 {
-    return _caracteresSeparateurDecimalTexte.value(getCaractereSeparateurDecimal());
+    return _caractereSeparateurDecimalTexte.value(getCaractereSeparateurDecimal());
 }
 
-void ParametresExport::setFormatNotationNombresCaractere(const char& formatNotationNombresCaractere)
+void ParametresExport::setFormatNotationNombresCaractere(
+        const QChar& formatNotationNombresCaractere)
 {
-    setFormatNotationNombres(_formatsNotationNombresCaractere.key(formatNotationNombresCaractere));
+    setFormatNotationNombres(_formatNotationNombresCaractere.key(formatNotationNombresCaractere));
 }
 
 void ParametresExport::setFormatNotationNombresTexte(const QString& formatNotationNombresTexte)
 {
-    setFormatNotationNombres(_formatsNotationNombresTexte.key(formatNotationNombresTexte));
+    setFormatNotationNombres(_formatNotationNombresTexte.key(formatNotationNombresTexte));
 }
 
-void ParametresExport::setCaractereSeparationIndice(const int& caractereSeparationIndice)
+void ParametresExport::setCaractereSeparationCaractere(const QChar& caractereSeparationCaractere)
 {
-    setCaractereSeparation(_caracteresSeparationIndice.key(caractereSeparationIndice));
+    setCaractereSeparation(_caractereSeparationCaractere.key(caractereSeparationCaractere));
 }
 
 void ParametresExport::setCaractereSeparationTexte(const QString& caractereSeparationTexte)
 {
-    setCaractereSeparation(_caracteresSeparationTexte.key(caractereSeparationTexte));
+    setCaractereSeparation(_caractereSeparationTexte.key(caractereSeparationTexte));
 }
 
-void ParametresExport::setCaractereSeparateurDecimalIndice(
-        const int& caractereSeparateurDecimalIndice)
+void ParametresExport::setCaractereSeparateurDecimalCaractere(
+        const QChar& caractereSeparateurDecimalCaractere)
 {
     setCaractereSeparateurDecimal(
-            _caracteresSeparateurDecimalIndice.key(caractereSeparateurDecimalIndice));
+            _caractereSeparateurDecimalCaractere.key(caractereSeparateurDecimalCaractere));
 }
 
 void ParametresExport::setCaractereSeparateurDecimalTexte(
         const QString& caractereSeparateurDecimalTexte)
 {
     setCaractereSeparateurDecimal(
-            _caracteresSeparateurDecimalTexte.key(caractereSeparateurDecimalTexte));
+            _caractereSeparateurDecimalTexte.key(caractereSeparateurDecimalTexte));
 }
