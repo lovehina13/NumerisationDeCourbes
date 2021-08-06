@@ -232,11 +232,11 @@ void VueGraphiqueEtude::wheelEvent(QWheelEvent* event)
     QGraphicsView::wheelEvent(event);
 
     setTransformationAnchor(QGraphicsView::AnchorUnderMouse);
-    if (event->delta() > 0)
+    if (event->angleDelta().y() > 0)
     {
         scale(_facteurZoomIn, _facteurZoomIn);
     }
-    else if (event->delta() < 0)
+    else if (event->angleDelta().y() < 0)
     {
         scale(_facteurZoomOut, _facteurZoomOut);
     }

@@ -96,8 +96,8 @@ bool Image::equals(const Image& image) const
 void Image::fromString(const QString& fromString, const QChar& sep)
 {
     // TODO void Image::fromString(const QString& fromString, const QChar& sep)
-    Q_UNUSED(fromString);
-    Q_UNUSED(sep);
+    Q_UNUSED(fromString)
+    Q_UNUSED(sep)
 }
 
 const QString Image::toString(const QChar& sep) const
@@ -106,9 +106,11 @@ const QString Image::toString(const QChar& sep) const
     const QImage& imageSource = getImageSource();
     const QImage& imageConvertie = getImageConvertie();
     const QByteArray donneesImageSource = QByteArray(
-            reinterpret_cast<const char*>(imageSource.bits()), imageSource.byteCount());
+            reinterpret_cast<const char*>(imageSource.bits()),
+            static_cast<int>(imageSource.sizeInBytes()));
     const QByteArray donneesImageConvertie = QByteArray(
-            reinterpret_cast<const char*>(imageConvertie.bits()), imageConvertie.byteCount());
+            reinterpret_cast<const char*>(imageConvertie.bits()),
+            static_cast<int>(imageConvertie.sizeInBytes()));
     toString += QString("(%1)").arg(QString(donneesImageSource)) + sep;
     toString += QString("(%1)").arg(QString(donneesImageConvertie));
     return toString;

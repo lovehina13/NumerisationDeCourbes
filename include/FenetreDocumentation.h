@@ -23,7 +23,7 @@ class FenetreDocumentation : public QDialog
 public:
     // Constructeurs et destructeurs
     explicit FenetreDocumentation(QWidget* parent = nullptr);
-    ~FenetreDocumentation();
+    virtual ~FenetreDocumentation() override;
 
     // Getters
 

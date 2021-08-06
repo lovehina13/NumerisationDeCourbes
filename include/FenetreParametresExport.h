@@ -24,7 +24,7 @@ class FenetreParametresExport : public QDialog
 public:
     // Constructeurs et destructeurs
     explicit FenetreParametresExport(QWidget* parent = nullptr);
-    ~FenetreParametresExport();
+    virtual ~FenetreParametresExport() override;
 
     // Getters
     const ParametresExport& getParametresExport() const;

@@ -30,8 +30,8 @@ class VueGraphiqueEtude : public QGraphicsView
 public:
     // Constructeurs et destructeurs
     explicit VueGraphiqueEtude(QWidget* parent);
-    explicit VueGraphiqueEtude(QGraphicsScene* scene, QWidget* parent);
-    ~VueGraphiqueEtude();
+    VueGraphiqueEtude(QGraphicsScene* scene, QWidget* parent);
+    virtual ~VueGraphiqueEtude() override;
 
     // Getters
 
@@ -58,10 +58,10 @@ public:
 
 protected:
     // Méthodes spécifiques
-    void keyPressEvent(QKeyEvent* event);
-    void mousePressEvent(QMouseEvent* event);
-    void mouseMoveEvent(QMouseEvent* event);
-    void wheelEvent(QWheelEvent* event);
+    void keyPressEvent(QKeyEvent* event) override;
+    void mousePressEvent(QMouseEvent* event) override;
+    void mouseMoveEvent(QMouseEvent* event) override;
+    void wheelEvent(QWheelEvent* event) override;
 
 private:
     // Attributs de classe

@@ -31,7 +31,7 @@ class FenetreGraphique : public QDialog
 public:
     // Constructeurs et destructeurs
     explicit FenetreGraphique(QWidget* parent = nullptr);
-    ~FenetreGraphique();
+    virtual ~FenetreGraphique() override;
 
     // Getters
     const QList<Courbe>& getListeDeCourbes() const;

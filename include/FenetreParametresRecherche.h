@@ -24,7 +24,7 @@ class FenetreParametresRecherche : public QDialog
 public:
     // Constructeurs et destructeurs
     explicit FenetreParametresRecherche(QWidget* parent = nullptr);
-    ~FenetreParametresRecherche();
+    virtual ~FenetreParametresRecherche() override;
 
     // Getters
     const ParametresRecherche& getParametresRecherche() const;

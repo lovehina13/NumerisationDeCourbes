@@ -135,8 +135,8 @@ bool Etude::equals(const Etude& etude) const
 void Etude::fromString(const QString& fromString, const QChar& sep)
 {
     // TODO void Etude::fromString(const QString& fromString, const QChar& sep)
-    Q_UNUSED(fromString);
-    Q_UNUSED(sep);
+    Q_UNUSED(fromString)
+    Q_UNUSED(sep)
 }
 
 const QString Etude::toString(const QChar& sep) const
@@ -305,15 +305,15 @@ bool Etude::sauverEtude(const QString& cheminFichierEtude)
     QTextStream fluxSortie(&fichierEtude);
     const QList<Point>& listeDePoints = getListeDePoints();
     const int nombreDePoints = listeDePoints.count();
-    fluxSortie << "[PARAMETRES]" << endl;
-    fluxSortie << getParametres().toString(separateur) << endl;
-    fluxSortie << "[REPERE]" << endl;
-    fluxSortie << getRepere().toString(separateur) << endl;
-    fluxSortie << "[POINTS]" << endl;
+    fluxSortie << "[PARAMETRES]" << Qt::endl;
+    fluxSortie << getParametres().toString(separateur) << Qt::endl;
+    fluxSortie << "[REPERE]" << Qt::endl;
+    fluxSortie << getRepere().toString(separateur) << Qt::endl;
+    fluxSortie << "[POINTS]" << Qt::endl;
     for (int itPoint = 0; itPoint < nombreDePoints; itPoint++)
     {
         const Point& pointCourant = listeDePoints.at(itPoint);
-        fluxSortie << pointCourant.toString(separateur) << endl;
+        fluxSortie << pointCourant.toString(separateur) << Qt::endl;
     }
     return true;
 }
@@ -385,14 +385,14 @@ bool Etude::sauverParametres(const QString& cheminFichierParametres)
 
     const QChar separateur = ';';
     QTextStream fluxSortie(&fichierParametres);
-    fluxSortie << "[PARAMETRES_AFFICHAGE]" << endl;
-    fluxSortie << getParametres().getParametresAffichage().toString(separateur) << endl;
-    fluxSortie << "[PARAMETRES_CONVERSION]" << endl;
-    fluxSortie << getParametres().getParametresConversion().toString(separateur) << endl;
-    fluxSortie << "[PARAMETRES_RECHERCHE]" << endl;
-    fluxSortie << getParametres().getParametresRecherche().toString(separateur) << endl;
-    fluxSortie << "[PARAMETRES_EXPORT]" << endl;
-    fluxSortie << getParametres().getParametresExport().toString(separateur) << endl;
+    fluxSortie << "[PARAMETRES_AFFICHAGE]" << Qt::endl;
+    fluxSortie << getParametres().getParametresAffichage().toString(separateur) << Qt::endl;
+    fluxSortie << "[PARAMETRES_CONVERSION]" << Qt::endl;
+    fluxSortie << getParametres().getParametresConversion().toString(separateur) << Qt::endl;
+    fluxSortie << "[PARAMETRES_RECHERCHE]" << Qt::endl;
+    fluxSortie << getParametres().getParametresRecherche().toString(separateur) << Qt::endl;
+    fluxSortie << "[PARAMETRES_EXPORT]" << Qt::endl;
+    fluxSortie << getParametres().getParametresExport().toString(separateur) << Qt::endl;
     return true;
 }
 
@@ -452,7 +452,7 @@ bool Etude::exporterListeDePoints(const QString& cheminFichierExport)
                                 '.', caractereSeparateurDecimal) << caractereSeparation
                         << QString::number(pointCourbe.getPointReelY(),
                                 formatNotationNombresCaractere, nombreChiffresSignificatifs).replace(
-                                '.', caractereSeparateurDecimal) << endl;
+                                '.', caractereSeparateurDecimal) << Qt::endl;
             }
         }
         else
@@ -472,7 +472,7 @@ bool Etude::exporterListeDePoints(const QString& cheminFichierExport)
                                 '.', caractereSeparateurDecimal) << caractereSeparation
                         << QString::number(pointCourbeInterpole.getPointReelY(),
                                 formatNotationNombresCaractere, nombreChiffresSignificatifs).replace(
-                                '.', caractereSeparateurDecimal) << endl;
+                                '.', caractereSeparateurDecimal) << Qt::endl;
             }
         }
     }
@@ -485,7 +485,7 @@ bool Etude::exporterListeDePoints(const QString& cheminFichierExport)
                 << caractereSeparation
                 << QString::number(pointManuel.getPointReelY(), formatNotationNombresCaractere,
                         nombreChiffresSignificatifs).replace('.', caractereSeparateurDecimal)
-                << endl;
+                << Qt::endl;
     }
     // TODO Interpolation des points manuels (point le plus proche) ?
     return true;
@@ -651,7 +651,7 @@ const QList<QPoint> Etude::filtrerPointsCourbes(const QList<QPoint>& listeDePoin
         return QList<QPoint>();
 
     QList<QPoint> listeDePointsTries = listeDePoints;
-    qSort(listeDePointsTries.begin(), listeDePointsTries.end(), lessThanQPoint);
+    std::sort(listeDePointsTries.begin(), listeDePointsTries.end(), lessThanQPoint);
 
     QMap<int, QList<int>> mapPointsRecherche;
     const int nombreDePointsDeRecherche = listeDePointsTries.count();

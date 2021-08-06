@@ -22,8 +22,11 @@
 #include <QPalette>
 #include <QPen>
 #include <QPixmap>
+#include <QPoint>
 #include <QPointF>
+#include <QRect>
 #include <QRgb>
+#include <QSize>
 #include <QVector>
 #include <qwt_plot.h>
 #include <qwt_plot_curve.h>
@@ -313,8 +316,8 @@ void FenetreGraphique::dessinerCourbeGraphique(const Courbe& courbe,
 
     graphique->replot();
 #else
-    Q_UNUSED(courbe);
-    Q_UNUSED(parametresCourbe);
+    Q_UNUSED(courbe)
+    Q_UNUSED(parametresCourbe)
 #endif
 }
 
@@ -344,8 +347,8 @@ void FenetreGraphique::dessinerPointGraphique(const Point& point,
 
     graphique->replot();
 #else
-    Q_UNUSED(point);
-    Q_UNUSED(parametresPoint);
+    Q_UNUSED(point)
+    Q_UNUSED(parametresPoint)
 #endif
 }
 
@@ -366,8 +369,11 @@ void FenetreGraphique::exporterGraphique()
 
 #ifdef ENABLE_QWT
     QwtPlot* graphique = dynamic_cast<QwtPlot*>(_ui->widgetGraphique);
+    const QPoint positionGraphique = graphique->mapToParent(graphique->rect().topLeft());
+    const QSize tailleGraphique = graphique->size();
+    const QRect rectangleGraphique = QRect(positionGraphique, tailleGraphique);
 
-    QPixmap pixmap = QPixmap::grabWidget(graphique);
+    QPixmap pixmap = QWidget::grab(rectangleGraphique);
     pixmap.save(cheminFichierGraphique);
 #endif
 }
