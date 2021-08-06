@@ -53,8 +53,8 @@ protected slots:
 
 private:
     // Attributs de classe
-    Ui::FenetreParametresRecherche* ui;
-    ParametresRecherche parametresRecherche;
+    Ui::FenetreParametresRecherche* _ui;
+    ParametresRecherche _parametresRecherche;
 };
 
 #endif /* FENETREPARAMETRESRECHERCHE_H */

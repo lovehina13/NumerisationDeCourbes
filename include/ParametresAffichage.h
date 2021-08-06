@@ -85,17 +85,17 @@ public:
 
 private:
     // Attributs de classe
-    int formatNotationNombres;
-    int nombreChiffresSignificatifs;
-    ParametresTrait parametresAxes;
-    ParametresTrait parametresCourbes;
-    ParametresPoint parametresPointsAxes;
-    ParametresPoint parametresPointsCourbes;
-    ParametresPoint parametresPointsManuels;
+    int _formatNotationNombres;
+    int _nombreChiffresSignificatifs;
+    ParametresTrait _parametresAxes;
+    ParametresTrait _parametresCourbes;
+    ParametresPoint _parametresPointsAxes;
+    ParametresPoint _parametresPointsCourbes;
+    ParametresPoint _parametresPointsManuels;
 
     // Attributs de classe inaccessibles
-    static const QMap<int, char> formatsNotationNombresCaractere;
-    static const QMap<int, QString> formatsNotationNombresTexte;
+    static const QMap<int, char> _formatsNotationNombresCaractere;
+    static const QMap<int, QString> _formatsNotationNombresTexte;
 };
 
 #endif /* PARAMETRESAFFICHAGE_H */

@@ -11,20 +11,20 @@
 
 ParametresGraphique::ParametresGraphique()
 {
-    this->clear();
+    clear();
 }
 
 ParametresGraphique::ParametresGraphique(const ParametresAxe& parametresAxeHorizontal,
         const ParametresAxe& parametresAxeVertical) :
         ParametresGraphique()
 {
-    this->set(parametresAxeHorizontal, parametresAxeVertical);
+    set(parametresAxeHorizontal, parametresAxeVertical);
 }
 
 ParametresGraphique::ParametresGraphique(const ParametresGraphique& parametresGraphique) :
         ParametresGraphique()
 {
-    this->copy(parametresGraphique);
+    copy(parametresGraphique);
 }
 
 ParametresGraphique::~ParametresGraphique()
@@ -33,64 +33,63 @@ ParametresGraphique::~ParametresGraphique()
 
 ParametresGraphique& ParametresGraphique::operator=(const ParametresGraphique& parametresGraphique)
 {
-    this->copy(parametresGraphique);
+    copy(parametresGraphique);
     return *this;
 }
 
 bool ParametresGraphique::operator==(const ParametresGraphique& parametresGraphique) const
 {
-    return this->equals(parametresGraphique);
+    return equals(parametresGraphique);
 }
 
 bool ParametresGraphique::operator!=(const ParametresGraphique& parametresGraphique) const
 {
-    return !this->equals(parametresGraphique);
+    return !equals(parametresGraphique);
 }
 
 const ParametresAxe& ParametresGraphique::getParametresAxeHorizontal() const
 {
-    return this->parametresAxeHorizontal;
+    return _parametresAxeHorizontal;
 }
 
 const ParametresAxe& ParametresGraphique::getParametresAxeVertical() const
 {
-    return this->parametresAxeVertical;
+    return _parametresAxeVertical;
 }
 
 void ParametresGraphique::setParametresAxeHorizontal(const ParametresAxe& parametresAxeHorizontal)
 {
-    this->parametresAxeHorizontal = parametresAxeHorizontal;
+    _parametresAxeHorizontal = parametresAxeHorizontal;
 }
 
 void ParametresGraphique::setParametresAxeVertical(const ParametresAxe& parametresAxeVertical)
 {
-    this->parametresAxeVertical = parametresAxeVertical;
+    _parametresAxeVertical = parametresAxeVertical;
 }
 
 void ParametresGraphique::clear()
 {
-    this->set(ParametresAxe(), ParametresAxe());
+    set(ParametresAxe(), ParametresAxe());
 }
 
 void ParametresGraphique::set(const ParametresAxe& parametresAxeHorizontal,
         const ParametresAxe& parametresAxeVertical)
 {
-    this->setParametresAxeHorizontal(parametresAxeHorizontal);
-    this->setParametresAxeVertical(parametresAxeVertical);
+    setParametresAxeHorizontal(parametresAxeHorizontal);
+    setParametresAxeVertical(parametresAxeVertical);
 }
 
 void ParametresGraphique::copy(const ParametresGraphique& parametresGraphique)
 {
-    this->set(parametresGraphique.getParametresAxeHorizontal(),
+    set(parametresGraphique.getParametresAxeHorizontal(),
             parametresGraphique.getParametresAxeVertical());
 }
 
 bool ParametresGraphique::equals(const ParametresGraphique& parametresGraphique) const
 {
-    if (!this->getParametresAxeHorizontal().equals(
-            parametresGraphique.getParametresAxeHorizontal()))
+    if (!getParametresAxeHorizontal().equals(parametresGraphique.getParametresAxeHorizontal()))
         return false;
-    if (!this->getParametresAxeVertical().equals(parametresGraphique.getParametresAxeVertical()))
+    if (!getParametresAxeVertical().equals(parametresGraphique.getParametresAxeVertical()))
         return false;
     return true;
 }
@@ -98,18 +97,18 @@ bool ParametresGraphique::equals(const ParametresGraphique& parametresGraphique)
 void ParametresGraphique::fromString(const QString& fromString, const QChar& sep)
 {
     const QStringList fromStringList = listeSousElements(fromString, sep);
-    ParametresAxe parametresAxeHorizontal = this->getParametresAxeHorizontal();
-    ParametresAxe parametresAxeVertical = this->getParametresAxeVertical();
+    ParametresAxe parametresAxeHorizontal = getParametresAxeHorizontal();
+    ParametresAxe parametresAxeVertical = getParametresAxeVertical();
     parametresAxeHorizontal.fromString(fromStringList.at(0), sep);
     parametresAxeVertical.fromString(fromStringList.at(1), sep);
-    this->setParametresAxeHorizontal(parametresAxeHorizontal);
-    this->setParametresAxeVertical(parametresAxeVertical);
+    setParametresAxeHorizontal(parametresAxeHorizontal);
+    setParametresAxeVertical(parametresAxeVertical);
 }
 
 const QString ParametresGraphique::toString(const QChar& sep) const
 {
     QString toString;
-    toString += QString("(%1)").arg(this->getParametresAxeHorizontal().toString(sep)) + sep;
-    toString += QString("(%1)").arg(this->getParametresAxeVertical().toString(sep));
+    toString += QString("(%1)").arg(getParametresAxeHorizontal().toString(sep)) + sep;
+    toString += QString("(%1)").arg(getParametresAxeVertical().toString(sep));
     return toString;
 }

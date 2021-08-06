@@ -75,14 +75,14 @@ public:
 
 private:
     // Attributs de classe
-    int methodeConversion;
-    int seuilNoirEtBlanc;
-    int nombreNiveauxDeGris;
-    int nombreTeintesSaturees;
-    int seuilSaturation;
+    int _methodeConversion;
+    int _seuilNoirEtBlanc;
+    int _nombreNiveauxDeGris;
+    int _nombreTeintesSaturees;
+    int _seuilSaturation;
 
     // Attributs de classe inaccessibles
-    static const QMap<int, QString> methodesConversionTexte;
+    static const QMap<int, QString> _methodesConversionTexte;
 };
 
 #endif /* PARAMETRESCONVERSION_H */

@@ -27,17 +27,17 @@ const ParametresPoint ParametresAffichage::parametresPointsManuelsDefaut = Param
         ParametresPoint::stylePointDefaut, ParametresPoint::epaisseurPointDefaut,
         ParametresPoint::couleurPointManuelDefaut);
 
-const QMap<int, char> ParametresAffichage::formatsNotationNombresCaractere = QMap<int, char>(
+const QMap<int, char> ParametresAffichage::_formatsNotationNombresCaractere = QMap<int, char>(
         std::map<int, char> { { STANDARD, 'f' }, { SCIENTIFIQUE, 'e' } });
-const QMap<int, QString> ParametresAffichage::formatsNotationNombresTexte = QMap<int, QString>(
+const QMap<int, QString> ParametresAffichage::_formatsNotationNombresTexte = QMap<int, QString>(
         std::map<int, QString> { { STANDARD, QString::fromUtf8("Standard") }, { SCIENTIFIQUE,
                 QString::fromUtf8("Scientifique") } });
 
 ParametresAffichage::ParametresAffichage() :
-        formatNotationNombres(formatNotationNombresDefaut),
-                nombreChiffresSignificatifs(nombreChiffresSignificatifsDefaut)
+        _formatNotationNombres(formatNotationNombresDefaut),
+                _nombreChiffresSignificatifs(nombreChiffresSignificatifsDefaut)
 {
-    this->clear();
+    clear();
 }
 
 ParametresAffichage::ParametresAffichage(const int& formatNotationNombres,
@@ -47,14 +47,14 @@ ParametresAffichage::ParametresAffichage(const int& formatNotationNombres,
         const ParametresPoint& parametresPointsManuels) :
         ParametresAffichage()
 {
-    this->set(formatNotationNombres, nombreChiffresSignificatifs, parametresAxes, parametresCourbes,
+    set(formatNotationNombres, nombreChiffresSignificatifs, parametresAxes, parametresCourbes,
             parametresPointsAxes, parametresPointsCourbes, parametresPointsManuels);
 }
 
 ParametresAffichage::ParametresAffichage(const ParametresAffichage& parametresAffichage) :
         ParametresAffichage()
 {
-    this->copy(parametresAffichage);
+    copy(parametresAffichage);
 }
 
 ParametresAffichage::~ParametresAffichage()
@@ -63,93 +63,93 @@ ParametresAffichage::~ParametresAffichage()
 
 ParametresAffichage& ParametresAffichage::operator=(const ParametresAffichage& parametresAffichage)
 {
-    this->copy(parametresAffichage);
+    copy(parametresAffichage);
     return *this;
 }
 
 bool ParametresAffichage::operator==(const ParametresAffichage& parametresAffichage) const
 {
-    return this->equals(parametresAffichage);
+    return equals(parametresAffichage);
 }
 
 bool ParametresAffichage::operator!=(const ParametresAffichage& parametresAffichage) const
 {
-    return !this->equals(parametresAffichage);
+    return !equals(parametresAffichage);
 }
 
 const int& ParametresAffichage::getFormatNotationNombres() const
 {
-    return this->formatNotationNombres;
+    return _formatNotationNombres;
 }
 
 const int& ParametresAffichage::getNombreChiffresSignificatifs() const
 {
-    return this->nombreChiffresSignificatifs;
+    return _nombreChiffresSignificatifs;
 }
 
 const ParametresTrait& ParametresAffichage::getParametresAxes() const
 {
-    return this->parametresAxes;
+    return _parametresAxes;
 }
 
 const ParametresTrait& ParametresAffichage::getParametresCourbes() const
 {
-    return this->parametresCourbes;
+    return _parametresCourbes;
 }
 
 const ParametresPoint& ParametresAffichage::getParametresPointsAxes() const
 {
-    return this->parametresPointsAxes;
+    return _parametresPointsAxes;
 }
 
 const ParametresPoint& ParametresAffichage::getParametresPointsCourbes() const
 {
-    return this->parametresPointsCourbes;
+    return _parametresPointsCourbes;
 }
 
 const ParametresPoint& ParametresAffichage::getParametresPointsManuels() const
 {
-    return this->parametresPointsManuels;
+    return _parametresPointsManuels;
 }
 
 void ParametresAffichage::setFormatNotationNombres(const int& formatNotationNombres)
 {
-    this->formatNotationNombres = formatNotationNombres;
+    _formatNotationNombres = formatNotationNombres;
 }
 
 void ParametresAffichage::setNombreChiffresSignificatifs(const int& nombreChiffresSignificatifs)
 {
-    this->nombreChiffresSignificatifs = nombreChiffresSignificatifs;
+    _nombreChiffresSignificatifs = nombreChiffresSignificatifs;
 }
 
 void ParametresAffichage::setParametresAxes(const ParametresTrait& parametresAxes)
 {
-    this->parametresAxes = parametresAxes;
+    _parametresAxes = parametresAxes;
 }
 
 void ParametresAffichage::setParametresCourbes(const ParametresTrait& parametresCourbes)
 {
-    this->parametresCourbes = parametresCourbes;
+    _parametresCourbes = parametresCourbes;
 }
 
 void ParametresAffichage::setParametresPointsAxes(const ParametresPoint& parametresPointsAxes)
 {
-    this->parametresPointsAxes = parametresPointsAxes;
+    _parametresPointsAxes = parametresPointsAxes;
 }
 
 void ParametresAffichage::setParametresPointsCourbes(const ParametresPoint& parametresPointsCourbes)
 {
-    this->parametresPointsCourbes = parametresPointsCourbes;
+    _parametresPointsCourbes = parametresPointsCourbes;
 }
 
 void ParametresAffichage::setParametresPointsManuels(const ParametresPoint& parametresPointsManuels)
 {
-    this->parametresPointsManuels = parametresPointsManuels;
+    _parametresPointsManuels = parametresPointsManuels;
 }
 
 void ParametresAffichage::clear()
 {
-    this->set(formatNotationNombresDefaut, nombreChiffresSignificatifsDefaut, parametresAxesDefaut,
+    set(formatNotationNombresDefaut, nombreChiffresSignificatifsDefaut, parametresAxesDefaut,
             parametresCourbesDefaut, parametresPointsAxesDefaut, parametresPointsCourbesDefaut,
             parametresPointsManuelsDefaut);
 }
@@ -160,18 +160,18 @@ void ParametresAffichage::set(const int& formatNotationNombres,
         const ParametresPoint& parametresPointsCourbes,
         const ParametresPoint& parametresPointsManuels)
 {
-    this->setFormatNotationNombres(formatNotationNombres);
-    this->setNombreChiffresSignificatifs(nombreChiffresSignificatifs);
-    this->setParametresAxes(parametresAxes);
-    this->setParametresCourbes(parametresCourbes);
-    this->setParametresPointsAxes(parametresPointsAxes);
-    this->setParametresPointsCourbes(parametresPointsCourbes);
-    this->setParametresPointsManuels(parametresPointsManuels);
+    setFormatNotationNombres(formatNotationNombres);
+    setNombreChiffresSignificatifs(nombreChiffresSignificatifs);
+    setParametresAxes(parametresAxes);
+    setParametresCourbes(parametresCourbes);
+    setParametresPointsAxes(parametresPointsAxes);
+    setParametresPointsCourbes(parametresPointsCourbes);
+    setParametresPointsManuels(parametresPointsManuels);
 }
 
 void ParametresAffichage::copy(const ParametresAffichage& parametresAffichage)
 {
-    this->set(parametresAffichage.getFormatNotationNombres(),
+    set(parametresAffichage.getFormatNotationNombres(),
             parametresAffichage.getNombreChiffresSignificatifs(),
             parametresAffichage.getParametresAxes(), parametresAffichage.getParametresCourbes(),
             parametresAffichage.getParametresPointsAxes(),
@@ -181,22 +181,19 @@ void ParametresAffichage::copy(const ParametresAffichage& parametresAffichage)
 
 bool ParametresAffichage::equals(const ParametresAffichage& parametresAffichage) const
 {
-    if (this->getFormatNotationNombres() != parametresAffichage.getFormatNotationNombres())
+    if (getFormatNotationNombres() != parametresAffichage.getFormatNotationNombres())
         return false;
-    if (this->getNombreChiffresSignificatifs()
-            != parametresAffichage.getNombreChiffresSignificatifs())
+    if (getNombreChiffresSignificatifs() != parametresAffichage.getNombreChiffresSignificatifs())
         return false;
-    if (!this->getParametresAxes().equals(parametresAffichage.getParametresAxes()))
+    if (!getParametresAxes().equals(parametresAffichage.getParametresAxes()))
         return false;
-    if (!this->getParametresCourbes().equals(parametresAffichage.getParametresCourbes()))
+    if (!getParametresCourbes().equals(parametresAffichage.getParametresCourbes()))
         return false;
-    if (!this->getParametresPointsAxes().equals(parametresAffichage.getParametresPointsAxes()))
+    if (!getParametresPointsAxes().equals(parametresAffichage.getParametresPointsAxes()))
         return false;
-    if (!this->getParametresPointsCourbes().equals(
-            parametresAffichage.getParametresPointsCourbes()))
+    if (!getParametresPointsCourbes().equals(parametresAffichage.getParametresPointsCourbes()))
         return false;
-    if (!this->getParametresPointsManuels().equals(
-            parametresAffichage.getParametresPointsManuels()))
+    if (!getParametresPointsManuels().equals(parametresAffichage.getParametresPointsManuels()))
         return false;
     return true;
 }
@@ -204,56 +201,55 @@ bool ParametresAffichage::equals(const ParametresAffichage& parametresAffichage)
 void ParametresAffichage::fromString(const QString& fromString, const QChar& sep)
 {
     const QStringList fromStringList = listeSousElements(fromString, sep);
-    ParametresTrait parametresAxes = this->getParametresAxes();
-    ParametresTrait parametresCourbes = this->getParametresCourbes();
-    ParametresPoint parametresPointsAxes = this->getParametresPointsAxes();
-    ParametresPoint parametresPointsCourbes = this->getParametresPointsCourbes();
-    ParametresPoint parametresPointsManuels = this->getParametresPointsManuels();
+    ParametresTrait parametresAxes = getParametresAxes();
+    ParametresTrait parametresCourbes = getParametresCourbes();
+    ParametresPoint parametresPointsAxes = getParametresPointsAxes();
+    ParametresPoint parametresPointsCourbes = getParametresPointsCourbes();
+    ParametresPoint parametresPointsManuels = getParametresPointsManuels();
     parametresAxes.fromString(fromStringList.at(2), sep);
     parametresCourbes.fromString(fromStringList.at(3), sep);
     parametresPointsAxes.fromString(fromStringList.at(4), sep);
     parametresPointsCourbes.fromString(fromStringList.at(5), sep);
     parametresPointsManuels.fromString(fromStringList.at(6), sep);
-    this->setFormatNotationNombres(fromStringList.at(0).toInt());
-    this->setNombreChiffresSignificatifs(fromStringList.at(1).toInt());
-    this->setParametresAxes(parametresAxes);
-    this->setParametresCourbes(parametresCourbes);
-    this->setParametresPointsAxes(parametresPointsAxes);
-    this->setParametresPointsCourbes(parametresPointsCourbes);
-    this->setParametresPointsManuels(parametresPointsManuels);
+    setFormatNotationNombres(fromStringList.at(0).toInt());
+    setNombreChiffresSignificatifs(fromStringList.at(1).toInt());
+    setParametresAxes(parametresAxes);
+    setParametresCourbes(parametresCourbes);
+    setParametresPointsAxes(parametresPointsAxes);
+    setParametresPointsCourbes(parametresPointsCourbes);
+    setParametresPointsManuels(parametresPointsManuels);
 }
 
 const QString ParametresAffichage::toString(const QChar& sep) const
 {
     QString toString;
-    toString += QString::number(this->getFormatNotationNombres()) + sep;
-    toString += QString::number(this->getNombreChiffresSignificatifs()) + sep;
-    toString += QString("(%1)").arg(this->getParametresAxes().toString(sep)) + sep;
-    toString += QString("(%1)").arg(this->getParametresCourbes().toString(sep)) + sep;
-    toString += QString("(%1)").arg(this->getParametresPointsAxes().toString(sep)) + sep;
-    toString += QString("(%1)").arg(this->getParametresPointsCourbes().toString(sep)) + sep;
-    toString += QString("(%1)").arg(this->getParametresPointsManuels().toString(sep));
+    toString += QString::number(getFormatNotationNombres()) + sep;
+    toString += QString::number(getNombreChiffresSignificatifs()) + sep;
+    toString += QString("(%1)").arg(getParametresAxes().toString(sep)) + sep;
+    toString += QString("(%1)").arg(getParametresCourbes().toString(sep)) + sep;
+    toString += QString("(%1)").arg(getParametresPointsAxes().toString(sep)) + sep;
+    toString += QString("(%1)").arg(getParametresPointsCourbes().toString(sep)) + sep;
+    toString += QString("(%1)").arg(getParametresPointsManuels().toString(sep));
     return toString;
 }
 
 char ParametresAffichage::getFormatNotationNombresCaractere() const
 {
-    return formatsNotationNombresCaractere.value(this->getFormatNotationNombres());
+    return _formatsNotationNombresCaractere.value(getFormatNotationNombres());
 }
 
 const QString ParametresAffichage::getFormatNotationNombresTexte() const
 {
-    return formatsNotationNombresTexte.value(this->getFormatNotationNombres());
+    return _formatsNotationNombresTexte.value(getFormatNotationNombres());
 }
 
 void ParametresAffichage::setFormatNotationNombresCaractere(
         const char& formatNotationNombresCaractere)
 {
-    this->setFormatNotationNombres(
-            formatsNotationNombresCaractere.key(formatNotationNombresCaractere));
+    setFormatNotationNombres(_formatsNotationNombresCaractere.key(formatNotationNombresCaractere));
 }
 
 void ParametresAffichage::setFormatNotationNombresTexte(const QString& formatNotationNombresTexte)
 {
-    this->setFormatNotationNombres(formatsNotationNombresTexte.key(formatNotationNombresTexte));
+    setFormatNotationNombres(_formatsNotationNombresTexte.key(formatNotationNombresTexte));
 }

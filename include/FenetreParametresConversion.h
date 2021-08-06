@@ -52,8 +52,8 @@ protected slots:
 
 private:
     // Attributs de classe
-    Ui::FenetreParametresConversion* ui;
-    ParametresConversion parametresConversion;
+    Ui::FenetreParametresConversion* _ui;
+    ParametresConversion _parametresConversion;
 };
 
 #endif /* FENETREPARAMETRESCONVERSION_H */

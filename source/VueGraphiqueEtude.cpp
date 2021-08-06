@@ -18,14 +18,14 @@
 #include <QPolygon>
 #include <QRgb>
 
-const double VueGraphiqueEtude::facteurZoomIn = 1.25;
-const double VueGraphiqueEtude::facteurZoomOut = 0.8;
+const double VueGraphiqueEtude::_facteurZoomIn = 1.25;
+const double VueGraphiqueEtude::_facteurZoomOut = 0.8;
 
 VueGraphiqueEtude::VueGraphiqueEtude(QWidget* parent) :
         QGraphicsView(parent)
 {
     QGraphicsScene* graphicsScene = new QGraphicsScene(parent);
-    this->setScene(graphicsScene);
+    setScene(graphicsScene);
 }
 
 VueGraphiqueEtude::VueGraphiqueEtude(QGraphicsScene* scene, QWidget* parent) :
@@ -39,12 +39,12 @@ VueGraphiqueEtude::~VueGraphiqueEtude()
 
 void VueGraphiqueEtude::repositionner()
 {
-    this->resetTransform();
+    resetTransform();
 }
 
 void VueGraphiqueEtude::effacer()
 {
-    this->scene()->clear();
+    scene()->clear();
 }
 
 void VueGraphiqueEtude::dessiner(const Etude& etude)
@@ -67,18 +67,18 @@ void VueGraphiqueEtude::dessiner(const Etude& etude)
     const int nombreDeCourbes = listeDeCourbes.count();
     const int nombreDePointsManuels = listeDePointsManuels.count();
 
-    this->effacer();
-    this->dessinerImage(image);
-    this->dessinerRepere(repere, parametresAxes, parametresPointsAxes);
+    effacer();
+    dessinerImage(image);
+    dessinerRepere(repere, parametresAxes, parametresPointsAxes);
     for (int itCourbe = 0; itCourbe < nombreDeCourbes; itCourbe++)
     {
         const Courbe& courbe = listeDeCourbes.at(itCourbe);
-        this->dessinerCourbe(courbe, parametresCourbes, parametresPointsCourbes);
+        dessinerCourbe(courbe, parametresCourbes, parametresPointsCourbes);
     }
     for (int itPointManuel = 0; itPointManuel < nombreDePointsManuels; itPointManuel++)
     {
         const Point& pointManuel = listeDePointsManuels.at(itPointManuel);
-        this->dessinerPointManuel(pointManuel, parametresPointsManuels);
+        dessinerPointManuel(pointManuel, parametresPointsManuels);
     }
 }
 
@@ -88,8 +88,8 @@ void VueGraphiqueEtude::dessinerImage(const Image& image)
     const int largeurImage = imageConvertie.width();
     const int hauteurImage = imageConvertie.height();
     QGraphicsPixmapItem* itemImage = new QGraphicsPixmapItem(QPixmap::fromImage(imageConvertie));
-    this->scene()->addItem(itemImage);
-    this->scene()->setSceneRect(0, 0, largeurImage, hauteurImage);
+    scene()->addItem(itemImage);
+    scene()->setSceneRect(0, 0, largeurImage, hauteurImage);
 }
 
 void VueGraphiqueEtude::dessinerRepere(const Repere& repere, const ParametresTrait& parametresAxes,
@@ -100,12 +100,12 @@ void VueGraphiqueEtude::dessinerRepere(const Repere& repere, const ParametresTra
     const Point& pointY0 = repere.getPointY0();
     const Point& pointY1 = repere.getPointY1();
 
-    this->dessinerTrait(pointX0, pointX1, parametresAxes);
-    this->dessinerTrait(pointY0, pointY1, parametresAxes);
-    this->dessinerPoint(pointX0, parametresPointsAxes);
-    this->dessinerPoint(pointX1, parametresPointsAxes);
-    this->dessinerPoint(pointY0, parametresPointsAxes);
-    this->dessinerPoint(pointY1, parametresPointsAxes);
+    dessinerTrait(pointX0, pointX1, parametresAxes);
+    dessinerTrait(pointY0, pointY1, parametresAxes);
+    dessinerPoint(pointX0, parametresPointsAxes);
+    dessinerPoint(pointX1, parametresPointsAxes);
+    dessinerPoint(pointY0, parametresPointsAxes);
+    dessinerPoint(pointY1, parametresPointsAxes);
 }
 
 void VueGraphiqueEtude::dessinerCourbe(const Courbe& courbe,
@@ -114,15 +114,15 @@ void VueGraphiqueEtude::dessinerCourbe(const Courbe& courbe,
     const int nombreDePointsCourbe = courbe.count();
     const Point& premierPoint = courbe.at(0);
     const Point& dernierPoint = courbe.at(nombreDePointsCourbe - 1);
-    this->dessinerTraitContinu(courbe, parametresCourbes);
-    this->dessinerPoint(premierPoint, parametresPointsCourbes);
-    this->dessinerPoint(dernierPoint, parametresPointsCourbes);
+    dessinerTraitContinu(courbe, parametresCourbes);
+    dessinerPoint(premierPoint, parametresPointsCourbes);
+    dessinerPoint(dernierPoint, parametresPointsCourbes);
 }
 
 void VueGraphiqueEtude::dessinerPointManuel(const Point& pointManuel,
         const ParametresPoint& parametresPointsManuels)
 {
-    this->dessinerPoint(pointManuel, parametresPointsManuels);
+    dessinerPoint(pointManuel, parametresPointsManuels);
 }
 
 void VueGraphiqueEtude::dessinerPoint(const Point& point, const ParametresPoint& parametresPoint)
@@ -140,12 +140,12 @@ void VueGraphiqueEtude::dessinerPoint(const Point& point, const ParametresPoint&
 
     if (stylePoint == ParametresPoint::CARRE)
     {
-        this->scene()->addRect(ppx_edit, ppy_edit, epaisseurPoint, epaisseurPoint, pinceauPoint,
+        scene()->addRect(ppx_edit, ppy_edit, epaisseurPoint, epaisseurPoint, pinceauPoint,
                 brossePoint);
     }
     else if (stylePoint == ParametresPoint::CERCLE)
     {
-        this->scene()->addEllipse(ppx_edit, ppy_edit, epaisseurPoint, epaisseurPoint, pinceauPoint,
+        scene()->addEllipse(ppx_edit, ppy_edit, epaisseurPoint, epaisseurPoint, pinceauPoint,
                 brossePoint);
     }
 }
@@ -165,7 +165,7 @@ void VueGraphiqueEtude::dessinerTrait(const Point& point1, const Point& point2,
     const double p2px = point2.getPointPixelX();
     const double p2py = point2.getPointPixelY();
 
-    this->scene()->addLine(p1px, p1py, p2px, p2py, pinceauTrait);
+    scene()->addLine(p1px, p1py, p2px, p2py, pinceauTrait);
 }
 
 void VueGraphiqueEtude::dessinerTraitContinu(const QList<Point>& listeDePoints,
@@ -189,7 +189,7 @@ void VueGraphiqueEtude::dessinerTraitContinu(const QList<Point>& listeDePoints,
     QPainterPath chemin;
     chemin.addPolygon(polygone);
 
-    this->scene()->addPath(chemin, pinceauTrait);
+    scene()->addPath(chemin, pinceauTrait);
 }
 
 void VueGraphiqueEtude::keyPressEvent(QKeyEvent* event)
@@ -198,15 +198,15 @@ void VueGraphiqueEtude::keyPressEvent(QKeyEvent* event)
 
     if (event->key() == Qt::Key_Plus)
     {
-        this->scale(facteurZoomIn, facteurZoomIn);
+        scale(_facteurZoomIn, _facteurZoomIn);
     }
     else if (event->key() == Qt::Key_Minus)
     {
-        this->scale(facteurZoomOut, facteurZoomOut);
+        scale(_facteurZoomOut, _facteurZoomOut);
     }
     else if (event->key() == Qt::Key_0)
     {
-        this->resetTransform();
+        resetTransform();
     }
 }
 
@@ -216,7 +216,7 @@ void VueGraphiqueEtude::mousePressEvent(QMouseEvent* event)
 
     if (event->button() == Qt::LeftButton)
     {
-        emit this->mousePressEventSignal(this->mapToScene(event->pos()));
+        emit mousePressEventSignal(mapToScene(event->pos()));
     }
 }
 
@@ -224,20 +224,20 @@ void VueGraphiqueEtude::mouseMoveEvent(QMouseEvent* event)
 {
     QGraphicsView::mouseMoveEvent(event);
 
-    emit this->mouseMoveEventSignal(this->mapToScene(event->pos()));
+    emit mouseMoveEventSignal(mapToScene(event->pos()));
 }
 
 void VueGraphiqueEtude::wheelEvent(QWheelEvent* event)
 {
     QGraphicsView::wheelEvent(event);
 
-    this->setTransformationAnchor(QGraphicsView::AnchorUnderMouse);
+    setTransformationAnchor(QGraphicsView::AnchorUnderMouse);
     if (event->delta() > 0)
     {
-        this->scale(facteurZoomIn, facteurZoomIn);
+        scale(_facteurZoomIn, _facteurZoomIn);
     }
     else if (event->delta() < 0)
     {
-        this->scale(facteurZoomOut, facteurZoomOut);
+        scale(_facteurZoomOut, _facteurZoomOut);
     }
 }

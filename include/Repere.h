@@ -54,10 +54,10 @@ public:
 
 private:
     // Attributs de classe
-    Point pointX0;
-    Point pointX1;
-    Point pointY0;
-    Point pointY1;
+    Point _pointX0;
+    Point _pointX1;
+    Point _pointY0;
+    Point _pointY1;
 };
 
 #endif /* REPERE_H */

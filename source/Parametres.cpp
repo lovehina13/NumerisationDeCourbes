@@ -11,7 +11,7 @@
 
 Parametres::Parametres()
 {
-    this->clear();
+    clear();
 }
 
 Parametres::Parametres(const ParametresFichiers& parametresFichiers,
@@ -20,14 +20,14 @@ Parametres::Parametres(const ParametresFichiers& parametresFichiers,
         const ParametresRecherche& parametresRecherche, const ParametresExport& parametresExport) :
         Parametres()
 {
-    this->set(parametresFichiers, parametresAffichage, parametresConversion, parametresRecherche,
+    set(parametresFichiers, parametresAffichage, parametresConversion, parametresRecherche,
             parametresExport);
 }
 
 Parametres::Parametres(const Parametres& parametres) :
         Parametres()
 {
-    this->copy(parametres);
+    copy(parametres);
 }
 
 Parametres::~Parametres()
@@ -36,74 +36,74 @@ Parametres::~Parametres()
 
 Parametres& Parametres::operator=(const Parametres& parametres)
 {
-    this->copy(parametres);
+    copy(parametres);
     return *this;
 }
 
 bool Parametres::operator==(const Parametres& parametres) const
 {
-    return this->equals(parametres);
+    return equals(parametres);
 }
 
 bool Parametres::operator!=(const Parametres& parametres) const
 {
-    return !this->equals(parametres);
+    return !equals(parametres);
 }
 
 const ParametresFichiers& Parametres::getParametresFichiers() const
 {
-    return this->parametresFichiers;
+    return _parametresFichiers;
 }
 
 const ParametresAffichage& Parametres::getParametresAffichage() const
 {
-    return this->parametresAffichage;
+    return _parametresAffichage;
 }
 
 const ParametresConversion& Parametres::getParametresConversion() const
 {
-    return this->parametresConversion;
+    return _parametresConversion;
 }
 
 const ParametresRecherche& Parametres::getParametresRecherche() const
 {
-    return this->parametresRecherche;
+    return _parametresRecherche;
 }
 
 const ParametresExport& Parametres::getParametresExport() const
 {
-    return this->parametresExport;
+    return _parametresExport;
 }
 
 void Parametres::setParametresFichiers(const ParametresFichiers& parametresFichiers)
 {
-    this->parametresFichiers = parametresFichiers;
+    _parametresFichiers = parametresFichiers;
 }
 
 void Parametres::setParametresAffichage(const ParametresAffichage& parametresAffichage)
 {
-    this->parametresAffichage = parametresAffichage;
+    _parametresAffichage = parametresAffichage;
 }
 
 void Parametres::setParametresConversion(const ParametresConversion& parametresConversion)
 {
-    this->parametresConversion = parametresConversion;
+    _parametresConversion = parametresConversion;
 }
 
 void Parametres::setParametresRecherche(const ParametresRecherche& parametresRecherche)
 {
-    this->parametresRecherche = parametresRecherche;
+    _parametresRecherche = parametresRecherche;
 }
 
 void Parametres::setParametresExport(const ParametresExport& parametresExport)
 {
-    this->parametresExport = parametresExport;
+    _parametresExport = parametresExport;
 }
 
 void Parametres::clear()
 {
-    this->set(ParametresFichiers(), ParametresAffichage(), ParametresConversion(),
-            ParametresRecherche(), ParametresExport());
+    set(ParametresFichiers(), ParametresAffichage(), ParametresConversion(), ParametresRecherche(),
+            ParametresExport());
 }
 
 void Parametres::set(const ParametresFichiers& parametresFichiers,
@@ -111,31 +111,31 @@ void Parametres::set(const ParametresFichiers& parametresFichiers,
         const ParametresConversion& parametresConversion,
         const ParametresRecherche& parametresRecherche, const ParametresExport& parametresExport)
 {
-    this->setParametresFichiers(parametresFichiers);
-    this->setParametresAffichage(parametresAffichage);
-    this->setParametresConversion(parametresConversion);
-    this->setParametresRecherche(parametresRecherche);
-    this->setParametresExport(parametresExport);
+    setParametresFichiers(parametresFichiers);
+    setParametresAffichage(parametresAffichage);
+    setParametresConversion(parametresConversion);
+    setParametresRecherche(parametresRecherche);
+    setParametresExport(parametresExport);
 }
 
 void Parametres::copy(const Parametres& parametres)
 {
-    this->set(parametres.getParametresFichiers(), parametres.getParametresAffichage(),
+    set(parametres.getParametresFichiers(), parametres.getParametresAffichage(),
             parametres.getParametresConversion(), parametres.getParametresRecherche(),
             parametres.getParametresExport());
 }
 
 bool Parametres::equals(const Parametres& parametres) const
 {
-    if (!this->getParametresFichiers().equals(parametres.getParametresFichiers()))
+    if (!getParametresFichiers().equals(parametres.getParametresFichiers()))
         return false;
-    if (!this->getParametresAffichage().equals(parametres.getParametresAffichage()))
+    if (!getParametresAffichage().equals(parametres.getParametresAffichage()))
         return false;
-    if (!this->getParametresConversion().equals(parametres.getParametresConversion()))
+    if (!getParametresConversion().equals(parametres.getParametresConversion()))
         return false;
-    if (!this->getParametresRecherche().equals(parametres.getParametresRecherche()))
+    if (!getParametresRecherche().equals(parametres.getParametresRecherche()))
         return false;
-    if (!this->getParametresExport().equals(parametres.getParametresExport()))
+    if (!getParametresExport().equals(parametres.getParametresExport()))
         return false;
     return true;
 }
@@ -143,30 +143,30 @@ bool Parametres::equals(const Parametres& parametres) const
 void Parametres::fromString(const QString& fromString, const QChar& sep)
 {
     const QStringList fromStringList = listeSousElements(fromString, sep);
-    ParametresFichiers parametresFichiers = this->getParametresFichiers();
-    ParametresAffichage parametresAffichage = this->getParametresAffichage();
-    ParametresConversion parametresConversion = this->getParametresConversion();
-    ParametresRecherche parametresRecherche = this->getParametresRecherche();
-    ParametresExport parametresExport = this->getParametresExport();
+    ParametresFichiers parametresFichiers = getParametresFichiers();
+    ParametresAffichage parametresAffichage = getParametresAffichage();
+    ParametresConversion parametresConversion = getParametresConversion();
+    ParametresRecherche parametresRecherche = getParametresRecherche();
+    ParametresExport parametresExport = getParametresExport();
     parametresFichiers.fromString(fromStringList.at(0), sep);
     parametresAffichage.fromString(fromStringList.at(1), sep);
     parametresConversion.fromString(fromStringList.at(2), sep);
     parametresRecherche.fromString(fromStringList.at(3), sep);
     parametresExport.fromString(fromStringList.at(4), sep);
-    this->setParametresFichiers(parametresFichiers);
-    this->setParametresAffichage(parametresAffichage);
-    this->setParametresConversion(parametresConversion);
-    this->setParametresRecherche(parametresRecherche);
-    this->setParametresExport(parametresExport);
+    setParametresFichiers(parametresFichiers);
+    setParametresAffichage(parametresAffichage);
+    setParametresConversion(parametresConversion);
+    setParametresRecherche(parametresRecherche);
+    setParametresExport(parametresExport);
 }
 
 const QString Parametres::toString(const QChar& sep) const
 {
     QString toString;
-    toString += QString("(%1)").arg(this->getParametresFichiers().toString(sep)) + sep;
-    toString += QString("(%1)").arg(this->getParametresAffichage().toString(sep)) + sep;
-    toString += QString("(%1)").arg(this->getParametresConversion().toString(sep)) + sep;
-    toString += QString("(%1)").arg(this->getParametresRecherche().toString(sep)) + sep;
-    toString += QString("(%1)").arg(this->getParametresExport().toString(sep));
+    toString += QString("(%1)").arg(getParametresFichiers().toString(sep)) + sep;
+    toString += QString("(%1)").arg(getParametresAffichage().toString(sep)) + sep;
+    toString += QString("(%1)").arg(getParametresConversion().toString(sep)) + sep;
+    toString += QString("(%1)").arg(getParametresRecherche().toString(sep)) + sep;
+    toString += QString("(%1)").arg(getParametresExport().toString(sep));
     return toString;
 }

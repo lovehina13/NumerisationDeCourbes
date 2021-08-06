@@ -64,11 +64,11 @@ public:
 
 private:
     // Attributs de classe
-    ParametresFichiers parametresFichiers;
-    ParametresAffichage parametresAffichage;
-    ParametresConversion parametresConversion;
-    ParametresRecherche parametresRecherche;
-    ParametresExport parametresExport;
+    ParametresFichiers _parametresFichiers;
+    ParametresAffichage _parametresAffichage;
+    ParametresConversion _parametresConversion;
+    ParametresRecherche _parametresRecherche;
+    ParametresExport _parametresExport;
 };
 
 #endif /* PARAMETRES_H */

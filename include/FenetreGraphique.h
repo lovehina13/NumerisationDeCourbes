@@ -83,12 +83,12 @@ protected slots:
 
 private:
     // Attributs de classe
-    Ui::FenetreGraphique* ui;
-    QList<Courbe> listeDeCourbes;
-    QList<Point> listeDePointsManuels;
-    ParametresGraphique parametresGraphique;
-    ParametresAffichage parametresAffichage;
-    ParametresFichiers parametresFichiers;
+    Ui::FenetreGraphique* _ui;
+    QList<Courbe> _listeDeCourbes;
+    QList<Point> _listeDePointsManuels;
+    ParametresGraphique _parametresGraphique;
+    ParametresAffichage _parametresAffichage;
+    ParametresFichiers _parametresFichiers;
 };
 
 #endif /* FENETREGRAPHIQUE_H */

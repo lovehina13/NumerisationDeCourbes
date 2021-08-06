@@ -71,12 +71,12 @@ public:
 
 private:
     // Attributs de classe
-    double borneInferieure;
-    double borneSuperieure;
-    double pasPrincipal;
-    double pasSecondaire;
-    bool grillePrincipale;
-    bool grilleSecondaire;
+    double _borneInferieure;
+    double _borneSuperieure;
+    double _pasPrincipal;
+    double _pasSecondaire;
+    bool _grillePrincipale;
+    bool _grilleSecondaire;
 };
 
 #endif /* PARAMETRESAXE_H */

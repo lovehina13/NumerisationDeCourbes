@@ -19,28 +19,28 @@ const QRgb ParametresTrait::couleurTraitCourbeDefaut = 0xFF0000FF; // QColor(Qt:
 //        hexadécimales correspondantes afin d'en disposer pour les initialisations des valeurs par
 //        défaut des paramètres d'affichage.
 
-const QMap<int, QString> ParametresTrait::stylesTraitsTexte = QMap<int, QString>(
+const QMap<int, QString> ParametresTrait::_stylesTraitsTexte = QMap<int, QString>(
         std::map<int, QString> { { LIGNE, QString::fromUtf8("Ligne") }, { TIRETS, QString::fromUtf8(
                 "Tirets") }, { POINTILLES, QString::fromUtf8("Pointillés") } });
 
 ParametresTrait::ParametresTrait() :
-        styleTrait(styleTraitDefaut), epaisseurTrait(epaisseurTraitDefaut),
-                couleurTrait(couleurTraitDefaut)
+        _styleTrait(styleTraitDefaut), _epaisseurTrait(epaisseurTraitDefaut),
+                _couleurTrait(couleurTraitDefaut)
 {
-    this->clear();
+    clear();
 }
 
 ParametresTrait::ParametresTrait(const int& styleTrait, const int& epaisseurTrait,
         const QRgb& couleurTrait) :
         ParametresTrait()
 {
-    this->set(styleTrait, epaisseurTrait, couleurTrait);
+    set(styleTrait, epaisseurTrait, couleurTrait);
 }
 
 ParametresTrait::ParametresTrait(const ParametresTrait& parametresTrait) :
         ParametresTrait()
 {
-    this->copy(parametresTrait);
+    copy(parametresTrait);
 }
 
 ParametresTrait::~ParametresTrait()
@@ -49,76 +49,76 @@ ParametresTrait::~ParametresTrait()
 
 ParametresTrait& ParametresTrait::operator=(const ParametresTrait& parametresTrait)
 {
-    this->copy(parametresTrait);
+    copy(parametresTrait);
     return *this;
 }
 
 bool ParametresTrait::operator==(const ParametresTrait& parametresTrait) const
 {
-    return this->equals(parametresTrait);
+    return equals(parametresTrait);
 }
 
 bool ParametresTrait::operator!=(const ParametresTrait& parametresTrait) const
 {
-    return !this->equals(parametresTrait);
+    return !equals(parametresTrait);
 }
 
 const int& ParametresTrait::getStyleTrait() const
 {
-    return this->styleTrait;
+    return _styleTrait;
 }
 
 const int& ParametresTrait::getEpaisseurTrait() const
 {
-    return this->epaisseurTrait;
+    return _epaisseurTrait;
 }
 
 const QRgb& ParametresTrait::getCouleurTrait() const
 {
-    return this->couleurTrait;
+    return _couleurTrait;
 }
 
 void ParametresTrait::setStyleTrait(const int& styleTrait)
 {
-    this->styleTrait = styleTrait;
+    _styleTrait = styleTrait;
 }
 
 void ParametresTrait::setEpaisseurTrait(const int& epaisseurTrait)
 {
-    this->epaisseurTrait = epaisseurTrait;
+    _epaisseurTrait = epaisseurTrait;
 }
 
 void ParametresTrait::setCouleurTrait(const QRgb& couleurTrait)
 {
-    this->couleurTrait = couleurTrait;
+    _couleurTrait = couleurTrait;
 }
 
 void ParametresTrait::clear()
 {
-    this->set(styleTraitDefaut, epaisseurTraitDefaut, couleurTraitDefaut);
+    set(styleTraitDefaut, epaisseurTraitDefaut, couleurTraitDefaut);
 }
 
 void ParametresTrait::set(const int& styleTrait, const int& epaisseurTrait,
         const QRgb& couleurTrait)
 {
-    this->setStyleTrait(styleTrait);
-    this->setEpaisseurTrait(epaisseurTrait);
-    this->setCouleurTrait(couleurTrait);
+    setStyleTrait(styleTrait);
+    setEpaisseurTrait(epaisseurTrait);
+    setCouleurTrait(couleurTrait);
 }
 
 void ParametresTrait::copy(const ParametresTrait& parametresTrait)
 {
-    this->set(parametresTrait.getStyleTrait(), parametresTrait.getEpaisseurTrait(),
+    set(parametresTrait.getStyleTrait(), parametresTrait.getEpaisseurTrait(),
             parametresTrait.getCouleurTrait());
 }
 
 bool ParametresTrait::equals(const ParametresTrait& parametresTrait) const
 {
-    if (this->getStyleTrait() != parametresTrait.getStyleTrait())
+    if (getStyleTrait() != parametresTrait.getStyleTrait())
         return false;
-    if (this->getEpaisseurTrait() != parametresTrait.getEpaisseurTrait())
+    if (getEpaisseurTrait() != parametresTrait.getEpaisseurTrait())
         return false;
-    if (this->getCouleurTrait() != parametresTrait.getCouleurTrait())
+    if (getCouleurTrait() != parametresTrait.getCouleurTrait())
         return false;
     return true;
 }
@@ -126,26 +126,26 @@ bool ParametresTrait::equals(const ParametresTrait& parametresTrait) const
 void ParametresTrait::fromString(const QString& fromString, const QChar& sep)
 {
     const QStringList fromStringList = listeSousElements(fromString, sep);
-    this->setStyleTrait(fromStringList.at(0).toInt());
-    this->setEpaisseurTrait(fromStringList.at(1).toInt());
-    this->setCouleurTrait(QColor(fromStringList.at(2)).rgb());
+    setStyleTrait(fromStringList.at(0).toInt());
+    setEpaisseurTrait(fromStringList.at(1).toInt());
+    setCouleurTrait(QColor(fromStringList.at(2)).rgb());
 }
 
 const QString ParametresTrait::toString(const QChar& sep) const
 {
     QString toString;
-    toString += QString::number(this->getStyleTrait()) + sep;
-    toString += QString::number(this->getEpaisseurTrait()) + sep;
-    toString += QColor(this->getCouleurTrait()).name();
+    toString += QString::number(getStyleTrait()) + sep;
+    toString += QString::number(getEpaisseurTrait()) + sep;
+    toString += QColor(getCouleurTrait()).name();
     return toString;
 }
 
 const QString ParametresTrait::getStyleTraitTexte() const
 {
-    return stylesTraitsTexte.value(this->getStyleTrait());
+    return _stylesTraitsTexte.value(getStyleTrait());
 }
 
 void ParametresTrait::setStyleTraitTexte(const QString& styleTraitTexte)
 {
-    this->setStyleTrait(stylesTraitsTexte.key(styleTraitTexte));
+    setStyleTrait(_stylesTraitsTexte.key(styleTraitTexte));
 }

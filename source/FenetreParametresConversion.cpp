@@ -11,104 +11,100 @@
 #include <QPushButton>
 
 FenetreParametresConversion::FenetreParametresConversion(QWidget* parent) :
-        QDialog(parent), ui(new Ui::FenetreParametresConversion)
+        QDialog(parent), _ui(new Ui::FenetreParametresConversion)
 {
-    this->ui->setupUi(this);
-    this->initialiserElementsGraphiques();
-    this->actualiserElementsGraphiques();
+    _ui->setupUi(this);
+    initialiserElementsGraphiques();
+    actualiserElementsGraphiques();
 }
 
 FenetreParametresConversion::~FenetreParametresConversion()
 {
-    delete this->ui;
+    delete _ui;
 }
 
 const ParametresConversion& FenetreParametresConversion::getParametresConversion() const
 {
-    return this->parametresConversion;
+    return _parametresConversion;
 }
 
 void FenetreParametresConversion::setParametresConversion(
         const ParametresConversion& parametresConversion)
 {
-    this->parametresConversion = parametresConversion;
+    _parametresConversion = parametresConversion;
 }
 
 void FenetreParametresConversion::initialiserElementsGraphiques()
 {
-    this->ui->spinBoxSeuilNoirEtBlanc->setMinimum(0);
-    this->ui->spinBoxSeuilNoirEtBlanc->setMaximum(255);
-    this->ui->doubleSpinBoxSeuilNoirEtBlancFacteur->setMinimum(0.0);
-    this->ui->doubleSpinBoxSeuilNoirEtBlancFacteur->setMaximum(100.0);
-    this->ui->spinBoxNombreNiveauxDeGris->setMinimum(2);
-    this->ui->spinBoxNombreNiveauxDeGris->setMaximum(256);
-    this->ui->spinBoxNombreTeintesSaturees->setMinimum(1);
-    this->ui->spinBoxNombreTeintesSaturees->setMaximum(360);
-    this->ui->spinBoxSeuilSaturation->setMinimum(0);
-    this->ui->spinBoxSeuilSaturation->setMaximum(255);
-    this->ui->doubleSpinBoxSeuilSaturationFacteur->setMinimum(0.0);
-    this->ui->doubleSpinBoxSeuilSaturationFacteur->setMaximum(100.0);
-    this->ui->buttonBox->button(QDialogButtonBox::Cancel)->setText("Annuler");
+    _ui->spinBoxSeuilNoirEtBlanc->setMinimum(0);
+    _ui->spinBoxSeuilNoirEtBlanc->setMaximum(255);
+    _ui->doubleSpinBoxSeuilNoirEtBlancFacteur->setMinimum(0.0);
+    _ui->doubleSpinBoxSeuilNoirEtBlancFacteur->setMaximum(100.0);
+    _ui->spinBoxNombreNiveauxDeGris->setMinimum(2);
+    _ui->spinBoxNombreNiveauxDeGris->setMaximum(256);
+    _ui->spinBoxNombreTeintesSaturees->setMinimum(1);
+    _ui->spinBoxNombreTeintesSaturees->setMaximum(360);
+    _ui->spinBoxSeuilSaturation->setMinimum(0);
+    _ui->spinBoxSeuilSaturation->setMaximum(255);
+    _ui->doubleSpinBoxSeuilSaturationFacteur->setMinimum(0.0);
+    _ui->doubleSpinBoxSeuilSaturationFacteur->setMaximum(100.0);
+    _ui->buttonBox->button(QDialogButtonBox::Cancel)->setText("Annuler");
 }
 
 void FenetreParametresConversion::actualiserElementsGraphiques()
 {
-    this->ui->spinBoxSeuilNoirEtBlanc->setValue(this->parametresConversion.getSeuilNoirEtBlanc());
-    this->ui->doubleSpinBoxSeuilNoirEtBlancFacteur->setValue(
-            this->parametresConversion.getSeuilNoirEtBlancFacteur() * 100.0);
-    this->ui->spinBoxNombreNiveauxDeGris->setValue(
-            this->parametresConversion.getNombreNiveauxDeGris());
-    this->ui->spinBoxNombreTeintesSaturees->setValue(
-            this->parametresConversion.getNombreTeintesSaturees());
-    this->ui->spinBoxSeuilSaturation->setValue(this->parametresConversion.getSeuilSaturation());
-    this->ui->doubleSpinBoxSeuilSaturationFacteur->setValue(
-            this->parametresConversion.getSeuilSaturationFacteur() * 100.0);
+    _ui->spinBoxSeuilNoirEtBlanc->setValue(_parametresConversion.getSeuilNoirEtBlanc());
+    _ui->doubleSpinBoxSeuilNoirEtBlancFacteur->setValue(
+            _parametresConversion.getSeuilNoirEtBlancFacteur() * 100.0);
+    _ui->spinBoxNombreNiveauxDeGris->setValue(_parametresConversion.getNombreNiveauxDeGris());
+    _ui->spinBoxNombreTeintesSaturees->setValue(_parametresConversion.getNombreTeintesSaturees());
+    _ui->spinBoxSeuilSaturation->setValue(_parametresConversion.getSeuilSaturation());
+    _ui->doubleSpinBoxSeuilSaturationFacteur->setValue(
+            _parametresConversion.getSeuilSaturationFacteur() * 100.0);
 }
 
 void FenetreParametresConversion::on_spinBoxSeuilNoirEtBlanc_valueChanged()
 {
-    this->parametresConversion.setSeuilNoirEtBlanc(this->ui->spinBoxSeuilNoirEtBlanc->value());
-    this->ui->doubleSpinBoxSeuilNoirEtBlancFacteur->blockSignals(true);
-    this->ui->doubleSpinBoxSeuilNoirEtBlancFacteur->setValue(
-            this->parametresConversion.getSeuilNoirEtBlancFacteur() * 100.0);
-    this->ui->doubleSpinBoxSeuilNoirEtBlancFacteur->blockSignals(false);
+    _parametresConversion.setSeuilNoirEtBlanc(_ui->spinBoxSeuilNoirEtBlanc->value());
+    _ui->doubleSpinBoxSeuilNoirEtBlancFacteur->blockSignals(true);
+    _ui->doubleSpinBoxSeuilNoirEtBlancFacteur->setValue(
+            _parametresConversion.getSeuilNoirEtBlancFacteur() * 100.0);
+    _ui->doubleSpinBoxSeuilNoirEtBlancFacteur->blockSignals(false);
 }
 
 void FenetreParametresConversion::on_doubleSpinBoxSeuilNoirEtBlancFacteur_valueChanged()
 {
-    this->parametresConversion.setSeuilNoirEtBlancFacteur(
-            this->ui->doubleSpinBoxSeuilNoirEtBlancFacteur->value() / 100.0);
-    this->ui->spinBoxSeuilNoirEtBlanc->blockSignals(true);
-    this->ui->spinBoxSeuilNoirEtBlanc->setValue(this->parametresConversion.getSeuilNoirEtBlanc());
-    this->ui->spinBoxSeuilNoirEtBlanc->blockSignals(false);
+    _parametresConversion.setSeuilNoirEtBlancFacteur(
+            _ui->doubleSpinBoxSeuilNoirEtBlancFacteur->value() / 100.0);
+    _ui->spinBoxSeuilNoirEtBlanc->blockSignals(true);
+    _ui->spinBoxSeuilNoirEtBlanc->setValue(_parametresConversion.getSeuilNoirEtBlanc());
+    _ui->spinBoxSeuilNoirEtBlanc->blockSignals(false);
 }
 
 void FenetreParametresConversion::on_spinBoxNombreNiveauxDeGris_valueChanged()
 {
-    this->parametresConversion.setNombreNiveauxDeGris(
-            this->ui->spinBoxNombreNiveauxDeGris->value());
+    _parametresConversion.setNombreNiveauxDeGris(_ui->spinBoxNombreNiveauxDeGris->value());
 }
 
 void FenetreParametresConversion::on_spinBoxNombreTeintesSaturees_valueChanged()
 {
-    this->parametresConversion.setNombreTeintesSaturees(
-            this->ui->spinBoxNombreTeintesSaturees->value());
+    _parametresConversion.setNombreTeintesSaturees(_ui->spinBoxNombreTeintesSaturees->value());
 }
 
 void FenetreParametresConversion::on_spinBoxSeuilSaturation_valueChanged()
 {
-    this->parametresConversion.setSeuilSaturation(this->ui->spinBoxSeuilSaturation->value());
-    this->ui->doubleSpinBoxSeuilSaturationFacteur->blockSignals(true);
-    this->ui->doubleSpinBoxSeuilSaturationFacteur->setValue(
-            this->parametresConversion.getSeuilSaturationFacteur() * 100.0);
-    this->ui->doubleSpinBoxSeuilSaturationFacteur->blockSignals(false);
+    _parametresConversion.setSeuilSaturation(_ui->spinBoxSeuilSaturation->value());
+    _ui->doubleSpinBoxSeuilSaturationFacteur->blockSignals(true);
+    _ui->doubleSpinBoxSeuilSaturationFacteur->setValue(
+            _parametresConversion.getSeuilSaturationFacteur() * 100.0);
+    _ui->doubleSpinBoxSeuilSaturationFacteur->blockSignals(false);
 }
 
 void FenetreParametresConversion::on_doubleSpinBoxSeuilSaturationFacteur_valueChanged()
 {
-    this->parametresConversion.setSeuilSaturationFacteur(
-            this->ui->doubleSpinBoxSeuilSaturationFacteur->value() / 100.0);
-    this->ui->spinBoxSeuilSaturation->blockSignals(true);
-    this->ui->spinBoxSeuilSaturation->setValue(this->parametresConversion.getSeuilSaturation());
-    this->ui->spinBoxSeuilSaturation->blockSignals(false);
+    _parametresConversion.setSeuilSaturationFacteur(
+            _ui->doubleSpinBoxSeuilSaturationFacteur->value() / 100.0);
+    _ui->spinBoxSeuilSaturation->blockSignals(true);
+    _ui->spinBoxSeuilSaturation->setValue(_parametresConversion.getSeuilSaturation());
+    _ui->spinBoxSeuilSaturation->blockSignals(false);
 }

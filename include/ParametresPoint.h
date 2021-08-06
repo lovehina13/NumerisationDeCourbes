@@ -65,12 +65,12 @@ public:
 
 private:
     // Attributs de classe
-    int stylePoint;
-    int epaisseurPoint;
-    QRgb couleurPoint;
+    int _stylePoint;
+    int _epaisseurPoint;
+    QRgb _couleurPoint;
 
     // Attributs de classe inaccessibles
-    static const QMap<int, QString> stylesPointsTexte;
+    static const QMap<int, QString> _stylesPointsTexte;
 };
 
 #endif /* PARAMETRESPOINT_H */

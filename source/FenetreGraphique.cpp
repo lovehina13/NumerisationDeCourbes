@@ -36,129 +36,128 @@
 #endif
 
 FenetreGraphique::FenetreGraphique(QWidget* parent) :
-        QDialog(parent), ui(new Ui::FenetreGraphique)
+        QDialog(parent), _ui(new Ui::FenetreGraphique)
 {
-    this->ui->setupUi(this);
+    _ui->setupUi(this);
 
 #ifdef ENABLE_QWT
-    this->ui->widgetGraphique = new QwtPlot(this);
-    this->ui->gridLayoutFenetreGraphique->addWidget(this->ui->widgetGraphique, 1, 0, 1, 1);
+    _ui->widgetGraphique = new QwtPlot(this);
+    _ui->gridLayoutFenetreGraphique->addWidget(_ui->widgetGraphique, 1, 0, 1, 1);
 #endif
 
-    this->initialiserElementsGraphiques();
-    this->actualiserElementsGraphiques();
+    initialiserElementsGraphiques();
+    actualiserElementsGraphiques();
 }
 
 FenetreGraphique::~FenetreGraphique()
 {
-    delete this->ui;
+    delete _ui;
 }
 
 const QList<Courbe>& FenetreGraphique::getListeDeCourbes() const
 {
-    return this->listeDeCourbes;
+    return _listeDeCourbes;
 }
 
 const QList<Point>& FenetreGraphique::getListeDePointsManuels() const
 {
-    return this->listeDePointsManuels;
+    return _listeDePointsManuels;
 }
 
 const ParametresGraphique& FenetreGraphique::getParametresGraphique() const
 {
-    return this->parametresGraphique;
+    return _parametresGraphique;
 }
 
 const ParametresAffichage& FenetreGraphique::getParametresAffichage() const
 {
-    return this->parametresAffichage;
+    return _parametresAffichage;
 }
 
 const ParametresFichiers& FenetreGraphique::getParametresFichiers() const
 {
-    return this->parametresFichiers;
+    return _parametresFichiers;
 }
 
 void FenetreGraphique::setListeDeCourbes(const QList<Courbe>& listeDeCourbes)
 {
-    this->listeDeCourbes = listeDeCourbes;
+    _listeDeCourbes = listeDeCourbes;
 }
 
 void FenetreGraphique::setListeDePointsManuels(const QList<Point>& listeDePointsManuels)
 {
-    this->listeDePointsManuels = listeDePointsManuels;
+    _listeDePointsManuels = listeDePointsManuels;
 }
 
 void FenetreGraphique::setParametresGraphique(const ParametresGraphique& parametresGraphique)
 {
-    this->parametresGraphique = parametresGraphique;
+    _parametresGraphique = parametresGraphique;
 }
 
 void FenetreGraphique::setParametresAffichage(const ParametresAffichage& parametresAffichage)
 {
-    this->parametresAffichage = parametresAffichage;
+    _parametresAffichage = parametresAffichage;
 }
 
 void FenetreGraphique::setParametresFichiers(const ParametresFichiers& parametresFichiers)
 {
-    this->parametresFichiers = parametresFichiers;
+    _parametresFichiers = parametresFichiers;
 }
 
 void FenetreGraphique::initialiserElementsGraphiques()
 {
     const QDoubleValidator* nombreReel = new QDoubleValidator(this);
-    this->ui->lineEditAxeHorizontalBorneInferieure->setValidator(nombreReel);
-    this->ui->lineEditAxeHorizontalBorneSuperieure->setValidator(nombreReel);
-    this->ui->lineEditAxeHorizontalPasPrincipal->setValidator(nombreReel);
-    this->ui->lineEditAxeHorizontalPasSecondaire->setValidator(nombreReel);
-    this->ui->lineEditAxeVerticalBorneInferieure->setValidator(nombreReel);
-    this->ui->lineEditAxeVerticalBorneSuperieure->setValidator(nombreReel);
-    this->ui->lineEditAxeVerticalPasPrincipal->setValidator(nombreReel);
-    this->ui->lineEditAxeVerticalPasSecondaire->setValidator(nombreReel);
-    this->ui->buttonBox->button(QDialogButtonBox::Save)->setText("Enregistrer");
+    _ui->lineEditAxeHorizontalBorneInferieure->setValidator(nombreReel);
+    _ui->lineEditAxeHorizontalBorneSuperieure->setValidator(nombreReel);
+    _ui->lineEditAxeHorizontalPasPrincipal->setValidator(nombreReel);
+    _ui->lineEditAxeHorizontalPasSecondaire->setValidator(nombreReel);
+    _ui->lineEditAxeVerticalBorneInferieure->setValidator(nombreReel);
+    _ui->lineEditAxeVerticalBorneSuperieure->setValidator(nombreReel);
+    _ui->lineEditAxeVerticalPasPrincipal->setValidator(nombreReel);
+    _ui->lineEditAxeVerticalPasSecondaire->setValidator(nombreReel);
+    _ui->buttonBox->button(QDialogButtonBox::Save)->setText("Enregistrer");
 }
 
 void FenetreGraphique::actualiserElementsGraphiques()
 {
     const ParametresAxe& parametresAxeHorizontal =
-            this->parametresGraphique.getParametresAxeHorizontal();
-    const ParametresAxe& parametresAxeVertical =
-            this->parametresGraphique.getParametresAxeVertical();
+            _parametresGraphique.getParametresAxeHorizontal();
+    const ParametresAxe& parametresAxeVertical = _parametresGraphique.getParametresAxeVertical();
 
-    this->ui->lineEditAxeHorizontalBorneInferieure->setText(
+    _ui->lineEditAxeHorizontalBorneInferieure->setText(
             QString::number(parametresAxeHorizontal.getBorneInferieure()));
-    this->ui->lineEditAxeHorizontalBorneSuperieure->setText(
+    _ui->lineEditAxeHorizontalBorneSuperieure->setText(
             QString::number(parametresAxeHorizontal.getBorneSuperieure()));
-    this->ui->lineEditAxeHorizontalPasPrincipal->setText(
+    _ui->lineEditAxeHorizontalPasPrincipal->setText(
             QString::number(parametresAxeHorizontal.getPasPrincipal()));
-//    this->ui->lineEditAxeHorizontalPasSecondaire->setText(
+//    ui->lineEditAxeHorizontalPasSecondaire->setText(
 //            QString::number(parametresAxeHorizontal.getPasSecondaire()));
-    this->ui->lineEditAxeHorizontalPasSecondaire->setText(QString::number(0.0));
-    this->ui->checkBoxAxeHorizontalGrillePrincipale->setChecked(
+    _ui->lineEditAxeHorizontalPasSecondaire->setText(QString::number(0.0));
+    _ui->checkBoxAxeHorizontalGrillePrincipale->setChecked(
             parametresAxeHorizontal.getGrillePrincipale());
-    this->ui->checkBoxAxeHorizontalGrilleSecondaire->setChecked(
+    _ui->checkBoxAxeHorizontalGrilleSecondaire->setChecked(
             parametresAxeHorizontal.getGrilleSecondaire());
-    this->ui->lineEditAxeVerticalBorneInferieure->setText(
+    _ui->lineEditAxeVerticalBorneInferieure->setText(
             QString::number(parametresAxeVertical.getBorneInferieure()));
-    this->ui->lineEditAxeVerticalBorneSuperieure->setText(
+    _ui->lineEditAxeVerticalBorneSuperieure->setText(
             QString::number(parametresAxeVertical.getBorneSuperieure()));
-    this->ui->lineEditAxeVerticalPasPrincipal->setText(
+    _ui->lineEditAxeVerticalPasPrincipal->setText(
             QString::number(parametresAxeVertical.getPasPrincipal()));
-//    this->ui->lineEditAxeVerticalPasSecondaire->setText(
+//    ui->lineEditAxeVerticalPasSecondaire->setText(
 //            QString::number(parametresAxeVertical.getPasSecondaire()));
-    this->ui->lineEditAxeVerticalPasSecondaire->setText(QString::number(0.0));
-    this->ui->checkBoxAxeVerticalGrillePrincipale->setChecked(
+    _ui->lineEditAxeVerticalPasSecondaire->setText(QString::number(0.0));
+    _ui->checkBoxAxeVerticalGrillePrincipale->setChecked(
             parametresAxeVertical.getGrillePrincipale());
-    this->ui->checkBoxAxeVerticalGrilleSecondaire->setChecked(
+    _ui->checkBoxAxeVerticalGrilleSecondaire->setChecked(
             parametresAxeVertical.getGrilleSecondaire());
 
-    this->dessinerGraphique();
+    dessinerGraphique();
 }
 
 void FenetreGraphique::effacerGraphique()
 {
 #ifdef ENABLE_QWT
-    QwtPlot* graphique = dynamic_cast<QwtPlot*>(this->ui->widgetGraphique);
+    QwtPlot* graphique = dynamic_cast<QwtPlot*>(_ui->widgetGraphique);
 
     const QColor couleurArrierePlan = QColor(Qt::white);
     const QBrush brosseArrierePlan = QBrush(couleurArrierePlan, Qt::SolidPattern);
@@ -172,36 +171,35 @@ void FenetreGraphique::effacerGraphique()
 
 void FenetreGraphique::dessinerGraphique()
 {
-    const QList<Courbe>& listeDeCourbes = this->getListeDeCourbes();
-    const QList<Point>& listeDePointsManuels = this->getListeDePointsManuels();
+    const QList<Courbe>& listeDeCourbes = getListeDeCourbes();
+    const QList<Point>& listeDePointsManuels = getListeDePointsManuels();
     const int nombreDeCourbes = listeDeCourbes.count();
     const int nombreDePointsManuels = listeDePointsManuels.count();
 
-    this->effacerGraphique();
-    this->dessinerRepereGraphique();
-    this->dessinerGrilleGraphique();
+    effacerGraphique();
+    dessinerRepereGraphique();
+    dessinerGrilleGraphique();
     for (int itCourbe = 0; itCourbe < nombreDeCourbes; itCourbe++)
     {
         const Courbe& courbe = listeDeCourbes.at(itCourbe);
-        this->dessinerCourbe(courbe);
+        dessinerCourbe(courbe);
     }
     for (int itPointManuel = 0; itPointManuel < nombreDePointsManuels; itPointManuel++)
     {
         const Point& pointManuel = listeDePointsManuels.at(itPointManuel);
-        this->dessinerPointManuel(pointManuel);
+        dessinerPointManuel(pointManuel);
     }
 }
 
 void FenetreGraphique::dessinerRepereGraphique()
 {
 #ifdef ENABLE_QWT
-    QwtPlot* graphique = dynamic_cast<QwtPlot*>(this->ui->widgetGraphique);
+    QwtPlot* graphique = dynamic_cast<QwtPlot*>(_ui->widgetGraphique);
 
     const ParametresAxe& parametresAxeHorizontal =
-            this->parametresGraphique.getParametresAxeHorizontal();
-    const ParametresAxe& parametresAxeVertical =
-            this->parametresGraphique.getParametresAxeVertical();
-    const ParametresTrait& parametresAxes = this->parametresAffichage.getParametresAxes();
+            _parametresGraphique.getParametresAxeHorizontal();
+    const ParametresAxe& parametresAxeVertical = _parametresGraphique.getParametresAxeVertical();
+    const ParametresTrait& parametresAxes = _parametresAffichage.getParametresAxes();
 
     const int& epaisseurRepere = parametresAxes.getEpaisseurTrait();
     const QRgb& couleurRepere = parametresAxes.getCouleurTrait();
@@ -238,12 +236,11 @@ void FenetreGraphique::dessinerRepereGraphique()
 void FenetreGraphique::dessinerGrilleGraphique()
 {
 #ifdef ENABLE_QWT
-    QwtPlot* graphique = dynamic_cast<QwtPlot*>(this->ui->widgetGraphique);
+    QwtPlot* graphique = dynamic_cast<QwtPlot*>(_ui->widgetGraphique);
 
     const ParametresAxe& parametresAxeHorizontal =
-            this->parametresGraphique.getParametresAxeHorizontal();
-    const ParametresAxe& parametresAxeVertical =
-            this->parametresGraphique.getParametresAxeVertical();
+            _parametresGraphique.getParametresAxeHorizontal();
+    const ParametresAxe& parametresAxeVertical = _parametresGraphique.getParametresAxeVertical();
 
     const QColor couleurGrillePrincipale = QColor(Qt::black);
     const QColor couleurGrilleSecondaire = QColor(Qt::gray);
@@ -270,28 +267,28 @@ void FenetreGraphique::dessinerCourbe(const Courbe& courbe)
     const int nombreDePointsCourbe = courbe.count();
     const Point& premierPoint = courbe.at(0);
     const Point& dernierPoint = courbe.at(nombreDePointsCourbe - 1);
-    const ParametresTrait& parametresCourbes = this->parametresAffichage.getParametresCourbes();
+    const ParametresTrait& parametresCourbes = _parametresAffichage.getParametresCourbes();
     const ParametresPoint& parametresPointsCourbes =
-            this->parametresAffichage.getParametresPointsCourbes();
+            _parametresAffichage.getParametresPointsCourbes();
 
-    this->dessinerCourbeGraphique(courbe, parametresCourbes);
-    this->dessinerPointGraphique(premierPoint, parametresPointsCourbes);
-    this->dessinerPointGraphique(dernierPoint, parametresPointsCourbes);
+    dessinerCourbeGraphique(courbe, parametresCourbes);
+    dessinerPointGraphique(premierPoint, parametresPointsCourbes);
+    dessinerPointGraphique(dernierPoint, parametresPointsCourbes);
 }
 
 void FenetreGraphique::dessinerPointManuel(const Point& pointManuel)
 {
     const ParametresPoint& parametresPointManuels =
-            this->parametresAffichage.getParametresPointsManuels();
+            _parametresAffichage.getParametresPointsManuels();
 
-    this->dessinerPointGraphique(pointManuel, parametresPointManuels);
+    dessinerPointGraphique(pointManuel, parametresPointManuels);
 }
 
 void FenetreGraphique::dessinerCourbeGraphique(const Courbe& courbe,
         const ParametresTrait& parametresCourbe)
 {
 #ifdef ENABLE_QWT
-    QwtPlot* graphique = dynamic_cast<QwtPlot*>(this->ui->widgetGraphique);
+    QwtPlot* graphique = dynamic_cast<QwtPlot*>(_ui->widgetGraphique);
 
     const int& styleCourbe = parametresCourbe.getStyleTrait();
     const int& epaisseurCourbe = parametresCourbe.getEpaisseurTrait();
@@ -325,7 +322,7 @@ void FenetreGraphique::dessinerPointGraphique(const Point& point,
         const ParametresPoint& parametresPoint)
 {
 #ifdef ENABLE_QWT
-    QwtPlot* graphique = dynamic_cast<QwtPlot*>(this->ui->widgetGraphique);
+    QwtPlot* graphique = dynamic_cast<QwtPlot*>(_ui->widgetGraphique);
 
     const int& stylePoint = parametresPoint.getStylePoint();
     const int& epaisseurPoint = parametresPoint.getEpaisseurPoint();
@@ -356,7 +353,7 @@ void FenetreGraphique::exporterGraphique()
 {
     const QString cheminFichierGraphique = QFileDialog::getSaveFileName(this,
             QString::fromUtf8("Sélection d'un fichier image"),
-            this->parametresFichiers.getCheminFichierGraphique(),
+            _parametresFichiers.getCheminFichierGraphique(),
             QString::fromUtf8("Fichier image Windows Bitmap (*.bmp);;"
                     "Fichier image JPEG (*.jpg *.jpeg);;"
                     "Fichier image PNG (*.png)"));
@@ -368,7 +365,7 @@ void FenetreGraphique::exporterGraphique()
         return;
 
 #ifdef ENABLE_QWT
-    QwtPlot* graphique = dynamic_cast<QwtPlot*>(this->ui->widgetGraphique);
+    QwtPlot* graphique = dynamic_cast<QwtPlot*>(_ui->widgetGraphique);
 
     QPixmap pixmap = QPixmap::grabWidget(graphique);
     pixmap.save(cheminFichierGraphique);
@@ -377,116 +374,115 @@ void FenetreGraphique::exporterGraphique()
 
 void FenetreGraphique::on_lineEditAxeHorizontalBorneInferieure_textChanged()
 {
-    ParametresAxe parametresAxeHorizontal = this->parametresGraphique.getParametresAxeHorizontal();
+    ParametresAxe parametresAxeHorizontal = _parametresGraphique.getParametresAxeHorizontal();
     parametresAxeHorizontal.setBorneInferieure(
-            this->ui->lineEditAxeHorizontalBorneInferieure->text().toDouble());
-    this->parametresGraphique.setParametresAxeHorizontal(parametresAxeHorizontal);
-    this->dessinerGraphique();
+            _ui->lineEditAxeHorizontalBorneInferieure->text().toDouble());
+    _parametresGraphique.setParametresAxeHorizontal(parametresAxeHorizontal);
+    dessinerGraphique();
 }
 
 void FenetreGraphique::on_lineEditAxeHorizontalBorneSuperieure_textChanged()
 {
-    ParametresAxe parametresAxeHorizontal = this->parametresGraphique.getParametresAxeHorizontal();
+    ParametresAxe parametresAxeHorizontal = _parametresGraphique.getParametresAxeHorizontal();
     parametresAxeHorizontal.setBorneSuperieure(
-            this->ui->lineEditAxeHorizontalBorneSuperieure->text().toDouble());
-    this->parametresGraphique.setParametresAxeHorizontal(parametresAxeHorizontal);
-    this->dessinerGraphique();
+            _ui->lineEditAxeHorizontalBorneSuperieure->text().toDouble());
+    _parametresGraphique.setParametresAxeHorizontal(parametresAxeHorizontal);
+    dessinerGraphique();
 }
 
 void FenetreGraphique::on_lineEditAxeHorizontalPasPrincipal_textChanged()
 {
-    ParametresAxe parametresAxeHorizontal = this->parametresGraphique.getParametresAxeHorizontal();
+    ParametresAxe parametresAxeHorizontal = _parametresGraphique.getParametresAxeHorizontal();
     parametresAxeHorizontal.setPasPrincipal(
-            this->ui->lineEditAxeHorizontalPasPrincipal->text().toDouble());
-    this->parametresGraphique.setParametresAxeHorizontal(parametresAxeHorizontal);
-    this->dessinerGraphique();
+            _ui->lineEditAxeHorizontalPasPrincipal->text().toDouble());
+    _parametresGraphique.setParametresAxeHorizontal(parametresAxeHorizontal);
+    dessinerGraphique();
 }
 
 void FenetreGraphique::on_lineEditAxeHorizontalPasSecondaire_textChanged()
 {
-    ParametresAxe parametresAxeHorizontal = this->parametresGraphique.getParametresAxeHorizontal();
+    ParametresAxe parametresAxeHorizontal = _parametresGraphique.getParametresAxeHorizontal();
     parametresAxeHorizontal.setPasSecondaire(
-            this->ui->lineEditAxeHorizontalPasSecondaire->text().toDouble());
-    this->parametresGraphique.setParametresAxeHorizontal(parametresAxeHorizontal);
-    this->dessinerGraphique();
+            _ui->lineEditAxeHorizontalPasSecondaire->text().toDouble());
+    _parametresGraphique.setParametresAxeHorizontal(parametresAxeHorizontal);
+    dessinerGraphique();
 }
 
 void FenetreGraphique::on_checkBoxAxeHorizontalGrillePrincipale_stateChanged()
 {
-    ParametresAxe parametresAxeHorizontal = this->parametresGraphique.getParametresAxeHorizontal();
+    ParametresAxe parametresAxeHorizontal = _parametresGraphique.getParametresAxeHorizontal();
     parametresAxeHorizontal.setGrillePrincipale(
-            this->ui->checkBoxAxeHorizontalGrillePrincipale->isChecked());
-    this->parametresGraphique.setParametresAxeHorizontal(parametresAxeHorizontal);
-    this->dessinerGraphique();
+            _ui->checkBoxAxeHorizontalGrillePrincipale->isChecked());
+    _parametresGraphique.setParametresAxeHorizontal(parametresAxeHorizontal);
+    dessinerGraphique();
 }
 
 void FenetreGraphique::on_checkBoxAxeHorizontalGrilleSecondaire_stateChanged()
 {
-    ParametresAxe parametresAxeHorizontal = this->parametresGraphique.getParametresAxeHorizontal();
+    ParametresAxe parametresAxeHorizontal = _parametresGraphique.getParametresAxeHorizontal();
     parametresAxeHorizontal.setGrilleSecondaire(
-            this->ui->checkBoxAxeHorizontalGrilleSecondaire->isChecked());
-    this->parametresGraphique.setParametresAxeHorizontal(parametresAxeHorizontal);
-    this->dessinerGraphique();
+            _ui->checkBoxAxeHorizontalGrilleSecondaire->isChecked());
+    _parametresGraphique.setParametresAxeHorizontal(parametresAxeHorizontal);
+    dessinerGraphique();
 }
 
 void FenetreGraphique::on_lineEditAxeVerticalBorneInferieure_textChanged()
 {
-    ParametresAxe parametresAxeVertical = this->parametresGraphique.getParametresAxeVertical();
+    ParametresAxe parametresAxeVertical = _parametresGraphique.getParametresAxeVertical();
     parametresAxeVertical.setBorneInferieure(
-            this->ui->lineEditAxeVerticalBorneInferieure->text().toDouble());
-    this->parametresGraphique.setParametresAxeVertical(parametresAxeVertical);
-    this->dessinerGraphique();
+            _ui->lineEditAxeVerticalBorneInferieure->text().toDouble());
+    _parametresGraphique.setParametresAxeVertical(parametresAxeVertical);
+    dessinerGraphique();
 }
 
 void FenetreGraphique::on_lineEditAxeVerticalBorneSuperieure_textChanged()
 {
-    ParametresAxe parametresAxeVertical = this->parametresGraphique.getParametresAxeVertical();
+    ParametresAxe parametresAxeVertical = _parametresGraphique.getParametresAxeVertical();
     parametresAxeVertical.setBorneSuperieure(
-            this->ui->lineEditAxeVerticalBorneSuperieure->text().toDouble());
-    this->parametresGraphique.setParametresAxeVertical(parametresAxeVertical);
-    this->dessinerGraphique();
+            _ui->lineEditAxeVerticalBorneSuperieure->text().toDouble());
+    _parametresGraphique.setParametresAxeVertical(parametresAxeVertical);
+    dessinerGraphique();
 }
 
 void FenetreGraphique::on_lineEditAxeVerticalPasPrincipal_textChanged()
 {
-    ParametresAxe parametresAxeVertical = this->parametresGraphique.getParametresAxeVertical();
-    parametresAxeVertical.setPasPrincipal(
-            this->ui->lineEditAxeVerticalPasPrincipal->text().toDouble());
-    this->parametresGraphique.setParametresAxeVertical(parametresAxeVertical);
-    this->dessinerGraphique();
+    ParametresAxe parametresAxeVertical = _parametresGraphique.getParametresAxeVertical();
+    parametresAxeVertical.setPasPrincipal(_ui->lineEditAxeVerticalPasPrincipal->text().toDouble());
+    _parametresGraphique.setParametresAxeVertical(parametresAxeVertical);
+    dessinerGraphique();
 }
 
 void FenetreGraphique::on_lineEditAxeVerticalPasSecondaire_textChanged()
 {
-    ParametresAxe parametresAxeVertical = this->parametresGraphique.getParametresAxeVertical();
+    ParametresAxe parametresAxeVertical = _parametresGraphique.getParametresAxeVertical();
     parametresAxeVertical.setPasSecondaire(
-            this->ui->lineEditAxeVerticalPasSecondaire->text().toDouble());
-    this->parametresGraphique.setParametresAxeVertical(parametresAxeVertical);
-    this->dessinerGraphique();
+            _ui->lineEditAxeVerticalPasSecondaire->text().toDouble());
+    _parametresGraphique.setParametresAxeVertical(parametresAxeVertical);
+    dessinerGraphique();
 }
 
 void FenetreGraphique::on_checkBoxAxeVerticalGrillePrincipale_stateChanged()
 {
-    ParametresAxe parametresAxeVertical = this->parametresGraphique.getParametresAxeVertical();
+    ParametresAxe parametresAxeVertical = _parametresGraphique.getParametresAxeVertical();
     parametresAxeVertical.setGrillePrincipale(
-            this->ui->checkBoxAxeVerticalGrillePrincipale->isChecked());
-    this->parametresGraphique.setParametresAxeVertical(parametresAxeVertical);
-    this->dessinerGraphique();
+            _ui->checkBoxAxeVerticalGrillePrincipale->isChecked());
+    _parametresGraphique.setParametresAxeVertical(parametresAxeVertical);
+    dessinerGraphique();
 }
 
 void FenetreGraphique::on_checkBoxAxeVerticalGrilleSecondaire_stateChanged()
 {
-    ParametresAxe parametresAxeVertical = this->parametresGraphique.getParametresAxeVertical();
+    ParametresAxe parametresAxeVertical = _parametresGraphique.getParametresAxeVertical();
     parametresAxeVertical.setGrilleSecondaire(
-            this->ui->checkBoxAxeVerticalGrilleSecondaire->isChecked());
-    this->parametresGraphique.setParametresAxeVertical(parametresAxeVertical);
-    this->dessinerGraphique();
+            _ui->checkBoxAxeVerticalGrilleSecondaire->isChecked());
+    _parametresGraphique.setParametresAxeVertical(parametresAxeVertical);
+    dessinerGraphique();
 }
 
 void FenetreGraphique::on_buttonBox_clicked(QAbstractButton* button)
 {
-    if (button == this->ui->buttonBox->button(QDialogButtonBox::Save))
+    if (button == _ui->buttonBox->button(QDialogButtonBox::Save))
     {
-        this->exporterGraphique();
+        exporterGraphique();
     }
 }

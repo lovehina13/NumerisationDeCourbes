@@ -48,8 +48,8 @@ public:
 
 private:
     // Attributs de classe
-    ParametresAxe parametresAxeHorizontal;
-    ParametresAxe parametresAxeVertical;
+    ParametresAxe _parametresAxeHorizontal;
+    ParametresAxe _parametresAxeVertical;
 };
 
 #endif /* PARAMETRESGRAPHIQUE_H */

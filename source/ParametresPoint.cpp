@@ -20,28 +20,28 @@ const QRgb ParametresPoint::couleurPointManuelDefaut = 0xFF00FF00; // QColor(Qt:
 //        hexadécimales correspondantes afin d'en disposer pour les initialisations des valeurs par
 //        défaut des paramètres d'affichage.
 
-const QMap<int, QString> ParametresPoint::stylesPointsTexte = QMap<int, QString>(
+const QMap<int, QString> ParametresPoint::_stylesPointsTexte = QMap<int, QString>(
         std::map<int, QString> { { CARRE, QString::fromUtf8("Carré") }, { CERCLE, QString::fromUtf8(
                 "Cercle") } });
 
 ParametresPoint::ParametresPoint() :
-        stylePoint(stylePointDefaut), epaisseurPoint(epaisseurPointDefaut),
-                couleurPoint(couleurPointDefaut)
+        _stylePoint(stylePointDefaut), _epaisseurPoint(epaisseurPointDefaut),
+                _couleurPoint(couleurPointDefaut)
 {
-    this->clear();
+    clear();
 }
 
 ParametresPoint::ParametresPoint(const int& stylePoint, const int& epaisseurPoint,
         const QRgb& couleurPoint) :
         ParametresPoint()
 {
-    this->set(stylePoint, epaisseurPoint, couleurPoint);
+    set(stylePoint, epaisseurPoint, couleurPoint);
 }
 
 ParametresPoint::ParametresPoint(const ParametresPoint& parametresPoint) :
         ParametresPoint()
 {
-    this->copy(parametresPoint);
+    copy(parametresPoint);
 }
 
 ParametresPoint::~ParametresPoint()
@@ -50,76 +50,76 @@ ParametresPoint::~ParametresPoint()
 
 ParametresPoint& ParametresPoint::operator=(const ParametresPoint& parametresPoint)
 {
-    this->copy(parametresPoint);
+    copy(parametresPoint);
     return *this;
 }
 
 bool ParametresPoint::operator==(const ParametresPoint& parametresPoint) const
 {
-    return this->equals(parametresPoint);
+    return equals(parametresPoint);
 }
 
 bool ParametresPoint::operator!=(const ParametresPoint& parametresPoint) const
 {
-    return !this->equals(parametresPoint);
+    return !equals(parametresPoint);
 }
 
 const int& ParametresPoint::getStylePoint() const
 {
-    return this->stylePoint;
+    return _stylePoint;
 }
 
 const int& ParametresPoint::getEpaisseurPoint() const
 {
-    return this->epaisseurPoint;
+    return _epaisseurPoint;
 }
 
 const QRgb& ParametresPoint::getCouleurPoint() const
 {
-    return this->couleurPoint;
+    return _couleurPoint;
 }
 
 void ParametresPoint::setStylePoint(const int& stylePoint)
 {
-    this->stylePoint = stylePoint;
+    _stylePoint = stylePoint;
 }
 
 void ParametresPoint::setEpaisseurPoint(const int& epaisseurPoint)
 {
-    this->epaisseurPoint = epaisseurPoint;
+    _epaisseurPoint = epaisseurPoint;
 }
 
 void ParametresPoint::setCouleurPoint(const QRgb& couleurPoint)
 {
-    this->couleurPoint = couleurPoint;
+    _couleurPoint = couleurPoint;
 }
 
 void ParametresPoint::clear()
 {
-    this->set(stylePointDefaut, epaisseurPointDefaut, couleurPointDefaut);
+    set(stylePointDefaut, epaisseurPointDefaut, couleurPointDefaut);
 }
 
 void ParametresPoint::set(const int& stylePoint, const int& epaisseurPoint,
         const QRgb& couleurPoint)
 {
-    this->setStylePoint(stylePoint);
-    this->setEpaisseurPoint(epaisseurPoint);
-    this->setCouleurPoint(couleurPoint);
+    setStylePoint(stylePoint);
+    setEpaisseurPoint(epaisseurPoint);
+    setCouleurPoint(couleurPoint);
 }
 
 void ParametresPoint::copy(const ParametresPoint& parametresPoint)
 {
-    this->set(parametresPoint.getStylePoint(), parametresPoint.getEpaisseurPoint(),
+    set(parametresPoint.getStylePoint(), parametresPoint.getEpaisseurPoint(),
             parametresPoint.getCouleurPoint());
 }
 
 bool ParametresPoint::equals(const ParametresPoint& parametresPoint) const
 {
-    if (this->getStylePoint() != parametresPoint.getStylePoint())
+    if (getStylePoint() != parametresPoint.getStylePoint())
         return false;
-    if (this->getEpaisseurPoint() != parametresPoint.getEpaisseurPoint())
+    if (getEpaisseurPoint() != parametresPoint.getEpaisseurPoint())
         return false;
-    if (this->getCouleurPoint() != parametresPoint.getCouleurPoint())
+    if (getCouleurPoint() != parametresPoint.getCouleurPoint())
         return false;
     return true;
 }
@@ -127,26 +127,26 @@ bool ParametresPoint::equals(const ParametresPoint& parametresPoint) const
 void ParametresPoint::fromString(const QString& fromString, const QChar& sep)
 {
     const QStringList fromStringList = listeSousElements(fromString, sep);
-    this->setStylePoint(fromStringList.at(0).toInt());
-    this->setEpaisseurPoint(fromStringList.at(1).toInt());
-    this->setCouleurPoint(QColor(fromStringList.at(2)).rgb());
+    setStylePoint(fromStringList.at(0).toInt());
+    setEpaisseurPoint(fromStringList.at(1).toInt());
+    setCouleurPoint(QColor(fromStringList.at(2)).rgb());
 }
 
 const QString ParametresPoint::toString(const QChar& sep) const
 {
     QString toString;
-    toString += QString::number(this->getStylePoint()) + sep;
-    toString += QString::number(this->getEpaisseurPoint()) + sep;
-    toString += QColor(this->getCouleurPoint()).name();
+    toString += QString::number(getStylePoint()) + sep;
+    toString += QString::number(getEpaisseurPoint()) + sep;
+    toString += QColor(getCouleurPoint()).name();
     return toString;
 }
 
 const QString ParametresPoint::getStylePointTexte() const
 {
-    return stylesPointsTexte.value(this->getStylePoint());
+    return _stylesPointsTexte.value(getStylePoint());
 }
 
 void ParametresPoint::setStylePointTexte(const QString& stylePointTexte)
 {
-    this->setStylePoint(stylesPointsTexte.key(stylePointTexte));
+    setStylePoint(_stylesPointsTexte.key(stylePointTexte));
 }

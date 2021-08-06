@@ -99,15 +99,15 @@ protected:
 
 private:
     // Attributs de classe
-    Image image;
-    Repere repere;
-    QList<Point> listeDePoints;
-    Parametres parametres;
+    Image _image;
+    Repere _repere;
+    QList<Point> _listeDePoints;
+    Parametres _parametres;
 
     // Attributs de classe inaccessibles
-    QList<QPoint> listeDePointsDeRecherche;
-    QPoint pointPixelDepart;
-    QPoint pointPixelArrivee;
+    QList<QPoint> _listeDePointsDeRecherche;
+    QPoint _pointPixelDepart;
+    QPoint _pointPixelArrivee;
 };
 
 #endif /* ETUDE_H */

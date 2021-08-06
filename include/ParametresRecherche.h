@@ -67,11 +67,11 @@ public:
 
 private:
     // Attributs de classe
-    int seuilToleranceNiveauxDeGris;
-    int seuilToleranceTeintesSaturees;
-    bool selectionValeursMoyennes;
-    bool selectionValeursMinimales;
-    bool selectionValeursMaximales;
+    int _seuilToleranceNiveauxDeGris;
+    int _seuilToleranceTeintesSaturees;
+    bool _selectionValeursMoyennes;
+    bool _selectionValeursMinimales;
+    bool _selectionValeursMaximales;
 };
 
 #endif /* PARAMETRESRECHERCHE_H */

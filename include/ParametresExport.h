@@ -93,19 +93,19 @@ public:
 
 private:
     // Attributs de classe
-    int formatNotationNombres;
-    int nombreChiffresSignificatifs;
-    char caractereSeparation;
-    char caractereSeparateurDecimal;
-    double seuilInterpolationNumerique;
+    int _formatNotationNombres;
+    int _nombreChiffresSignificatifs;
+    char _caractereSeparation;
+    char _caractereSeparateurDecimal;
+    double _seuilInterpolationNumerique;
 
     // Attributs de classe inaccessibles
-    static const QMap<int, char> formatsNotationNombresCaractere;
-    static const QMap<int, QString> formatsNotationNombresTexte;
-    static const QMap<char, int> caracteresSeparationIndice;
-    static const QMap<char, QString> caracteresSeparationTexte;
-    static const QMap<char, int> caracteresSeparateurDecimalIndice;
-    static const QMap<char, QString> caracteresSeparateurDecimalTexte;
+    static const QMap<int, char> _formatsNotationNombresCaractere;
+    static const QMap<int, QString> _formatsNotationNombresTexte;
+    static const QMap<char, int> _caracteresSeparationIndice;
+    static const QMap<char, QString> _caracteresSeparationTexte;
+    static const QMap<char, int> _caracteresSeparateurDecimalIndice;
+    static const QMap<char, QString> _caracteresSeparateurDecimalTexte;
 };
 
 #endif /* PARAMETRESEXPORT_H */

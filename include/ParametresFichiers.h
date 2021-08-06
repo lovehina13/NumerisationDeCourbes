@@ -57,12 +57,12 @@ public:
 
 private:
     // Attributs de classe
-    QString cheminFichierEtude;
-    QString cheminFichierImageSource;
-    QString cheminFichierImageConvertie;
-    QString cheminFichierExport;
-    QString cheminFichierParametres;
-    QString cheminFichierGraphique;
+    QString _cheminFichierEtude;
+    QString _cheminFichierImageSource;
+    QString _cheminFichierImageConvertie;
+    QString _cheminFichierExport;
+    QString _cheminFichierParametres;
+    QString _cheminFichierGraphique;
 };
 
 #endif /* PARAMETRESFICHIERS_H */

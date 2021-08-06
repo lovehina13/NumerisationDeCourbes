@@ -38,254 +38,254 @@
 #include <QTableWidgetItem>
 
 EcranPrincipal::EcranPrincipal(QWidget* parent) :
-        QMainWindow(parent), ui(new Ui::EcranPrincipal), pushButtonActif(nullptr)
+        QMainWindow(parent), _ui(new Ui::EcranPrincipal), _pushButtonActif(nullptr)
 {
-    this->ui->setupUi(this);
-    this->connect(this->ui->vueGraphiqueEtude, SIGNAL(mousePressEventSignal(const QPointF)), this,
+    _ui->setupUi(this);
+    connect(_ui->vueGraphiqueEtude, SIGNAL(mousePressEventSignal(const QPointF)), this,
             SLOT(mousePressEventSlot(const QPointF)));
-    this->connect(this->ui->vueGraphiqueEtude, SIGNAL(mouseMoveEventSignal(const QPointF)), this,
+    connect(_ui->vueGraphiqueEtude, SIGNAL(mouseMoveEventSignal(const QPointF)), this,
             SLOT(mouseMoveEventSlot(const QPointF)));
-    this->initialiserElementsGraphiques();
-    this->effacerElementsGraphiques();
+    initialiserElementsGraphiques();
+    effacerElementsGraphiques();
 }
 
 EcranPrincipal::~EcranPrincipal()
 {
-    delete this->ui;
+    delete _ui;
 }
 
 void EcranPrincipal::initialiserElementsGraphiques()
 {
-    this->ui->radioButtonNoirEtBlanc->setChecked(true);
+    _ui->radioButtonNoirEtBlanc->setChecked(true);
 
     const QIntValidator* nombreEntier = new QIntValidator(this);
-    this->ui->lineEditPointX0XPixel->setValidator(nombreEntier);
-    this->ui->lineEditPointX0YPixel->setValidator(nombreEntier);
-    this->ui->lineEditPointX1XPixel->setValidator(nombreEntier);
-    this->ui->lineEditPointX1YPixel->setValidator(nombreEntier);
-    this->ui->lineEditPointY0XPixel->setValidator(nombreEntier);
-    this->ui->lineEditPointY0YPixel->setValidator(nombreEntier);
-    this->ui->lineEditPointY1XPixel->setValidator(nombreEntier);
-    this->ui->lineEditPointY1YPixel->setValidator(nombreEntier);
-    this->ui->lineEditPointDepartXPixel->setValidator(nombreEntier);
-    this->ui->lineEditPointDepartYPixel->setValidator(nombreEntier);
-    this->ui->lineEditPointArriveeXPixel->setValidator(nombreEntier);
-    this->ui->lineEditPointArriveeYPixel->setValidator(nombreEntier);
-    this->ui->lineEditPointManuelXPixel->setValidator(nombreEntier);
-    this->ui->lineEditPointManuelYPixel->setValidator(nombreEntier);
+    _ui->lineEditPointX0XPixel->setValidator(nombreEntier);
+    _ui->lineEditPointX0YPixel->setValidator(nombreEntier);
+    _ui->lineEditPointX1XPixel->setValidator(nombreEntier);
+    _ui->lineEditPointX1YPixel->setValidator(nombreEntier);
+    _ui->lineEditPointY0XPixel->setValidator(nombreEntier);
+    _ui->lineEditPointY0YPixel->setValidator(nombreEntier);
+    _ui->lineEditPointY1XPixel->setValidator(nombreEntier);
+    _ui->lineEditPointY1YPixel->setValidator(nombreEntier);
+    _ui->lineEditPointDepartXPixel->setValidator(nombreEntier);
+    _ui->lineEditPointDepartYPixel->setValidator(nombreEntier);
+    _ui->lineEditPointArriveeXPixel->setValidator(nombreEntier);
+    _ui->lineEditPointArriveeYPixel->setValidator(nombreEntier);
+    _ui->lineEditPointManuelXPixel->setValidator(nombreEntier);
+    _ui->lineEditPointManuelYPixel->setValidator(nombreEntier);
 
     const QDoubleValidator* nombreReel = new QDoubleValidator(this);
-    this->ui->lineEditPointX0Valeur->setValidator(nombreReel);
-    this->ui->lineEditPointX1Valeur->setValidator(nombreReel);
-    this->ui->lineEditPointY0Valeur->setValidator(nombreReel);
-    this->ui->lineEditPointY1Valeur->setValidator(nombreReel);
-    this->ui->lineEditPointDepartXReel->setValidator(nombreReel);
-    this->ui->lineEditPointDepartYReel->setValidator(nombreReel);
-    this->ui->lineEditPointArriveeXReel->setValidator(nombreReel);
-    this->ui->lineEditPointArriveeYReel->setValidator(nombreReel);
-    this->ui->lineEditPointManuelXReel->setValidator(nombreReel);
-    this->ui->lineEditPointManuelYReel->setValidator(nombreReel);
+    _ui->lineEditPointX0Valeur->setValidator(nombreReel);
+    _ui->lineEditPointX1Valeur->setValidator(nombreReel);
+    _ui->lineEditPointY0Valeur->setValidator(nombreReel);
+    _ui->lineEditPointY1Valeur->setValidator(nombreReel);
+    _ui->lineEditPointDepartXReel->setValidator(nombreReel);
+    _ui->lineEditPointDepartYReel->setValidator(nombreReel);
+    _ui->lineEditPointArriveeXReel->setValidator(nombreReel);
+    _ui->lineEditPointArriveeYReel->setValidator(nombreReel);
+    _ui->lineEditPointManuelXReel->setValidator(nombreReel);
+    _ui->lineEditPointManuelYReel->setValidator(nombreReel);
 
 #ifndef ENABLE_QWT
-    this->ui->pushButtonGraphique->setEnabled(false);
+    _ui->pushButtonGraphique->setEnabled(false);
 #endif
 }
 
 void EcranPrincipal::effacerElementsGraphiques()
 {
-    this->ui->radioButtonNoirEtBlanc->setChecked(true);
+    _ui->radioButtonNoirEtBlanc->setChecked(true);
 
-    this->ui->lineEditPointX0XPixel->clear();
-    this->ui->lineEditPointX0YPixel->clear();
-    this->ui->lineEditPointX0Valeur->clear();
-    this->ui->lineEditPointX1XPixel->clear();
-    this->ui->lineEditPointX1YPixel->clear();
-    this->ui->lineEditPointX1Valeur->clear();
-    this->ui->lineEditPointY0XPixel->clear();
-    this->ui->lineEditPointY0YPixel->clear();
-    this->ui->lineEditPointY0Valeur->clear();
-    this->ui->lineEditPointY1XPixel->clear();
-    this->ui->lineEditPointY1YPixel->clear();
-    this->ui->lineEditPointY1Valeur->clear();
+    _ui->lineEditPointX0XPixel->clear();
+    _ui->lineEditPointX0YPixel->clear();
+    _ui->lineEditPointX0Valeur->clear();
+    _ui->lineEditPointX1XPixel->clear();
+    _ui->lineEditPointX1YPixel->clear();
+    _ui->lineEditPointX1Valeur->clear();
+    _ui->lineEditPointY0XPixel->clear();
+    _ui->lineEditPointY0YPixel->clear();
+    _ui->lineEditPointY0Valeur->clear();
+    _ui->lineEditPointY1XPixel->clear();
+    _ui->lineEditPointY1YPixel->clear();
+    _ui->lineEditPointY1Valeur->clear();
 
-    this->ui->lineEditPointDepartXPixel->clear();
-    this->ui->lineEditPointDepartYPixel->clear();
-    this->ui->lineEditPointDepartXReel->clear();
-    this->ui->lineEditPointDepartYReel->clear();
-    this->ui->lineEditPointArriveeXPixel->clear();
-    this->ui->lineEditPointArriveeYPixel->clear();
-    this->ui->lineEditPointArriveeXReel->clear();
-    this->ui->lineEditPointArriveeYReel->clear();
-    this->ui->lineEditPointManuelXPixel->clear();
-    this->ui->lineEditPointManuelYPixel->clear();
-    this->ui->lineEditPointManuelXReel->clear();
-    this->ui->lineEditPointManuelYReel->clear();
+    _ui->lineEditPointDepartXPixel->clear();
+    _ui->lineEditPointDepartYPixel->clear();
+    _ui->lineEditPointDepartXReel->clear();
+    _ui->lineEditPointDepartYReel->clear();
+    _ui->lineEditPointArriveeXPixel->clear();
+    _ui->lineEditPointArriveeYPixel->clear();
+    _ui->lineEditPointArriveeXReel->clear();
+    _ui->lineEditPointArriveeYReel->clear();
+    _ui->lineEditPointManuelXPixel->clear();
+    _ui->lineEditPointManuelYPixel->clear();
+    _ui->lineEditPointManuelXReel->clear();
+    _ui->lineEditPointManuelYReel->clear();
 
-    this->ui->tableWidgetListePoints->clearContents();
-    this->ui->tableWidgetListePoints->setRowCount(0);
-    this->ui->tableWidgetListePoints->resizeColumnsToContents();
+    _ui->tableWidgetListePoints->clearContents();
+    _ui->tableWidgetListePoints->setRowCount(0);
+    _ui->tableWidgetListePoints->resizeColumnsToContents();
 
-    this->ui->statusBar->clearMessage();
+    _ui->statusBar->clearMessage();
 
-    this->activerBouton(nullptr);
+    activerBouton(nullptr);
 
-    this->repositionnerVueGraphiqueEtude();
-    this->effacerVueGraphiqueEtude();
+    repositionnerVueGraphiqueEtude();
+    effacerVueGraphiqueEtude();
 }
 
 void EcranPrincipal::actualiserElementsGraphiques()
 {
-    const Repere& repere = this->etude.getRepere();
-    const Parametres& parametres = this->etude.getParametres();
+    const Repere& repere = _etude.getRepere();
+    const Parametres& parametres = _etude.getParametres();
     const ParametresConversion& parametresConversion = parametres.getParametresConversion();
     const int& methodeConversion = parametresConversion.getMethodeConversion();
 
     if ((methodeConversion == ParametresConversion::BRUTE)
             || (methodeConversion == ParametresConversion::NOIR_ET_BLANC))
     {
-        this->ui->radioButtonNoirEtBlanc->setChecked(true);
+        _ui->radioButtonNoirEtBlanc->setChecked(true);
     }
     else if (methodeConversion == ParametresConversion::NIVEAUX_DE_GRIS)
     {
-        this->ui->radioButtonNiveauxDeGris->setChecked(true);
+        _ui->radioButtonNiveauxDeGris->setChecked(true);
     }
     else if (methodeConversion == ParametresConversion::TEINTES_SATUREES)
     {
-        this->ui->radioButtonTeintesSaturees->setChecked(true);
+        _ui->radioButtonTeintesSaturees->setChecked(true);
     }
 
-    this->ui->lineEditPointX0XPixel->setText(QString::number(repere.getPointX0().getPointPixelX()));
-    this->ui->lineEditPointX0YPixel->setText(QString::number(repere.getPointX0().getPointPixelY()));
-    this->ui->lineEditPointX0Valeur->setText(QString::number(repere.getPointX0().getPointReelX()));
-    this->ui->lineEditPointX1XPixel->setText(QString::number(repere.getPointX1().getPointPixelX()));
-    this->ui->lineEditPointX1YPixel->setText(QString::number(repere.getPointX1().getPointPixelY()));
-    this->ui->lineEditPointX1Valeur->setText(QString::number(repere.getPointX1().getPointReelX()));
-    this->ui->lineEditPointY0XPixel->setText(QString::number(repere.getPointY0().getPointPixelX()));
-    this->ui->lineEditPointY0YPixel->setText(QString::number(repere.getPointY0().getPointPixelY()));
-    this->ui->lineEditPointY0Valeur->setText(QString::number(repere.getPointY0().getPointReelY()));
-    this->ui->lineEditPointY1XPixel->setText(QString::number(repere.getPointY1().getPointPixelX()));
-    this->ui->lineEditPointY1YPixel->setText(QString::number(repere.getPointY1().getPointPixelY()));
-    this->ui->lineEditPointY1Valeur->setText(QString::number(repere.getPointY1().getPointReelY()));
+    _ui->lineEditPointX0XPixel->setText(QString::number(repere.getPointX0().getPointPixelX()));
+    _ui->lineEditPointX0YPixel->setText(QString::number(repere.getPointX0().getPointPixelY()));
+    _ui->lineEditPointX0Valeur->setText(QString::number(repere.getPointX0().getPointReelX()));
+    _ui->lineEditPointX1XPixel->setText(QString::number(repere.getPointX1().getPointPixelX()));
+    _ui->lineEditPointX1YPixel->setText(QString::number(repere.getPointX1().getPointPixelY()));
+    _ui->lineEditPointX1Valeur->setText(QString::number(repere.getPointX1().getPointReelX()));
+    _ui->lineEditPointY0XPixel->setText(QString::number(repere.getPointY0().getPointPixelX()));
+    _ui->lineEditPointY0YPixel->setText(QString::number(repere.getPointY0().getPointPixelY()));
+    _ui->lineEditPointY0Valeur->setText(QString::number(repere.getPointY0().getPointReelY()));
+    _ui->lineEditPointY1XPixel->setText(QString::number(repere.getPointY1().getPointPixelX()));
+    _ui->lineEditPointY1YPixel->setText(QString::number(repere.getPointY1().getPointPixelY()));
+    _ui->lineEditPointY1Valeur->setText(QString::number(repere.getPointY1().getPointReelY()));
 
-    this->actualiserCoordonneesPoints();
+    actualiserCoordonneesPoints();
 
-    this->etude.restaurerImage();
-    this->etude.convertirImage();
-    this->dessinerVueGraphiqueEtude();
+    _etude.restaurerImage();
+    _etude.convertirImage();
+    dessinerVueGraphiqueEtude();
 }
 
 void EcranPrincipal::creerNouvelleEtude()
 {
     const QString cheminFichierImageSource = QFileDialog::getOpenFileName(this,
             QString::fromUtf8("Sélection d'un fichier image"),
-            this->etude.getParametres().getParametresFichiers().getCheminFichierImageSource(),
+            _etude.getParametres().getParametresFichiers().getCheminFichierImageSource(),
             QString::fromUtf8("Fichier image (*.bmp *.jpg *.jpeg *.png)"));
     if (cheminFichierImageSource.isEmpty())
         return;
 
-    this->effacerElementsGraphiques();
+    effacerElementsGraphiques();
 
-    this->etude.clear();
-    this->actualiserEtudeReference();
+    _etude.clear();
+    actualiserEtudeReference();
 
     Image image;
     image.setImageSource(QImage(cheminFichierImageSource));
     image.restaurerImage();
-    this->etude.setImage(image);
+    _etude.setImage(image);
     Parametres parametres;
     ParametresFichiers parametresFichiers = parametres.getParametresFichiers();
     parametresFichiers.setCheminFichierImageSource(cheminFichierImageSource);
     parametres.setParametresFichiers(parametresFichiers);
-    this->etude.setParametres(parametres);
+    _etude.setParametres(parametres);
 
-    this->dessinerVueGraphiqueEtude();
+    dessinerVueGraphiqueEtude();
 }
 
 void EcranPrincipal::chargerEtudeExistante()
 {
     const QString cheminFichierEtude = QFileDialog::getOpenFileName(this,
             QString::fromUtf8("Sélection d'un fichier étude"),
-            this->etude.getParametres().getParametresFichiers().getCheminFichierEtude(),
+            _etude.getParametres().getParametresFichiers().getCheminFichierEtude(),
             QString::fromUtf8("Fichier étude (*.ndc)"));
     if (cheminFichierEtude.isEmpty())
         return;
 
-    this->effacerElementsGraphiques();
+    effacerElementsGraphiques();
 
-    this->etude.chargerEtude(cheminFichierEtude);
-    this->actualiserEtudeReference();
+    _etude.chargerEtude(cheminFichierEtude);
+    actualiserEtudeReference();
 
-    this->actualiserElementsGraphiques();
+    actualiserElementsGraphiques();
 }
 
 void EcranPrincipal::sauverEtudeCourante()
 {
     const QString cheminFichierEtude = QFileDialog::getSaveFileName(this,
             QString::fromUtf8("Sélection d'un fichier étude"),
-            this->etude.getParametres().getParametresFichiers().getCheminFichierEtude(),
+            _etude.getParametres().getParametresFichiers().getCheminFichierEtude(),
             QString::fromUtf8("Fichier étude (*.ndc)"));
     if (cheminFichierEtude.isEmpty())
         return;
 
-    this->etude.sauverEtude(cheminFichierEtude);
-    this->actualiserEtudeReference();
+    _etude.sauverEtude(cheminFichierEtude);
+    actualiserEtudeReference();
 }
 
 void EcranPrincipal::exporterListeDePointsCourante()
 {
     const QString cheminFichierExport = QFileDialog::getSaveFileName(this,
             QString::fromUtf8("Sélection d'un fichier export"),
-            this->etude.getParametres().getParametresFichiers().getCheminFichierExport(),
+            _etude.getParametres().getParametresFichiers().getCheminFichierExport(),
             QString::fromUtf8("Fichier export (*.csv)"));
     if (cheminFichierExport.isEmpty())
         return;
 
-    this->etude.exporterListeDePoints(cheminFichierExport);
+    _etude.exporterListeDePoints(cheminFichierExport);
 }
 
 void EcranPrincipal::exporterImageConvertieCourante()
 {
     const QString cheminFichierImageConvertie = QFileDialog::getSaveFileName(this,
             QString::fromUtf8("Sélection d'un fichier image"),
-            this->etude.getParametres().getParametresFichiers().getCheminFichierImageConvertie(),
+            _etude.getParametres().getParametresFichiers().getCheminFichierImageConvertie(),
             QString::fromUtf8("Fichier image Windows Bitmap (*.bmp);;"
                     "Fichier image JPEG (*.jpg *.jpeg);;"
                     "Fichier image PNG (*.png)"));
     if (cheminFichierImageConvertie.isEmpty())
         return;
 
-    this->etude.exporterImageConvertie(cheminFichierImageConvertie);
+    _etude.exporterImageConvertie(cheminFichierImageConvertie);
 }
 
 void EcranPrincipal::chargerParametresExistants()
 {
     const QString cheminFichierParametres = QFileDialog::getOpenFileName(this,
             QString::fromUtf8("Sélection d'un fichier paramètres"),
-            this->etude.getParametres().getParametresFichiers().getCheminFichierParametres(),
+            _etude.getParametres().getParametresFichiers().getCheminFichierParametres(),
             QString::fromUtf8("Fichier paramètres (*.prm)"));
     if (cheminFichierParametres.isEmpty())
         return;
 
-    this->etude.chargerParametres(cheminFichierParametres);
+    _etude.chargerParametres(cheminFichierParametres);
 
-    this->dessinerVueGraphiqueEtude();
+    dessinerVueGraphiqueEtude();
 }
 
 void EcranPrincipal::sauverParametresCourants()
 {
     const QString cheminFichierParametres = QFileDialog::getSaveFileName(this,
             QString::fromUtf8("Sélection d'un fichier paramètres"),
-            this->etude.getParametres().getParametresFichiers().getCheminFichierParametres(),
+            _etude.getParametres().getParametresFichiers().getCheminFichierParametres(),
             QString::fromUtf8("Fichier paramètres (*.prm)"));
     if (cheminFichierParametres.isEmpty())
         return;
 
-    this->etude.sauverParametres(cheminFichierParametres);
+    _etude.sauverParametres(cheminFichierParametres);
 }
 
 void EcranPrincipal::verifierEtatSauvegardeEtude()
 {
-    if (this->etude.equals(this->etudeReference))
+    if (_etude.equals(_etudeReference))
         return;
 
     QMessageBox* fenetreMessage = new QMessageBox(QMessageBox::Warning,
@@ -297,105 +297,105 @@ void EcranPrincipal::verifierEtatSauvegardeEtude()
     if (fenetreMessage->exec() == QMessageBox::No)
         return;
 
-    this->sauverEtudeCourante();
+    sauverEtudeCourante();
 }
 
 void EcranPrincipal::actualiserEtudeReference()
 {
-    this->etudeReference = this->etude;
+    _etudeReference = _etude;
 }
 
 void EcranPrincipal::actualiserCoordonneesPoints()
 {
-    this->actualiserCoordonneesPointDepart();
-    this->actualiserCoordonneesPointArrivee();
-    this->actualiserCoordonneesPointManuel();
-    this->actualiserCoordonneesListeDePoints();
+    actualiserCoordonneesPointDepart();
+    actualiserCoordonneesPointArrivee();
+    actualiserCoordonneesPointManuel();
+    actualiserCoordonneesListeDePoints();
 }
 
 void EcranPrincipal::actualiserCoordonneesPointDepart()
 {
-    if (this->ui->lineEditPointDepartXPixel->text().isEmpty()
-            || this->ui->lineEditPointDepartYPixel->text().isEmpty())
+    if (_ui->lineEditPointDepartXPixel->text().isEmpty()
+            || _ui->lineEditPointDepartYPixel->text().isEmpty())
     {
-        this->ui->lineEditPointDepartXReel->clear();
-        this->ui->lineEditPointDepartYReel->clear();
+        _ui->lineEditPointDepartXReel->clear();
+        _ui->lineEditPointDepartYReel->clear();
         return;
     }
 
-    const Parametres& parametres = this->etude.getParametres();
+    const Parametres& parametres = _etude.getParametres();
     const ParametresAffichage& parametresAffichage = parametres.getParametresAffichage();
     const char formatNotationNombresCaractere =
             parametresAffichage.getFormatNotationNombresCaractere();
     const int& nombreChiffresSignificatifs = parametresAffichage.getNombreChiffresSignificatifs();
 
-    const int pointPixelX = this->ui->lineEditPointDepartXPixel->text().toInt();
-    const int pointPixelY = this->ui->lineEditPointDepartYPixel->text().toInt();
+    const int pointPixelX = _ui->lineEditPointDepartXPixel->text().toInt();
+    const int pointPixelY = _ui->lineEditPointDepartYPixel->text().toInt();
     double pointReelX = 0.0;
     double pointReelY = 0.0;
-    this->etude.getRepere().pixelVersReel(pointPixelX, pointPixelY, pointReelX, pointReelY);
-    this->ui->lineEditPointDepartXReel->setText(
+    _etude.getRepere().pixelVersReel(pointPixelX, pointPixelY, pointReelX, pointReelY);
+    _ui->lineEditPointDepartXReel->setText(
             QString::number(pointReelX, formatNotationNombresCaractere,
                     nombreChiffresSignificatifs));
-    this->ui->lineEditPointDepartYReel->setText(
+    _ui->lineEditPointDepartYReel->setText(
             QString::number(pointReelY, formatNotationNombresCaractere,
                     nombreChiffresSignificatifs));
 }
 
 void EcranPrincipal::actualiserCoordonneesPointArrivee()
 {
-    if (this->ui->lineEditPointArriveeXPixel->text().isEmpty()
-            || this->ui->lineEditPointArriveeYPixel->text().isEmpty())
+    if (_ui->lineEditPointArriveeXPixel->text().isEmpty()
+            || _ui->lineEditPointArriveeYPixel->text().isEmpty())
     {
-        this->ui->lineEditPointArriveeXReel->clear();
-        this->ui->lineEditPointArriveeYReel->clear();
+        _ui->lineEditPointArriveeXReel->clear();
+        _ui->lineEditPointArriveeYReel->clear();
         return;
     }
 
-    const Parametres& parametres = this->etude.getParametres();
+    const Parametres& parametres = _etude.getParametres();
     const ParametresAffichage& parametresAffichage = parametres.getParametresAffichage();
     const char formatNotationNombresCaractere =
             parametresAffichage.getFormatNotationNombresCaractere();
     const int& nombreChiffresSignificatifs = parametresAffichage.getNombreChiffresSignificatifs();
 
-    const int pointPixelX = this->ui->lineEditPointArriveeXPixel->text().toInt();
-    const int pointPixelY = this->ui->lineEditPointArriveeYPixel->text().toInt();
+    const int pointPixelX = _ui->lineEditPointArriveeXPixel->text().toInt();
+    const int pointPixelY = _ui->lineEditPointArriveeYPixel->text().toInt();
     double pointReelX = 0.0;
     double pointReelY = 0.0;
-    this->etude.getRepere().pixelVersReel(pointPixelX, pointPixelY, pointReelX, pointReelY);
-    this->ui->lineEditPointArriveeXReel->setText(
+    _etude.getRepere().pixelVersReel(pointPixelX, pointPixelY, pointReelX, pointReelY);
+    _ui->lineEditPointArriveeXReel->setText(
             QString::number(pointReelX, formatNotationNombresCaractere,
                     nombreChiffresSignificatifs));
-    this->ui->lineEditPointArriveeYReel->setText(
+    _ui->lineEditPointArriveeYReel->setText(
             QString::number(pointReelY, formatNotationNombresCaractere,
                     nombreChiffresSignificatifs));
 }
 
 void EcranPrincipal::actualiserCoordonneesPointManuel()
 {
-    if (this->ui->lineEditPointManuelXPixel->text().isEmpty()
-            || this->ui->lineEditPointManuelYPixel->text().isEmpty())
+    if (_ui->lineEditPointManuelXPixel->text().isEmpty()
+            || _ui->lineEditPointManuelYPixel->text().isEmpty())
     {
-        this->ui->lineEditPointManuelXReel->clear();
-        this->ui->lineEditPointManuelYReel->clear();
+        _ui->lineEditPointManuelXReel->clear();
+        _ui->lineEditPointManuelYReel->clear();
         return;
     }
 
-    const Parametres& parametres = this->etude.getParametres();
+    const Parametres& parametres = _etude.getParametres();
     const ParametresAffichage& parametresAffichage = parametres.getParametresAffichage();
     const char formatNotationNombresCaractere =
             parametresAffichage.getFormatNotationNombresCaractere();
     const int& nombreChiffresSignificatifs = parametresAffichage.getNombreChiffresSignificatifs();
 
-    const int pointPixelX = this->ui->lineEditPointManuelXPixel->text().toInt();
-    const int pointPixelY = this->ui->lineEditPointManuelYPixel->text().toInt();
+    const int pointPixelX = _ui->lineEditPointManuelXPixel->text().toInt();
+    const int pointPixelY = _ui->lineEditPointManuelYPixel->text().toInt();
     double pointReelX = 0.0;
     double pointReelY = 0.0;
-    this->etude.getRepere().pixelVersReel(pointPixelX, pointPixelY, pointReelX, pointReelY);
-    this->ui->lineEditPointManuelXReel->setText(
+    _etude.getRepere().pixelVersReel(pointPixelX, pointPixelY, pointReelX, pointReelY);
+    _ui->lineEditPointManuelXReel->setText(
             QString::number(pointReelX, formatNotationNombresCaractere,
                     nombreChiffresSignificatifs));
-    this->ui->lineEditPointManuelYReel->setText(
+    _ui->lineEditPointManuelYReel->setText(
             QString::number(pointReelY, formatNotationNombresCaractere,
                     nombreChiffresSignificatifs));
 }
@@ -404,24 +404,24 @@ void EcranPrincipal::actualiserCoordonneesListeDePoints()
 {
     // TODO Déplacement de l'actualisation des éléments de la liste de points
 
-    const Parametres& parametres = this->etude.getParametres();
+    const Parametres& parametres = _etude.getParametres();
     const ParametresAffichage& parametresAffichage = parametres.getParametresAffichage();
     const char formatNotationNombresCaractere =
             parametresAffichage.getFormatNotationNombresCaractere();
     const int& nombreChiffresSignificatifs = parametresAffichage.getNombreChiffresSignificatifs();
 
-    QList<Point> listeDePoints = this->etude.getListeDePoints();
+    QList<Point> listeDePoints = _etude.getListeDePoints();
     const int nombreDePoints = listeDePoints.count();
     for (int itPoint = 0; itPoint < nombreDePoints; itPoint++)
     {
         Point point = listeDePoints.at(itPoint);
-        this->etude.getRepere().pixelVersReel(point);
+        _etude.getRepere().pixelVersReel(point);
         listeDePoints.replace(itPoint, point);
     }
-    this->etude.setListeDePoints(listeDePoints);
+    _etude.setListeDePoints(listeDePoints);
 
-    this->ui->tableWidgetListePoints->clearContents();
-    this->ui->tableWidgetListePoints->setRowCount(nombreDePoints);
+    _ui->tableWidgetListePoints->clearContents();
+    _ui->tableWidgetListePoints->setRowCount(nombreDePoints);
     for (int itPoint = 0; itPoint < nombreDePoints; itPoint++)
     {
         const Point& point = listeDePoints.at(itPoint);
@@ -436,69 +436,68 @@ void EcranPrincipal::actualiserCoordonneesListeDePoints()
                 QString::number(point.getPointReelY(), formatNotationNombresCaractere,
                         nombreChiffresSignificatifs));
         QTableWidgetItem* itemTypePoint = new QTableWidgetItem(point.getTypePointTexte());
-        this->ui->tableWidgetListePoints->setItem(itPoint, 0, itemPointPixelX);
-        this->ui->tableWidgetListePoints->setItem(itPoint, 1, itemPointPixelY);
-        this->ui->tableWidgetListePoints->setItem(itPoint, 2, itemPointReelX);
-        this->ui->tableWidgetListePoints->setItem(itPoint, 3, itemPointReelY);
-        this->ui->tableWidgetListePoints->setItem(itPoint, 4, itemTypePoint);
+        _ui->tableWidgetListePoints->setItem(itPoint, 0, itemPointPixelX);
+        _ui->tableWidgetListePoints->setItem(itPoint, 1, itemPointPixelY);
+        _ui->tableWidgetListePoints->setItem(itPoint, 2, itemPointReelX);
+        _ui->tableWidgetListePoints->setItem(itPoint, 3, itemPointReelY);
+        _ui->tableWidgetListePoints->setItem(itPoint, 4, itemTypePoint);
     }
-    this->ui->tableWidgetListePoints->resizeColumnsToContents();
+    _ui->tableWidgetListePoints->resizeColumnsToContents();
 }
 
 void EcranPrincipal::repositionnerVueGraphiqueEtude()
 {
-    this->ui->vueGraphiqueEtude->repositionner();
+    _ui->vueGraphiqueEtude->repositionner();
 }
 
 void EcranPrincipal::effacerVueGraphiqueEtude()
 {
-    this->ui->vueGraphiqueEtude->effacer();
+    _ui->vueGraphiqueEtude->effacer();
 }
 
 void EcranPrincipal::dessinerVueGraphiqueEtude()
 {
-    this->ui->vueGraphiqueEtude->dessiner(this->etude);
+    _ui->vueGraphiqueEtude->dessiner(_etude);
 }
 
 void EcranPrincipal::activerBouton(const QPushButton* pushButton)
 {
     if (!pushButton || !pushButton->isChecked())
     {
-        this->ui->vueGraphiqueEtude->setDragMode(QGraphicsView::ScrollHandDrag);
-        this->ui->pushButtonPointX0->setChecked(false);
-        this->ui->pushButtonPointY0->setChecked(false);
-        this->ui->pushButtonPointX1->setChecked(false);
-        this->ui->pushButtonPointY1->setChecked(false);
-        this->ui->pushButtonPointDepart->setChecked(false);
-        this->ui->pushButtonPointArrivee->setChecked(false);
-        this->ui->pushButtonPointManuel->setChecked(false);
-        this->pushButtonActif = nullptr;
+        _ui->vueGraphiqueEtude->setDragMode(QGraphicsView::ScrollHandDrag);
+        _ui->pushButtonPointX0->setChecked(false);
+        _ui->pushButtonPointY0->setChecked(false);
+        _ui->pushButtonPointX1->setChecked(false);
+        _ui->pushButtonPointY1->setChecked(false);
+        _ui->pushButtonPointDepart->setChecked(false);
+        _ui->pushButtonPointArrivee->setChecked(false);
+        _ui->pushButtonPointManuel->setChecked(false);
+        _pushButtonActif = nullptr;
     }
     else
     {
-        this->ui->vueGraphiqueEtude->setDragMode(QGraphicsView::NoDrag);
-        if (this->pushButtonActif && this->pushButtonActif != pushButton)
+        _ui->vueGraphiqueEtude->setDragMode(QGraphicsView::NoDrag);
+        if (_pushButtonActif && _pushButtonActif != pushButton)
         {
-            this->pushButtonActif->setChecked(false);
+            _pushButtonActif->setChecked(false);
         }
-        this->pushButtonActif = const_cast<QPushButton*>(pushButton);
+        _pushButtonActif = const_cast<QPushButton*>(pushButton);
     }
 }
 
 void EcranPrincipal::actualiserPoint(const QPointF& pointVueGraphique)
 {
-    if (this->pushButtonActif == this->ui->pushButtonPointX0
-            || this->pushButtonActif == this->ui->pushButtonPointX1
-            || this->pushButtonActif == this->ui->pushButtonPointY0
-            || this->pushButtonActif == this->ui->pushButtonPointY1)
+    if (_pushButtonActif == _ui->pushButtonPointX0 || _pushButtonActif == _ui->pushButtonPointX1
+            || _pushButtonActif == _ui->pushButtonPointY0
+            || _pushButtonActif == _ui->pushButtonPointY1)
     {
-        this->actualiserPointRepere(pointVueGraphique);
+        actualiserPointRepere(pointVueGraphique);
     }
-    else if (this->pushButtonActif == this->ui->pushButtonPointDepart
-            || this->pushButtonActif == this->ui->pushButtonPointArrivee
-            || this->pushButtonActif == this->ui->pushButtonPointManuel)
+    else if (_pushButtonActif == _ui->pushButtonPointDepart
+            || _pushButtonActif == _ui->pushButtonPointArrivee
+            || _pushButtonActif == _ui->pushButtonPointManuel)
     {
-        this->actualiserPointCourbe(pointVueGraphique);
+        actualiserPointCourbe(pointVueGraphique);
     }
 }
 
@@ -506,68 +505,68 @@ void EcranPrincipal::actualiserPointRepere(const QPointF& pointVueGraphique)
 {
     const int ppx = static_cast<int>(floor(pointVueGraphique.x()));
     const int ppy = static_cast<int>(floor(pointVueGraphique.y()));
-    Repere repere = this->etude.getRepere();
+    Repere repere = _etude.getRepere();
 
     const QString ppxTexte = QString::number(ppx);
     const QString ppyTexte = QString::number(ppy);
 
-    if (this->pushButtonActif == this->ui->pushButtonPointX0)
+    if (_pushButtonActif == _ui->pushButtonPointX0)
     {
         Point pointX0 = repere.getPointX0();
         pointX0.setPointPixelX(ppx);
         pointX0.setPointPixelY(ppy);
         repere.setPointX0(pointX0);
-        this->etude.setRepere(repere);
-        this->ui->lineEditPointX0XPixel->setText(ppxTexte);
-        this->ui->lineEditPointX0YPixel->setText(ppyTexte);
-        this->actualiserCoordonneesPoints();
-        this->dessinerVueGraphiqueEtude();
-        this->ui->lineEditPointX0Valeur->setFocus();
+        _etude.setRepere(repere);
+        _ui->lineEditPointX0XPixel->setText(ppxTexte);
+        _ui->lineEditPointX0YPixel->setText(ppyTexte);
+        actualiserCoordonneesPoints();
+        dessinerVueGraphiqueEtude();
+        _ui->lineEditPointX0Valeur->setFocus();
     }
-    else if (this->pushButtonActif == this->ui->pushButtonPointX1)
+    else if (_pushButtonActif == _ui->pushButtonPointX1)
     {
         Point pointX1 = repere.getPointX1();
         pointX1.setPointPixelX(ppx);
         pointX1.setPointPixelY(ppy);
         repere.setPointX1(pointX1);
-        this->etude.setRepere(repere);
-        this->ui->lineEditPointX1XPixel->setText(ppxTexte);
-        this->ui->lineEditPointX1YPixel->setText(ppyTexte);
-        this->actualiserCoordonneesPoints();
-        this->dessinerVueGraphiqueEtude();
-        this->ui->lineEditPointX1Valeur->setFocus();
+        _etude.setRepere(repere);
+        _ui->lineEditPointX1XPixel->setText(ppxTexte);
+        _ui->lineEditPointX1YPixel->setText(ppyTexte);
+        actualiserCoordonneesPoints();
+        dessinerVueGraphiqueEtude();
+        _ui->lineEditPointX1Valeur->setFocus();
     }
-    else if (this->pushButtonActif == this->ui->pushButtonPointY0)
+    else if (_pushButtonActif == _ui->pushButtonPointY0)
     {
         Point pointY0 = repere.getPointY0();
         pointY0.setPointPixelX(ppx);
         pointY0.setPointPixelY(ppy);
         repere.setPointY0(pointY0);
-        this->etude.setRepere(repere);
-        this->ui->lineEditPointY0XPixel->setText(ppxTexte);
-        this->ui->lineEditPointY0YPixel->setText(ppyTexte);
-        this->actualiserCoordonneesPoints();
-        this->dessinerVueGraphiqueEtude();
-        this->ui->lineEditPointY0Valeur->setFocus();
+        _etude.setRepere(repere);
+        _ui->lineEditPointY0XPixel->setText(ppxTexte);
+        _ui->lineEditPointY0YPixel->setText(ppyTexte);
+        actualiserCoordonneesPoints();
+        dessinerVueGraphiqueEtude();
+        _ui->lineEditPointY0Valeur->setFocus();
     }
-    else if (this->pushButtonActif == this->ui->pushButtonPointY1)
+    else if (_pushButtonActif == _ui->pushButtonPointY1)
     {
         Point pointY1 = repere.getPointY1();
         pointY1.setPointPixelX(ppx);
         pointY1.setPointPixelY(ppy);
         repere.setPointY1(pointY1);
-        this->etude.setRepere(repere);
-        this->ui->lineEditPointY1XPixel->setText(ppxTexte);
-        this->ui->lineEditPointY1YPixel->setText(ppyTexte);
-        this->actualiserCoordonneesPoints();
-        this->dessinerVueGraphiqueEtude();
-        this->ui->lineEditPointY1Valeur->setFocus();
+        _etude.setRepere(repere);
+        _ui->lineEditPointY1XPixel->setText(ppxTexte);
+        _ui->lineEditPointY1YPixel->setText(ppyTexte);
+        actualiserCoordonneesPoints();
+        dessinerVueGraphiqueEtude();
+        _ui->lineEditPointY1Valeur->setFocus();
     }
 }
 
 void EcranPrincipal::actualiserPointCourbe(const QPointF& pointVueGraphique)
 {
-    const Parametres& parametres = this->etude.getParametres();
+    const Parametres& parametres = _etude.getParametres();
     const ParametresAffichage& parametresAffichage = parametres.getParametresAffichage();
     const char formatNotationNombresCaractere =
             parametresAffichage.getFormatNotationNombresCaractere();
@@ -577,7 +576,7 @@ void EcranPrincipal::actualiserPointCourbe(const QPointF& pointVueGraphique)
     const int ppy = static_cast<int>(floor(pointVueGraphique.y()));
     double prx = 0.0;
     double pry = 0.0;
-    this->etude.getRepere().pixelVersReel(ppx, ppy, prx, pry);
+    _etude.getRepere().pixelVersReel(ppx, ppy, prx, pry);
 
     const QString ppxTexte = QString::number(ppx);
     const QString ppyTexte = QString::number(ppy);
@@ -586,32 +585,32 @@ void EcranPrincipal::actualiserPointCourbe(const QPointF& pointVueGraphique)
     const QString pryTexte = QString::number(pry, formatNotationNombresCaractere,
             nombreChiffresSignificatifs);
 
-    if (this->pushButtonActif == this->ui->pushButtonPointDepart)
+    if (_pushButtonActif == _ui->pushButtonPointDepart)
     {
-        this->ui->lineEditPointDepartXPixel->setText(ppxTexte);
-        this->ui->lineEditPointDepartYPixel->setText(ppyTexte);
-        this->ui->lineEditPointDepartXReel->setText(prxTexte);
-        this->ui->lineEditPointDepartYReel->setText(pryTexte);
+        _ui->lineEditPointDepartXPixel->setText(ppxTexte);
+        _ui->lineEditPointDepartYPixel->setText(ppyTexte);
+        _ui->lineEditPointDepartXReel->setText(prxTexte);
+        _ui->lineEditPointDepartYReel->setText(pryTexte);
     }
-    else if (this->pushButtonActif == this->ui->pushButtonPointArrivee)
+    else if (_pushButtonActif == _ui->pushButtonPointArrivee)
     {
-        this->ui->lineEditPointArriveeXPixel->setText(ppxTexte);
-        this->ui->lineEditPointArriveeYPixel->setText(ppyTexte);
-        this->ui->lineEditPointArriveeXReel->setText(prxTexte);
-        this->ui->lineEditPointArriveeYReel->setText(pryTexte);
+        _ui->lineEditPointArriveeXPixel->setText(ppxTexte);
+        _ui->lineEditPointArriveeYPixel->setText(ppyTexte);
+        _ui->lineEditPointArriveeXReel->setText(prxTexte);
+        _ui->lineEditPointArriveeYReel->setText(pryTexte);
     }
-    else if (this->pushButtonActif == this->ui->pushButtonPointManuel)
+    else if (_pushButtonActif == _ui->pushButtonPointManuel)
     {
-        this->ui->lineEditPointManuelXPixel->setText(ppxTexte);
-        this->ui->lineEditPointManuelYPixel->setText(ppyTexte);
-        this->ui->lineEditPointManuelXReel->setText(prxTexte);
-        this->ui->lineEditPointManuelYReel->setText(pryTexte);
+        _ui->lineEditPointManuelXPixel->setText(ppxTexte);
+        _ui->lineEditPointManuelYPixel->setText(ppyTexte);
+        _ui->lineEditPointManuelXReel->setText(prxTexte);
+        _ui->lineEditPointManuelYReel->setText(pryTexte);
     }
 }
 
 void EcranPrincipal::actualiserBarreStatut(const QPointF& pointVueGraphique)
 {
-    const Parametres& parametres = this->etude.getParametres();
+    const Parametres& parametres = _etude.getParametres();
     const ParametresAffichage& parametresAffichage = parametres.getParametresAffichage();
     const char formatNotationNombresCaractere =
             parametresAffichage.getFormatNotationNombresCaractere();
@@ -621,7 +620,7 @@ void EcranPrincipal::actualiserBarreStatut(const QPointF& pointVueGraphique)
     const int ppy = static_cast<int>(floor(pointVueGraphique.y()));
     double prx = 0.0;
     double pry = 0.0;
-    this->etude.getRepere().pixelVersReel(ppx, ppy, prx, pry);
+    _etude.getRepere().pixelVersReel(ppx, ppy, prx, pry);
 
     const QString ppxTexte = QString::number(ppx);
     const QString ppyTexte = QString::number(ppy);
@@ -632,45 +631,45 @@ void EcranPrincipal::actualiserBarreStatut(const QPointF& pointVueGraphique)
     const QString statusBarTexte = QString::fromUtf8("Pixel=(%1:%2) - Réel=(%3:%4)").arg(ppxTexte,
             ppyTexte, prxTexte, pryTexte);
 
-    this->ui->statusBar->showMessage(statusBarTexte);
+    _ui->statusBar->showMessage(statusBarTexte);
 }
 
 void EcranPrincipal::on_actionCreerEtude_triggered()
 {
-    this->verifierEtatSauvegardeEtude();
-    this->creerNouvelleEtude();
+    verifierEtatSauvegardeEtude();
+    creerNouvelleEtude();
 }
 
 void EcranPrincipal::on_actionChargerEtude_triggered()
 {
-    this->verifierEtatSauvegardeEtude();
-    this->chargerEtudeExistante();
+    verifierEtatSauvegardeEtude();
+    chargerEtudeExistante();
 }
 
 void EcranPrincipal::on_actionSauverEtude_triggered()
 {
-    this->sauverEtudeCourante();
+    sauverEtudeCourante();
 }
 
 void EcranPrincipal::on_actionExporterListePoints_triggered()
 {
-    this->exporterListeDePointsCourante();
+    exporterListeDePointsCourante();
 }
 
 void EcranPrincipal::on_actionExporterImage_triggered()
 {
-    this->exporterImageConvertieCourante();
+    exporterImageConvertieCourante();
 }
 
 void EcranPrincipal::on_actionQuitter_triggered()
 {
-    this->verifierEtatSauvegardeEtude();
-    this->close();
+    verifierEtatSauvegardeEtude();
+    close();
 }
 
 void EcranPrincipal::on_actionParametresAffichage_triggered()
 {
-    Parametres parametres = this->etude.getParametres();
+    Parametres parametres = _etude.getParametres();
     ParametresAffichage parametresAffichage = parametres.getParametresAffichage();
     FenetreParametresAffichage* fenetreParametresAffichage = new FenetreParametresAffichage(this);
     fenetreParametresAffichage->setParametresAffichage(parametresAffichage);
@@ -679,15 +678,15 @@ void EcranPrincipal::on_actionParametresAffichage_triggered()
         return;
     parametresAffichage = fenetreParametresAffichage->getParametresAffichage();
     parametres.setParametresAffichage(parametresAffichage);
-    this->etude.setParametres(parametres);
+    _etude.setParametres(parametres);
 
-    this->actualiserCoordonneesPoints();
-    this->dessinerVueGraphiqueEtude();
+    actualiserCoordonneesPoints();
+    dessinerVueGraphiqueEtude();
 }
 
 void EcranPrincipal::on_actionParametresConversion_triggered()
 {
-    Parametres parametres = this->etude.getParametres();
+    Parametres parametres = _etude.getParametres();
     ParametresConversion parametresConversion = parametres.getParametresConversion();
     FenetreParametresConversion* fenetreParametresConversion = new FenetreParametresConversion(
             this);
@@ -697,12 +696,12 @@ void EcranPrincipal::on_actionParametresConversion_triggered()
         return;
     parametresConversion = fenetreParametresConversion->getParametresConversion();
     parametres.setParametresConversion(parametresConversion);
-    this->etude.setParametres(parametres);
+    _etude.setParametres(parametres);
 }
 
 void EcranPrincipal::on_actionParametresRecherche_triggered()
 {
-    Parametres parametres = this->etude.getParametres();
+    Parametres parametres = _etude.getParametres();
     ParametresRecherche parametresRecherche = parametres.getParametresRecherche();
     FenetreParametresRecherche* fenetreParametresRecherche = new FenetreParametresRecherche(this);
     fenetreParametresRecherche->setParametresRecherche(parametresRecherche);
@@ -711,12 +710,12 @@ void EcranPrincipal::on_actionParametresRecherche_triggered()
         return;
     parametresRecherche = fenetreParametresRecherche->getParametresRecherche();
     parametres.setParametresRecherche(parametresRecherche);
-    this->etude.setParametres(parametres);
+    _etude.setParametres(parametres);
 }
 
 void EcranPrincipal::on_actionParametresExport_triggered()
 {
-    Parametres parametres = this->etude.getParametres();
+    Parametres parametres = _etude.getParametres();
     ParametresExport parametresExport = parametres.getParametresExport();
     FenetreParametresExport* fenetreParametresExport = new FenetreParametresExport(this);
     fenetreParametresExport->setParametresExport(parametresExport);
@@ -725,17 +724,17 @@ void EcranPrincipal::on_actionParametresExport_triggered()
         return;
     parametresExport = fenetreParametresExport->getParametresExport();
     parametres.setParametresExport(parametresExport);
-    this->etude.setParametres(parametres);
+    _etude.setParametres(parametres);
 }
 
 void EcranPrincipal::on_actionChargerParametres_triggered()
 {
-    this->chargerParametresExistants();
+    chargerParametresExistants();
 }
 
 void EcranPrincipal::on_actionSauverParametres_triggered()
 {
-    this->sauverParametresCourants();
+    sauverParametresCourants();
 }
 
 void EcranPrincipal::on_actionDocumentation_triggered()
@@ -757,279 +756,279 @@ void EcranPrincipal::on_actionAbout_triggered()
 void EcranPrincipal::on_pushButtonConvertir_clicked()
 {
     int methodeConversion = ParametresConversion::BRUTE;
-    if (this->ui->radioButtonNoirEtBlanc->isChecked())
+    if (_ui->radioButtonNoirEtBlanc->isChecked())
     {
         methodeConversion = ParametresConversion::NOIR_ET_BLANC;
     }
-    else if (this->ui->radioButtonNiveauxDeGris->isChecked())
+    else if (_ui->radioButtonNiveauxDeGris->isChecked())
     {
         methodeConversion = ParametresConversion::NIVEAUX_DE_GRIS;
     }
-    else if (this->ui->radioButtonTeintesSaturees->isChecked())
+    else if (_ui->radioButtonTeintesSaturees->isChecked())
     {
         methodeConversion = ParametresConversion::TEINTES_SATUREES;
     }
-    Parametres parametres = this->etude.getParametres();
+    Parametres parametres = _etude.getParametres();
     ParametresConversion parametresConversion = parametres.getParametresConversion();
     parametresConversion.setMethodeConversion(methodeConversion);
     parametres.setParametresConversion(parametresConversion);
-    this->etude.setParametres(parametres);
+    _etude.setParametres(parametres);
 
-    this->etude.convertirImage();
+    _etude.convertirImage();
 
-    this->dessinerVueGraphiqueEtude();
+    dessinerVueGraphiqueEtude();
 }
 
 void EcranPrincipal::on_pushButtonRestaurer_clicked()
 {
     const int methodeConversion = ParametresConversion::BRUTE;
-    Parametres parametres = this->etude.getParametres();
+    Parametres parametres = _etude.getParametres();
     ParametresConversion parametresConversion = parametres.getParametresConversion();
     parametresConversion.setMethodeConversion(methodeConversion);
     parametres.setParametresConversion(parametresConversion);
-    this->etude.setParametres(parametres);
+    _etude.setParametres(parametres);
 
-    this->etude.restaurerImage();
+    _etude.restaurerImage();
 
-    this->dessinerVueGraphiqueEtude();
+    dessinerVueGraphiqueEtude();
 }
 
 void EcranPrincipal::on_lineEditPointX0XPixel_textChanged()
 {
-    Repere repere = this->etude.getRepere();
+    Repere repere = _etude.getRepere();
     Point pointX0 = repere.getPointX0();
-    pointX0.setPointPixelX(this->ui->lineEditPointX0XPixel->text().toInt());
+    pointX0.setPointPixelX(_ui->lineEditPointX0XPixel->text().toInt());
     repere.setPointX0(pointX0);
-    this->etude.setRepere(repere);
+    _etude.setRepere(repere);
 
-    this->actualiserCoordonneesPoints();
-    this->dessinerVueGraphiqueEtude();
+    actualiserCoordonneesPoints();
+    dessinerVueGraphiqueEtude();
 }
 
 void EcranPrincipal::on_lineEditPointX0YPixel_textChanged()
 {
-    Repere repere = this->etude.getRepere();
+    Repere repere = _etude.getRepere();
     Point pointX0 = repere.getPointX0();
-    pointX0.setPointPixelY(this->ui->lineEditPointX0YPixel->text().toInt());
+    pointX0.setPointPixelY(_ui->lineEditPointX0YPixel->text().toInt());
     repere.setPointX0(pointX0);
-    this->etude.setRepere(repere);
+    _etude.setRepere(repere);
 
-    this->actualiserCoordonneesPoints();
-    this->dessinerVueGraphiqueEtude();
+    actualiserCoordonneesPoints();
+    dessinerVueGraphiqueEtude();
 }
 
 void EcranPrincipal::on_lineEditPointX0Valeur_textChanged()
 {
-    Repere repere = this->etude.getRepere();
+    Repere repere = _etude.getRepere();
     Point pointX0 = repere.getPointX0();
-    pointX0.setPointReelX(this->ui->lineEditPointX0Valeur->text().toDouble());
+    pointX0.setPointReelX(_ui->lineEditPointX0Valeur->text().toDouble());
     repere.setPointX0(pointX0);
-    this->etude.setRepere(repere);
+    _etude.setRepere(repere);
 
-    this->actualiserCoordonneesPoints();
-    this->dessinerVueGraphiqueEtude();
+    actualiserCoordonneesPoints();
+    dessinerVueGraphiqueEtude();
 }
 
 void EcranPrincipal::on_lineEditPointX1XPixel_textChanged()
 {
-    Repere repere = this->etude.getRepere();
+    Repere repere = _etude.getRepere();
     Point pointX1 = repere.getPointX1();
-    pointX1.setPointPixelX(this->ui->lineEditPointX1XPixel->text().toInt());
+    pointX1.setPointPixelX(_ui->lineEditPointX1XPixel->text().toInt());
     repere.setPointX1(pointX1);
-    this->etude.setRepere(repere);
+    _etude.setRepere(repere);
 
-    this->actualiserCoordonneesPoints();
-    this->dessinerVueGraphiqueEtude();
+    actualiserCoordonneesPoints();
+    dessinerVueGraphiqueEtude();
 }
 
 void EcranPrincipal::on_lineEditPointX1YPixel_textChanged()
 {
-    Repere repere = this->etude.getRepere();
+    Repere repere = _etude.getRepere();
     Point pointX1 = repere.getPointX1();
-    pointX1.setPointPixelY(this->ui->lineEditPointX1YPixel->text().toInt());
+    pointX1.setPointPixelY(_ui->lineEditPointX1YPixel->text().toInt());
     repere.setPointX1(pointX1);
-    this->etude.setRepere(repere);
+    _etude.setRepere(repere);
 
-    this->actualiserCoordonneesPoints();
-    this->dessinerVueGraphiqueEtude();
+    actualiserCoordonneesPoints();
+    dessinerVueGraphiqueEtude();
 }
 
 void EcranPrincipal::on_lineEditPointX1Valeur_textChanged()
 {
-    Repere repere = this->etude.getRepere();
+    Repere repere = _etude.getRepere();
     Point pointX1 = repere.getPointX1();
-    pointX1.setPointReelX(this->ui->lineEditPointX1Valeur->text().toDouble());
+    pointX1.setPointReelX(_ui->lineEditPointX1Valeur->text().toDouble());
     repere.setPointX1(pointX1);
-    this->etude.setRepere(repere);
+    _etude.setRepere(repere);
 
-    this->actualiserCoordonneesPoints();
-    this->dessinerVueGraphiqueEtude();
+    actualiserCoordonneesPoints();
+    dessinerVueGraphiqueEtude();
 }
 
 void EcranPrincipal::on_lineEditPointY0XPixel_textChanged()
 {
-    Repere repere = this->etude.getRepere();
+    Repere repere = _etude.getRepere();
     Point pointY0 = repere.getPointY0();
-    pointY0.setPointPixelX(this->ui->lineEditPointY0XPixel->text().toInt());
+    pointY0.setPointPixelX(_ui->lineEditPointY0XPixel->text().toInt());
     repere.setPointY0(pointY0);
-    this->etude.setRepere(repere);
+    _etude.setRepere(repere);
 
-    this->actualiserCoordonneesPoints();
-    this->dessinerVueGraphiqueEtude();
+    actualiserCoordonneesPoints();
+    dessinerVueGraphiqueEtude();
 }
 
 void EcranPrincipal::on_lineEditPointY0YPixel_textChanged()
 {
-    Repere repere = this->etude.getRepere();
+    Repere repere = _etude.getRepere();
     Point pointY0 = repere.getPointY0();
-    pointY0.setPointPixelY(this->ui->lineEditPointY0YPixel->text().toInt());
+    pointY0.setPointPixelY(_ui->lineEditPointY0YPixel->text().toInt());
     repere.setPointY0(pointY0);
-    this->etude.setRepere(repere);
+    _etude.setRepere(repere);
 
-    this->actualiserCoordonneesPoints();
-    this->dessinerVueGraphiqueEtude();
+    actualiserCoordonneesPoints();
+    dessinerVueGraphiqueEtude();
 }
 
 void EcranPrincipal::on_lineEditPointY0Valeur_textChanged()
 {
-    Repere repere = this->etude.getRepere();
+    Repere repere = _etude.getRepere();
     Point pointY0 = repere.getPointY0();
-    pointY0.setPointReelY(this->ui->lineEditPointY0Valeur->text().toDouble());
+    pointY0.setPointReelY(_ui->lineEditPointY0Valeur->text().toDouble());
     repere.setPointY0(pointY0);
-    this->etude.setRepere(repere);
+    _etude.setRepere(repere);
 
-    this->actualiserCoordonneesPoints();
-    this->dessinerVueGraphiqueEtude();
+    actualiserCoordonneesPoints();
+    dessinerVueGraphiqueEtude();
 }
 
 void EcranPrincipal::on_lineEditPointY1XPixel_textChanged()
 {
-    Repere repere = this->etude.getRepere();
+    Repere repere = _etude.getRepere();
     Point pointY1 = repere.getPointY1();
-    pointY1.setPointPixelX(this->ui->lineEditPointY1XPixel->text().toInt());
+    pointY1.setPointPixelX(_ui->lineEditPointY1XPixel->text().toInt());
     repere.setPointY1(pointY1);
-    this->etude.setRepere(repere);
+    _etude.setRepere(repere);
 
-    this->actualiserCoordonneesPoints();
-    this->dessinerVueGraphiqueEtude();
+    actualiserCoordonneesPoints();
+    dessinerVueGraphiqueEtude();
 }
 
 void EcranPrincipal::on_lineEditPointY1YPixel_textChanged()
 {
-    Repere repere = this->etude.getRepere();
+    Repere repere = _etude.getRepere();
     Point pointY1 = repere.getPointY1();
-    pointY1.setPointPixelY(this->ui->lineEditPointY1YPixel->text().toInt());
+    pointY1.setPointPixelY(_ui->lineEditPointY1YPixel->text().toInt());
     repere.setPointY1(pointY1);
-    this->etude.setRepere(repere);
+    _etude.setRepere(repere);
 
-    this->actualiserCoordonneesPoints();
-    this->dessinerVueGraphiqueEtude();
+    actualiserCoordonneesPoints();
+    dessinerVueGraphiqueEtude();
 }
 
 void EcranPrincipal::on_lineEditPointY1Valeur_textChanged()
 {
-    Repere repere = this->etude.getRepere();
+    Repere repere = _etude.getRepere();
     Point pointY1 = repere.getPointY1();
-    pointY1.setPointReelY(this->ui->lineEditPointY1Valeur->text().toDouble());
+    pointY1.setPointReelY(_ui->lineEditPointY1Valeur->text().toDouble());
     repere.setPointY1(pointY1);
-    this->etude.setRepere(repere);
+    _etude.setRepere(repere);
 
-    this->actualiserCoordonneesPoints();
-    this->dessinerVueGraphiqueEtude();
+    actualiserCoordonneesPoints();
+    dessinerVueGraphiqueEtude();
 }
 
 void EcranPrincipal::on_pushButtonPointX0_clicked()
 {
-    this->activerBouton(this->ui->pushButtonPointX0);
+    activerBouton(_ui->pushButtonPointX0);
 }
 
 void EcranPrincipal::on_pushButtonPointX1_clicked()
 {
-    this->activerBouton(this->ui->pushButtonPointX1);
+    activerBouton(_ui->pushButtonPointX1);
 }
 
 void EcranPrincipal::on_pushButtonPointY0_clicked()
 {
-    this->activerBouton(this->ui->pushButtonPointY0);
+    activerBouton(_ui->pushButtonPointY0);
 }
 
 void EcranPrincipal::on_pushButtonPointY1_clicked()
 {
-    this->activerBouton(this->ui->pushButtonPointY1);
+    activerBouton(_ui->pushButtonPointY1);
 }
 
 void EcranPrincipal::on_lineEditPointDepartXPixel_textChanged()
 {
-    this->actualiserCoordonneesPointDepart();
+    actualiserCoordonneesPointDepart();
 }
 
 void EcranPrincipal::on_lineEditPointDepartYPixel_textChanged()
 {
-    this->actualiserCoordonneesPointDepart();
+    actualiserCoordonneesPointDepart();
 }
 
 void EcranPrincipal::on_lineEditPointArriveeXPixel_textChanged()
 {
-    this->actualiserCoordonneesPointArrivee();
+    actualiserCoordonneesPointArrivee();
 }
 
 void EcranPrincipal::on_lineEditPointArriveeYPixel_textChanged()
 {
-    this->actualiserCoordonneesPointArrivee();
+    actualiserCoordonneesPointArrivee();
 }
 
 void EcranPrincipal::on_lineEditPointManuelXPixel_textChanged()
 {
-    this->actualiserCoordonneesPointManuel();
+    actualiserCoordonneesPointManuel();
 }
 
 void EcranPrincipal::on_lineEditPointManuelYPixel_textChanged()
 {
-    this->actualiserCoordonneesPointManuel();
+    actualiserCoordonneesPointManuel();
 }
 
 void EcranPrincipal::on_pushButtonPointDepart_clicked()
 {
-    this->activerBouton(this->ui->pushButtonPointDepart);
+    activerBouton(_ui->pushButtonPointDepart);
 }
 
 void EcranPrincipal::on_pushButtonPointArrivee_clicked()
 {
-    this->activerBouton(this->ui->pushButtonPointArrivee);
+    activerBouton(_ui->pushButtonPointArrivee);
 }
 
 void EcranPrincipal::on_pushButtonPointManuel_clicked()
 {
-    this->activerBouton(this->ui->pushButtonPointManuel);
+    activerBouton(_ui->pushButtonPointManuel);
 }
 
 void EcranPrincipal::on_pushButtonAjouter_clicked()
 {
-    const int pointPixelX = this->ui->lineEditPointManuelXPixel->text().toInt();
-    const int pointPixelY = this->ui->lineEditPointManuelYPixel->text().toInt();
+    const int pointPixelX = _ui->lineEditPointManuelXPixel->text().toInt();
+    const int pointPixelY = _ui->lineEditPointManuelYPixel->text().toInt();
     double pointReelX = 0.0;
     double pointReelY = 0.0;
-    this->etude.getRepere().pixelVersReel(pointPixelX, pointPixelY, pointReelX, pointReelY);
+    _etude.getRepere().pixelVersReel(pointPixelX, pointPixelY, pointReelX, pointReelY);
 
-    QList<Point> listeDePoints = this->etude.getListeDePoints();
+    QList<Point> listeDePoints = _etude.getListeDePoints();
     Point point(pointPixelX, pointPixelY, pointReelX, pointReelY, Point::MANUEL);
     listeDePoints.append(point);
-    this->etude.setListeDePoints(listeDePoints);
+    _etude.setListeDePoints(listeDePoints);
 
-    this->actualiserCoordonneesListeDePoints();
-    this->dessinerVueGraphiqueEtude();
+    actualiserCoordonneesListeDePoints();
+    dessinerVueGraphiqueEtude();
 }
 
 void EcranPrincipal::on_pushButtonRechercher_clicked()
 {
-    const QPoint pointPixelDepart = QPoint(this->ui->lineEditPointDepartXPixel->text().toInt(),
-            this->ui->lineEditPointDepartYPixel->text().toInt());
-    const QPoint pointPixelArrivee = QPoint(this->ui->lineEditPointArriveeXPixel->text().toInt(),
-            this->ui->lineEditPointArriveeYPixel->text().toInt());
-    const QList<Courbe> listeDeCourbes = this->etude.rechercherCourbes(pointPixelDepart,
+    const QPoint pointPixelDepart = QPoint(_ui->lineEditPointDepartXPixel->text().toInt(),
+            _ui->lineEditPointDepartYPixel->text().toInt());
+    const QPoint pointPixelArrivee = QPoint(_ui->lineEditPointArriveeXPixel->text().toInt(),
+            _ui->lineEditPointArriveeYPixel->text().toInt());
+    const QList<Courbe> listeDeCourbes = _etude.rechercherCourbes(pointPixelDepart,
             pointPixelArrivee);
 
-    QList<Point> listeDePoints = this->etude.getListeDePoints();
+    QList<Point> listeDePoints = _etude.getListeDePoints();
     const int nombreDeCourbes = listeDeCourbes.count();
     for (int itCourbe = 0; itCourbe < nombreDeCourbes; itCourbe++)
     {
@@ -1041,18 +1040,18 @@ void EcranPrincipal::on_pushButtonRechercher_clicked()
             listeDePoints.append(pointCourbe);
         }
     }
-    this->etude.setListeDePoints(listeDePoints);
+    _etude.setListeDePoints(listeDePoints);
 
-    this->actualiserCoordonneesListeDePoints();
-    this->dessinerVueGraphiqueEtude();
+    actualiserCoordonneesListeDePoints();
+    dessinerVueGraphiqueEtude();
 }
 
 void EcranPrincipal::on_pushButtonSupprimer_clicked()
 {
     const QModelIndexList listeLignesSelectionnees =
-            this->ui->tableWidgetListePoints->selectionModel()->selectedRows();
+            _ui->tableWidgetListePoints->selectionModel()->selectedRows();
 
-    QList<Point> listeDePoints = this->etude.getListeDePoints();
+    QList<Point> listeDePoints = _etude.getListeDePoints();
     const int nombreLignesSelectionnees = listeLignesSelectionnees.count();
     for (int itLigneSelectionnee = (nombreLignesSelectionnees - 1); itLigneSelectionnee >= 0;
             itLigneSelectionnee--)
@@ -1064,7 +1063,7 @@ void EcranPrincipal::on_pushButtonSupprimer_clicked()
         listeDePoints.clear();
     }
 
-    const QList<Courbe> listeDeCourbes = this->etude.getListeDeCourbes();
+    const QList<Courbe> listeDeCourbes = _etude.getListeDeCourbes();
     const int nombreDeCourbes = listeDeCourbes.count();
     for (int itCourbe = 0; itCourbe < nombreDeCourbes; itCourbe++)
     {
@@ -1099,18 +1098,18 @@ void EcranPrincipal::on_pushButtonSupprimer_clicked()
         }
     }
 
-    this->etude.setListeDePoints(listeDePoints);
+    _etude.setListeDePoints(listeDePoints);
 
-    this->actualiserCoordonneesListeDePoints();
-    this->dessinerVueGraphiqueEtude();
+    actualiserCoordonneesListeDePoints();
+    dessinerVueGraphiqueEtude();
 }
 
 void EcranPrincipal::on_pushButtonGraphique_clicked()
 {
-    const QList<Courbe> listeDeCourbes = this->etude.getListeDeCourbes();
-    const QList<Point> listeDePointsManuels = this->etude.getListeDePointsManuels();
-    const ParametresGraphique parametresGraphiques = this->etude.getParametresGraphiques();
-    Parametres parametres = this->etude.getParametres();
+    const QList<Courbe> listeDeCourbes = _etude.getListeDeCourbes();
+    const QList<Point> listeDePointsManuels = _etude.getListeDePointsManuels();
+    const ParametresGraphique parametresGraphiques = _etude.getParametresGraphiques();
+    Parametres parametres = _etude.getParametres();
     ParametresAffichage parametresAffichage = parametres.getParametresAffichage();
     ParametresFichiers parametresFichiers = parametres.getParametresFichiers();
     FenetreGraphique* fenetreGraphique = new FenetreGraphique(this);
@@ -1124,17 +1123,17 @@ void EcranPrincipal::on_pushButtonGraphique_clicked()
         return;
     parametresFichiers = fenetreGraphique->getParametresFichiers();
     parametres.setParametresFichiers(parametresFichiers);
-    this->etude.setParametres(parametres);
+    _etude.setParametres(parametres);
 }
 
 void EcranPrincipal::mousePressEventSlot(const QPointF pointVueGraphique)
 {
-    this->actualiserPoint(pointVueGraphique);
+    actualiserPoint(pointVueGraphique);
 
-    this->activerBouton(nullptr);
+    activerBouton(nullptr);
 }
 
 void EcranPrincipal::mouseMoveEventSlot(const QPointF pointVueGraphique)
 {
-    this->actualiserBarreStatut(pointVueGraphique);
+    actualiserBarreStatut(pointVueGraphique);
 }

@@ -63,8 +63,8 @@ protected slots:
 
 private:
     // Attributs de classe
-    Ui::FenetreParametresAffichage* ui;
-    ParametresAffichage parametresAffichage;
+    Ui::FenetreParametresAffichage* _ui;
+    ParametresAffichage _parametresAffichage;
 };
 
 #endif /* FENETREPARAMETRESAFFICHAGE_H */

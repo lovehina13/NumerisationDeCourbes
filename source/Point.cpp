@@ -9,7 +9,7 @@
 #include "Outils.h"
 #include <QStringList>
 
-const QMap<int, QString> Point::typesPointsTexte = QMap<int, QString>(
+const QMap<int, QString> Point::_typesPointsTexte = QMap<int, QString>(
         std::map<int, QString> { { INDEFINI, QString::fromUtf8("Indéfini") }, { REPERE,
                 QString::fromUtf8("Repère") }, { MANUEL, QString::fromUtf8("Manuel") }, { COURBE,
                 QString::fromUtf8("Courbe") },
@@ -17,28 +17,28 @@ const QMap<int, QString> Point::typesPointsTexte = QMap<int, QString>(
                         QString::fromUtf8("Fin de courbe") } });
 
 Point::Point() :
-        typePoint(INDEFINI)
+        _typePoint(INDEFINI)
 {
-    this->clear();
+    clear();
 }
 
 Point::Point(const QPoint& pointPixel, const QPointF& pointReel, const int& typePoint) :
         Point()
 {
-    this->set(pointPixel, pointReel, typePoint);
+    set(pointPixel, pointReel, typePoint);
 }
 
 Point::Point(const int& pointPixelX, const int& pointPixelY, const double& pointReelX,
         const double& pointReelY, const int& typePoint) :
         Point()
 {
-    this->set(pointPixelX, pointPixelY, pointReelX, pointReelY, typePoint);
+    set(pointPixelX, pointPixelY, pointReelX, pointReelY, typePoint);
 }
 
 Point::Point(const Point& point) :
         Point()
 {
-    this->copy(point);
+    copy(point);
 }
 
 Point::~Point()
@@ -47,124 +47,124 @@ Point::~Point()
 
 Point& Point::operator=(const Point& point)
 {
-    this->copy(point);
+    copy(point);
     return *this;
 }
 
 bool Point::operator==(const Point& point) const
 {
-    return this->equals(point);
+    return equals(point);
 }
 
 bool Point::operator!=(const Point& point) const
 {
-    return !this->equals(point);
+    return !equals(point);
 }
 
 const QPoint& Point::getPointPixel() const
 {
-    return this->pointPixel;
+    return _pointPixel;
 }
 
 const QPointF& Point::getPointReel() const
 {
-    return this->pointReel;
+    return _pointReel;
 }
 
 const int& Point::getTypePoint() const
 {
-    return this->typePoint;
+    return _typePoint;
 }
 
 int Point::getPointPixelX() const
 {
-    return this->pointPixel.x();
+    return _pointPixel.x();
 }
 
 int Point::getPointPixelY() const
 {
-    return this->pointPixel.y();
+    return _pointPixel.y();
 }
 
 double Point::getPointReelX() const
 {
-    return this->pointReel.x();
+    return _pointReel.x();
 }
 
 double Point::getPointReelY() const
 {
-    return this->pointReel.y();
+    return _pointReel.y();
 }
 
 void Point::setPointPixel(const QPoint& pointPixel)
 {
-    this->pointPixel = pointPixel;
+    _pointPixel = pointPixel;
 }
 
 void Point::setPointReel(const QPointF& pointReel)
 {
-    this->pointReel = pointReel;
+    _pointReel = pointReel;
 }
 
 void Point::setTypePoint(const int& typePoint)
 {
-    this->typePoint = typePoint;
+    _typePoint = typePoint;
 }
 
 void Point::setPointPixelX(const int& pointPixelX)
 {
-    this->pointPixel.setX(pointPixelX);
+    _pointPixel.setX(pointPixelX);
 }
 
 void Point::setPointPixelY(const int& pointPixelY)
 {
-    this->pointPixel.setY(pointPixelY);
+    _pointPixel.setY(pointPixelY);
 }
 
 void Point::setPointReelX(const double& pointReelX)
 {
-    this->pointReel.setX(pointReelX);
+    _pointReel.setX(pointReelX);
 }
 
 void Point::setPointReelY(const double& pointReelY)
 {
-    this->pointReel.setY(pointReelY);
+    _pointReel.setY(pointReelY);
 }
 
 void Point::clear()
 {
-    this->set(QPoint(), QPointF(), INDEFINI);
+    set(QPoint(), QPointF(), INDEFINI);
 }
 
 void Point::set(const QPoint& pointPixel, const QPointF& pointReel, const int& typePoint)
 {
-    this->setPointPixel(pointPixel);
-    this->setPointReel(pointReel);
-    this->setTypePoint(typePoint);
+    setPointPixel(pointPixel);
+    setPointReel(pointReel);
+    setTypePoint(typePoint);
 }
 
 void Point::set(const int& pointPixelX, const int& pointPixelY, const double& pointReelX,
         const double& pointReelY, const int& typePoint)
 {
-    this->setPointPixelX(pointPixelX);
-    this->setPointPixelY(pointPixelY);
-    this->setPointReelX(pointReelX);
-    this->setPointReelY(pointReelY);
-    this->setTypePoint(typePoint);
+    setPointPixelX(pointPixelX);
+    setPointPixelY(pointPixelY);
+    setPointReelX(pointReelX);
+    setPointReelY(pointReelY);
+    setTypePoint(typePoint);
 }
 
 void Point::copy(const Point& point)
 {
-    this->set(point.getPointPixel(), point.getPointReel(), point.getTypePoint());
+    set(point.getPointPixel(), point.getPointReel(), point.getTypePoint());
 }
 
 bool Point::equals(const Point& point) const
 {
-    if (this->getPointPixel() != point.getPointPixel())
+    if (getPointPixel() != point.getPointPixel())
         return false;
-    if (this->getPointReel() != point.getPointReel())
+    if (getPointReel() != point.getPointReel())
         return false;
-    if (this->getTypePoint() != point.getTypePoint())
+    if (getTypePoint() != point.getTypePoint())
         return false;
     return true;
 }
@@ -172,30 +172,30 @@ bool Point::equals(const Point& point) const
 void Point::fromString(const QString& fromString, const QChar& sep)
 {
     const QStringList fromStringList = listeSousElements(fromString, sep);
-    this->setPointPixelX(fromStringList.at(0).toInt());
-    this->setPointPixelY(fromStringList.at(1).toInt());
-    this->setPointReelX(fromStringList.at(2).toDouble());
-    this->setPointReelY(fromStringList.at(3).toDouble());
-    this->setTypePoint(fromStringList.at(4).toInt());
+    setPointPixelX(fromStringList.at(0).toInt());
+    setPointPixelY(fromStringList.at(1).toInt());
+    setPointReelX(fromStringList.at(2).toDouble());
+    setPointReelY(fromStringList.at(3).toDouble());
+    setTypePoint(fromStringList.at(4).toInt());
 }
 
 const QString Point::toString(const QChar& sep) const
 {
     QString toString;
-    toString += QString::number(this->getPointPixelX()) + sep;
-    toString += QString::number(this->getPointPixelY()) + sep;
-    toString += QString::number(this->getPointReelX()) + sep;
-    toString += QString::number(this->getPointReelY()) + sep;
-    toString += QString::number(this->getTypePoint());
+    toString += QString::number(getPointPixelX()) + sep;
+    toString += QString::number(getPointPixelY()) + sep;
+    toString += QString::number(getPointReelX()) + sep;
+    toString += QString::number(getPointReelY()) + sep;
+    toString += QString::number(getTypePoint());
     return toString;
 }
 
 const QString Point::getTypePointTexte() const
 {
-    return typesPointsTexte.value(this->getTypePoint());
+    return _typesPointsTexte.value(getTypePoint());
 }
 
 void Point::setTypePointTexte(const QString& typePointTexte)
 {
-    this->setTypePoint(typesPointsTexte.key(typePointTexte));
+    setTypePoint(_typesPointsTexte.key(typePointTexte));
 }

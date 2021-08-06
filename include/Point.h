@@ -71,12 +71,12 @@ public:
 
 private:
     // Attributs de classe
-    QPoint pointPixel;
-    QPointF pointReel;
-    int typePoint;
+    QPoint _pointPixel;
+    QPointF _pointReel;
+    int _typePoint;
 
     // Attributs de classe inaccessibles
-    static const QMap<int, QString> typesPointsTexte;
+    static const QMap<int, QString> _typesPointsTexte;
 };
 
 typedef QList<Point> Courbe;

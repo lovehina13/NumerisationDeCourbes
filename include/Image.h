@@ -66,8 +66,8 @@ protected:
 
 private:
     // Attributs de classe
-    QImage imageSource;
-    QImage imageConvertie;
+    QImage _imageSource;
+    QImage _imageConvertie;
 };
 
 #endif /* IMAGE_H */

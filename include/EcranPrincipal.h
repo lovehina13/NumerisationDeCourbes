@@ -116,10 +116,10 @@ protected slots:
 
 private:
     // Attributs de classe
-    Ui::EcranPrincipal* ui;
-    Etude etude;
-    Etude etudeReference;
-    QPushButton* pushButtonActif;
+    Ui::EcranPrincipal* _ui;
+    Etude _etude;
+    Etude _etudeReference;
+    QPushButton* _pushButtonActif;
 };
 
 #endif /* ECRANPRINCIPAL_H */

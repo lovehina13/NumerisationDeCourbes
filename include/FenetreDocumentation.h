@@ -35,7 +35,7 @@ public:
 
 private:
     // Attributs de classe
-    Ui::FenetreDocumentation* ui;
+    Ui::FenetreDocumentation* _ui;
 };
 
 #endif /* FENETREDOCUMENTATION_H */

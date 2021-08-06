@@ -64,12 +64,12 @@ public:
 
 private:
     // Attributs de classe
-    int styleTrait;
-    int epaisseurTrait;
-    QRgb couleurTrait;
+    int _styleTrait;
+    int _epaisseurTrait;
+    QRgb _couleurTrait;
 
     // Attributs de classe inaccessibles
-    static const QMap<int, QString> stylesTraitsTexte;
+    static const QMap<int, QString> _stylesTraitsTexte;
 };
 
 #endif /* PARAMETRESTRAIT_H */

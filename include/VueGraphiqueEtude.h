@@ -67,8 +67,8 @@ private:
     // Attributs de classe
 
     // Attributs de classe inaccessibles
-    static const double facteurZoomIn;
-    static const double facteurZoomOut;
+    static const double _facteurZoomIn;
+    static const double _facteurZoomOut;
 
 signals:
     // Signaux spécifiques

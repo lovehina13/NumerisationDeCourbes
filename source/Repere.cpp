@@ -11,20 +11,20 @@
 
 Repere::Repere()
 {
-    this->clear();
+    clear();
 }
 
 Repere::Repere(const Point& pointX0, const Point& pointX1, const Point& pointY0,
         const Point& pointY1) :
         Repere()
 {
-    this->set(pointX0, pointX1, pointY0, pointY1);
+    set(pointX0, pointX1, pointY0, pointY1);
 }
 
 Repere::Repere(const Repere& repere) :
         Repere()
 {
-    this->copy(repere);
+    copy(repere);
 }
 
 Repere::~Repere()
@@ -33,89 +33,89 @@ Repere::~Repere()
 
 Repere& Repere::operator=(const Repere& repere)
 {
-    this->copy(repere);
+    copy(repere);
     return *this;
 }
 
 bool Repere::operator==(const Repere& repere) const
 {
-    return this->equals(repere);
+    return equals(repere);
 }
 
 bool Repere::operator!=(const Repere& repere) const
 {
-    return !this->equals(repere);
+    return !equals(repere);
 }
 
 const Point& Repere::getPointX0() const
 {
-    return this->pointX0;
+    return _pointX0;
 }
 
 const Point& Repere::getPointX1() const
 {
-    return this->pointX1;
+    return _pointX1;
 }
 
 const Point& Repere::getPointY0() const
 {
-    return this->pointY0;
+    return _pointY0;
 }
 
 const Point& Repere::getPointY1() const
 {
-    return this->pointY1;
+    return _pointY1;
 }
 
 void Repere::setPointX0(const Point& pointX0)
 {
-    this->pointX0 = pointX0;
+    _pointX0 = pointX0;
 }
 
 void Repere::setPointX1(const Point& pointX1)
 {
-    this->pointX1 = pointX1;
+    _pointX1 = pointX1;
 }
 
 void Repere::setPointY0(const Point& pointY0)
 {
-    this->pointY0 = pointY0;
+    _pointY0 = pointY0;
 }
 
 void Repere::setPointY1(const Point& pointY1)
 {
-    this->pointY1 = pointY1;
+    _pointY1 = pointY1;
 }
 
 void Repere::clear()
 {
-    this->set(Point(0, 0, 0.0, 0.0, Point::REPERE), Point(0, 0, 0.0, 0.0, Point::REPERE),
+    set(Point(0, 0, 0.0, 0.0, Point::REPERE), Point(0, 0, 0.0, 0.0, Point::REPERE),
             Point(0, 0, 0.0, 0.0, Point::REPERE), Point(0, 0, 0.0, 0.0, Point::REPERE));
 }
 
 void Repere::set(const Point& pointX0, const Point& pointX1, const Point& pointY0,
         const Point& pointY1)
 {
-    this->setPointX0(pointX0);
-    this->setPointX1(pointX1);
-    this->setPointY0(pointY0);
-    this->setPointY1(pointY1);
+    setPointX0(pointX0);
+    setPointX1(pointX1);
+    setPointY0(pointY0);
+    setPointY1(pointY1);
 }
 
 void Repere::copy(const Repere& repere)
 {
-    this->set(repere.getPointX0(), repere.getPointX1(), repere.getPointY0(), repere.getPointY1());
+    set(repere.getPointX0(), repere.getPointX1(), repere.getPointY0(), repere.getPointY1());
 }
 
 bool Repere::equals(const Repere& repere) const
 {
-    if (!this->getPointX0().equals(repere.getPointX0()))
+    if (!getPointX0().equals(repere.getPointX0()))
         return false;
-    if (!this->getPointX1().equals(repere.getPointX1()))
+    if (!getPointX1().equals(repere.getPointX1()))
         return false;
-    if (!this->getPointY0().equals(repere.getPointY0()))
+    if (!getPointY0().equals(repere.getPointY0()))
         return false;
-    if (!this->getPointY1().equals(repere.getPointY1()))
+    if (!getPointY1().equals(repere.getPointY1()))
         return false;
     return true;
 }
@@ -123,27 +123,27 @@ bool Repere::equals(const Repere& repere) const
 void Repere::fromString(const QString& fromString, const QChar& sep)
 {
     const QStringList fromStringList = listeSousElements(fromString, sep);
-    Point pointX0 = this->getPointX0();
-    Point pointX1 = this->getPointX1();
-    Point pointY0 = this->getPointY0();
-    Point pointY1 = this->getPointY1();
+    Point pointX0 = getPointX0();
+    Point pointX1 = getPointX1();
+    Point pointY0 = getPointY0();
+    Point pointY1 = getPointY1();
     pointX0.fromString(fromStringList.at(0), sep);
     pointX1.fromString(fromStringList.at(1), sep);
     pointY0.fromString(fromStringList.at(2), sep);
     pointY1.fromString(fromStringList.at(3), sep);
-    this->setPointX0(pointX0);
-    this->setPointX1(pointX1);
-    this->setPointY0(pointY0);
-    this->setPointY1(pointY1);
+    setPointX0(pointX0);
+    setPointX1(pointX1);
+    setPointY0(pointY0);
+    setPointY1(pointY1);
 }
 
 const QString Repere::toString(const QChar& sep) const
 {
     QString toString;
-    toString += QString("(%1)").arg(this->getPointX0().toString(sep)) + sep;
-    toString += QString("(%1)").arg(this->getPointX1().toString(sep)) + sep;
-    toString += QString("(%1)").arg(this->getPointY0().toString(sep)) + sep;
-    toString += QString("(%1)").arg(this->getPointY1().toString(sep));
+    toString += QString("(%1)").arg(getPointX0().toString(sep)) + sep;
+    toString += QString("(%1)").arg(getPointX1().toString(sep)) + sep;
+    toString += QString("(%1)").arg(getPointY0().toString(sep)) + sep;
+    toString += QString("(%1)").arg(getPointY1().toString(sep));
     return toString;
 }
 
@@ -153,7 +153,7 @@ void Repere::pixelVersReel(Point& point) const
     const int pointPixelY = point.getPointPixelY();
     double pointReelX = 0.0;
     double pointReelY = 0.0;
-    this->pixelVersReel(pointPixelX, pointPixelY, pointReelX, pointReelY);
+    pixelVersReel(pointPixelX, pointPixelY, pointReelX, pointReelY);
     point.setPointReelX(pointReelX);
     point.setPointReelY(pointReelY);
 }
@@ -161,10 +161,10 @@ void Repere::pixelVersReel(Point& point) const
 void Repere::pixelVersReel(const int& pointPixelX, const int& pointPixelY, double& pointReelX,
         double& pointReelY) const
 {
-    const Point& pointX0 = this->getPointX0();
-    const Point& pointX1 = this->getPointX1();
-    const Point& pointY0 = this->getPointY0();
-    const Point& pointY1 = this->getPointY1();
+    const Point& pointX0 = getPointX0();
+    const Point& pointX1 = getPointX1();
+    const Point& pointY0 = getPointY0();
+    const Point& pointY1 = getPointY1();
 
     const double x0px = pointX0.getPointPixelX();
     const double x0py = pointX0.getPointPixelY();

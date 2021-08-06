@@ -24,20 +24,20 @@
 
 Etude::Etude()
 {
-    this->clear();
+    clear();
 }
 
 Etude::Etude(const Image& image, const Repere& repere, const QList<Point>& listeDePoints,
         const Parametres& parametres) :
         Etude()
 {
-    this->set(image, repere, listeDePoints, parametres);
+    set(image, repere, listeDePoints, parametres);
 }
 
 Etude::Etude(const Etude& etude) :
         Etude()
 {
-    this->copy(etude);
+    copy(etude);
 }
 
 Etude::~Etude()
@@ -46,88 +46,88 @@ Etude::~Etude()
 
 Etude& Etude::operator=(const Etude& etude)
 {
-    this->copy(etude);
+    copy(etude);
     return *this;
 }
 
 bool Etude::operator==(const Etude& etude) const
 {
-    return this->equals(etude);
+    return equals(etude);
 }
 
 bool Etude::operator!=(const Etude& etude) const
 {
-    return !this->equals(etude);
+    return !equals(etude);
 }
 
 const Image& Etude::getImage() const
 {
-    return this->image;
+    return _image;
 }
 
 const Repere& Etude::getRepere() const
 {
-    return this->repere;
+    return _repere;
 }
 
 const QList<Point>& Etude::getListeDePoints() const
 {
-    return this->listeDePoints;
+    return _listeDePoints;
 }
 
 const Parametres& Etude::getParametres() const
 {
-    return this->parametres;
+    return _parametres;
 }
 
 void Etude::setImage(const Image& image)
 {
-    this->image = image;
+    _image = image;
 }
 
 void Etude::setRepere(const Repere& repere)
 {
-    this->repere = repere;
+    _repere = repere;
 }
 
 void Etude::setListeDePoints(const QList<Point>& listeDePoints)
 {
-    this->listeDePoints = listeDePoints;
+    _listeDePoints = listeDePoints;
 }
 
 void Etude::setParametres(const Parametres& parametres)
 {
-    this->parametres = parametres;
+    _parametres = parametres;
 }
 
 void Etude::clear()
 {
-    this->set(Image(), Repere(), QList<Point>(), Parametres());
+    set(Image(), Repere(), QList<Point>(), Parametres());
 }
 
 void Etude::set(const Image& image, const Repere& repere, const QList<Point>& listeDePoints,
         const Parametres& parametres)
 {
-    this->setImage(image);
-    this->setRepere(repere);
-    this->setListeDePoints(listeDePoints);
-    this->setParametres(parametres);
+    setImage(image);
+    setRepere(repere);
+    setListeDePoints(listeDePoints);
+    setParametres(parametres);
 }
 
 void Etude::copy(const Etude& etude)
 {
-    this->set(etude.getImage(), etude.getRepere(), etude.getListeDePoints(), etude.getParametres());
+    set(etude.getImage(), etude.getRepere(), etude.getListeDePoints(), etude.getParametres());
 }
 
 bool Etude::equals(const Etude& etude) const
 {
-    if (!this->getImage().equals(etude.getImage()))
+    if (!getImage().equals(etude.getImage()))
         return false;
-    if (!this->getRepere().equals(etude.getRepere()))
+    if (!getRepere().equals(etude.getRepere()))
         return false;
-    if (this->getListeDePoints() != etude.getListeDePoints())
+    if (getListeDePoints() != etude.getListeDePoints())
         return false;
-    if (!this->getParametres().equals(etude.getParametres()))
+    if (!getParametres().equals(etude.getParametres()))
         return false;
     return true;
 }
@@ -142,10 +142,10 @@ void Etude::fromString(const QString& fromString, const QChar& sep)
 const QString Etude::toString(const QChar& sep) const
 {
     QString toString;
-    const QList<Point>& listeDePoints = this->getListeDePoints();
+    const QList<Point>& listeDePoints = getListeDePoints();
     const int nombreDePoints = listeDePoints.count();
-    toString += QString("(%1)").arg(this->getImage().toString(sep)) + sep;
-    toString += QString("(%1)").arg(this->getRepere().toString(sep)) + sep;
+    toString += QString("(%1)").arg(getImage().toString(sep)) + sep;
+    toString += QString("(%1)").arg(getRepere().toString(sep)) + sep;
     toString += QString("[");
     for (int itPoint = 0; itPoint < nombreDePoints; itPoint++)
     {
@@ -157,7 +157,7 @@ const QString Etude::toString(const QChar& sep) const
         }
     }
     toString += QString("]") + sep;
-    toString += QString("(%1)").arg(this->getParametres().toString(sep));
+    toString += QString("(%1)").arg(getParametres().toString(sep));
     return toString;
 }
 
@@ -165,7 +165,7 @@ const QList<Courbe> Etude::getListeDeCourbes() const
 {
     QList<Courbe> listeDeCourbes;
     QList<Point> listeDePointsCourbe;
-    const QList<Point>& listeDePoints = this->getListeDePoints();
+    const QList<Point>& listeDePoints = getListeDePoints();
     const int nombreDePoints = listeDePoints.count();
     for (int itPoint = 0; itPoint < nombreDePoints; itPoint++)
     {
@@ -192,7 +192,7 @@ const QList<Courbe> Etude::getListeDeCourbes() const
 const QList<Point> Etude::getListeDePointsManuels() const
 {
     QList<Point> listeDePointsManuels;
-    const QList<Point>& listeDePoints = this->getListeDePoints();
+    const QList<Point>& listeDePoints = getListeDePoints();
     const int nombreDePoints = listeDePoints.count();
     for (int itPoint = 0; itPoint < nombreDePoints; itPoint++)
     {
@@ -211,7 +211,7 @@ const ParametresGraphique Etude::getParametresGraphiques() const
     ParametresGraphique parametresGraphiques;
     ParametresAxe parametresAxeHorizontal = parametresGraphiques.getParametresAxeHorizontal();
     ParametresAxe parametresAxeVertical = parametresGraphiques.getParametresAxeVertical();
-    const QList<Point>& listeDePoints = this->getListeDePoints();
+    const QList<Point>& listeDePoints = getListeDePoints();
     const int nombreDePoints = listeDePoints.count();
     for (int itPoint = 0; itPoint < nombreDePoints; itPoint++)
     {
@@ -256,22 +256,22 @@ bool Etude::chargerEtude(const QString& cheminFichierEtude)
         if (ligneEntree == "[PARAMETRES]")
         {
             ligneEntree = fluxEntree.readLine();
-            Parametres parametres = this->getParametres();
+            Parametres parametres = getParametres();
             parametres.fromString(ligneEntree, separateur);
-            this->setParametres(parametres);
+            setParametres(parametres);
             const ParametresFichiers& parametresFichier = parametres.getParametresFichiers();
-            Image image = this->getImage();
+            Image image = getImage();
             image.setImageSource(QImage(parametresFichier.getCheminFichierImageSource()));
-            this->setImage(image);
-            this->restaurerImage();
-            this->convertirImage();
+            setImage(image);
+            restaurerImage();
+            convertirImage();
         }
         else if (ligneEntree == "[REPERE]")
         {
             ligneEntree = fluxEntree.readLine();
-            Repere repere = this->getRepere();
+            Repere repere = getRepere();
             repere.fromString(ligneEntree, separateur);
-            this->setRepere(repere);
+            setRepere(repere);
         }
         else if (ligneEntree == "[POINTS]")
         {
@@ -283,7 +283,7 @@ bool Etude::chargerEtude(const QString& cheminFichierEtude)
                 point.fromString(ligneEntree, separateur);
                 listeDePoints.append(point);
             }
-            this->setListeDePoints(listeDePoints);
+            setListeDePoints(listeDePoints);
         }
     }
     return true;
@@ -291,11 +291,11 @@ bool Etude::chargerEtude(const QString& cheminFichierEtude)
 
 bool Etude::sauverEtude(const QString& cheminFichierEtude)
 {
-    Parametres parametres = this->getParametres();
+    Parametres parametres = getParametres();
     ParametresFichiers parametresFichiers = parametres.getParametresFichiers();
     parametresFichiers.setCheminFichierEtude(cheminFichierEtude);
     parametres.setParametresFichiers(parametresFichiers);
-    this->setParametres(parametres);
+    setParametres(parametres);
 
     QFile fichierEtude(cheminFichierEtude);
     if (!fichierEtude.open(QIODevice::WriteOnly | QIODevice::Text))
@@ -303,12 +303,12 @@ bool Etude::sauverEtude(const QString& cheminFichierEtude)
 
     const QChar separateur = ';';
     QTextStream fluxSortie(&fichierEtude);
-    const QList<Point>& listeDePoints = this->getListeDePoints();
+    const QList<Point>& listeDePoints = getListeDePoints();
     const int nombreDePoints = listeDePoints.count();
     fluxSortie << "[PARAMETRES]" << endl;
-    fluxSortie << this->getParametres().toString(separateur) << endl;
+    fluxSortie << getParametres().toString(separateur) << endl;
     fluxSortie << "[REPERE]" << endl;
-    fluxSortie << this->getRepere().toString(separateur) << endl;
+    fluxSortie << getRepere().toString(separateur) << endl;
     fluxSortie << "[POINTS]" << endl;
     for (int itPoint = 0; itPoint < nombreDePoints; itPoint++)
     {
@@ -332,40 +332,40 @@ bool Etude::chargerParametres(const QString& cheminFichierParametres)
         if (ligneEntree == "[PARAMETRES_AFFICHAGE]")
         {
             ligneEntree = fluxEntree.readLine();
-            Parametres parametres = this->getParametres();
+            Parametres parametres = getParametres();
             ParametresAffichage parametresAffichage = parametres.getParametresAffichage();
             parametresAffichage.fromString(ligneEntree, separateur);
             parametres.setParametresAffichage(parametresAffichage);
-            this->setParametres(parametres);
+            setParametres(parametres);
         }
         else if (ligneEntree == "[PARAMETRES_CONVERSION]")
         {
             ligneEntree = fluxEntree.readLine();
-            Parametres parametres = this->getParametres();
+            Parametres parametres = getParametres();
             ParametresConversion parametresConversion = parametres.getParametresConversion();
             parametresConversion.fromString(ligneEntree, separateur);
             parametres.setParametresConversion(parametresConversion);
-            this->setParametres(parametres);
-            this->restaurerImage();
-            this->convertirImage();
+            setParametres(parametres);
+            restaurerImage();
+            convertirImage();
         }
         else if (ligneEntree == "[PARAMETRES_RECHERCHE]")
         {
             ligneEntree = fluxEntree.readLine();
-            Parametres parametres = this->getParametres();
+            Parametres parametres = getParametres();
             ParametresRecherche parametresRecherche = parametres.getParametresRecherche();
             parametresRecherche.fromString(ligneEntree, separateur);
             parametres.setParametresRecherche(parametresRecherche);
-            this->setParametres(parametres);
+            setParametres(parametres);
         }
         else if (ligneEntree == "[PARAMETRES_EXPORT]")
         {
             ligneEntree = fluxEntree.readLine();
-            Parametres parametres = this->getParametres();
+            Parametres parametres = getParametres();
             ParametresExport parametresExport = parametres.getParametresExport();
             parametresExport.fromString(ligneEntree, separateur);
             parametres.setParametresExport(parametresExport);
-            this->setParametres(parametres);
+            setParametres(parametres);
         }
     }
     return true;
@@ -373,11 +373,11 @@ bool Etude::chargerParametres(const QString& cheminFichierParametres)
 
 bool Etude::sauverParametres(const QString& cheminFichierParametres)
 {
-    Parametres parametres = this->getParametres();
+    Parametres parametres = getParametres();
     ParametresFichiers parametresFichiers = parametres.getParametresFichiers();
     parametresFichiers.setCheminFichierParametres(cheminFichierParametres);
     parametres.setParametresFichiers(parametresFichiers);
-    this->setParametres(parametres);
+    setParametres(parametres);
 
     QFile fichierParametres(cheminFichierParametres);
     if (!fichierParametres.open(QIODevice::WriteOnly | QIODevice::Text))
@@ -386,39 +386,39 @@ bool Etude::sauverParametres(const QString& cheminFichierParametres)
     const QChar separateur = ';';
     QTextStream fluxSortie(&fichierParametres);
     fluxSortie << "[PARAMETRES_AFFICHAGE]" << endl;
-    fluxSortie << this->getParametres().getParametresAffichage().toString(separateur) << endl;
+    fluxSortie << getParametres().getParametresAffichage().toString(separateur) << endl;
     fluxSortie << "[PARAMETRES_CONVERSION]" << endl;
-    fluxSortie << this->getParametres().getParametresConversion().toString(separateur) << endl;
+    fluxSortie << getParametres().getParametresConversion().toString(separateur) << endl;
     fluxSortie << "[PARAMETRES_RECHERCHE]" << endl;
-    fluxSortie << this->getParametres().getParametresRecherche().toString(separateur) << endl;
+    fluxSortie << getParametres().getParametresRecherche().toString(separateur) << endl;
     fluxSortie << "[PARAMETRES_EXPORT]" << endl;
-    fluxSortie << this->getParametres().getParametresExport().toString(separateur) << endl;
+    fluxSortie << getParametres().getParametresExport().toString(separateur) << endl;
     return true;
 }
 
 bool Etude::exporterImageConvertie(const QString& cheminFichierImageConvertie)
 {
-    Parametres parametres = this->getParametres();
+    Parametres parametres = getParametres();
     ParametresFichiers parametresFichiers = parametres.getParametresFichiers();
     parametresFichiers.setCheminFichierImageConvertie(cheminFichierImageConvertie);
     parametres.setParametresFichiers(parametresFichiers);
-    this->setParametres(parametres);
+    setParametres(parametres);
 
     QFile fichierImageConvertie(cheminFichierImageConvertie);
     if (!fichierImageConvertie.open(QIODevice::WriteOnly | QIODevice::Text))
         return false;
 
-    this->getImage().getImageConvertie().save(cheminFichierImageConvertie);
+    getImage().getImageConvertie().save(cheminFichierImageConvertie);
     return true;
 }
 
 bool Etude::exporterListeDePoints(const QString& cheminFichierExport)
 {
-    Parametres parametres = this->getParametres();
+    Parametres parametres = getParametres();
     ParametresFichiers parametresFichiers = parametres.getParametresFichiers();
     parametresFichiers.setCheminFichierExport(cheminFichierExport);
     parametres.setParametresFichiers(parametresFichiers);
-    this->setParametres(parametres);
+    setParametres(parametres);
 
     QFile fichierExport(cheminFichierExport);
     if (!fichierExport.open(QIODevice::WriteOnly | QIODevice::Text))
@@ -433,8 +433,8 @@ bool Etude::exporterListeDePoints(const QString& cheminFichierExport)
     const double& seuilInterpolationNumerique = parametresExport.getSeuilInterpolationNumerique();
 
     QTextStream fluxSortie(&fichierExport);
-    const QList<Courbe> listeDeCourbes = this->getListeDeCourbes();
-    const QList<Point> listeDePointsManuels = this->getListeDePointsManuels();
+    const QList<Courbe> listeDeCourbes = getListeDeCourbes();
+    const QList<Point> listeDePointsManuels = getListeDePointsManuels();
     const int nombreDeCourbes = listeDeCourbes.count();
     const int nombreDePointsManuels = listeDePointsManuels.count();
     for (int itCourbe = 0; itCourbe < nombreDeCourbes; itCourbe++)
@@ -493,18 +493,18 @@ bool Etude::exporterListeDePoints(const QString& cheminFichierExport)
 
 void Etude::restaurerImage()
 {
-    Image image = this->getImage();
+    Image image = getImage();
     image.restaurerImage();
-    this->setImage(image);
+    setImage(image);
 }
 
 void Etude::convertirImage()
 {
-    const Parametres& parametres = this->getParametres();
+    const Parametres& parametres = getParametres();
     const ParametresConversion& parametresConversion = parametres.getParametresConversion();
     const int& methodeConversion = parametresConversion.getMethodeConversion();
 
-    Image image = this->getImage();
+    Image image = getImage();
     if (methodeConversion == ParametresConversion::BRUTE)
     {
         image.restaurerImage();
@@ -523,39 +523,39 @@ void Etude::convertirImage()
                 parametresConversion.getNombreTeintesSaturees(),
                 parametresConversion.getSeuilSaturation());
     }
-    this->setImage(image);
+    setImage(image);
 }
 
 const QList<Courbe> Etude::rechercherCourbes(const QPoint& pointPixelDepart,
         const QPoint& pointPixelArrivee)
 {
-    const QList<QPoint> listeDePointsCourbes = this->rechercherPointsCourbes(pointPixelDepart,
+    const QList<QPoint> listeDePointsCourbes = rechercherPointsCourbes(pointPixelDepart,
             pointPixelArrivee);
-    const QList<Courbe> listeDeCourbes = this->construireCourbes(listeDePointsCourbes);
+    const QList<Courbe> listeDeCourbes = construireCourbes(listeDePointsCourbes);
     return listeDeCourbes;
 }
 
 const QList<QPoint> Etude::rechercherPointsCourbes(const QPoint& pointPixelDepart,
         const QPoint& pointPixelArrivee)
 {
-    this->listeDePointsDeRecherche.clear();
-    this->pointPixelDepart = pointPixelDepart;
-    this->pointPixelArrivee = pointPixelArrivee;
-    this->listeDePointsDeRecherche.append(pointPixelDepart);
-    const Image& image = this->getImage();
+    _listeDePointsDeRecherche.clear();
+    _pointPixelDepart = pointPixelDepart;
+    _pointPixelArrivee = pointPixelArrivee;
+    _listeDePointsDeRecherche.append(pointPixelDepart);
+    const Image& image = getImage();
     const QRgb couleurReference = image.recupererCouleurPixel(pointPixelDepart);
-    this->rechercherPoints(pointPixelDepart, couleurReference);
-    const QList<QPoint> listeDePointsCourbes = this->filtrerPointsCourbes(
-            this->listeDePointsDeRecherche, this->pointPixelDepart, this->pointPixelArrivee);
+    rechercherPoints(pointPixelDepart, couleurReference);
+    const QList<QPoint> listeDePointsCourbes = filtrerPointsCourbes(_listeDePointsDeRecherche,
+            _pointPixelDepart, _pointPixelArrivee);
     return listeDePointsCourbes;
 }
 
 void Etude::rechercherPoints(const QPoint& pointPixel, const QRgb& couleurReference)
 {
-    const QList<QPoint> listeDePointsProches = this->recupererPointsProches(pointPixel);
+    const QList<QPoint> listeDePointsProches = recupererPointsProches(pointPixel);
     const int nombreDePointsProches = listeDePointsProches.count();
-    const Image& image = this->getImage();
-    const Parametres& parametres = this->getParametres();
+    const Image& image = getImage();
+    const Parametres& parametres = getParametres();
     const ParametresRecherche& parametresRecherche = parametres.getParametresRecherche();
     const int& seuilToleranceNiveauxDeGris = parametresRecherche.getSeuilToleranceNiveauxDeGris();
     const int& seuilToleranceTeintesSaturees = static_cast<int>(round(
@@ -563,26 +563,26 @@ void Etude::rechercherPoints(const QPoint& pointPixel, const QRgb& couleurRefere
     for (int itPointProche = 0; itPointProche < nombreDePointsProches; itPointProche++)
     {
         const QPoint& pointCourant = listeDePointsProches.at(itPointProche);
-        if (this->listeDePointsDeRecherche.contains(pointCourant))
+        if (_listeDePointsDeRecherche.contains(pointCourant))
             continue;
         const QRgb couleurCourante = image.recupererCouleurPixel(pointCourant);
-        if (this->verifierToleranceNiveauxDeGris(couleurCourante, couleurReference,
+        if (verifierToleranceNiveauxDeGris(couleurCourante, couleurReference,
                 seuilToleranceNiveauxDeGris) != NIVEAU_DE_GRIS_COMPATIBLE)
             continue;
-        if (this->verifierToleranceTeintesSaturees(couleurCourante, couleurReference,
+        if (verifierToleranceTeintesSaturees(couleurCourante, couleurReference,
                 seuilToleranceTeintesSaturees) != TEINTE_SATUREE_COMPATIBLE)
             continue;
-        this->listeDePointsDeRecherche.append(pointCourant);
-        this->rechercherPoints(pointCourant, couleurReference);
+        _listeDePointsDeRecherche.append(pointCourant);
+        rechercherPoints(pointCourant, couleurReference);
     }
 }
 
 const QList<QPoint> Etude::recupererPointsProches(const QPoint& pointPixel) const
 {
     QList<QPoint> listeDePointsProches;
-    const Image& image = this->getImage();
-    const int xMinimal = this->pointPixelDepart.x();
-    const int xMaximal = this->pointPixelArrivee.x();
+    const Image& image = getImage();
+    const int xMinimal = _pointPixelDepart.x();
+    const int xMaximal = _pointPixelArrivee.x();
     const int xReference = pointPixel.x();
     const int yReference = pointPixel.y();
     const int xPrecedent = ((xReference - 1) > xMinimal) ? (xReference - 1) : xMinimal;
@@ -690,7 +690,7 @@ const QList<QPoint> Etude::filtrerPointsCourbes(const QList<QPoint>& listeDePoin
     }
 
     QList<QPoint> listeDePointsFiltres;
-    const Parametres& parametres = this->getParametres();
+    const Parametres& parametres = getParametres();
     const ParametresRecherche& parametresRecherche = parametres.getParametresRecherche();
     if (parametresRecherche.getSelectionValeursMoyennes())
     {
@@ -721,8 +721,8 @@ const QList<QPoint> Etude::filtrerPointsCourbes(const QList<QPoint>& listeDePoin
 
 const QList<Courbe> Etude::construireCourbes(const QList<QPoint>& listeDePoints)
 {
-    const Repere& repere = this->getRepere();
-    const Parametres& parametres = this->getParametres();
+    const Repere& repere = getRepere();
+    const Parametres& parametres = getParametres();
     const ParametresRecherche& parametresRecherche = parametres.getParametresRecherche();
     const bool& selectionValeursMoyennes = parametresRecherche.getSelectionValeursMoyennes();
     const bool& selectionValeursMinimales = parametresRecherche.getSelectionValeursMinimales();

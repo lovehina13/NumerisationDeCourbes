@@ -9,12 +9,12 @@
 #include "ui_FenetreDocumentation.h"
 
 FenetreDocumentation::FenetreDocumentation(QWidget* parent) :
-        QDialog(parent), ui(new Ui::FenetreDocumentation)
+        QDialog(parent), _ui(new Ui::FenetreDocumentation)
 {
-    this->ui->setupUi(this);
+    _ui->setupUi(this);
 }
 
 FenetreDocumentation::~FenetreDocumentation()
 {
-    delete this->ui;
+    delete _ui;
 }
