@@ -65,60 +65,55 @@ void FenetreParametresRecherche::actualiserElementsGraphiques()
             _parametresRecherche.getSelectionValeursMaximales());
 }
 
-void FenetreParametresRecherche::on_spinBoxSeuilToleranceNiveauxDeGris_valueChanged()
+void FenetreParametresRecherche::on_spinBoxSeuilToleranceNiveauxDeGris_valueChanged(int value)
 {
-    _parametresRecherche.setSeuilToleranceNiveauxDeGris(
-            _ui->spinBoxSeuilToleranceNiveauxDeGris->value());
+    _parametresRecherche.setSeuilToleranceNiveauxDeGris(value);
     _ui->doubleSpinBoxSeuilToleranceNiveauxDeGrisFacteur->blockSignals(true);
     _ui->doubleSpinBoxSeuilToleranceNiveauxDeGrisFacteur->setValue(
             _parametresRecherche.getSeuilToleranceNiveauxDeGrisFacteur() * 100.0);
     _ui->doubleSpinBoxSeuilToleranceNiveauxDeGrisFacteur->blockSignals(false);
 }
 
-void FenetreParametresRecherche::on_doubleSpinBoxSeuilToleranceNiveauxDeGrisFacteur_valueChanged()
+void FenetreParametresRecherche::on_doubleSpinBoxSeuilToleranceNiveauxDeGrisFacteur_valueChanged(
+        double value)
 {
-    _parametresRecherche.setSeuilToleranceNiveauxDeGrisFacteur(
-            _ui->doubleSpinBoxSeuilToleranceNiveauxDeGrisFacteur->value() / 100.0);
+    _parametresRecherche.setSeuilToleranceNiveauxDeGrisFacteur(value / 100.0);
     _ui->spinBoxSeuilToleranceNiveauxDeGris->blockSignals(true);
     _ui->spinBoxSeuilToleranceNiveauxDeGris->setValue(
             _parametresRecherche.getSeuilToleranceNiveauxDeGris());
     _ui->spinBoxSeuilToleranceNiveauxDeGris->blockSignals(false);
 }
 
-void FenetreParametresRecherche::on_spinBoxSeuilToleranceTeintesSaturees_valueChanged()
+void FenetreParametresRecherche::on_spinBoxSeuilToleranceTeintesSaturees_valueChanged(int value)
 {
-    _parametresRecherche.setSeuilToleranceTeintesSaturees(
-            _ui->spinBoxSeuilToleranceTeintesSaturees->value());
+    _parametresRecherche.setSeuilToleranceTeintesSaturees(value);
     _ui->doubleSpinBoxSeuilToleranceTeintesSatureesFacteur->blockSignals(true);
     _ui->doubleSpinBoxSeuilToleranceTeintesSatureesFacteur->setValue(
             _parametresRecherche.getSeuilToleranceTeintesSatureesFacteur() * 100.0);
     _ui->doubleSpinBoxSeuilToleranceTeintesSatureesFacteur->blockSignals(false);
 }
 
-void FenetreParametresRecherche::on_doubleSpinBoxSeuilToleranceTeintesSatureesFacteur_valueChanged()
+void FenetreParametresRecherche::on_doubleSpinBoxSeuilToleranceTeintesSatureesFacteur_valueChanged(
+        double value)
 {
-    _parametresRecherche.setSeuilToleranceTeintesSatureesFacteur(
-            _ui->doubleSpinBoxSeuilToleranceTeintesSatureesFacteur->value() / 100.0);
+    _parametresRecherche.setSeuilToleranceTeintesSatureesFacteur(value / 100.0);
     _ui->spinBoxSeuilToleranceTeintesSaturees->blockSignals(true);
     _ui->spinBoxSeuilToleranceTeintesSaturees->setValue(
             _parametresRecherche.getSeuilToleranceTeintesSaturees());
     _ui->spinBoxSeuilToleranceTeintesSaturees->blockSignals(false);
 }
 
-void FenetreParametresRecherche::on_checkBoxSelectionValeursMoyennes_stateChanged()
+void FenetreParametresRecherche::on_checkBoxSelectionValeursMoyennes_stateChanged(int state)
 {
-    _parametresRecherche.setSelectionValeursMoyennes(
-            _ui->checkBoxSelectionValeursMoyennes->isChecked());
+    _parametresRecherche.setSelectionValeursMoyennes(state == Qt::Checked);
 }
 
-void FenetreParametresRecherche::on_checkBoxSelectionValeursMinimales_stateChanged()
+void FenetreParametresRecherche::on_checkBoxSelectionValeursMinimales_stateChanged(int state)
 {
-    _parametresRecherche.setSelectionValeursMinimales(
-            _ui->checkBoxSelectionValeursMinimales->isChecked());
+    _parametresRecherche.setSelectionValeursMinimales(state == Qt::Checked);
 }
 
-void FenetreParametresRecherche::on_checkBoxSelectionValeursMaximales_stateChanged()
+void FenetreParametresRecherche::on_checkBoxSelectionValeursMaximales_stateChanged(int state)
 {
-    _parametresRecherche.setSelectionValeursMaximales(
-            _ui->checkBoxSelectionValeursMaximales->isChecked());
+    _parametresRecherche.setSelectionValeursMaximales(state == Qt::Checked);
 }

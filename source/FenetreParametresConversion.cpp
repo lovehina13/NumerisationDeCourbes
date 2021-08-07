@@ -63,47 +63,45 @@ void FenetreParametresConversion::actualiserElementsGraphiques()
             _parametresConversion.getSeuilSaturationFacteur() * 100.0);
 }
 
-void FenetreParametresConversion::on_spinBoxSeuilNoirEtBlanc_valueChanged()
+void FenetreParametresConversion::on_spinBoxSeuilNoirEtBlanc_valueChanged(int value)
 {
-    _parametresConversion.setSeuilNoirEtBlanc(_ui->spinBoxSeuilNoirEtBlanc->value());
+    _parametresConversion.setSeuilNoirEtBlanc(value);
     _ui->doubleSpinBoxSeuilNoirEtBlancFacteur->blockSignals(true);
     _ui->doubleSpinBoxSeuilNoirEtBlancFacteur->setValue(
             _parametresConversion.getSeuilNoirEtBlancFacteur() * 100.0);
     _ui->doubleSpinBoxSeuilNoirEtBlancFacteur->blockSignals(false);
 }
 
-void FenetreParametresConversion::on_doubleSpinBoxSeuilNoirEtBlancFacteur_valueChanged()
+void FenetreParametresConversion::on_doubleSpinBoxSeuilNoirEtBlancFacteur_valueChanged(double value)
 {
-    _parametresConversion.setSeuilNoirEtBlancFacteur(
-            _ui->doubleSpinBoxSeuilNoirEtBlancFacteur->value() / 100.0);
+    _parametresConversion.setSeuilNoirEtBlancFacteur(value / 100.0);
     _ui->spinBoxSeuilNoirEtBlanc->blockSignals(true);
     _ui->spinBoxSeuilNoirEtBlanc->setValue(_parametresConversion.getSeuilNoirEtBlanc());
     _ui->spinBoxSeuilNoirEtBlanc->blockSignals(false);
 }
 
-void FenetreParametresConversion::on_spinBoxNombreNiveauxDeGris_valueChanged()
+void FenetreParametresConversion::on_spinBoxNombreNiveauxDeGris_valueChanged(int value)
 {
-    _parametresConversion.setNombreNiveauxDeGris(_ui->spinBoxNombreNiveauxDeGris->value());
+    _parametresConversion.setNombreNiveauxDeGris(value);
 }
 
-void FenetreParametresConversion::on_spinBoxNombreTeintesSaturees_valueChanged()
+void FenetreParametresConversion::on_spinBoxNombreTeintesSaturees_valueChanged(int value)
 {
-    _parametresConversion.setNombreTeintesSaturees(_ui->spinBoxNombreTeintesSaturees->value());
+    _parametresConversion.setNombreTeintesSaturees(value);
 }
 
-void FenetreParametresConversion::on_spinBoxSeuilSaturation_valueChanged()
+void FenetreParametresConversion::on_spinBoxSeuilSaturation_valueChanged(int value)
 {
-    _parametresConversion.setSeuilSaturation(_ui->spinBoxSeuilSaturation->value());
+    _parametresConversion.setSeuilSaturation(value);
     _ui->doubleSpinBoxSeuilSaturationFacteur->blockSignals(true);
     _ui->doubleSpinBoxSeuilSaturationFacteur->setValue(
             _parametresConversion.getSeuilSaturationFacteur() * 100.0);
     _ui->doubleSpinBoxSeuilSaturationFacteur->blockSignals(false);
 }
 
-void FenetreParametresConversion::on_doubleSpinBoxSeuilSaturationFacteur_valueChanged()
+void FenetreParametresConversion::on_doubleSpinBoxSeuilSaturationFacteur_valueChanged(double value)
 {
-    _parametresConversion.setSeuilSaturationFacteur(
-            _ui->doubleSpinBoxSeuilSaturationFacteur->value() / 100.0);
+    _parametresConversion.setSeuilSaturationFacteur(value / 100.0);
     _ui->spinBoxSeuilSaturation->blockSignals(true);
     _ui->spinBoxSeuilSaturation->setValue(_parametresConversion.getSeuilSaturation());
     _ui->spinBoxSeuilSaturation->blockSignals(false);

@@ -43,12 +43,12 @@ protected:
 
 protected slots:
     // Connecteurs spécifiques
-    void on_spinBoxSeuilNoirEtBlanc_valueChanged();
-    void on_doubleSpinBoxSeuilNoirEtBlancFacteur_valueChanged();
-    void on_spinBoxNombreNiveauxDeGris_valueChanged();
-    void on_spinBoxNombreTeintesSaturees_valueChanged();
-    void on_spinBoxSeuilSaturation_valueChanged();
-    void on_doubleSpinBoxSeuilSaturationFacteur_valueChanged();
+    void on_spinBoxSeuilNoirEtBlanc_valueChanged(int value);
+    void on_doubleSpinBoxSeuilNoirEtBlancFacteur_valueChanged(double value);
+    void on_spinBoxNombreNiveauxDeGris_valueChanged(int value);
+    void on_spinBoxNombreTeintesSaturees_valueChanged(int value);
+    void on_spinBoxSeuilSaturation_valueChanged(int value);
+    void on_doubleSpinBoxSeuilSaturationFacteur_valueChanged(double value);
 
 private:
     // Attributs de classe

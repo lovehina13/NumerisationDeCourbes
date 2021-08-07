@@ -793,11 +793,11 @@ void EcranPrincipal::on_pushButtonRestaurer_clicked()
     dessinerVueGraphiqueEtude();
 }
 
-void EcranPrincipal::on_lineEditPointX0XPixel_textChanged()
+void EcranPrincipal::on_lineEditPointX0XPixel_textChanged(const QString& text)
 {
     Repere repere = _etude.getRepere();
     Point pointX0 = repere.getPointX0();
-    pointX0.setPointPixelX(_ui->lineEditPointX0XPixel->text().toInt());
+    pointX0.setPointPixelX(text.toInt());
     repere.setPointX0(pointX0);
     _etude.setRepere(repere);
 
@@ -805,11 +805,11 @@ void EcranPrincipal::on_lineEditPointX0XPixel_textChanged()
     dessinerVueGraphiqueEtude();
 }
 
-void EcranPrincipal::on_lineEditPointX0YPixel_textChanged()
+void EcranPrincipal::on_lineEditPointX0YPixel_textChanged(const QString& text)
 {
     Repere repere = _etude.getRepere();
     Point pointX0 = repere.getPointX0();
-    pointX0.setPointPixelY(_ui->lineEditPointX0YPixel->text().toInt());
+    pointX0.setPointPixelY(text.toInt());
     repere.setPointX0(pointX0);
     _etude.setRepere(repere);
 
@@ -817,11 +817,11 @@ void EcranPrincipal::on_lineEditPointX0YPixel_textChanged()
     dessinerVueGraphiqueEtude();
 }
 
-void EcranPrincipal::on_lineEditPointX0Valeur_textChanged()
+void EcranPrincipal::on_lineEditPointX0Valeur_textChanged(const QString& text)
 {
     Repere repere = _etude.getRepere();
     Point pointX0 = repere.getPointX0();
-    pointX0.setPointReelX(_ui->lineEditPointX0Valeur->text().toDouble());
+    pointX0.setPointReelX(text.toDouble());
     repere.setPointX0(pointX0);
     _etude.setRepere(repere);
 
@@ -829,11 +829,11 @@ void EcranPrincipal::on_lineEditPointX0Valeur_textChanged()
     dessinerVueGraphiqueEtude();
 }
 
-void EcranPrincipal::on_lineEditPointX1XPixel_textChanged()
+void EcranPrincipal::on_lineEditPointX1XPixel_textChanged(const QString& text)
 {
     Repere repere = _etude.getRepere();
     Point pointX1 = repere.getPointX1();
-    pointX1.setPointPixelX(_ui->lineEditPointX1XPixel->text().toInt());
+    pointX1.setPointPixelX(text.toInt());
     repere.setPointX1(pointX1);
     _etude.setRepere(repere);
 
@@ -841,11 +841,11 @@ void EcranPrincipal::on_lineEditPointX1XPixel_textChanged()
     dessinerVueGraphiqueEtude();
 }
 
-void EcranPrincipal::on_lineEditPointX1YPixel_textChanged()
+void EcranPrincipal::on_lineEditPointX1YPixel_textChanged(const QString& text)
 {
     Repere repere = _etude.getRepere();
     Point pointX1 = repere.getPointX1();
-    pointX1.setPointPixelY(_ui->lineEditPointX1YPixel->text().toInt());
+    pointX1.setPointPixelY(text.toInt());
     repere.setPointX1(pointX1);
     _etude.setRepere(repere);
 
@@ -853,11 +853,11 @@ void EcranPrincipal::on_lineEditPointX1YPixel_textChanged()
     dessinerVueGraphiqueEtude();
 }
 
-void EcranPrincipal::on_lineEditPointX1Valeur_textChanged()
+void EcranPrincipal::on_lineEditPointX1Valeur_textChanged(const QString& text)
 {
     Repere repere = _etude.getRepere();
     Point pointX1 = repere.getPointX1();
-    pointX1.setPointReelX(_ui->lineEditPointX1Valeur->text().toDouble());
+    pointX1.setPointReelX(text.toDouble());
     repere.setPointX1(pointX1);
     _etude.setRepere(repere);
 
@@ -865,11 +865,11 @@ void EcranPrincipal::on_lineEditPointX1Valeur_textChanged()
     dessinerVueGraphiqueEtude();
 }
 
-void EcranPrincipal::on_lineEditPointY0XPixel_textChanged()
+void EcranPrincipal::on_lineEditPointY0XPixel_textChanged(const QString& text)
 {
     Repere repere = _etude.getRepere();
     Point pointY0 = repere.getPointY0();
-    pointY0.setPointPixelX(_ui->lineEditPointY0XPixel->text().toInt());
+    pointY0.setPointPixelX(text.toInt());
     repere.setPointY0(pointY0);
     _etude.setRepere(repere);
 
@@ -877,11 +877,11 @@ void EcranPrincipal::on_lineEditPointY0XPixel_textChanged()
     dessinerVueGraphiqueEtude();
 }
 
-void EcranPrincipal::on_lineEditPointY0YPixel_textChanged()
+void EcranPrincipal::on_lineEditPointY0YPixel_textChanged(const QString& text)
 {
     Repere repere = _etude.getRepere();
     Point pointY0 = repere.getPointY0();
-    pointY0.setPointPixelY(_ui->lineEditPointY0YPixel->text().toInt());
+    pointY0.setPointPixelY(text.toInt());
     repere.setPointY0(pointY0);
     _etude.setRepere(repere);
 
@@ -889,11 +889,11 @@ void EcranPrincipal::on_lineEditPointY0YPixel_textChanged()
     dessinerVueGraphiqueEtude();
 }
 
-void EcranPrincipal::on_lineEditPointY0Valeur_textChanged()
+void EcranPrincipal::on_lineEditPointY0Valeur_textChanged(const QString& text)
 {
     Repere repere = _etude.getRepere();
     Point pointY0 = repere.getPointY0();
-    pointY0.setPointReelY(_ui->lineEditPointY0Valeur->text().toDouble());
+    pointY0.setPointReelY(text.toDouble());
     repere.setPointY0(pointY0);
     _etude.setRepere(repere);
 
@@ -901,11 +901,11 @@ void EcranPrincipal::on_lineEditPointY0Valeur_textChanged()
     dessinerVueGraphiqueEtude();
 }
 
-void EcranPrincipal::on_lineEditPointY1XPixel_textChanged()
+void EcranPrincipal::on_lineEditPointY1XPixel_textChanged(const QString& text)
 {
     Repere repere = _etude.getRepere();
     Point pointY1 = repere.getPointY1();
-    pointY1.setPointPixelX(_ui->lineEditPointY1XPixel->text().toInt());
+    pointY1.setPointPixelX(text.toInt());
     repere.setPointY1(pointY1);
     _etude.setRepere(repere);
 
@@ -913,11 +913,11 @@ void EcranPrincipal::on_lineEditPointY1XPixel_textChanged()
     dessinerVueGraphiqueEtude();
 }
 
-void EcranPrincipal::on_lineEditPointY1YPixel_textChanged()
+void EcranPrincipal::on_lineEditPointY1YPixel_textChanged(const QString& text)
 {
     Repere repere = _etude.getRepere();
     Point pointY1 = repere.getPointY1();
-    pointY1.setPointPixelY(_ui->lineEditPointY1YPixel->text().toInt());
+    pointY1.setPointPixelY(text.toInt());
     repere.setPointY1(pointY1);
     _etude.setRepere(repere);
 
@@ -925,11 +925,11 @@ void EcranPrincipal::on_lineEditPointY1YPixel_textChanged()
     dessinerVueGraphiqueEtude();
 }
 
-void EcranPrincipal::on_lineEditPointY1Valeur_textChanged()
+void EcranPrincipal::on_lineEditPointY1Valeur_textChanged(const QString& text)
 {
     Repere repere = _etude.getRepere();
     Point pointY1 = repere.getPointY1();
-    pointY1.setPointReelY(_ui->lineEditPointY1Valeur->text().toDouble());
+    pointY1.setPointReelY(text.toDouble());
     repere.setPointY1(pointY1);
     _etude.setRepere(repere);
 
@@ -957,33 +957,39 @@ void EcranPrincipal::on_pushButtonPointY1_clicked()
     activerBouton(_ui->pushButtonPointY1);
 }
 
-void EcranPrincipal::on_lineEditPointDepartXPixel_textChanged()
+void EcranPrincipal::on_lineEditPointDepartXPixel_textChanged(const QString& text)
 {
+    Q_UNUSED(text)
     actualiserCoordonneesPointDepart();
 }
 
-void EcranPrincipal::on_lineEditPointDepartYPixel_textChanged()
+void EcranPrincipal::on_lineEditPointDepartYPixel_textChanged(const QString& text)
 {
+    Q_UNUSED(text)
     actualiserCoordonneesPointDepart();
 }
 
-void EcranPrincipal::on_lineEditPointArriveeXPixel_textChanged()
+void EcranPrincipal::on_lineEditPointArriveeXPixel_textChanged(const QString& text)
 {
+    Q_UNUSED(text)
     actualiserCoordonneesPointArrivee();
 }
 
-void EcranPrincipal::on_lineEditPointArriveeYPixel_textChanged()
+void EcranPrincipal::on_lineEditPointArriveeYPixel_textChanged(const QString& text)
 {
+    Q_UNUSED(text)
     actualiserCoordonneesPointArrivee();
 }
 
-void EcranPrincipal::on_lineEditPointManuelXPixel_textChanged()
+void EcranPrincipal::on_lineEditPointManuelXPixel_textChanged(const QString& text)
 {
+    Q_UNUSED(text)
     actualiserCoordonneesPointManuel();
 }
 
-void EcranPrincipal::on_lineEditPointManuelYPixel_textChanged()
+void EcranPrincipal::on_lineEditPointManuelYPixel_textChanged(const QString& text)
 {
+    Q_UNUSED(text)
     actualiserCoordonneesPointManuel();
 }
 

@@ -115,16 +115,16 @@ void FenetreParametresAffichage::actualiserElementsGraphiques()
             _parametresAffichage.getParametresPointsManuels().getStylePoint());
 }
 
-void FenetreParametresAffichage::on_comboBoxFormatNotationNombres_currentIndexChanged()
+void FenetreParametresAffichage::on_comboBoxFormatNotationNombres_currentIndexChanged(int index)
 {
     _parametresAffichage.setFormatNotationNombres(
-            static_cast<ParametresAffichage::FormatNotationNombres>(_ui->comboBoxFormatNotationNombres->currentIndex()));
+            static_cast<ParametresAffichage::FormatNotationNombres>(index));
 }
 
-void FenetreParametresAffichage::on_spinBoxNombreDecimalesOuChiffresSignificatifs_valueChanged()
+void FenetreParametresAffichage::on_spinBoxNombreDecimalesOuChiffresSignificatifs_valueChanged(
+        int value)
 {
-    _parametresAffichage.setNombreChiffresSignificatifs(
-            _ui->spinBoxNombreDecimalesOuChiffresSignificatifs->value());
+    _parametresAffichage.setNombreChiffresSignificatifs(value);
 }
 
 void FenetreParametresAffichage::on_pushButtonCouleurAxes_clicked()
@@ -139,18 +139,17 @@ void FenetreParametresAffichage::on_pushButtonCouleurAxes_clicked()
     actualiserElementsGraphiques();
 }
 
-void FenetreParametresAffichage::on_comboBoxStyleAxes_currentIndexChanged()
+void FenetreParametresAffichage::on_comboBoxStyleAxes_currentIndexChanged(int index)
 {
     ParametresTrait parametresAxes = _parametresAffichage.getParametresAxes();
-    parametresAxes.setStyleTrait(
-            static_cast<ParametresTrait::StyleTrait>(_ui->comboBoxStyleAxes->currentIndex()));
+    parametresAxes.setStyleTrait(static_cast<ParametresTrait::StyleTrait>(index));
     _parametresAffichage.setParametresAxes(parametresAxes);
 }
 
-void FenetreParametresAffichage::on_spinBoxEpaisseurAxes_valueChanged()
+void FenetreParametresAffichage::on_spinBoxEpaisseurAxes_valueChanged(int value)
 {
     ParametresTrait parametresAxes = _parametresAffichage.getParametresAxes();
-    parametresAxes.setEpaisseurTrait(_ui->spinBoxEpaisseurAxes->value());
+    parametresAxes.setEpaisseurTrait(value);
     _parametresAffichage.setParametresAxes(parametresAxes);
 }
 
@@ -166,18 +165,17 @@ void FenetreParametresAffichage::on_pushButtonCouleurCourbes_clicked()
     actualiserElementsGraphiques();
 }
 
-void FenetreParametresAffichage::on_comboBoxStyleCourbes_currentIndexChanged()
+void FenetreParametresAffichage::on_comboBoxStyleCourbes_currentIndexChanged(int index)
 {
     ParametresTrait parametresCourbes = _parametresAffichage.getParametresCourbes();
-    parametresCourbes.setStyleTrait(
-            static_cast<ParametresTrait::StyleTrait>(_ui->comboBoxStyleCourbes->currentIndex()));
+    parametresCourbes.setStyleTrait(static_cast<ParametresTrait::StyleTrait>(index));
     _parametresAffichage.setParametresCourbes(parametresCourbes);
 }
 
-void FenetreParametresAffichage::on_spinBoxEpaisseurCourbes_valueChanged()
+void FenetreParametresAffichage::on_spinBoxEpaisseurCourbes_valueChanged(int value)
 {
     ParametresTrait parametresCourbes = _parametresAffichage.getParametresCourbes();
-    parametresCourbes.setEpaisseurTrait(_ui->spinBoxEpaisseurCourbes->value());
+    parametresCourbes.setEpaisseurTrait(value);
     _parametresAffichage.setParametresCourbes(parametresCourbes);
 }
 
@@ -193,18 +191,17 @@ void FenetreParametresAffichage::on_pushButtonCouleurPointsAxes_clicked()
     actualiserElementsGraphiques();
 }
 
-void FenetreParametresAffichage::on_comboBoxStylePointsAxes_currentIndexChanged()
+void FenetreParametresAffichage::on_comboBoxStylePointsAxes_currentIndexChanged(int index)
 {
     ParametresPoint parametresPointsAxes = _parametresAffichage.getParametresPointsAxes();
-    parametresPointsAxes.setStylePoint(
-            static_cast<ParametresPoint::StylePoint>(_ui->comboBoxStylePointsAxes->currentIndex()));
+    parametresPointsAxes.setStylePoint(static_cast<ParametresPoint::StylePoint>(index));
     _parametresAffichage.setParametresPointsAxes(parametresPointsAxes);
 }
 
-void FenetreParametresAffichage::on_spinBoxEpaisseurPointsAxes_valueChanged()
+void FenetreParametresAffichage::on_spinBoxEpaisseurPointsAxes_valueChanged(int value)
 {
     ParametresPoint parametresPointsAxes = _parametresAffichage.getParametresPointsAxes();
-    parametresPointsAxes.setEpaisseurPoint(_ui->spinBoxEpaisseurPointsAxes->value());
+    parametresPointsAxes.setEpaisseurPoint(value);
     _parametresAffichage.setParametresPointsAxes(parametresPointsAxes);
 }
 
@@ -220,18 +217,17 @@ void FenetreParametresAffichage::on_pushButtonCouleurPointsCourbes_clicked()
     actualiserElementsGraphiques();
 }
 
-void FenetreParametresAffichage::on_comboBoxStylePointsCourbes_currentIndexChanged()
+void FenetreParametresAffichage::on_comboBoxStylePointsCourbes_currentIndexChanged(int index)
 {
     ParametresPoint parametresPointsCourbes = _parametresAffichage.getParametresPointsCourbes();
-    parametresPointsCourbes.setStylePoint(
-            static_cast<ParametresPoint::StylePoint>(_ui->comboBoxStylePointsCourbes->currentIndex()));
+    parametresPointsCourbes.setStylePoint(static_cast<ParametresPoint::StylePoint>(index));
     _parametresAffichage.setParametresPointsCourbes(parametresPointsCourbes);
 }
 
-void FenetreParametresAffichage::on_spinBoxEpaisseurPointsCourbes_valueChanged()
+void FenetreParametresAffichage::on_spinBoxEpaisseurPointsCourbes_valueChanged(int value)
 {
     ParametresPoint parametresPointsCourbes = _parametresAffichage.getParametresPointsCourbes();
-    parametresPointsCourbes.setEpaisseurPoint(_ui->spinBoxEpaisseurPointsCourbes->value());
+    parametresPointsCourbes.setEpaisseurPoint(value);
     _parametresAffichage.setParametresPointsCourbes(parametresPointsCourbes);
 }
 
@@ -247,17 +243,16 @@ void FenetreParametresAffichage::on_pushButtonCouleurPointsManuels_clicked()
     actualiserElementsGraphiques();
 }
 
-void FenetreParametresAffichage::on_comboBoxStylePointsManuels_currentIndexChanged()
+void FenetreParametresAffichage::on_comboBoxStylePointsManuels_currentIndexChanged(int index)
 {
     ParametresPoint parametresPointsManuels = _parametresAffichage.getParametresPointsManuels();
-    parametresPointsManuels.setStylePoint(
-            static_cast<ParametresPoint::StylePoint>(_ui->comboBoxStylePointsManuels->currentIndex()));
+    parametresPointsManuels.setStylePoint(static_cast<ParametresPoint::StylePoint>(index));
     _parametresAffichage.setParametresPointsManuels(parametresPointsManuels);
 }
 
-void FenetreParametresAffichage::on_spinBoxEpaisseurPointsManuels_valueChanged()
+void FenetreParametresAffichage::on_spinBoxEpaisseurPointsManuels_valueChanged(int value)
 {
     ParametresPoint parametresPointsManuels = _parametresAffichage.getParametresPointsManuels();
-    parametresPointsManuels.setEpaisseurPoint(_ui->spinBoxEpaisseurPointsManuels->value());
+    parametresPointsManuels.setEpaisseurPoint(value);
     _parametresAffichage.setParametresPointsManuels(parametresPointsManuels);
 }

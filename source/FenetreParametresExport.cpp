@@ -58,32 +58,32 @@ void FenetreParametresExport::actualiserElementsGraphiques()
             _parametresExport.getNombreChiffresSignificatifs());
 }
 
-void FenetreParametresExport::on_comboBoxCaractereSeparation_currentIndexChanged()
+void FenetreParametresExport::on_comboBoxCaractereSeparation_currentIndexChanged(int index)
 {
     _parametresExport.setCaractereSeparation(
-            static_cast<ParametresExport::CaractereSeparation>(_ui->comboBoxCaractereSeparation->currentIndex()));
+            static_cast<ParametresExport::CaractereSeparation>(index));
 }
 
-void FenetreParametresExport::on_comboBoxFormatNotationNombres_currentIndexChanged()
+void FenetreParametresExport::on_comboBoxFormatNotationNombres_currentIndexChanged(int index)
 {
     _parametresExport.setFormatNotationNombres(
-            static_cast<ParametresExport::FormatNotationNombres>(_ui->comboBoxFormatNotationNombres->currentIndex()));
+            static_cast<ParametresExport::FormatNotationNombres>(index));
 }
 
-void FenetreParametresExport::on_comboBoxCaractereSeparateurDecimal_currentIndexChanged()
+void FenetreParametresExport::on_comboBoxCaractereSeparateurDecimal_currentIndexChanged(int index)
 {
     _parametresExport.setCaractereSeparateurDecimal(
-            static_cast<ParametresExport::CaractereSeparateurDecimal>(_ui->comboBoxCaractereSeparateurDecimal->currentIndex()));
+            static_cast<ParametresExport::CaractereSeparateurDecimal>(index));
 }
 
-void FenetreParametresExport::on_spinBoxNombreDecimalesOuChiffresSignificatifs_valueChanged()
+void FenetreParametresExport::on_spinBoxNombreDecimalesOuChiffresSignificatifs_valueChanged(
+        int value)
 {
-    _parametresExport.setNombreChiffresSignificatifs(
-            _ui->spinBoxNombreDecimalesOuChiffresSignificatifs->value());
+    _parametresExport.setNombreChiffresSignificatifs(value);
 }
 
-void FenetreParametresExport::on_lineEditSeuilInterpolationNumerique_textChanged()
+void FenetreParametresExport::on_lineEditSeuilInterpolationNumerique_textChanged(
+        const QString& text)
 {
-    _parametresExport.setSeuilInterpolationNumerique(
-            _ui->lineEditSeuilInterpolationNumerique->text().toDouble());
+    _parametresExport.setSeuilInterpolationNumerique(text.toDouble());
 }

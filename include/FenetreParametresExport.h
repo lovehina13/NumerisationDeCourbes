@@ -43,11 +43,11 @@ protected:
 
 protected slots:
     // Connecteurs spécifiques
-    void on_comboBoxCaractereSeparation_currentIndexChanged();
-    void on_comboBoxFormatNotationNombres_currentIndexChanged();
-    void on_comboBoxCaractereSeparateurDecimal_currentIndexChanged();
-    void on_spinBoxNombreDecimalesOuChiffresSignificatifs_valueChanged();
-    void on_lineEditSeuilInterpolationNumerique_textChanged();
+    void on_comboBoxCaractereSeparation_currentIndexChanged(int index);
+    void on_comboBoxFormatNotationNombres_currentIndexChanged(int index);
+    void on_comboBoxCaractereSeparateurDecimal_currentIndexChanged(int index);
+    void on_spinBoxNombreDecimalesOuChiffresSignificatifs_valueChanged(int value);
+    void on_lineEditSeuilInterpolationNumerique_textChanged(const QString& text);
 
 private:
     // Attributs de classe

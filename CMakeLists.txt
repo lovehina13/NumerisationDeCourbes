@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.6)
 
 project(NumerisationDeCourbes)
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_AUTOMOC ON)
@@ -11,9 +11,9 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOUIC_SEARCH_PATHS interfaces)
 
-find_package(Qt4 4.8.7 REQUIRED QtCore QtGui)
+find_package(Qt5 5.15.2 REQUIRED Core Widgets)
 
-qt4_wrap_cpp(MOC_FILES
+qt5_wrap_cpp(MOC_FILES
     include/EcranPrincipal.h
     include/FenetreDocumentation.h
     include/FenetreGraphique.h
@@ -58,7 +58,7 @@ add_executable(NumerisationDeCourbes
     resources/Ressources.qrc
     ${MOC_FILES})
 
-target_link_libraries(NumerisationDeCourbes PUBLIC Qt4::QtCore Qt4::QtGui)
+target_link_libraries(NumerisationDeCourbes PUBLIC Qt5::Core Qt5::Widgets)
 
 target_include_directories(NumerisationDeCourbes PUBLIC include)
 

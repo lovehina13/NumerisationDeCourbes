@@ -378,109 +378,98 @@ void FenetreGraphique::exporterGraphique()
 #endif
 }
 
-void FenetreGraphique::on_lineEditAxeHorizontalBorneInferieure_textChanged()
+void FenetreGraphique::on_lineEditAxeHorizontalBorneInferieure_textChanged(const QString& text)
 {
     ParametresAxe parametresAxeHorizontal = _parametresGraphique.getParametresAxeHorizontal();
-    parametresAxeHorizontal.setBorneInferieure(
-            _ui->lineEditAxeHorizontalBorneInferieure->text().toDouble());
+    parametresAxeHorizontal.setBorneInferieure(text.toDouble());
     _parametresGraphique.setParametresAxeHorizontal(parametresAxeHorizontal);
     dessinerGraphique();
 }
 
-void FenetreGraphique::on_lineEditAxeHorizontalBorneSuperieure_textChanged()
+void FenetreGraphique::on_lineEditAxeHorizontalBorneSuperieure_textChanged(const QString& text)
 {
     ParametresAxe parametresAxeHorizontal = _parametresGraphique.getParametresAxeHorizontal();
-    parametresAxeHorizontal.setBorneSuperieure(
-            _ui->lineEditAxeHorizontalBorneSuperieure->text().toDouble());
+    parametresAxeHorizontal.setBorneSuperieure(text.toDouble());
     _parametresGraphique.setParametresAxeHorizontal(parametresAxeHorizontal);
     dessinerGraphique();
 }
 
-void FenetreGraphique::on_lineEditAxeHorizontalPasPrincipal_textChanged()
+void FenetreGraphique::on_lineEditAxeHorizontalPasPrincipal_textChanged(const QString& text)
 {
     ParametresAxe parametresAxeHorizontal = _parametresGraphique.getParametresAxeHorizontal();
-    parametresAxeHorizontal.setPasPrincipal(
-            _ui->lineEditAxeHorizontalPasPrincipal->text().toDouble());
+    parametresAxeHorizontal.setPasPrincipal(text.toDouble());
     _parametresGraphique.setParametresAxeHorizontal(parametresAxeHorizontal);
     dessinerGraphique();
 }
 
-void FenetreGraphique::on_lineEditAxeHorizontalPasSecondaire_textChanged()
+void FenetreGraphique::on_lineEditAxeHorizontalPasSecondaire_textChanged(const QString& text)
 {
     ParametresAxe parametresAxeHorizontal = _parametresGraphique.getParametresAxeHorizontal();
-    parametresAxeHorizontal.setPasSecondaire(
-            _ui->lineEditAxeHorizontalPasSecondaire->text().toDouble());
+    parametresAxeHorizontal.setPasSecondaire(text.toDouble());
     _parametresGraphique.setParametresAxeHorizontal(parametresAxeHorizontal);
     dessinerGraphique();
 }
 
-void FenetreGraphique::on_checkBoxAxeHorizontalGrillePrincipale_stateChanged()
+void FenetreGraphique::on_checkBoxAxeHorizontalGrillePrincipale_stateChanged(int state)
 {
     ParametresAxe parametresAxeHorizontal = _parametresGraphique.getParametresAxeHorizontal();
-    parametresAxeHorizontal.setGrillePrincipale(
-            _ui->checkBoxAxeHorizontalGrillePrincipale->isChecked());
+    parametresAxeHorizontal.setGrillePrincipale(state == Qt::Checked);
     _parametresGraphique.setParametresAxeHorizontal(parametresAxeHorizontal);
     dessinerGraphique();
 }
 
-void FenetreGraphique::on_checkBoxAxeHorizontalGrilleSecondaire_stateChanged()
+void FenetreGraphique::on_checkBoxAxeHorizontalGrilleSecondaire_stateChanged(int state)
 {
     ParametresAxe parametresAxeHorizontal = _parametresGraphique.getParametresAxeHorizontal();
-    parametresAxeHorizontal.setGrilleSecondaire(
-            _ui->checkBoxAxeHorizontalGrilleSecondaire->isChecked());
+    parametresAxeHorizontal.setGrilleSecondaire(state == Qt::Checked);
     _parametresGraphique.setParametresAxeHorizontal(parametresAxeHorizontal);
     dessinerGraphique();
 }
 
-void FenetreGraphique::on_lineEditAxeVerticalBorneInferieure_textChanged()
+void FenetreGraphique::on_lineEditAxeVerticalBorneInferieure_textChanged(const QString& text)
 {
     ParametresAxe parametresAxeVertical = _parametresGraphique.getParametresAxeVertical();
-    parametresAxeVertical.setBorneInferieure(
-            _ui->lineEditAxeVerticalBorneInferieure->text().toDouble());
+    parametresAxeVertical.setBorneInferieure(text.toDouble());
     _parametresGraphique.setParametresAxeVertical(parametresAxeVertical);
     dessinerGraphique();
 }
 
-void FenetreGraphique::on_lineEditAxeVerticalBorneSuperieure_textChanged()
+void FenetreGraphique::on_lineEditAxeVerticalBorneSuperieure_textChanged(const QString& text)
 {
     ParametresAxe parametresAxeVertical = _parametresGraphique.getParametresAxeVertical();
-    parametresAxeVertical.setBorneSuperieure(
-            _ui->lineEditAxeVerticalBorneSuperieure->text().toDouble());
+    parametresAxeVertical.setBorneSuperieure(text.toDouble());
     _parametresGraphique.setParametresAxeVertical(parametresAxeVertical);
     dessinerGraphique();
 }
 
-void FenetreGraphique::on_lineEditAxeVerticalPasPrincipal_textChanged()
+void FenetreGraphique::on_lineEditAxeVerticalPasPrincipal_textChanged(const QString& text)
 {
     ParametresAxe parametresAxeVertical = _parametresGraphique.getParametresAxeVertical();
-    parametresAxeVertical.setPasPrincipal(_ui->lineEditAxeVerticalPasPrincipal->text().toDouble());
+    parametresAxeVertical.setPasPrincipal(text.toDouble());
     _parametresGraphique.setParametresAxeVertical(parametresAxeVertical);
     dessinerGraphique();
 }
 
-void FenetreGraphique::on_lineEditAxeVerticalPasSecondaire_textChanged()
+void FenetreGraphique::on_lineEditAxeVerticalPasSecondaire_textChanged(const QString& text)
 {
     ParametresAxe parametresAxeVertical = _parametresGraphique.getParametresAxeVertical();
-    parametresAxeVertical.setPasSecondaire(
-            _ui->lineEditAxeVerticalPasSecondaire->text().toDouble());
+    parametresAxeVertical.setPasSecondaire(text.toDouble());
     _parametresGraphique.setParametresAxeVertical(parametresAxeVertical);
     dessinerGraphique();
 }
 
-void FenetreGraphique::on_checkBoxAxeVerticalGrillePrincipale_stateChanged()
+void FenetreGraphique::on_checkBoxAxeVerticalGrillePrincipale_stateChanged(int state)
 {
     ParametresAxe parametresAxeVertical = _parametresGraphique.getParametresAxeVertical();
-    parametresAxeVertical.setGrillePrincipale(
-            _ui->checkBoxAxeVerticalGrillePrincipale->isChecked());
+    parametresAxeVertical.setGrillePrincipale(state == Qt::Checked);
     _parametresGraphique.setParametresAxeVertical(parametresAxeVertical);
     dessinerGraphique();
 }
 
-void FenetreGraphique::on_checkBoxAxeVerticalGrilleSecondaire_stateChanged()
+void FenetreGraphique::on_checkBoxAxeVerticalGrilleSecondaire_stateChanged(int state)
 {
     ParametresAxe parametresAxeVertical = _parametresGraphique.getParametresAxeVertical();
-    parametresAxeVertical.setGrilleSecondaire(
-            _ui->checkBoxAxeVerticalGrilleSecondaire->isChecked());
+    parametresAxeVertical.setGrilleSecondaire(state == Qt::Checked);
     _parametresGraphique.setParametresAxeVertical(parametresAxeVertical);
     dessinerGraphique();
 }

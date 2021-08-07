@@ -43,23 +43,23 @@ protected:
 
 protected slots:
     // Connecteurs spécifiques
-    void on_comboBoxFormatNotationNombres_currentIndexChanged();
-    void on_spinBoxNombreDecimalesOuChiffresSignificatifs_valueChanged();
+    void on_comboBoxFormatNotationNombres_currentIndexChanged(int index);
+    void on_spinBoxNombreDecimalesOuChiffresSignificatifs_valueChanged(int value);
     void on_pushButtonCouleurAxes_clicked();
-    void on_comboBoxStyleAxes_currentIndexChanged();
-    void on_spinBoxEpaisseurAxes_valueChanged();
+    void on_comboBoxStyleAxes_currentIndexChanged(int index);
+    void on_spinBoxEpaisseurAxes_valueChanged(int value);
     void on_pushButtonCouleurCourbes_clicked();
-    void on_comboBoxStyleCourbes_currentIndexChanged();
-    void on_spinBoxEpaisseurCourbes_valueChanged();
+    void on_comboBoxStyleCourbes_currentIndexChanged(int index);
+    void on_spinBoxEpaisseurCourbes_valueChanged(int value);
     void on_pushButtonCouleurPointsAxes_clicked();
-    void on_comboBoxStylePointsAxes_currentIndexChanged();
-    void on_spinBoxEpaisseurPointsAxes_valueChanged();
+    void on_comboBoxStylePointsAxes_currentIndexChanged(int index);
+    void on_spinBoxEpaisseurPointsAxes_valueChanged(int value);
     void on_pushButtonCouleurPointsCourbes_clicked();
-    void on_comboBoxStylePointsCourbes_currentIndexChanged();
-    void on_spinBoxEpaisseurPointsCourbes_valueChanged();
+    void on_comboBoxStylePointsCourbes_currentIndexChanged(int index);
+    void on_spinBoxEpaisseurPointsCourbes_valueChanged(int value);
     void on_pushButtonCouleurPointsManuels_clicked();
-    void on_comboBoxStylePointsManuels_currentIndexChanged();
-    void on_spinBoxEpaisseurPointsManuels_valueChanged();
+    void on_comboBoxStylePointsManuels_currentIndexChanged(int index);
+    void on_spinBoxEpaisseurPointsManuels_valueChanged(int value);
 
 private:
     // Attributs de classe

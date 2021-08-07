@@ -67,18 +67,18 @@ protected:
 
 protected slots:
     // Connecteurs spécifiques
-    void on_lineEditAxeHorizontalBorneInferieure_textChanged();
-    void on_lineEditAxeHorizontalBorneSuperieure_textChanged();
-    void on_lineEditAxeHorizontalPasPrincipal_textChanged();
-    void on_lineEditAxeHorizontalPasSecondaire_textChanged();
-    void on_checkBoxAxeHorizontalGrillePrincipale_stateChanged();
-    void on_checkBoxAxeHorizontalGrilleSecondaire_stateChanged();
-    void on_lineEditAxeVerticalBorneInferieure_textChanged();
-    void on_lineEditAxeVerticalBorneSuperieure_textChanged();
-    void on_lineEditAxeVerticalPasPrincipal_textChanged();
-    void on_lineEditAxeVerticalPasSecondaire_textChanged();
-    void on_checkBoxAxeVerticalGrillePrincipale_stateChanged();
-    void on_checkBoxAxeVerticalGrilleSecondaire_stateChanged();
+    void on_lineEditAxeHorizontalBorneInferieure_textChanged(const QString& text);
+    void on_lineEditAxeHorizontalBorneSuperieure_textChanged(const QString& text);
+    void on_lineEditAxeHorizontalPasPrincipal_textChanged(const QString& text);
+    void on_lineEditAxeHorizontalPasSecondaire_textChanged(const QString& text);
+    void on_checkBoxAxeHorizontalGrillePrincipale_stateChanged(int state);
+    void on_checkBoxAxeHorizontalGrilleSecondaire_stateChanged(int state);
+    void on_lineEditAxeVerticalBorneInferieure_textChanged(const QString& text);
+    void on_lineEditAxeVerticalBorneSuperieure_textChanged(const QString& text);
+    void on_lineEditAxeVerticalPasPrincipal_textChanged(const QString& text);
+    void on_lineEditAxeVerticalPasSecondaire_textChanged(const QString& text);
+    void on_checkBoxAxeVerticalGrillePrincipale_stateChanged(int state);
+    void on_checkBoxAxeVerticalGrilleSecondaire_stateChanged(int state);
     void on_buttonBox_clicked(QAbstractButton* button);
 
 private:
